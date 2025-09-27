@@ -428,19 +428,19 @@ export const StagePanel: React.FC<StagePanelProps> = ({ case: caseData }) => {
         </div>
       </div>
 
-      {/* All Stages Horizontal Scrollable Rail */}
+      {/* Simplified Horizontal Stage Rail */}
       <div className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-lg shadow-lg dark:shadow-2xl p-6">
         <div className="flex items-center justify-between mb-4">
           <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
             Complete Stage Pipeline (15 Parts)
           </h3>
           <div className="text-sm text-gray-500 dark:text-gray-400">
-            Scroll horizontally to see all stages →
+            {COMPREHENSIVE_PIPELINE.length} stages • Click to focus
           </div>
         </div>
         
         <div className="relative">
-          <div className="flex overflow-x-auto gap-3 pb-4 stage-horizontal-rail">
+          <div className="flex overflow-x-auto gap-2 pb-4 stage-horizontal-rail">
             {COMPREHENSIVE_PIPELINE.map((stage, i) => {
               const isActive = i === activeIdx;
               const isCompleted = i < activeIdx;
@@ -451,141 +451,41 @@ export const StagePanel: React.FC<StagePanelProps> = ({ case: caseData }) => {
                 <div 
                   key={stage.key} 
                   className={cn(
-                    "flex-shrink-0 w-36 p-3 rounded-lg border-2 transition-all duration-200 cursor-pointer hover:shadow-md relative",
-                    isMilestone && "ring-2 ring-yellow-300 dark:ring-yellow-600",
-                    draggedStage === stage.key && "opacity-50 scale-95",
-                    dragOverStage === stage.key && "ring-2 ring-blue-400 scale-105",
+                    "flex-shrink-0 px-3 py-2 rounded-lg border cursor-pointer transition-all duration-200 hover:shadow-sm",
                     isActive 
-                      ? (isClientVisible ? "border-green-500 bg-green-100 dark:bg-green-900/30 shadow-lg" : "border-blue-500 bg-blue-100 dark:bg-blue-900/30 shadow-lg")
+                      ? "border-blue-500 bg-blue-100 dark:bg-blue-900/30 text-blue-900 dark:text-blue-100" 
                       : isCompleted 
-                      ? (isClientVisible ? "border-green-300 bg-green-50 dark:bg-green-900/10" : "border-gray-300 bg-gray-50 dark:bg-gray-800") 
-                      : "border-gray-200 bg-white dark:bg-gray-900 dark:border-gray-600 hover:border-gray-300"
+                      ? "border-green-500 bg-green-100 dark:bg-green-900/30 text-green-900 dark:text-green-100"
+                      : "border-gray-300 bg-gray-50 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:border-gray-400"
                   )}
-                  draggable={true}
-                  onDragStart={(e) => handleDragStart(e, stage.key)}
-                  onDragOver={(e) => handleDragOver(e, stage.key)}
-                  onDragLeave={handleDragLeave}
-                  onDrop={(e) => handleDrop(e, stage.key)}
                   onClick={() => handleMarkActive(stage.key)}
-                  data-testid={`stage-card-${stage.key}`}
+                  title={`${stage.label} - ${stage.description} (Part ${stage.part})`}
+                  data-testid={`stage-chip-${stage.key}`}
                 >
-                  <div className="flex items-center justify-between mb-2">
+                  {/* Simple Chip Content */}
+                  <div className="flex items-center gap-2">
+                    {/* Stage Number & Status */}
                     <div className={cn(
-                      "w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold relative",
-                      isActive 
-                        ? (isClientVisible ? "bg-green-500 text-white" : "bg-blue-500 text-white")
-                        : isCompleted 
-                        ? (isClientVisible ? "bg-green-400 text-white" : "bg-gray-400 text-white") 
-                        : "bg-gray-200 text-gray-600"
+                      "w-5 h-5 rounded-full flex items-center justify-center text-xs font-bold",
+                      isActive ? "bg-blue-500 text-white" : isCompleted ? "bg-green-500 text-white" : "bg-gray-400 text-white"
                     )}>
-                      {stage.part}
-                      {isMilestone && (
-                        <div className="absolute -top-1 -right-1 w-3 h-3 bg-yellow-400 rounded-full flex items-center justify-center">
-                          <span className="text-xs">⭐</span>
-                        </div>
-                      )}
-                    </div>
-                    <div className="flex items-center gap-1">
-                      {isClientVisible ? (
-                        <span className="text-green-500 text-sm" title="Client Visible">👁️</span>
-                      ) : (
-                        <span className="text-gray-400 text-sm" title="Admin Only">🔒</span>
-                      )}
-                      {isMilestone && (
-                        <span className="text-yellow-500 text-xs" title="Major Milestone">🏆</span>
-                      )}
-                    </div>
-                  </div>
-                  <div className="text-xs font-medium text-gray-900 dark:text-white line-clamp-2 mb-1">
-                    {stage.label}
-                  </div>
-                  <div className="text-xs text-gray-500 dark:text-gray-400 line-clamp-1 mb-2">
-                    {stage.description?.slice(0, 35)}...
-                  </div>
-                  
-                  {/* Enhanced Interactive Status and Controls */}
-                  <div className="flex items-center justify-between">
-                    <div className={cn(
-                      "text-xs px-2 py-1 rounded-full font-medium flex items-center gap-1",
-                      isActive 
-                        ? "bg-blue-500 text-white" 
-                        : isCompleted 
-                        ? "bg-green-500 text-white"
-                        : stageStatus[stage.key] === 'blocked'
-                        ? "bg-red-500 text-white"
-                        : "bg-gray-300 text-gray-700"
-                    )}>
-                      {isActive ? "🔵 ACTIVE" : isCompleted ? "✅ DONE" : stageStatus[stage.key] === 'blocked' ? "🚫 BLOCKED" : "⏳ PENDING"}
+                      {isCompleted ? "✓" : i + 1}
                     </div>
                     
-                    <div className="flex items-center gap-1">
-                      {/* Quick status change dropdown */}
-                      <select
-                        className="text-xs p-1 rounded border-0 bg-transparent"
-                        value={stageStatus[stage.key] || (isActive ? 'active' : isCompleted ? 'completed' : 'pending')}
-                        onChange={(e) => {
-                          e.stopPropagation();
-                          handleStageStatusChange(stage.key, e.target.value as any);
-                        }}
-                        data-testid={`select-quick-status-${stage.key}`}
-                      >
-                        <option value="pending">Pending</option>
-                        <option value="active">Active</option>
-                        <option value="completed">Completed</option>
-                        <option value="blocked">Blocked</option>
-                      </select>
-                      
-                      <button 
-                        className="text-gray-400 hover:text-gray-600 text-xs p-1 transition-colors"
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          handleExpandStage(stage.key);
-                        }}
-                        data-testid={`button-expand-rail-${stage.key}`}
-                      >
-                        {expandedStage === stage.key ? '📝' : '⚙️'}
-                      </button>
-                    </div>
+                    {/* Stage Name */}
+                    <span className="text-xs font-medium truncate max-w-20">
+                      {stage.label}
+                    </span>
+                    
+                    {/* Part Badge */}
+                    <span className="text-xs px-1 py-0.5 bg-gray-200 dark:bg-gray-700 rounded text-gray-600 dark:text-gray-400">
+                      P{stage.part}
+                    </span>
+                    
+                    {/* Indicators */}
+                    {isMilestone && <span className="text-xs">🏆</span>}
+                    {isClientVisible && <span className="text-xs">👁️</span>}
                   </div>
-                  
-                  {/* Expandable Details in Horizontal Rail */}
-                  {expandedStage === stage.key && (
-                    <div className="absolute top-full left-0 right-0 mt-1 p-3 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg shadow-lg z-10">
-                      <div className="space-y-2">
-                        <div>
-                          <label className="text-xs font-medium text-gray-700 dark:text-gray-300 block mb-1">Quick Notes</label>
-                          <textarea
-                            className="w-full text-xs p-2 border border-gray-200 dark:border-gray-600 rounded resize-none h-12 bg-white dark:bg-gray-900"
-                            placeholder="Quick stage notes..."
-                            value={stageNotes[stage.key] || ''}
-                            onChange={(e) => handleStageNotesUpdate(stage.key, e.target.value)}
-                            data-testid={`textarea-rail-notes-${stage.key}`}
-                          />
-                        </div>
-                        <div className="flex justify-between">
-                          <div className="text-xs text-gray-500 dark:text-gray-400">
-                            Part {stage.part} • {stage.clientVisible ? 'Client Visible' : 'Admin Only'}
-                          </div>
-                          <div className="flex gap-1">
-                            <button 
-                              className="text-xs px-2 py-1 bg-green-500 text-white rounded hover:bg-green-600 transition-colors"
-                              onClick={() => handleSaveStageEdit(stage.key)}
-                              data-testid={`button-save-rail-${stage.key}`}
-                            >
-                              Save
-                            </button>
-                            <button 
-                              className="text-xs px-2 py-1 bg-gray-500 text-white rounded hover:bg-gray-600 transition-colors"
-                              onClick={() => setExpandedStage(null)}
-                              data-testid={`button-close-rail-${stage.key}`}
-                            >
-                              Close
-                            </button>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  )}
                 </div>
               );
             })}
