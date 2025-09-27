@@ -814,11 +814,11 @@ export const StagePanel: React.FC<StagePanelProps> = ({ case: caseData }) => {
                       <div className="text-xs font-medium text-blue-800 dark:text-blue-200 mb-1">
                         Connected: {stage.links.length} systems
                       </div>
-                      <div className="flex flex-wrap gap-1">
+                      <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 w-full">
                         {stage.links.map(link => (
                           <span 
                             key={link.id} 
-                            className="text-xs px-2 py-1 bg-blue-100 dark:bg-blue-900/20 text-blue-700 dark:text-blue-300 rounded-full border border-blue-200 dark:border-blue-700"
+                            className="inline-flex h-6 w-full items-center justify-center rounded-full border border-blue-400 bg-blue-50 dark:bg-blue-900/20 px-2 text-xs font-medium text-blue-700 dark:text-blue-300 truncate"
                           >
                             {link.label}
                             {link.count && link.count > 0 && ` (${link.count})`}
@@ -912,22 +912,24 @@ export const StagePanel: React.FC<StagePanelProps> = ({ case: caseData }) => {
                         )}
                         
                         {/* Default Stage Links */}
-                        {stage.links && stage.links.map(link => (
-                          <button 
-                            key={link.id}
-                            className="text-xs px-2 py-1 bg-blue-100 dark:bg-blue-900/20 text-blue-700 dark:text-blue-300 rounded-full border border-blue-200 dark:border-blue-700 hover:bg-blue-200 transition-colors"
-                            onClick={() => {
-                              if (link.route) {
-                                window.open(link.route, '_blank');
-                              } else {
-                                toast({ title: "Quick Action", description: `Opening ${link.label}...` });
-                              }
-                            }}
-                          >
-                            {link.label}
-                            {link.count && link.count > 0 && ` (${link.count})`}
-                          </button>
-                        ))}
+                        <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 w-full">
+                          {stage.links && stage.links.map(link => (
+                            <button 
+                              key={link.id}
+                              className="inline-flex h-6 w-full items-center justify-center rounded-full border border-blue-400 bg-blue-50 dark:bg-blue-900/20 px-2 text-xs font-medium text-blue-700 dark:text-blue-300 hover:bg-blue-200 dark:hover:bg-blue-900/30 transition-colors truncate"
+                              onClick={() => {
+                                if (link.route) {
+                                  window.open(link.route, '_blank');
+                                } else {
+                                  toast({ title: "Quick Action", description: `Opening ${link.label}...` });
+                                }
+                              }}
+                            >
+                              {link.label}
+                              {link.count && link.count > 0 && ` (${link.count})`}
+                            </button>
+                          ))}
+                        </div>
                       </div>
                     </div>
                   ) : null}
