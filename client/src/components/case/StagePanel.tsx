@@ -473,7 +473,7 @@ export const StagePanel: React.FC<StagePanelProps> = ({ case: caseData }) => {
                 <span className="text-gray-700 dark:text-gray-300">Critical</span>
               </div>
               <div className="flex items-center gap-1">
-                <div className="w-3 h-3 bg-orange-100 dark:bg-orange-900 border border-orange-300 dark:border-orange-700 rounded"></div>
+                <div className="w-3 h-3 bg-amber-100 dark:bg-amber-900 border border-amber-300 dark:border-amber-700 rounded"></div>
                 <span className="text-gray-700 dark:text-gray-300">High Priority</span>
               </div>
               <div className="flex items-center gap-1">
@@ -606,7 +606,7 @@ export const StagePanel: React.FC<StagePanelProps> = ({ case: caseData }) => {
                   case 'critical':
                     return "border-red-300 bg-red-50 dark:bg-red-900/20 dark:border-red-700 text-red-900 dark:text-red-100 hover:bg-red-100 dark:hover:bg-red-900/30";
                   case 'high':
-                    return "border-orange-300 bg-orange-50 dark:bg-orange-900/20 dark:border-orange-700 text-orange-900 dark:text-orange-100 hover:bg-orange-100 dark:hover:bg-orange-900/30";
+                    return "border-amber-300 bg-amber-50 dark:bg-amber-900/20 dark:border-amber-700 text-amber-900 dark:text-amber-100 hover:bg-amber-100 dark:hover:bg-amber-900/30";
                   case 'medium':
                     return "border-blue-300 bg-blue-50 dark:bg-blue-900/20 dark:border-blue-700 text-blue-900 dark:text-blue-100 hover:bg-blue-100 dark:hover:bg-blue-900/30";
                   case 'low':
