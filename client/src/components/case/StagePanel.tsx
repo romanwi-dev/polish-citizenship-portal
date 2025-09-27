@@ -175,20 +175,128 @@ export const StagePanel: React.FC<StagePanelProps> = ({ case: caseData }) => {
 
   return (
     <div className="stage-panel space-y-6">
-      {/* Legend Banner */}
+      {/* Enhanced Legend & Controls */}
       <div className="bg-gradient-to-r from-blue-50 to-green-50 dark:from-blue-900/20 dark:to-green-900/20 border border-blue-200 dark:border-blue-700 rounded-lg p-4">
-        <div className="flex items-center justify-between">
-          <h3 className="text-sm font-semibold text-gray-900 dark:text-white">Stage Visibility Legend</h3>
-          <div className="flex items-center gap-4 text-xs">
-            <div className="flex items-center gap-1">
-              <div className="w-3 h-3 bg-green-500 rounded-full"></div>
-              <span className="text-green-700 dark:text-green-300">👁️ Client Visible</span>
-            </div>
-            <div className="flex items-center gap-1">
-              <div className="w-3 h-3 bg-gray-400 rounded-full"></div>
-              <span className="text-gray-600 dark:text-gray-400">🔒 Admin Only</span>
+        <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-4">
+          <div>
+            <h3 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Interactive Stage Management System</h3>
+            <div className="flex flex-wrap items-center gap-4 text-xs">
+              <div className="flex items-center gap-1">
+                <div className="w-3 h-3 bg-green-500 rounded-full"></div>
+                <span className="text-green-700 dark:text-green-300">👁️ Client Visible</span>
+              </div>
+              <div className="flex items-center gap-1">
+                <div className="w-3 h-3 bg-gray-400 rounded-full"></div>
+                <span className="text-gray-600 dark:text-gray-400">🔒 Admin Only</span>
+              </div>
+              <div className="flex items-center gap-1">
+                <div className="w-3 h-3 bg-yellow-400 rounded-full"></div>
+                <span className="text-yellow-600 dark:text-yellow-400">🏆 Major Milestone</span>
+              </div>
+              <div className="flex items-center gap-1">
+                <div className="w-3 h-3 bg-blue-500 rounded-full"></div>
+                <span className="text-blue-600 dark:text-blue-400">⚡ Interactive</span>
+              </div>
             </div>
           </div>
+          <div className="flex items-center gap-2">
+            <button 
+              className="text-xs px-3 py-1 bg-purple-500 text-white rounded-full hover:bg-purple-600 transition-colors"
+              data-testid="button-stage-analytics"
+            >
+              📊 Analytics
+            </button>
+            <button 
+              className="text-xs px-3 py-1 bg-orange-500 text-white rounded-full hover:bg-orange-600 transition-colors"
+              data-testid="button-export-timeline"
+            >
+              📤 Export Timeline
+            </button>
+          </div>
+        </div>
+      </div>
+
+      {/* Progress Overview Dashboard */}
+      <div className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-lg shadow-lg dark:shadow-2xl p-6">
+        <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">📈 Progress Overview</h3>
+        
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
+          <div className="text-center p-4 bg-gray-50 dark:bg-gray-800 rounded-lg">
+            <div className="text-2xl font-bold text-gray-900 dark:text-white" data-testid="text-total-stages">
+              {COMPREHENSIVE_PIPELINE.length}
+            </div>
+            <div className="text-sm text-gray-500 dark:text-gray-400">Total Stages</div>
+          </div>
+          <div className="text-center p-4 bg-green-50 dark:bg-green-900/20 rounded-lg">
+            <div className="text-2xl font-bold text-green-600 dark:text-green-400" data-testid="text-completed-stages">
+              {activeIdx}
+            </div>
+            <div className="text-sm text-green-600 dark:text-green-400">Completed</div>
+          </div>
+          <div className="text-center p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg">
+            <div className="text-2xl font-bold text-blue-600 dark:text-blue-400" data-testid="text-client-visible-stages">
+              {COMPREHENSIVE_PIPELINE.filter(s => s.clientVisible).length}
+            </div>
+            <div className="text-sm text-blue-600 dark:text-blue-400">Client Visible</div>
+          </div>
+          <div className="text-center p-4 bg-yellow-50 dark:bg-yellow-900/20 rounded-lg">
+            <div className="text-2xl font-bold text-yellow-600 dark:text-yellow-400" data-testid="text-milestone-stages">
+              {COMPREHENSIVE_PIPELINE.filter(s => s.isMilestone).length}
+            </div>
+            <div className="text-sm text-yellow-600 dark:text-yellow-400">Milestones</div>
+          </div>
+        </div>
+
+        <div className="mb-4">
+          <div className="flex items-center justify-between mb-2">
+            <span className="text-sm font-medium text-gray-700 dark:text-gray-300">Overall Progress</span>
+            <span className="text-sm text-gray-500 dark:text-gray-400">
+              {Math.round((activeIdx / COMPREHENSIVE_PIPELINE.length) * 100)}%
+            </span>
+          </div>
+          <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-3">
+            <div 
+              className="bg-gradient-to-r from-blue-500 to-green-500 h-3 rounded-full transition-all duration-500"
+              style={{ width: `${(activeIdx / COMPREHENSIVE_PIPELINE.length) * 100}%` }}
+              data-testid="progress-bar-overall"
+            ></div>
+          </div>
+        </div>
+
+        <div className="grid grid-cols-5 md:grid-cols-15 gap-1">
+          {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15].map(partNum => {
+            const partStages = COMPREHENSIVE_PIPELINE.filter(s => s.part === partNum);
+            const completedInPart = partStages.filter((_, i) => COMPREHENSIVE_PIPELINE.findIndex(stage => stage.key === partStages[i].key) < activeIdx).length;
+            const progressPercent = partStages.length > 0 ? (completedInPart / partStages.length) * 100 : 0;
+            const hasActive = partStages.some(s => COMPREHENSIVE_PIPELINE.findIndex(stage => stage.key === s.key) === activeIdx);
+            
+            return (
+              <div key={partNum} className="text-center">
+                <div 
+                  className={cn(
+                    "w-8 h-8 rounded-lg flex items-center justify-center text-xs font-bold mb-1 transition-all duration-200",
+                    hasActive 
+                      ? "bg-blue-500 text-white ring-2 ring-blue-300" 
+                      : progressPercent === 100 
+                      ? "bg-green-500 text-white" 
+                      : progressPercent > 0 
+                      ? "bg-yellow-400 text-gray-800" 
+                      : "bg-gray-200 text-gray-600"
+                  )}
+                  data-testid={`part-indicator-${partNum}`}
+                  title={`Part ${partNum}: ${completedInPart}/${partStages.length} completed`}
+                >
+                  {partNum}
+                </div>
+                <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-1">
+                  <div 
+                    className="bg-gradient-to-r from-blue-400 to-green-400 h-1 rounded-full transition-all duration-300"
+                    style={{ width: `${progressPercent}%` }}
+                  ></div>
+                </div>
+              </div>
+            );
+          })}
         </div>
       </div>
 
@@ -209,19 +317,28 @@ export const StagePanel: React.FC<StagePanelProps> = ({ case: caseData }) => {
               const isActive = i === activeIdx;
               const isCompleted = i < activeIdx;
               const isClientVisible = stage.clientVisible;
+              const isMilestone = stage.isMilestone;
               
               return (
-                <div key={stage.key} className={cn(
-                  "flex-shrink-0 w-32 p-3 rounded-lg border-2 transition-all duration-200",
-                  isActive 
-                    ? (isClientVisible ? "border-green-500 bg-green-100 dark:bg-green-900/30" : "border-blue-500 bg-blue-100 dark:bg-blue-900/30")
-                    : isCompleted 
-                    ? (isClientVisible ? "border-green-300 bg-green-50 dark:bg-green-900/10" : "border-gray-300 bg-gray-50 dark:bg-gray-800") 
-                    : "border-gray-200 bg-white dark:bg-gray-900 dark:border-gray-600"
-                )}>
+                <div 
+                  key={stage.key} 
+                  className={cn(
+                    "flex-shrink-0 w-36 p-3 rounded-lg border-2 transition-all duration-200 cursor-pointer hover:shadow-md",
+                    isMilestone && "ring-2 ring-yellow-300 dark:ring-yellow-600",
+                    isActive 
+                      ? (isClientVisible ? "border-green-500 bg-green-100 dark:bg-green-900/30 shadow-lg" : "border-blue-500 bg-blue-100 dark:bg-blue-900/30 shadow-lg")
+                      : isCompleted 
+                      ? (isClientVisible ? "border-green-300 bg-green-50 dark:bg-green-900/10" : "border-gray-300 bg-gray-50 dark:bg-gray-800") 
+                      : "border-gray-200 bg-white dark:bg-gray-900 dark:border-gray-600 hover:border-gray-300"
+                  )}
+                  onClick={() => {
+                    // TODO: Add stage editing functionality
+                    console.log('Edit stage:', stage.key);
+                  }}
+                >
                   <div className="flex items-center justify-between mb-2">
                     <div className={cn(
-                      "w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold",
+                      "w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold relative",
                       isActive 
                         ? (isClientVisible ? "bg-green-500 text-white" : "bg-blue-500 text-white")
                         : isCompleted 
@@ -229,20 +346,52 @@ export const StagePanel: React.FC<StagePanelProps> = ({ case: caseData }) => {
                         : "bg-gray-200 text-gray-600"
                     )}>
                       {stage.part}
+                      {isMilestone && (
+                        <div className="absolute -top-1 -right-1 w-3 h-3 bg-yellow-400 rounded-full flex items-center justify-center">
+                          <span className="text-xs">⭐</span>
+                        </div>
+                      )}
                     </div>
                     <div className="flex items-center gap-1">
                       {isClientVisible ? (
-                        <span className="text-green-500" title="Client Visible">👁️</span>
+                        <span className="text-green-500 text-sm" title="Client Visible">👁️</span>
                       ) : (
-                        <span className="text-gray-400" title="Admin Only">🔒</span>
+                        <span className="text-gray-400 text-sm" title="Admin Only">🔒</span>
+                      )}
+                      {isMilestone && (
+                        <span className="text-yellow-500 text-xs" title="Major Milestone">🏆</span>
                       )}
                     </div>
                   </div>
                   <div className="text-xs font-medium text-gray-900 dark:text-white line-clamp-2 mb-1">
                     {stage.label}
                   </div>
-                  <div className="text-xs text-gray-500 dark:text-gray-400 line-clamp-1">
-                    {stage.description?.slice(0, 40)}...
+                  <div className="text-xs text-gray-500 dark:text-gray-400 line-clamp-1 mb-2">
+                    {stage.description?.slice(0, 35)}...
+                  </div>
+                  
+                  {/* Interactive Status Indicator */}
+                  <div className="flex items-center justify-between">
+                    <div className={cn(
+                      "text-xs px-2 py-1 rounded-full font-medium",
+                      isActive 
+                        ? "bg-blue-500 text-white" 
+                        : isCompleted 
+                        ? "bg-green-500 text-white"
+                        : "bg-gray-300 text-gray-700"
+                    )}>
+                      {isActive ? "ACTIVE" : isCompleted ? "DONE" : "PENDING"}
+                    </div>
+                    <button 
+                      className="text-gray-400 hover:text-gray-600 text-xs p-1"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        // TODO: Add edit menu
+                        console.log('Edit menu for:', stage.key);
+                      }}
+                    >
+                      ⚙️
+                    </button>
                   </div>
                 </div>
               );
@@ -251,46 +400,136 @@ export const StagePanel: React.FC<StagePanelProps> = ({ case: caseData }) => {
         </div>
       </div>
 
-      {/* Part Summary Overview */}
+      {/* Interactive Kanban-Style Stage Management */}
       <div className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-lg shadow-lg dark:shadow-2xl p-6">
-        <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-6">
-          📋 Parts Summary
-        </h3>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15].map(partNum => {
-            const partStages = COMPREHENSIVE_PIPELINE.filter(s => s.part === partNum);
-            const hasActiveStage = partStages.some(s => COMPREHENSIVE_PIPELINE.findIndex(stage => stage.key === s.key) === activeIdx);
-            const isCompleted = partStages.every(s => COMPREHENSIVE_PIPELINE.findIndex(stage => stage.key === s.key) < activeIdx);
-            const hasClientStages = partStages.some(s => s.clientVisible);
-            
-            return (
-              <div key={partNum} className={cn(
-                "p-3 rounded-lg border text-center",
-                hasActiveStage ? "border-blue-500 bg-blue-50 dark:bg-blue-900/20" : 
-                isCompleted ? "border-green-500 bg-green-50 dark:bg-green-900/20" : 
-                "border-gray-200 bg-gray-50 dark:bg-gray-800"
-              )}>
-                <div className="flex items-center justify-center gap-2 mb-2">
-                  <div className={cn(
-                    "w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold",
-                    hasActiveStage ? "bg-blue-500 text-white" : 
-                    isCompleted ? "bg-green-500 text-white" : "bg-gray-300 text-gray-600"
-                  )}>
-                    {partNum}
+        <div className="flex items-center justify-between mb-6">
+          <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
+            🏗️ Interactive Stage Management
+          </h3>
+          <div className="flex items-center gap-2">
+            <button 
+              className="text-xs px-3 py-1 bg-blue-500 text-white rounded-full hover:bg-blue-600 transition-colors"
+              data-testid="button-add-stage"
+            >
+              + Add Stage
+            </button>
+            <button 
+              className="text-xs px-3 py-1 bg-green-500 text-white rounded-full hover:bg-green-600 transition-colors"
+              data-testid="button-bulk-edit"
+            >
+              Bulk Edit
+            </button>
+          </div>
+        </div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          {/* Pending Stages */}
+          <div className="space-y-3">
+            <div className="flex items-center gap-2 mb-3">
+              <div className="w-3 h-3 bg-gray-400 rounded-full"></div>
+              <h4 className="font-semibold text-gray-700 dark:text-gray-300">Pending Stages</h4>
+              <span className="text-xs bg-gray-100 dark:bg-gray-800 px-2 py-1 rounded-full">
+                {COMPREHENSIVE_PIPELINE.filter((_, i) => i > activeIdx).length}
+              </span>
+            </div>
+            <div className="max-h-96 overflow-y-auto space-y-2">
+              {COMPREHENSIVE_PIPELINE.filter((_, i) => i > activeIdx).slice(0, 8).map((stage, index) => (
+                <div key={stage.key} className="p-3 border border-gray-200 dark:border-gray-700 rounded-lg hover:border-gray-300 transition-colors cursor-pointer">
+                  <div className="flex items-center justify-between mb-1">
+                    <span className="text-xs font-medium text-gray-900 dark:text-white">{stage.label}</span>
+                    <div className="flex items-center gap-1">
+                      {stage.clientVisible && <span className="text-green-500 text-xs">👁️</span>}
+                      {stage.isMilestone && <span className="text-yellow-500 text-xs">🏆</span>}
+                    </div>
                   </div>
-                  {hasClientStages && (
-                    <span className="text-green-500" title="Contains client-visible stages">👁️</span>
-                  )}
+                  <div className="text-xs text-gray-500 dark:text-gray-400 mb-2">{stage.description?.slice(0, 50)}...</div>
+                  <div className="flex items-center justify-between">
+                    <span className="text-xs text-gray-400">Part {stage.part}</span>
+                    <button 
+                      className="text-xs px-2 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 rounded hover:bg-blue-200 dark:hover:bg-blue-900/50"
+                      data-testid={`button-mark-active-${stage.key}`}
+                    >
+                      Mark Active
+                    </button>
+                  </div>
                 </div>
-                <div className="text-xs font-medium text-gray-900 dark:text-white mb-1">
-                  PART {partNum}
+              ))}
+            </div>
+          </div>
+
+          {/* Active Stage */}
+          <div className="space-y-3">
+            <div className="flex items-center gap-2 mb-3">
+              <div className="w-3 h-3 bg-blue-500 rounded-full"></div>
+              <h4 className="font-semibold text-blue-700 dark:text-blue-300">Active Stage</h4>
+              <span className="text-xs bg-blue-100 dark:bg-blue-900/30 px-2 py-1 rounded-full">1</span>
+            </div>
+            {COMPREHENSIVE_PIPELINE[activeIdx] && (
+              <div className="p-4 border-2 border-blue-500 bg-blue-50 dark:bg-blue-900/20 rounded-lg">
+                <div className="flex items-center justify-between mb-2">
+                  <span className="font-semibold text-blue-900 dark:text-blue-100">{COMPREHENSIVE_PIPELINE[activeIdx].label}</span>
+                  <div className="flex items-center gap-2">
+                    {COMPREHENSIVE_PIPELINE[activeIdx].clientVisible && <span className="text-green-500">👁️</span>}
+                    {COMPREHENSIVE_PIPELINE[activeIdx].isMilestone && <span className="text-yellow-500">🏆</span>}
+                    <button className="text-blue-600 hover:text-blue-800 text-sm">✏️</button>
+                  </div>
                 </div>
-                <div className="text-xs text-gray-500 dark:text-gray-400">
-                  {partStages.length} stage{partStages.length > 1 ? 's' : ''}
+                <div className="text-sm text-blue-800 dark:text-blue-200 mb-3">{COMPREHENSIVE_PIPELINE[activeIdx].description}</div>
+                <div className="flex items-center justify-between">
+                  <span className="text-xs text-blue-600 dark:text-blue-400">Part {COMPREHENSIVE_PIPELINE[activeIdx].part}</span>
+                  <div className="flex gap-2">
+                    <button 
+                      className="text-xs px-3 py-1 bg-green-500 text-white rounded hover:bg-green-600"
+                      data-testid="button-complete-stage"
+                    >
+                      Complete
+                    </button>
+                    <button 
+                      className="text-xs px-3 py-1 bg-gray-500 text-white rounded hover:bg-gray-600"
+                      data-testid="button-skip-stage"
+                    >
+                      Skip
+                    </button>
+                  </div>
                 </div>
               </div>
-            );
-          })}
+            )}
+          </div>
+
+          {/* Completed Stages */}
+          <div className="space-y-3">
+            <div className="flex items-center gap-2 mb-3">
+              <div className="w-3 h-3 bg-green-500 rounded-full"></div>
+              <h4 className="font-semibold text-green-700 dark:text-green-300">Completed Stages</h4>
+              <span className="text-xs bg-green-100 dark:bg-green-900/30 px-2 py-1 rounded-full">
+                {COMPREHENSIVE_PIPELINE.filter((_, i) => i < activeIdx).length}
+              </span>
+            </div>
+            <div className="max-h-96 overflow-y-auto space-y-2">
+              {COMPREHENSIVE_PIPELINE.filter((_, i) => i < activeIdx).slice(-8).reverse().map((stage) => (
+                <div key={stage.key} className="p-3 border border-green-200 dark:border-green-700 bg-green-50 dark:bg-green-900/10 rounded-lg">
+                  <div className="flex items-center justify-between mb-1">
+                    <span className="text-xs font-medium text-green-900 dark:text-green-100">{stage.label}</span>
+                    <div className="flex items-center gap-1">
+                      {stage.clientVisible && <span className="text-green-500 text-xs">👁️</span>}
+                      {stage.isMilestone && <span className="text-yellow-500 text-xs">🏆</span>}
+                      <span className="text-green-500 text-xs">✓</span>
+                    </div>
+                  </div>
+                  <div className="text-xs text-green-700 dark:text-green-300 mb-2">{stage.description?.slice(0, 50)}...</div>
+                  <div className="flex items-center justify-between">
+                    <span className="text-xs text-green-600 dark:text-green-400">Part {stage.part}</span>
+                    <button 
+                      className="text-xs px-2 py-1 bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-300 rounded hover:bg-green-200 dark:hover:bg-green-900/50"
+                      data-testid={`button-review-${stage.key}`}
+                    >
+                      Review
+                    </button>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       </div>
 
