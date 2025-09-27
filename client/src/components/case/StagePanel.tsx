@@ -1,5 +1,6 @@
 import React, { useMemo, useState, useCallback } from "react";
 import type { CaseData } from "@/lib/api";
+import type { StageActionLink } from "@shared/schema";
 import { formatPL } from "@/utils/date";
 import { cn } from "@/lib/utils";
 import { useToast } from "@/hooks/use-toast";
@@ -29,6 +30,7 @@ interface StageInfo {
   description?: string;
   isMilestone?: boolean; // For stages marked with >>>> in the corrected workflow
   importance?: 'critical' | 'high' | 'medium' | 'low'; // For background color indication
+  links?: StageActionLink[]; // Related system components and actions
 }
 
 const COMPREHENSIVE_PIPELINE: StageInfo[] = [
@@ -58,7 +60,25 @@ const COMPREHENSIVE_PIPELINE: StageInfo[] = [
     clientVisible: true, 
     description: "Family tree analysis and documentation", 
     isMilestone: true,
-    importance: "critical"
+    importance: "critical",
+    links: [
+      {
+        id: 'family-tree-edit',
+        label: 'Edit Family Tree',
+        targetType: 'familyTree',
+        route: '/family-tree',
+        status: 'available',
+        description: 'Add or modify family members and genealogical relationships'
+      },
+      {
+        id: 'family-tree-pdf',
+        label: 'Export Family Tree PDF',
+        targetType: 'document',
+        payload: { type: 'family-tree-pdf' },
+        status: 'available',
+        description: 'Generate PDF export of complete family tree'
+      }
+    ]
   },
   { key: "PART1_ELIGIBILITY_EXAM", label: "Eligibility Examination", part: 1, clientVisible: false, description: "Eligibility examination (yes, maybe, no)", importance: "high" },
   { key: "PART1_DIFFICULTY_EVAL", label: "Case Difficulty Evaluation", part: 1, clientVisible: false, description: "Case difficulty evaluation on 1-10 scale", importance: "medium" },
@@ -71,7 +91,42 @@ const COMPREHENSIVE_PIPELINE: StageInfo[] = [
   { key: "PART2_DOCUMENT_LIST", label: "Document List", part: 2, clientVisible: true, description: "Emailing list of all needed documents", importance: "medium" },
 
   // PART 3 - ADVANCE & ACCOUNT
-  { key: "PART3_ADVANCE_PAYMENT", label: "Advance Payment", part: 3, clientVisible: true, description: "Initial advance payment processing", isMilestone: true, importance: "critical" },
+  { 
+    key: "PART3_ADVANCE_PAYMENT", 
+    label: "Advance Payment", 
+    part: 3, 
+    clientVisible: true, 
+    description: "Initial advance payment processing", 
+    isMilestone: true, 
+    importance: "critical",
+    links: [
+      {
+        id: 'payment-processing',
+        label: 'Process Payment',
+        targetType: 'payments',
+        route: '/payments',
+        status: 'available',
+        description: 'Process advance payment for citizenship application'
+      },
+      {
+        id: 'payment-invoice',
+        label: 'Payment Invoice',
+        targetType: 'document',
+        payload: { type: 'invoice', stage: 'advance' },
+        status: 'pending',
+        description: 'Generate and send payment invoice'
+      },
+      {
+        id: 'payment-tasks',
+        label: 'Payment Tasks',
+        targetType: 'tasks',
+        payload: { filter: 'payment' },
+        status: 'pending',
+        count: 2,
+        description: 'Track payment processing and confirmation'
+      }
+    ]
+  },
   { key: "PART3_ACCOUNT_OPENING", label: "Portal Account Opening", part: 3, clientVisible: true, description: "Opening account on client portal", isMilestone: true, importance: "high" },
 
   // PART 4 - DETAILS & POAs
@@ -89,7 +144,34 @@ const COMPREHENSIVE_PIPELINE: StageInfo[] = [
     part: 4, 
     clientVisible: true, 
     description: "Preparing the Power of Attorney documents",
-    importance: "critical"
+    importance: "critical",
+    links: [
+      {
+        id: 'poa-form',
+        label: 'POA Application Form',
+        targetType: 'poa',
+        route: '/poa-adult',
+        status: 'available',
+        description: 'Complete Power of Attorney application form'
+      },
+      {
+        id: 'poa-documents',
+        label: 'POA Documents',
+        targetType: 'document',
+        payload: { type: 'poa-templates' },
+        status: 'available',
+        description: 'View and download POA document templates'
+      },
+      {
+        id: 'poa-tasks',
+        label: 'POA Tasks',
+        targetType: 'tasks',
+        payload: { filter: 'poa' },
+        status: 'pending',
+        count: 3,
+        description: 'Track POA preparation and submission tasks'
+      }
+    ]
   },
   { 
     key: "PART4_POA_EMAIL", 
@@ -105,7 +187,40 @@ const COMPREHENSIVE_PIPELINE: StageInfo[] = [
   { key: "PART5_MASTER_FORM", label: "Master Form Completion", part: 5, clientVisible: true, description: "Client fills the MASTER FORM with all case data", isMilestone: true, importance: "critical" },
   { key: "PART5_AI_PAPERWORK", label: "AI Paperwork Generation", part: 5, clientVisible: false, description: "AI Agent generates all the paperwork", isMilestone: true, importance: "critical" },
   { key: "PART5_DRAFT_APPLICATION", label: "Draft Citizenship Application", part: 5, clientVisible: true, description: "Draft citizenship application prepared", importance: "high" },
-  { key: "PART5_APPLICATION_SUBMITTED", label: "Application Submitted", part: 5, clientVisible: true, description: "Submitting citizenship application", importance: "critical" },
+  { 
+    key: "PART5_APPLICATION_SUBMITTED", 
+    label: "Application Submitted", 
+    part: 5, 
+    clientVisible: true, 
+    description: "Submitting citizenship application", 
+    importance: "critical",
+    links: [
+      {
+        id: 'citizenship-application',
+        label: 'Citizenship Application PDF',
+        targetType: 'application',
+        payload: { type: 'citizenship-form' },
+        status: 'completed',
+        description: 'View submitted citizenship application document'
+      },
+      {
+        id: 'submission-email',
+        label: 'Send Confirmation Email',
+        targetType: 'email',
+        payload: { template: 'application-submitted' },
+        status: 'pending',
+        description: 'Send application submission confirmation to client'
+      },
+      {
+        id: 'submission-letter',
+        label: 'Official Submission Letter',
+        targetType: 'letter',
+        payload: { type: 'government-submission' },
+        status: 'available',
+        description: 'Generate official submission letter to authorities'
+      }
+    ]
+  },
   { key: "PART5_AWAITING_RESPONSE", label: "Awaiting Initial Response", part: 5, clientVisible: true, description: "Awaiting initial response (10-18 months)", isMilestone: true, importance: "critical" },
   { key: "PART5_EMAIL_COPY", label: "Email Submission Copy", part: 5, clientVisible: true, description: "Emailing copy of official Polish citizenship application submission", importance: "medium" },
   { key: "PART5_ADD_TO_ACCOUNT", label: "Add Copy to Account", part: 5, clientVisible: true, description: "Adding submission copy to client account", importance: "low" },
@@ -633,6 +748,61 @@ export const StagePanel: React.FC<StagePanelProps> = ({ case: caseData }) => {
                             data-testid={`textarea-notes-${stage.key}`}
                           />
                         </div>
+                        
+                        {/* Related Work Section */}
+                        {stage.links && stage.links.length > 0 && (
+                          <div>
+                            <label className="text-xs font-medium text-gray-700 dark:text-gray-300 block mb-2">Related Work</label>
+                            <div className="space-y-2">
+                              {stage.links.map(link => (
+                                <div key={link.id} className="flex items-center justify-between p-2 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-600 rounded">
+                                  <div className="flex-1">
+                                    <div className="flex items-center gap-2">
+                                      <span className="text-xs font-medium text-gray-900 dark:text-white">{link.label}</span>
+                                      {link.count && (
+                                        <span className="text-xs bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 px-1 py-0.5 rounded">
+                                          {link.count}
+                                        </span>
+                                      )}
+                                      <span className={cn(
+                                        "text-xs px-1.5 py-0.5 rounded font-medium",
+                                        link.status === 'completed' ? "bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-300" :
+                                        link.status === 'pending' ? "bg-yellow-100 dark:bg-yellow-900/30 text-yellow-700 dark:text-yellow-300" :
+                                        link.status === 'blocked' ? "bg-red-100 dark:bg-red-900/30 text-red-700 dark:text-red-300" :
+                                        "bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300"
+                                      )}>
+                                        {link.status || 'available'}
+                                      </span>
+                                    </div>
+                                    {link.description && (
+                                      <p className="text-xs text-gray-600 dark:text-gray-400 mt-1">{link.description}</p>
+                                    )}
+                                  </div>
+                                  <button 
+                                    className="text-xs px-2 py-1 bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors ml-2"
+                                    onClick={() => {
+                                      if (link.route) {
+                                        // Navigate to route - will implement routing logic
+                                        toast({
+                                          title: "Navigation",
+                                          description: `Opening ${link.label}...`,
+                                        });
+                                      } else {
+                                        toast({
+                                          title: "Action",
+                                          description: `Executing ${link.label}...`,
+                                        });
+                                      }
+                                    }}
+                                    data-testid={`button-link-${link.id}`}
+                                  >
+                                    Open
+                                  </button>
+                                </div>
+                              ))}
+                            </div>
+                          </div>
+                        )}
                         
                         <div className="flex items-center justify-between">
                           <div>

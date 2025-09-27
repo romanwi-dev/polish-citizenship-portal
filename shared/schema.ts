@@ -13,6 +13,31 @@ import {
 import { createInsertSchema, createSelectSchema } from "drizzle-zod";
 import { z } from "zod";
 
+// Stage Action Link Types
+export const StageActionLinkSchema = z.object({
+  id: z.string(),
+  label: z.string(),
+  targetType: z.enum([
+    'familyTree',
+    'poa',
+    'tasks', 
+    'payments',
+    'document',
+    'email',
+    'letter',
+    'application',
+    'archives',
+    'translation'
+  ]),
+  route: z.string().optional(), // Navigation route
+  payload: z.record(z.any()).optional(), // Additional data like documentId, templateId etc
+  status: z.enum(['available', 'pending', 'completed', 'blocked']).optional(),
+  count: z.number().optional(), // Number of items (e.g., documents, tasks)
+  description: z.string().optional()
+});
+
+export type StageActionLink = z.infer<typeof StageActionLinkSchema>;
+
 // Session storage table (required for auth)
 export const sessions = pgTable(
   "sessions",
