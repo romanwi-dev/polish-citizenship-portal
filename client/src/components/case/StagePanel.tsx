@@ -21,15 +21,6 @@ type CaseStage =
   | "PART14_PASSPORT_PREP" | "PART14_FINAL_PAYMENT" | "PART14_PASSPORT_OBTAINED"
   | "PART15_EXTENDED_SERVICES";
 
-interface StageActionItem {
-  type: 'task' | 'pdf' | 'document' | 'letter' | 'email';
-  title: string;
-  description: string;
-  link?: string; // Link to task, template, or workflow
-  icon: string;
-  priority?: 'high' | 'medium' | 'low';
-}
-
 interface StageInfo {
   key: CaseStage | string;
   label: string;
@@ -37,7 +28,7 @@ interface StageInfo {
   clientVisible: boolean;
   description?: string;
   isMilestone?: boolean; // For stages marked with >>>> in the corrected workflow
-  actionItems?: StageActionItem[]; // Links to tasks, PDFs, documents, letters, emails
+  importance?: 'critical' | 'high' | 'medium' | 'low'; // For background color indication
 }
 
 const COMPREHENSIVE_PIPELINE: StageInfo[] = [
@@ -48,24 +39,17 @@ const COMPREHENSIVE_PIPELINE: StageInfo[] = [
     part: 1, 
     clientVisible: true, 
     description: "Initial client contact and inquiry",
-    actionItems: [
-      { type: 'task', title: 'Schedule Initial Call', description: 'Book consultation call with client', icon: '📞', priority: 'high', link: '/tasks/schedule-call' },
-      { type: 'email', title: 'Welcome Email', description: 'Send welcome and next steps email', icon: '📧', priority: 'high', link: '/templates/welcome-email' },
-      { type: 'document', title: 'Client Intake Form', description: 'Send initial intake questionnaire', icon: '📋', priority: 'medium', link: '/documents/intake-form' }
-    ]
+    importance: "critical"
   },
-  { key: "PART1_CONTACT_WAVING", label: "Contact Waving", part: 1, clientVisible: false, description: "Follow-up contact wave" },
-  { key: "PART1_ANSWERING_INQUIRY", label: "Answering Inquiry", part: 1, clientVisible: false, description: "Responding to client inquiry" },
+  { key: "PART1_CONTACT_WAVING", label: "Contact Waving", part: 1, clientVisible: false, description: "Follow-up contact wave", importance: "low" },
+  { key: "PART1_ANSWERING_INQUIRY", label: "Answering Inquiry", part: 1, clientVisible: false, description: "Responding to client inquiry", importance: "medium" },
   { 
     key: "PART1_CITIZENSHIP_TEST", 
     label: "Citizenship Test", 
     part: 1, 
     clientVisible: true, 
     description: "Citizenship eligibility assessment test",
-    actionItems: [
-      { type: 'task', title: 'Administer Eligibility Test', description: 'Complete comprehensive eligibility assessment', icon: '📝', priority: 'high', link: '/ai-citizenship-intake' },
-      { type: 'pdf', title: 'Test Results Report', description: 'Generate eligibility assessment PDF', icon: '📄', priority: 'medium', link: '/templates/eligibility-report' }
-    ]
+    importance: "high"
   },
   { 
     key: "PART1_FAMILY_TREE", 
@@ -74,25 +58,21 @@ const COMPREHENSIVE_PIPELINE: StageInfo[] = [
     clientVisible: true, 
     description: "Family tree analysis and documentation", 
     isMilestone: true,
-    actionItems: [
-      { type: 'task', title: 'Build Family Tree', description: 'Complete 4-generation family tree analysis', icon: '🌳', priority: 'high', link: '/client-dashboard?tab=tree' },
-      { type: 'pdf', title: 'Family Tree PDF', description: 'Generate detailed family tree document', icon: '📊', priority: 'high', link: '/api/family-tree/export' },
-      { type: 'document', title: 'Genealogy Documents', description: 'Collect supporting genealogical documents', icon: '📜', priority: 'medium', link: '/documents/genealogy' }
-    ]
+    importance: "critical"
   },
-  { key: "PART1_ELIGIBILITY_EXAM", label: "Eligibility Examination", part: 1, clientVisible: false, description: "Eligibility examination (yes, maybe, no)" },
-  { key: "PART1_DIFFICULTY_EVAL", label: "Case Difficulty Evaluation", part: 1, clientVisible: false, description: "Case difficulty evaluation on 1-10 scale" },
-  { key: "PART1_ELIGIBILITY_CALL", label: "Eligibility Call", part: 1, clientVisible: true, description: "Initial eligibility consultation call", isMilestone: true },
+  { key: "PART1_ELIGIBILITY_EXAM", label: "Eligibility Examination", part: 1, clientVisible: false, description: "Eligibility examination (yes, maybe, no)", importance: "high" },
+  { key: "PART1_DIFFICULTY_EVAL", label: "Case Difficulty Evaluation", part: 1, clientVisible: false, description: "Case difficulty evaluation on 1-10 scale", importance: "medium" },
+  { key: "PART1_ELIGIBILITY_CALL", label: "Eligibility Call", part: 1, clientVisible: true, description: "Initial eligibility consultation call", isMilestone: true, importance: "critical" },
 
   // PART 2 - TERMS & PRICING
-  { key: "PART2_INITIAL_ASSESSMENT", label: "Initial Assessment Email", part: 2, clientVisible: true, description: "Emailing initial assessment to client" },
-  { key: "PART2_FULL_PROCESS_INFO", label: "Full Process Info", part: 2, clientVisible: true, description: "Emailing full process info with pricing" },
-  { key: "PART2_CLIENT_CONFIRMATION", label: "Client Confirmation", part: 2, clientVisible: true, description: "Client's confirmation to proceed" },
-  { key: "PART2_DOCUMENT_LIST", label: "Document List", part: 2, clientVisible: true, description: "Emailing list of all needed documents" },
+  { key: "PART2_INITIAL_ASSESSMENT", label: "Initial Assessment Email", part: 2, clientVisible: true, description: "Emailing initial assessment to client", importance: "high" },
+  { key: "PART2_FULL_PROCESS_INFO", label: "Full Process Info", part: 2, clientVisible: true, description: "Emailing full process info with pricing", importance: "high" },
+  { key: "PART2_CLIENT_CONFIRMATION", label: "Client Confirmation", part: 2, clientVisible: true, description: "Client's confirmation to proceed", importance: "critical" },
+  { key: "PART2_DOCUMENT_LIST", label: "Document List", part: 2, clientVisible: true, description: "Emailing list of all needed documents", importance: "medium" },
 
   // PART 3 - ADVANCE & ACCOUNT
-  { key: "PART3_ADVANCE_PAYMENT", label: "Advance Payment", part: 3, clientVisible: true, description: "Initial advance payment processing", isMilestone: true },
-  { key: "PART3_ACCOUNT_OPENING", label: "Portal Account Opening", part: 3, clientVisible: true, description: "Opening account on client portal", isMilestone: true },
+  { key: "PART3_ADVANCE_PAYMENT", label: "Advance Payment", part: 3, clientVisible: true, description: "Initial advance payment processing", isMilestone: true, importance: "critical" },
+  { key: "PART3_ACCOUNT_OPENING", label: "Portal Account Opening", part: 3, clientVisible: true, description: "Opening account on client portal", isMilestone: true, importance: "high" },
 
   // PART 4 - DETAILS & POAs
   { 
@@ -101,11 +81,7 @@ const COMPREHENSIVE_PIPELINE: StageInfo[] = [
     part: 4, 
     clientVisible: true, 
     description: "Client provides passport copy, address, birth certificate, phone number, family history",
-    actionItems: [
-      { type: 'task', title: 'Upload Passport Copy', description: 'Client uploads valid passport copy', icon: '📘', priority: 'high', link: '/client-dashboard?tab=documents' },
-      { type: 'document', title: 'Birth Certificate', description: 'Obtain certified birth certificate', icon: '📋', priority: 'high', link: '/documents/birth-certificate' },
-      { type: 'task', title: 'Complete Address Verification', description: 'Verify current address and history', icon: '🏠', priority: 'medium', link: '/tasks/address-verification' }
-    ]
+    importance: "critical"
   },
   { 
     key: "PART4_POA_PREP", 
@@ -113,11 +89,7 @@ const COMPREHENSIVE_PIPELINE: StageInfo[] = [
     part: 4, 
     clientVisible: true, 
     description: "Preparing the Power of Attorney documents",
-    actionItems: [
-      { type: 'pdf', title: 'Generate POA Documents', description: 'Create Power of Attorney PDF forms', icon: '📄', priority: 'high', link: '/templates/poa-adult-form' },
-      { type: 'document', title: 'POA Templates', description: 'Access all POA document templates', icon: '📝', priority: 'high', link: '/client-dashboard?tab=documents&section=templates' },
-      { type: 'task', title: 'Review POA Details', description: 'Verify all POA information is correct', icon: '✅', priority: 'medium', link: '/tasks/poa-review' }
-    ]
+    importance: "critical"
   },
   { 
     key: "PART4_POA_EMAIL", 
@@ -125,86 +97,83 @@ const COMPREHENSIVE_PIPELINE: StageInfo[] = [
     part: 4, 
     clientVisible: true, 
     description: "Emailing the POAs to client",
-    actionItems: [
-      { type: 'email', title: 'Send POA Email', description: 'Email POA documents to client', icon: '📧', priority: 'high', link: '/templates/poa-email' },
-      { type: 'letter', title: 'POA Cover Letter', description: 'Generate POA instruction letter', icon: '✉️', priority: 'medium', link: '/templates/poa-instructions' }
-    ]
+    importance: "high"
   },
-  { key: "PART4_POA_FEDEX", label: "POA FedEx Delivery", part: 4, clientVisible: true, description: "Client sends signed POAs by FedEx to Warsaw office" },
+  { key: "PART4_POA_FEDEX", label: "POA FedEx Delivery", part: 4, clientVisible: true, description: "Client sends signed POAs by FedEx to Warsaw office", importance: "critical" },
 
   // PART 5 - DATA & APPLICATION
-  { key: "PART5_MASTER_FORM", label: "Master Form Completion", part: 5, clientVisible: true, description: "Client fills the MASTER FORM with all case data", isMilestone: true },
-  { key: "PART5_AI_PAPERWORK", label: "AI Paperwork Generation", part: 5, clientVisible: false, description: "AI Agent generates all the paperwork", isMilestone: true },
-  { key: "PART5_DRAFT_APPLICATION", label: "Draft Citizenship Application", part: 5, clientVisible: true, description: "Draft citizenship application prepared" },
-  { key: "PART5_APPLICATION_SUBMITTED", label: "Application Submitted", part: 5, clientVisible: true, description: "Submitting citizenship application" },
-  { key: "PART5_AWAITING_RESPONSE", label: "Awaiting Initial Response", part: 5, clientVisible: true, description: "Awaiting initial response (10-18 months)", isMilestone: true },
-  { key: "PART5_EMAIL_COPY", label: "Email Submission Copy", part: 5, clientVisible: true, description: "Emailing copy of official Polish citizenship application submission" },
-  { key: "PART5_ADD_TO_ACCOUNT", label: "Add Copy to Account", part: 5, clientVisible: true, description: "Adding submission copy to client account" },
+  { key: "PART5_MASTER_FORM", label: "Master Form Completion", part: 5, clientVisible: true, description: "Client fills the MASTER FORM with all case data", isMilestone: true, importance: "critical" },
+  { key: "PART5_AI_PAPERWORK", label: "AI Paperwork Generation", part: 5, clientVisible: false, description: "AI Agent generates all the paperwork", isMilestone: true, importance: "critical" },
+  { key: "PART5_DRAFT_APPLICATION", label: "Draft Citizenship Application", part: 5, clientVisible: true, description: "Draft citizenship application prepared", importance: "high" },
+  { key: "PART5_APPLICATION_SUBMITTED", label: "Application Submitted", part: 5, clientVisible: true, description: "Submitting citizenship application", importance: "critical" },
+  { key: "PART5_AWAITING_RESPONSE", label: "Awaiting Initial Response", part: 5, clientVisible: true, description: "Awaiting initial response (10-18 months)", isMilestone: true, importance: "critical" },
+  { key: "PART5_EMAIL_COPY", label: "Email Submission Copy", part: 5, clientVisible: true, description: "Emailing copy of official Polish citizenship application submission", importance: "medium" },
+  { key: "PART5_ADD_TO_ACCOUNT", label: "Add Copy to Account", part: 5, clientVisible: true, description: "Adding submission copy to client account", importance: "low" },
 
   // PART 6 - LOCAL DOCUMENTS
-  { key: "PART6_DOCS_CLARIFICATION", label: "Documents List Clarification", part: 6, clientVisible: true, description: "Clarifying document requirements with client" },
-  { key: "PART6_GATHERING_DOCS", label: "Gathering Local Documents", part: 6, clientVisible: true, description: "Collecting local documents from client" },
-  { key: "PART6_LOCAL_AGENT", label: "Local Agent Advising", part: 6, clientVisible: true, description: "Advising by local agent" },
-  { key: "PART6_PARTNER_CONNECTION", label: "Partner Connection", part: 6, clientVisible: true, description: "Connecting to our partners to help collecting documents", isMilestone: true },
-  { key: "PART6_RECEIVING_DOCS", label: "Receiving Documents", part: 6, clientVisible: true, description: "Receiving documents from client/partners" },
-  { key: "PART6_EXAMINING_DOCS", label: "Examining Documents", part: 6, clientVisible: true, description: "Examining and choosing documents to translate and file" },
+  { key: "PART6_DOCS_CLARIFICATION", label: "Documents List Clarification", part: 6, clientVisible: true, description: "Clarifying document requirements with client", importance: "high" },
+  { key: "PART6_GATHERING_DOCS", label: "Gathering Local Documents", part: 6, clientVisible: true, description: "Collecting local documents from client", importance: "high" },
+  { key: "PART6_LOCAL_AGENT", label: "Local Agent Advising", part: 6, clientVisible: true, description: "Advising by local agent", importance: "medium" },
+  { key: "PART6_PARTNER_CONNECTION", label: "Partner Connection", part: 6, clientVisible: true, description: "Connecting to our partners to help collecting documents", isMilestone: true, importance: "high" },
+  { key: "PART6_RECEIVING_DOCS", label: "Receiving Documents", part: 6, clientVisible: true, description: "Receiving documents from client/partners", importance: "high" },
+  { key: "PART6_EXAMINING_DOCS", label: "Examining Documents", part: 6, clientVisible: true, description: "Examining and choosing documents to translate and file", importance: "medium" },
 
   // PART 7 - POLISH DOCUMENTS
-  { key: "PART7_POLISH_ARCHIVES", label: "Polish Archives Search", part: 7, clientVisible: true, description: "Polish archives search" },
-  { key: "PART7_INTERNATIONAL_ARCHIVES", label: "International Archives Search", part: 7, clientVisible: true, description: "International archives search" },
-  { key: "PART7_FAMILY_POSSESSIONS", label: "Family Possessions Search", part: 7, clientVisible: true, description: "Family possessions search for old Polish documents" },
-  { key: "PART7_PARTNER_PROCESSORS", label: "Partner Processors", part: 7, clientVisible: true, description: "Connecting to our partners to process each search", isMilestone: true },
-  { key: "PART7_RECEIVING_ARCHIVAL", label: "Receiving Archival Documents", part: 7, clientVisible: true, description: "Receiving archival documents" },
-  { key: "PART7_EXAMINING_ARCHIVAL", label: "Examining Archival Documents", part: 7, clientVisible: false, description: "Examining archival documents for translation and filing" },
+  { key: "PART7_POLISH_ARCHIVES", label: "Polish Archives Search", part: 7, clientVisible: true, description: "Polish archives search", importance: "high" },
+  { key: "PART7_INTERNATIONAL_ARCHIVES", label: "International Archives Search", part: 7, clientVisible: true, description: "International archives search", importance: "medium" },
+  { key: "PART7_FAMILY_POSSESSIONS", label: "Family Possessions Search", part: 7, clientVisible: true, description: "Family possessions search for old Polish documents", importance: "medium" },
+  { key: "PART7_PARTNER_PROCESSORS", label: "Partner Processors", part: 7, clientVisible: true, description: "Connecting to our partners to process each search", isMilestone: true, importance: "high" },
+  { key: "PART7_RECEIVING_ARCHIVAL", label: "Receiving Archival Documents", part: 7, clientVisible: true, description: "Receiving archival documents", importance: "high" },
+  { key: "PART7_EXAMINING_ARCHIVAL", label: "Examining Archival Documents", part: 7, clientVisible: false, description: "Examining archival documents for translation and filing", importance: "medium" },
 
   // PART 8 - TRANSLATIONS
-  { key: "PART8_AI_TRANSLATIONS", label: "AI Translation Service", part: 8, clientVisible: true, description: "Translations using AI translation service on portal" },
-  { key: "PART8_CERTIFIED_TRANSLATIONS", label: "Certified Translations", part: 8, clientVisible: true, description: "Certifying translations with Polish Certified Sworn Translator" },
-  { key: "PART8_TRANSLATIONS_AGENT", label: "Translations Agent Supervision", part: 8, clientVisible: true, description: "Dedicated translations agent supervision", isMilestone: true },
-  { key: "PART8_DOUBLE_CHECK", label: "Independent Double-Check", part: 8, clientVisible: true, description: "Double-checking translations by independent agent" },
+  { key: "PART8_AI_TRANSLATIONS", label: "AI Translation Service", part: 8, clientVisible: true, description: "Translations using AI translation service on portal", importance: "high" },
+  { key: "PART8_CERTIFIED_TRANSLATIONS", label: "Certified Translations", part: 8, clientVisible: true, description: "Certifying translations with Polish Certified Sworn Translator", importance: "critical" },
+  { key: "PART8_TRANSLATIONS_AGENT", label: "Translations Agent Supervision", part: 8, clientVisible: true, description: "Dedicated translations agent supervision", isMilestone: true, importance: "high" },
+  { key: "PART8_DOUBLE_CHECK", label: "Independent Double-Check", part: 8, clientVisible: true, description: "Double-checking translations by independent agent", importance: "high" },
 
   // PART 9 - FILING DOCUMENTS
-  { key: "PART9_SUBMIT_LOCAL_DOCS", label: "Submit Local Documents", part: 9, clientVisible: true, description: "Submitting birth, marriage certificates, naturalization acts, military records" },
-  { key: "PART9_SUBMIT_FAMILY_INFO", label: "Submit Family Information", part: 9, clientVisible: true, description: "Submitting detailed family information" },
-  { key: "PART9_BEFORE_INITIAL_RESPONSE", label: "Complete Before Initial Response", part: 9, clientVisible: false, description: "Completing all filing before initial response if possible" },
+  { key: "PART9_SUBMIT_LOCAL_DOCS", label: "Submit Local Documents", part: 9, clientVisible: true, description: "Submitting birth, marriage certificates, naturalization acts, military records", importance: "critical" },
+  { key: "PART9_SUBMIT_FAMILY_INFO", label: "Submit Family Information", part: 9, clientVisible: true, description: "Submitting detailed family information", importance: "high" },
+  { key: "PART9_BEFORE_INITIAL_RESPONSE", label: "Complete Before Initial Response", part: 9, clientVisible: false, description: "Completing all filing before initial response if possible", importance: "medium" },
 
   // PART 10 - CIVIL ACTS
-  { key: "PART10_CIVIL_ACTS_PREP", label: "Civil Acts Applications", part: 10, clientVisible: true, description: "Preparing Polish civil acts applications" },
-  { key: "PART10_CIVIL_ACTS_PAYMENT", label: "Civil Acts Payment", part: 10, clientVisible: true, description: "Charging payment for Polish civil acts", isMilestone: true },
-  { key: "PART10_CIVIL_ACTS_AGENT", label: "Civil Acts Agent", part: 10, clientVisible: true, description: "Supervised by dedicated civil acts agent", isMilestone: true },
-  { key: "PART10_SUBMIT_TO_REGISTRY", label: "Submit to Civil Registry", part: 10, clientVisible: true, description: "Submitting to relevant Polish Civil Registry office" },
-  { key: "PART10_RECEIVE_CERTIFICATES", label: "Receive Polish Certificates", part: 10, clientVisible: true, description: "Receiving Polish birth and marriage certificates" },
+  { key: "PART10_CIVIL_ACTS_PREP", label: "Civil Acts Applications", part: 10, clientVisible: true, description: "Preparing Polish civil acts applications", importance: "high" },
+  { key: "PART10_CIVIL_ACTS_PAYMENT", label: "Civil Acts Payment", part: 10, clientVisible: true, description: "Charging payment for Polish civil acts", isMilestone: true, importance: "critical" },
+  { key: "PART10_CIVIL_ACTS_AGENT", label: "Civil Acts Agent", part: 10, clientVisible: true, description: "Supervised by dedicated civil acts agent", isMilestone: true, importance: "high" },
+  { key: "PART10_SUBMIT_TO_REGISTRY", label: "Submit to Civil Registry", part: 10, clientVisible: true, description: "Submitting to relevant Polish Civil Registry office", importance: "critical" },
+  { key: "PART10_RECEIVE_CERTIFICATES", label: "Receive Polish Certificates", part: 10, clientVisible: true, description: "Receiving Polish birth and marriage certificates", importance: "high" },
 
   // PART 11 - INITIAL RESPONSE
-  { key: "PART11_INITIAL_RESPONSE", label: "Initial Response Received", part: 11, clientVisible: true, description: "Receiving initial response from Masovian Voivoda's office" },
-  { key: "PART11_EVALUATE_DEMANDS", label: "Evaluate Government Demands", part: 11, clientVisible: false, description: "Evaluation of demands put by the government" },
-  { key: "PART11_SEND_COPY_EXPLANATIONS", label: "Send Copy with Explanations", part: 11, clientVisible: true, description: "Sending copy of letter with explanations to client" },
-  { key: "PART11_EXTEND_TERM", label: "Extend Procedure Term", part: 11, clientVisible: true, description: "Extending term of citizenship procedure", isMilestone: true },
-  { key: "PART11_AWAIT_EVIDENCE", label: "Await Additional Evidence", part: 11, clientVisible: true, description: "Awaiting additional evidence from client" },
+  { key: "PART11_INITIAL_RESPONSE", label: "Initial Response Received", part: 11, clientVisible: true, description: "Receiving initial response from Masovian Voivoda's office", importance: "critical" },
+  { key: "PART11_EVALUATE_DEMANDS", label: "Evaluate Government Demands", part: 11, clientVisible: false, description: "Evaluation of demands put by the government", importance: "critical" },
+  { key: "PART11_SEND_COPY_EXPLANATIONS", label: "Send Copy with Explanations", part: 11, clientVisible: true, description: "Sending copy of letter with explanations to client", importance: "high" },
+  { key: "PART11_EXTEND_TERM", label: "Extend Procedure Term", part: 11, clientVisible: true, description: "Extending term of citizenship procedure", isMilestone: true, importance: "high" },
+  { key: "PART11_AWAIT_EVIDENCE", label: "Await Additional Evidence", part: 11, clientVisible: true, description: "Awaiting additional evidence from client", importance: "medium" },
 
   // PART 12 - PUSH SCHEMES
-  { key: "PART12_OFFER_SCHEMES", label: "Offer Push Schemes", part: 12, clientVisible: true, description: "Offering PUSH, NUDGE, SIT-DOWN schemes" },
-  { key: "PART12_EXPLAIN_SCHEMES", label: "Explain Schemes", part: 12, clientVisible: true, description: "Explaining schemes in detail" },
-  { key: "PART12_SCHEME_PAYMENTS", label: "Scheme Payments", part: 12, clientVisible: true, description: "Payments for the schemes" },
-  { key: "PART12_IMPLEMENT_SCHEMES", label: "Implement Schemes", part: 12, clientVisible: true, description: "Introducing the schemes in practice", isMilestone: true },
-  { key: "PART12_SECOND_RESPONSE", label: "Second Government Response", part: 12, clientVisible: true, description: "Receiving 2nd response from government" },
-  { key: "PART12_RE_IMPLEMENT_SCHEMES", label: "Re-implement Schemes", part: 12, clientVisible: true, description: "Introducing schemes again", isMilestone: true },
+  { key: "PART12_OFFER_SCHEMES", label: "Offer Push Schemes", part: 12, clientVisible: true, description: "Offering PUSH, NUDGE, SIT-DOWN schemes", importance: "high" },
+  { key: "PART12_EXPLAIN_SCHEMES", label: "Explain Schemes", part: 12, clientVisible: true, description: "Explaining schemes in detail", importance: "medium" },
+  { key: "PART12_SCHEME_PAYMENTS", label: "Scheme Payments", part: 12, clientVisible: true, description: "Payments for the schemes", importance: "high" },
+  { key: "PART12_IMPLEMENT_SCHEMES", label: "Implement Schemes", part: 12, clientVisible: true, description: "Introducing the schemes in practice", isMilestone: true, importance: "critical" },
+  { key: "PART12_SECOND_RESPONSE", label: "Second Government Response", part: 12, clientVisible: true, description: "Receiving 2nd response from government", importance: "critical" },
+  { key: "PART12_RE_IMPLEMENT_SCHEMES", label: "Re-implement Schemes", part: 12, clientVisible: true, description: "Introducing schemes again", isMilestone: true, importance: "high" },
 
   // PART 13 - CITIZENSHIP DECISION
-  { key: "PART13_CITIZENSHIP_CONFIRMATION", label: "Citizenship Confirmation", part: 13, clientVisible: true, description: "Polish citizenship confirmation decision received" },
-  { key: "PART13_EMAIL_DECISION", label: "Email Decision Copy", part: 13, clientVisible: true, description: "Emailing decision copy and adding to portal account" },
-  { key: "PART13_APPEAL_IF_NEGATIVE", label: "Appeal if Negative", part: 13, clientVisible: false, description: "Preparing appeal to Ministry of Interior (2 weeks max)" },
+  { key: "PART13_CITIZENSHIP_CONFIRMATION", label: "Citizenship Confirmation", part: 13, clientVisible: true, description: "Polish citizenship confirmation decision received", importance: "critical" },
+  { key: "PART13_EMAIL_DECISION", label: "Email Decision Copy", part: 13, clientVisible: true, description: "Emailing decision copy and adding to portal account", importance: "high" },
+  { key: "PART13_APPEAL_IF_NEGATIVE", label: "Appeal if Negative", part: 13, clientVisible: false, description: "Preparing appeal to Ministry of Interior (2 weeks max)", importance: "critical" },
 
   // PART 14 - POLISH PASSPORT
-  { key: "PART14_PASSPORT_DOCS_PREP", label: "Passport Documents Prep", part: 14, clientVisible: true, description: "Preparing all documents for Polish passport application" },
-  { key: "PART14_FINAL_PAYMENT", label: "Final Payment", part: 14, clientVisible: true, description: "Charging the final payment", isMilestone: true },
-  { key: "PART14_FEDEX_DOCUMENTS", label: "FedEx Documents", part: 14, clientVisible: true, description: "Sending all documents by FedEx" },
-  { key: "PART14_SCHEDULE_CONSULATE", label: "Schedule Consulate Visit", part: 14, clientVisible: true, description: "Scheduling visit at Polish Consulate" },
-  { key: "PART14_CLIENT_PASSPORT_APPLICATION", label: "Client Passport Application", part: 14, clientVisible: false, description: "Client applies for the passport" },
-  { key: "PART14_PASSPORT_OBTAINED", label: "Polish Passport Obtained", part: 14, clientVisible: true, description: "Polish passport successfully obtained", isMilestone: true },
+  { key: "PART14_PASSPORT_DOCS_PREP", label: "Passport Documents Prep", part: 14, clientVisible: true, description: "Preparing all documents for Polish passport application", importance: "high" },
+  { key: "PART14_FINAL_PAYMENT", label: "Final Payment", part: 14, clientVisible: true, description: "Charging the final payment", isMilestone: true, importance: "critical" },
+  { key: "PART14_FEDEX_DOCUMENTS", label: "FedEx Documents", part: 14, clientVisible: true, description: "Sending all documents by FedEx", importance: "high" },
+  { key: "PART14_SCHEDULE_CONSULATE", label: "Schedule Consulate Visit", part: 14, clientVisible: true, description: "Scheduling visit at Polish Consulate", importance: "high" },
+  { key: "PART14_CLIENT_PASSPORT_APPLICATION", label: "Client Passport Application", part: 14, clientVisible: false, description: "Client applies for the passport", importance: "critical" },
+  { key: "PART14_PASSPORT_OBTAINED", label: "Polish Passport Obtained", part: 14, clientVisible: true, description: "Polish passport successfully obtained", isMilestone: true, importance: "critical" },
 
   // PART 15 - EXTENDED SERVICES
-  { key: "PART15_EXTENDED_SERVICES", label: "Extended Family Legal Services", part: 15, clientVisible: false, description: "Extended family legal services", isMilestone: true },
+  { key: "PART15_EXTENDED_SERVICES", label: "Extended Family Legal Services", part: 15, clientVisible: false, description: "Extended family legal services", isMilestone: true, importance: "low" },
 ];
 
 interface StagePanelProps {
