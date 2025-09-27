@@ -803,6 +803,36 @@ export const StagePanel: React.FC<StagePanelProps> = ({ case: caseData }) => {
                     </div>
                   </div>
                   <div className="text-xs text-gray-500 dark:text-gray-400 mb-2">{stage.description?.slice(0, 50)}...</div>
+                  
+                  {/* CONNECTED SYSTEMS DISPLAY */}
+                  {stage.links && stage.links.length > 0 && (
+                    <div className="mb-2 p-2 bg-blue-50 dark:bg-blue-900/10 border border-blue-200 dark:border-blue-700 rounded">
+                      <div className="text-xs text-blue-800 dark:text-blue-200 font-medium mb-1">
+                        🔗 Connected Systems ({stage.links.length}):
+                      </div>
+                      <div className="flex flex-wrap gap-1">
+                        {stage.links.map(link => (
+                          <span 
+                            key={link.id} 
+                            className="text-xs px-2 py-1 bg-blue-100 dark:bg-blue-900/20 text-blue-700 dark:text-blue-300 rounded-full border border-blue-200 dark:border-blue-700"
+                            title={link.description}
+                          >
+                            {link.targetType === 'familyTree' && '🌳 '}
+                            {link.targetType === 'payments' && '💳 '}
+                            {link.targetType === 'tasks' && '✅ '}
+                            {link.targetType === 'document' && '📄 '}
+                            {link.targetType === 'email' && '📧 '}
+                            {link.targetType === 'letter' && '📝 '}
+                            {link.targetType === 'application' && '📋 '}
+                            {link.targetType === 'poa' && '⚖️ '}
+                            {link.label}
+                            {link.count && link.count > 0 && ` (${link.count})`}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+                  
                   <div className="flex items-center justify-between">
                     <span className="text-xs text-gray-400">Part {stage.part}</span>
                     <div className="flex gap-1">
