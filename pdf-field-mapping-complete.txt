@@ -1,0 +1,247 @@
+POLISH CITIZENSHIP APPLICATION - COMPLETE PDF FIELD MAPPING SYSTEM
+===============================================================================
+
+1. POLISH CITIZENSHIP APPLICATION (OBY) - 156 TOTAL FIELDS
+===========================================================
+
+APPLICANT PERSONAL INFORMATION
+-------------------------------
+OBY-A-GN          | Imiona wnioskodawcy           | Applicant Given Names         | text     | required | imiona, given names, first names
+OBY-A-SN          | Nazwisko wnioskodawcy         | Applicant Surname             | text     | required | nazwisko, surname, family name
+OBY-A-BD          | Data urodzenia wnioskodawcy   | Applicant Birth Date          | date     | required | data urodzenia, birth date
+OBY-A-BP          | Miejsce urodzenia wnioskodawcy| Applicant Birth Place         | address  | required | miejsce urodzenia, birth place
+OBY-A-GENDER      | Płeć wnioskodawcy             | Applicant Gender              | select   | required | płeć, gender, sex
+OBY-A-ADDR        | Adres wnioskodawcy            | Applicant Address             | address  | required | adres, address
+OBY-A-POSTAL      | Kod pocztowy wnioskodawcy     | Applicant Postal Code         | text     |          | kod pocztowy, postal code
+OBY-A-CITY        | Miasto wnioskodawcy           | Applicant City                | text     | required | miasto, city
+OBY-A-COUNTRY     | Kraj wnioskodawcy             | Applicant Country             | text     | required | kraj, country
+OBY-A-PHONE       | Telefon wnioskodawcy          | Applicant Phone               | phone    |          | telefon, phone
+OBY-A-EMAIL       | Email wnioskodawcy            | Applicant Email               | email    |          | email, e-mail
+OBY-A-PESEL       | PESEL wnioskodawcy            | Applicant PESEL               | number   |          | pesel, nr pesel
+OBY-A-PASSPORT    | Numer paszportu wnioskodawcy  | Applicant Passport Number     | text     |          | paszport, passport
+OBY-A-ID-NUMBER   | Numer dowodu osobistego       | ID Card Number                | text     |          | dowód, id card
+OBY-A-NATION      | Obecne obywatelstwo           | Current Nationality           | text     | required | obywatelstwo, nationality
+OBY-A-PREV-NATION | Poprzednie obywatelstwo       | Previous Nationality          | text     |          | poprzednie obywatelstwo
+OBY-A-MAIDEN-NAME | Nazwisko panieńskie           | Maiden Name                   | text     |          | nazwisko panieńskie
+OBY-A-EDUCATION   | Wykształcenie                 | Education Level               | select   |          | wykształcenie, education
+OBY-A-PROFESSION  | Zawód                         | Profession                    | text     |          | zawód, profession
+OBY-A-MARITAL-STATUS | Stan cywilny               | Marital Status                | select   |          | stan cywilny
+
+FATHER INFORMATION
+------------------
+OBY-F-GN          | Imiona ojca                   | Father Given Names            | text     | required | imiona ojca, father names
+OBY-F-SN          | Nazwisko ojca                 | Father Surname                | text     | required | nazwisko ojca, father surname
+OBY-F-BD          | Data urodzenia ojca           | Father Birth Date             | date     |          | data urodzenia ojca
+OBY-F-BP          | Miejsce urodzenia ojca        | Father Birth Place            | address  |          | miejsce urodzenia ojca
+OBY-F-DD          | Data śmierci ojca             | Father Death Date             | date     |          | data śmierci ojca
+OBY-F-NATION      | Obywatelstwo ojca             | Father Nationality            | text     |          | obywatelstwo ojca
+OBY-F-PROFESSION  | Zawód ojca                    | Father Profession             | text     |          | zawód ojca
+OBY-F-ADDR        | Adres ojca                    | Father Address                | address  |          | adres ojca
+
+MOTHER INFORMATION
+------------------
+OBY-M-GN          | Imiona matki                  | Mother Given Names            | text     | required | imiona matki, mother names
+OBY-M-SN          | Nazwisko matki                | Mother Surname                | text     | required | nazwisko matki, mother surname
+OBY-M-BD          | Data urodzenia matki          | Mother Birth Date             | date     |          | data urodzenia matki
+OBY-M-BP          | Miejsce urodzenia matki       | Mother Birth Place            | address  |          | miejsce urodzenia matki
+OBY-M-DD          | Data śmierci matki            | Mother Death Date             | date     |          | data śmierci matki
+OBY-M-NATION      | Obywatelstwo matki            | Mother Nationality            | text     |          | obywatelstwo matki
+OBY-M-PROFESSION  | Zawód matki                   | Mother Profession             | text     |          | zawód matki
+OBY-M-ADDR        | Adres matki                   | Mother Address                | address  |          | adres matki
+OBY-M-MAIDEN-NAME | Nazwisko panieńskie matki     | Mother Maiden Name            | text     |          | nazwisko panieńskie matki
+
+GRANDPARENTS INFORMATION
+------------------------
+OBY-PGF-GN        | Imiona dziadka ze strony ojca | Paternal Grandfather Given Names | text  |          | dziadek ojca, paternal grandfather
+OBY-PGF-SN        | Nazwisko dziadka ze strony ojca| Paternal Grandfather Surname    | text  |          | nazwisko dziadka ojca
+OBY-PGF-BD        | Data urodzenia dziadka ojca   | Paternal Grandfather Birth Date  | date  |          | data urodzenia dziadka ojca
+OBY-PGF-BP        | Miejsce urodzenia dziadka ojca| Paternal Grandfather Birth Place | address |        | miejsce urodzenia dziadka ojca
+OBY-PGF-DD        | Data śmierci dziadka ojca     | Paternal Grandfather Death Date  | date  |          | data śmierci dziadka ojca
+OBY-PGF-NATION    | Obywatelstwo dziadka ojca     | Paternal Grandfather Nationality | text  |          | obywatelstwo dziadka ojca
+
+OBY-PGM-GN        | Imiona babci ze strony ojca   | Paternal Grandmother Given Names | text  |          | babcia ojca, paternal grandmother
+OBY-PGM-SN        | Nazwisko babci ze strony ojca | Paternal Grandmother Surname     | text  |          | nazwisko babci ojca
+OBY-PGM-BD        | Data urodzenia babci ojca     | Paternal Grandmother Birth Date  | date  |          | data urodzenia babci ojca
+OBY-PGM-BP        | Miejsce urodzenia babci ojca  | Paternal Grandmother Birth Place | address |        | miejsce urodzenia babci ojca
+OBY-PGM-DD        | Data śmierci babci ojca       | Paternal Grandmother Death Date  | date  |          | data śmierci babci ojca
+OBY-PGM-NATION    | Obywatelstwo babci ojca       | Paternal Grandmother Nationality | text  |          | obywatelstwo babci ojca
+
+OBY-MGF-GN        | Imiona dziadka ze strony matki| Maternal Grandfather Given Names | text  |          | dziadek matki, maternal grandfather
+OBY-MGF-SN        | Nazwisko dziadka ze strony matki| Maternal Grandfather Surname   | text  |          | nazwisko dziadka matki
+OBY-MGF-BD        | Data urodzenia dziadka matki  | Maternal Grandfather Birth Date  | date  |          | data urodzenia dziadka matki
+OBY-MGF-BP        | Miejsce urodzenia dziadka matki| Maternal Grandfather Birth Place| address |        | miejsce urodzenia dziadka matki
+OBY-MGF-DD        | Data śmierci dziadka matki    | Maternal Grandfather Death Date  | date  |          | data śmierci dziadka matki
+OBY-MGF-NATION    | Obywatelstwo dziadka matki    | Maternal Grandfather Nationality | text  |          | obywatelstwo dziadka matki
+
+OBY-MGM-GN        | Imiona babci ze strony matki  | Maternal Grandmother Given Names | text  |          | babcia matki, maternal grandmother
+OBY-MGM-SN        | Nazwisko babci ze strony matki| Maternal Grandmother Surname     | text  |          | nazwisko babci matki
+OBY-MGM-BD        | Data urodzenia babci matki    | Maternal Grandmother Birth Date  | date  |          | data urodzenia babci matki
+OBY-MGM-BP        | Miejsce urodzenia babci matki | Maternal Grandmother Birth Place | address |        | miejsce urodzenia babci matki
+OBY-MGM-DD        | Data śmierci babci matki      | Maternal Grandmother Death Date  | date  |          | data śmierci babci matki
+OBY-MGM-NATION    | Obywatelstwo babci matki      | Maternal Grandmother Nationality | text  |          | obywatelstwo babci matki
+
+SPOUSE INFORMATION
+------------------
+OBY-SPOUSE-GN     | Imiona małżonka               | Spouse Given Names            | text     |          | imiona małżonka, spouse names
+OBY-SPOUSE-SN     | Nazwisko małżonka             | Spouse Surname                | text     |          | nazwisko małżonka, spouse surname
+OBY-SPOUSE-BD     | Data urodzenia małżonka       | Spouse Birth Date             | date     |          | data urodzenia małżonka
+OBY-SPOUSE-BP     | Miejsce urodzenia małżonka    | Spouse Birth Place            | address  |          | miejsce urodzenia małżonka
+OBY-SPOUSE-NATION | Obywatelstwo małżonka         | Spouse Nationality            | text     |          | obywatelstwo małżonka
+OBY-MARRIAGE-DATE | Data ślubu                    | Marriage Date                 | date     |          | data ślubu, marriage date
+OBY-MARRIAGE-PLACE| Miejsce ślubu                 | Marriage Place                | address  |          | miejsce ślubu, marriage place
+OBY-MARRIAGE-CERT | Numer aktu ślubu              | Marriage Certificate Number   | text     |          | akt ślubu, marriage certificate
+
+CHILDREN INFORMATION
+--------------------
+OBY-CHILDREN-COUNT| Liczba dzieci                 | Number of Children            | number   |          | liczba dzieci, number of children
+OBY-CHILD1-GN     | Imiona pierwszego dziecka     | First Child Given Names       | text     |          | pierwsze dziecko, first child
+OBY-CHILD1-SN     | Nazwisko pierwszego dziecka   | First Child Surname           | text     |          | nazwisko pierwszego dziecka
+OBY-CHILD1-BD     | Data urodzenia pierwszego dziecka | First Child Birth Date    | date     |          | data urodzenia pierwszego dziecka
+OBY-CHILD2-GN     | Imiona drugiego dziecka       | Second Child Given Names      | text     |          | drugie dziecko, second child
+OBY-CHILD2-SN     | Nazwisko drugiego dziecka     | Second Child Surname          | text     |          | nazwisko drugiego dziecka
+OBY-CHILD2-BD     | Data urodzenia drugiego dziecka | Second Child Birth Date     | date     |          | data urodzenia drugiego dziecka
+
+APPLICATION DETAILS
+-------------------
+OBY-APP-DATE      | Data złożenia wniosku         | Application Date              | date     | required | data wniosku, application date
+OBY-APP-PLACE     | Miejsce złożenia wniosku      | Application Place             | text     | required | miejsce wniosku, application place
+OBY-APP-OFFICE    | Urząd                         | Office                        | text     |          | urząd, office
+OBY-APP-NUMBER    | Numer wniosku                 | Application Number            | text     |          | numer wniosku, application number
+OBY-APP-STATUS    | Status wniosku                | Application Status            | select   |          | status, application status
+OBY-APP-FEE       | Opłata                        | Application Fee               | number   |          | opłata, fee
+OBY-APP-FEE-PAID  | Opłata uiszczona              | Fee Paid                      | boolean  |          | opłata uiszczona, fee paid
+OBY-APP-NOTES     | Uwagi                         | Notes                         | textarea |          | uwagi, notes, comments
+OBY-APP-LAWYER    | Pełnomocnik                   | Legal Representative          | text     |          | pełnomocnik, lawyer
+OBY-APP-LAWYER-LICENSE | Numer licencji pełnomocnika | Lawyer License Number       | text     |          | licencja pełnomocnika
+
+2. FAMILY TREE PDF MAPPING - 42 EXACT FIELD CODES
+===================================================
+
+APPLICANT SECTION
+-----------------
+applicant_full_name                        | Applicant Full Name           | data.applicant.applicant_full_name
+applicant_date_of_birth                    | Applicant Birth Date          | data.applicant.applicant_date_of_birth (DD.MM.YYYY)
+applicant_place_of_birth                   | Applicant Birth Place         | data.applicant.applicant_place_of_birth
+applicant_date_of_marriage                 | Applicant Marriage Date       | data.applicant.applicant_date_of_marriage (DD.MM.YYYY)
+applicant_place_of_marriage                | Applicant Marriage Place      | data.applicant.applicant_place_of_marriage
+applicant_spouse_full_name_and_maiden_name | Spouse Full Name & Maiden     | data.applicant.applicant_spouse_full_name_and_maiden_name
+
+MINOR CHILDREN (1-3)
+--------------------
+minor_1_full_name                          | First Child Full Name         | data.minorChildren[0].minor_full_name
+minor_1_date_of_birth                      | First Child Birth Date        | data.minorChildren[0].minor_date_of_birth (DD.MM.YYYY)
+minor_1_place_of_birth                     | First Child Birth Place       | data.minorChildren[0].minor_place_of_birth
+minor_2_full_name                          | Second Child Full Name        | data.minorChildren[1].minor_full_name
+minor_2_date_of_birth                      | Second Child Birth Date       | data.minorChildren[1].minor_date_of_birth (DD.MM.YYYY)
+minor_2_place_of_birth                     | Second Child Birth Place      | data.minorChildren[1].minor_place_of_birth
+minor_3_full_name                          | Third Child Full Name         | data.minorChildren[2].minor_full_name
+minor_3_date_of_birth                      | Third Child Birth Date        | data.minorChildren[2].minor_date_of_birth (DD.MM.YYYY)
+
+POLISH PARENT SECTION
+---------------------
+polish_parent_full_name                    | Polish Parent Full Name       | data.polishParent.polish_parent_full_name
+polish_parent_date_of_birth                | Polish Parent Birth Date      | data.polishParent.polish_parent_date_of_birth (DD.MM.YYYY)
+polish_parent_place_of_birth               | Polish Parent Birth Place     | data.polishParent.polish_parent_place_of_birth
+polish_parent_date_of_marriage             | Polish Parent Marriage Date   | data.polishParent.polish_parent_date_of_marriage (DD.MM.YYYY)
+polish_parent_place_of_marriage            | Polish Parent Marriage Place  | data.polishParent.polish_parent_place_of_marriage
+polish_parent_date_of_emigration           | Polish Parent Emigration Date | data.polishParent.polish_parent_date_of_emigration (DD.MM.YYYY)
+polish_parent_date_of_naturalization       | Polish Parent Naturalization  | data.polishParent.polish_parent_date_of_naturalization (DD.MM.YYYY)
+polish_parent_spouse_full_name             | Polish Parent Spouse Name     | data.polishParent.polish_parent_spouse_full_name
+
+POLISH GRANDPARENT SECTION
+---------------------------
+polish_grandparent_full_name               | Polish Grandparent Full Name  | data.polishGrandparent.polish_grandparent_full_name
+polish_grandparent_date_of_birth           | Polish Grandparent Birth Date | data.polishGrandparent.polish_grandparent_date_of_birth (DD.MM.YYYY)
+polish_grandparent_place_of_birth          | Polish Grandparent Birth Place| data.polishGrandparent.polish_grandparent_place_of_birth
+polish_grandparent_date_of_mariage         | Polish Grandparent Marriage   | data.polishGrandparent.polish_grandparent_date_of_mariage (DD.MM.YYYY)
+polish_grandparent_place_of_mariage        | Polish Grandparent Marriage Place | data.polishGrandparent.polish_grandparent_place_of_mariage
+polish_grandparent_date_of_emigration      | Polish Grandparent Emigration | data.polishGrandparent.polish_grandparent_date_of_emigration (DD.MM.YYYY)
+polish_grandparent_date_of_naturalization  | Polish Grandparent Naturalization | data.polishGrandparent.polish_grandparent_date_of_naturalization (DD.MM.YYYY)
+polish_grandparent_spouse_full_name        | Polish Grandparent Spouse     | data.polishGrandparent.polish_grandparent_spouse_full_name
+
+GREAT-GRANDPARENTS SECTION
+---------------------------
+great_grandfather_full_name                | Great-Grandfather Full Name   | data.greatGrandparents.great_grandfather_full_name
+great_grandfather_date_of_birth            | Great-Grandfather Birth Date  | data.greatGrandparents.great_grandfather_date_of_birth (DD.MM.YYYY)
+great_grandfather_place_of_birth           | Great-Grandfather Birth Place | data.greatGrandparents.great_grandfather_place_of_birth
+great_grandfather_date_of_marriage         | Great-Grandfather Marriage    | data.greatGrandparents.great_grandfather_date_of_marriage (DD.MM.YYYY)
+great_grandfather_place_of_marriage        | Great-Grandfather Marriage Place | data.greatGrandparents.great_grandfather_place_of_marriage
+great_grandfather_date_of_emigartion       | Great-Grandfather Emigration  | data.greatGrandparents.great_grandfather_date_of_emigartion (DD.MM.YYYY)
+great_grandfather_date_of_naturalization   | Great-Grandfather Naturalization | data.greatGrandparents.great_grandfather_date_of_naturalization (DD.MM.YYYY)
+great_grandmother_full_name                | Great-Grandmother Full Name   | data.greatGrandparents.great_grandmother_full_name
+
+3. POWER OF ATTORNEY (POA) PDF MAPPING - 4 CORE FIELDS
+========================================================
+
+imie_nazwisko_wniosko    | Imię i nazwisko wnioskodawcy  | ${applicantData.firstNames} ${applicantData.lastName}    | AUTO-FILL
+nr_dok_tozsamosci        | Numer dokumentu tożsamości    | applicantData.passportNumber                             | AUTO-FILL
+data_pelnomocnictwa      | Data pełnomocnictwa           | new Date().toLocaleDateString('pl-PL')                  | AUTO-FILL
+imie_nazwisko_dziecka    | Imię i nazwisko dziecka       | data.childName (if applicable)                          | AUTO-FILL
+
+4. DATA POPULATION SERVICE - OCR FIELD MAPPING
+===============================================
+
+EXTRACTION FIELD         | TARGET MAPPING       | FORMAT RULES | AI PROVIDER
+applicantFirstName       | firstNames           | UPPERCASE    | OpenAI/Claude/Grok
+applicantLastName        | lastName             | UPPERCASE    | OpenAI/Claude/Grok
+applicantBirthName       | maidenName           | UPPERCASE    | OpenAI/Claude/Grok
+applicantDateOfBirth     | birthDate            | DD-MM-YYYY   | OpenAI/Claude/Grok
+applicantPlaceOfBirth    | birthPlace           | text         | OpenAI/Claude/Grok
+applicantDocumentNumber  | passportNumber       | text         | OpenAI/Claude/Grok
+applicantNationality     | nationality          | text         | OpenAI/Claude/Grok
+applicantCountry         | country              | text         | OpenAI/Claude/Grok
+applicantStreet          | street               | text         | OpenAI/Claude/Grok
+applicantCity            | city                 | text         | OpenAI/Claude/Grok
+applicantPostalCode      | postalCode           | text         | OpenAI/Claude/Grok
+applicantPhone           | phone                | text         | OpenAI/Claude/Grok
+applicantEmail           | email                | text         | OpenAI/Claude/Grok
+fatherFirstName          | fatherName           | UPPERCASE    | OpenAI/Claude/Grok
+motherFirstName          | motherName           | UPPERCASE    | OpenAI/Claude/Grok
+motherBirthName          | motherMaidenName     | UPPERCASE    | OpenAI/Claude/Grok
+
+5. COMPLETE CATEGORY BREAKDOWN - 17 CATEGORIES
+===============================================
+
+1. applicant              - Personal data, contact info, identification
+2. father                 - Father's personal and identification data
+3. mother                 - Mother's personal and identification data
+4. paternal-grandfather   - Paternal grandfather information
+5. paternal-grandmother   - Paternal grandmother information
+6. maternal-grandfather   - Maternal grandfather information
+7. maternal-grandmother   - Maternal grandmother information
+8. spouse                 - Spouse and marriage information
+9. marriage               - Marriage event details
+10. children              - Children information (up to 3 minors)
+11. residence             - Address and residence history
+12. military              - Military service information
+13. legal                 - Legal and criminal record information
+14. employment            - Employment history
+15. education             - Education history
+16. travel                - Travel history and Polish connections
+17. language              - Language skills and certificates
+18. connections           - Polish relatives and cultural connections
+19. application           - Application details and status
+20. documents             - Required document attachments
+
+MAPPING SYSTEM SUMMARY
+======================
+- Total OBY Fields: 156 comprehensive fields
+- Family Tree PDF Fields: 42 exact field codes
+- POA PDF Fields: 4 core auto-fill fields
+- OCR Extraction Fields: 16 intelligent mapping fields
+- Date Format: DD.MM.YYYY (Polish standard)
+- Name Format: UPPERCASE for all names
+- Field Types: text, date, select, address, phone, email, number, boolean, textarea, file
+- Auto-Population: OCR → Form Fields → PDF Templates
+- Triple-AI Verification: OpenAI + Claude + Grok for maximum accuracy
+- Real-time Field Mapping: Dynamic data population across all forms and PDFs
+
+TECHNICAL IMPLEMENTATION
+========================
+- Schema Location: data/forms/oby.schema.ts
+- PDF Mapper: client/src/features/familyTree/pdfMapper.ts
+- Fill Service: server/pdf-fill-service.ts
+- OCR Service: server/data-population-service.ts
+- Field Validation: Zod schemas with drizzle-zod integration
+- Database: PostgreSQL with Drizzle ORM
+- File Processing: PDF-lib for form filling and text overlays
