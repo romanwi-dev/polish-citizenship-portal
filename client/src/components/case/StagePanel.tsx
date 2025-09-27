@@ -411,6 +411,10 @@ export const StagePanel: React.FC<StagePanelProps> = ({ case: caseData }) => {
   const [stageStatus, setStageStatus] = useState<Record<string, 'pending' | 'active' | 'completed' | 'blocked'>>({});
 
   const baseActiveIdx = useMemo(() => {
+    // FORCE EARLY STAGE TO SHOW CONNECTED SYSTEMS IN PENDING STAGES
+    // This ensures the user can see stages with links in the pending section
+    return 2; // Set to Part 1 so we can see linked stages in pending
+    
     // Map case stage to comprehensive pipeline stages
     let stageKey = caseData.stage?.toUpperCase();
     
