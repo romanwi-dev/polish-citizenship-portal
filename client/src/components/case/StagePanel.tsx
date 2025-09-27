@@ -667,9 +667,6 @@ export const StagePanel: React.FC<StagePanelProps> = ({ case: caseData }) => {
             <div className="flex items-center gap-2 mb-3">
               <div className="w-3 h-3 bg-gray-400 rounded-full"></div>
               <h4 className="font-semibold text-gray-700 dark:text-gray-300">Pending Stages</h4>
-              <span className="text-xs bg-gray-100 dark:bg-gray-800 px-2 py-1 rounded-full">
-                {COMPREHENSIVE_PIPELINE.filter((_, i) => i > activeIdx).length}
-              </span>
             </div>
             <div className="max-h-96 overflow-y-auto space-y-2">
               {COMPREHENSIVE_PIPELINE.filter((_, i) => i > activeIdx).map((stage, index) => (
@@ -724,19 +721,6 @@ export const StagePanel: React.FC<StagePanelProps> = ({ case: caseData }) => {
                           <p className="text-xs text-gray-600 dark:text-gray-400">{stage.description}</p>
                         </div>
                         
-                        {/* Stage Importance */}
-                        <div>
-                          <label className="text-xs font-medium text-gray-700 dark:text-gray-300 block mb-1">Priority Level</label>
-                          <div className={cn(
-                            "text-xs px-2 py-1 rounded font-medium inline-block",
-                            stage.importance === 'critical' ? "bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-300" :
-                            stage.importance === 'high' ? "bg-orange-100 text-orange-700 dark:bg-orange-900/30 dark:text-orange-300" :
-                            stage.importance === 'medium' ? "bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-300" :
-                            "bg-gray-100 text-gray-700 dark:bg-gray-800 dark:text-gray-300"
-                          )}>
-                            {stage.importance || 'low'} priority
-                          </div>
-                        </div>
                         
                         <div>
                           <label className="text-xs font-medium text-gray-700 dark:text-gray-300 block mb-1">Stage Notes</label>
@@ -764,19 +748,7 @@ export const StagePanel: React.FC<StagePanelProps> = ({ case: caseData }) => {
                                           {link.count}
                                         </span>
                                       )}
-                                      <span className={cn(
-                                        "text-xs px-1.5 py-0.5 rounded font-medium",
-                                        link.status === 'completed' ? "bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-300" :
-                                        link.status === 'pending' ? "bg-yellow-100 dark:bg-yellow-900/30 text-yellow-700 dark:text-yellow-300" :
-                                        link.status === 'blocked' ? "bg-red-100 dark:bg-red-900/30 text-red-700 dark:text-red-300" :
-                                        "bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300"
-                                      )}>
-                                        {link.status || 'available'}
-                                      </span>
                                     </div>
-                                    {link.description && (
-                                      <p className="text-xs text-gray-600 dark:text-gray-400 mt-1">{link.description}</p>
-                                    )}
                                   </div>
                                   <button 
                                     className="text-xs px-2 py-1 bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors ml-2"
@@ -850,23 +822,18 @@ export const StagePanel: React.FC<StagePanelProps> = ({ case: caseData }) => {
             <div className="flex items-center gap-2 mb-3">
               <div className="w-3 h-3 bg-blue-500 rounded-full"></div>
               <h4 className="font-semibold text-blue-700 dark:text-blue-300">Active Stage</h4>
-              <span className="text-xs bg-blue-100 dark:bg-blue-900/30 px-2 py-1 rounded-full">1</span>
             </div>
             {COMPREHENSIVE_PIPELINE[activeIdx] && (
               <div className="p-4 border-2 border-blue-500 bg-blue-50 dark:bg-blue-900/20 rounded-lg">
                 <div className="flex items-center justify-between mb-2">
                   <span className="font-semibold text-blue-900 dark:text-blue-100">{COMPREHENSIVE_PIPELINE[activeIdx].label}</span>
-                  <div className="flex items-center gap-2">
-                    {COMPREHENSIVE_PIPELINE[activeIdx].clientVisible && <span className="text-xs bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-300 px-2 py-1 rounded">Client Visible</span>}
-                    {COMPREHENSIVE_PIPELINE[activeIdx].isMilestone && <span className="text-xs bg-yellow-100 dark:bg-yellow-900/30 text-yellow-700 dark:text-yellow-300 px-2 py-1 rounded">Milestone</span>}
-                    <button 
-                      className="text-xs px-2 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 rounded hover:bg-blue-200 dark:hover:bg-blue-900/50 transition-colors"
-                      onClick={() => handleExpandStage(COMPREHENSIVE_PIPELINE[activeIdx].key)}
-                      data-testid="button-edit-active-stage"
-                    >
-                      {expandedStage === COMPREHENSIVE_PIPELINE[activeIdx].key ? 'Collapse' : 'Expand'}
-                    </button>
-                  </div>
+                  <button 
+                    className="text-xs px-2 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 rounded hover:bg-blue-200 dark:hover:bg-blue-900/50 transition-colors"
+                    onClick={() => handleExpandStage(COMPREHENSIVE_PIPELINE[activeIdx].key)}
+                    data-testid="button-edit-active-stage"
+                  >
+                    {expandedStage === COMPREHENSIVE_PIPELINE[activeIdx].key ? 'Collapse' : 'Expand'}
+                  </button>
                 </div>
                 
                 <div className="text-sm text-blue-800 dark:text-blue-200 mb-3">{COMPREHENSIVE_PIPELINE[activeIdx].description}</div>
@@ -903,11 +870,6 @@ export const StagePanel: React.FC<StagePanelProps> = ({ case: caseData }) => {
                                 <div key={link.id} className="flex items-center justify-between p-2 bg-blue-50 dark:bg-blue-900/10 border border-blue-200 dark:border-blue-700 rounded">
                                   <div className="flex items-center gap-2">
                                     <span className="text-xs font-medium text-blue-900 dark:text-blue-100">{link.label}</span>
-                                    {link.count && (
-                                      <span className="text-xs bg-blue-200 dark:bg-blue-800 text-blue-800 dark:text-blue-200 px-1 py-0.5 rounded">
-                                        {link.count}
-                                      </span>
-                                    )}
                                   </div>
                                   <button 
                                     className="text-xs px-2 py-1 bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors"
@@ -961,14 +923,14 @@ export const StagePanel: React.FC<StagePanelProps> = ({ case: caseData }) => {
                       data-testid="button-complete-stage"
                       onClick={handleStageComplete}
                     >
-                      ✓ Complete
+                      Complete
                     </button>
                     <button 
                       className="text-xs px-3 py-1 bg-gray-500 text-white rounded hover:bg-gray-600 transition-colors"
                       data-testid="button-skip-stage"
                       onClick={handleStageSkip}
                     >
-                      ⏭ Skip
+                      Skip
                     </button>
                   </div>
                 </div>
@@ -981,9 +943,6 @@ export const StagePanel: React.FC<StagePanelProps> = ({ case: caseData }) => {
             <div className="flex items-center gap-2 mb-3">
               <div className="w-3 h-3 bg-green-500 rounded-full"></div>
               <h4 className="font-semibold text-green-700 dark:text-green-300">Completed Stages</h4>
-              <span className="text-xs bg-green-100 dark:bg-green-900/30 px-2 py-1 rounded-full">
-                {COMPREHENSIVE_PIPELINE.filter((_, i) => i < activeIdx).length}
-              </span>
             </div>
             <div className="max-h-96 overflow-y-auto space-y-2">
               {COMPREHENSIVE_PIPELINE.filter((_, i) => i < activeIdx).reverse().map((stage) => (
@@ -1003,11 +962,6 @@ export const StagePanel: React.FC<StagePanelProps> = ({ case: caseData }) => {
                 >
                   <div className="flex items-center justify-between mb-1">
                     <span className="text-xs font-medium text-green-900 dark:text-green-100">{stage.label}</span>
-                    <div className="flex items-center gap-1">
-                      {stage.clientVisible && <span className="text-green-500 text-xs">👁️</span>}
-                      {stage.isMilestone && <span className="text-yellow-500 text-xs">🏆</span>}
-                      <span className="text-green-500 text-xs">✓</span>
-                    </div>
                   </div>
                   <div className="text-xs text-green-700 dark:text-green-300 mb-2">{stage.description?.slice(0, 50)}...</div>
                   <div className="flex items-center justify-between">
@@ -1082,10 +1036,6 @@ export const StagePanel: React.FC<StagePanelProps> = ({ case: caseData }) => {
                         
                         <div className="flex items-center justify-between">
                           <div className="text-xs">
-                            <span className="font-medium text-green-700 dark:text-green-300">Status: </span>
-                            <span className="text-green-600 dark:text-green-400 bg-green-100 dark:bg-green-900/30 px-2 py-1 rounded-full">
-                              ✓ Completed
-                            </span>
                           </div>
                           
                           <div className="flex gap-1">
