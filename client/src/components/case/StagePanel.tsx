@@ -771,19 +771,19 @@ export const StagePanel: React.FC<StagePanelProps> = ({ case: caseData }) => {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <div className="space-y-6 w-full">
           {/* Pending Stages */}
-          <div className="space-y-3">
+          <div className="w-full space-y-3">
             <div className="flex items-center gap-2 mb-3">
               <div className="w-3 h-3 bg-gray-400 rounded-full"></div>
               <h4 className="font-semibold text-gray-700 dark:text-gray-300">Pending Stages</h4>
             </div>
-            <div className="max-h-96 overflow-y-auto space-y-2">
+            <div className="w-full space-y-2">
               {COMPREHENSIVE_PIPELINE.filter((_, i) => i > activeIdx).map((stage, index) => (
                 <div 
                   key={stage.key} 
                   className={cn(
-                    "p-3 border border-gray-200 dark:border-gray-700 rounded-lg hover:border-gray-300 transition-colors cursor-pointer",
+                    "w-full p-3 border border-gray-200 dark:border-gray-700 rounded-lg hover:border-gray-300 transition-colors cursor-pointer",
                     draggedStage === stage.key && "opacity-50 scale-95",
                     dragOverStage === stage.key && "ring-2 ring-blue-400 scale-105"
                   )}
@@ -1058,13 +1058,13 @@ export const StagePanel: React.FC<StagePanelProps> = ({ case: caseData }) => {
           </div>
 
           {/* Active Stage */}
-          <div className="space-y-3">
+          <div className="w-full space-y-3">
             <div className="flex items-center gap-2 mb-3">
               <div className="w-3 h-3 bg-blue-500 rounded-full"></div>
               <h4 className="font-semibold text-blue-700 dark:text-blue-300">Active Stage</h4>
             </div>
             {COMPREHENSIVE_PIPELINE[activeIdx] && (
-              <div className="p-4 border-2 border-blue-500 bg-blue-50 dark:bg-blue-900/20 rounded-lg">
+              <div className="w-full p-4 border-2 border-blue-500 bg-blue-50 dark:bg-blue-900/20 rounded-lg">
                 <div className="flex items-center justify-between mb-2">
                   <span className="font-semibold text-blue-900 dark:text-blue-100">{COMPREHENSIVE_PIPELINE[activeIdx].label}</span>
                   <button 
@@ -1179,17 +1179,17 @@ export const StagePanel: React.FC<StagePanelProps> = ({ case: caseData }) => {
           </div>
 
           {/* Completed Stages */}
-          <div className="space-y-3">
+          <div className="w-full space-y-3">
             <div className="flex items-center gap-2 mb-3">
               <div className="w-3 h-3 bg-green-500 rounded-full"></div>
               <h4 className="font-semibold text-green-700 dark:text-green-300">Completed Stages</h4>
             </div>
-            <div className="max-h-96 overflow-y-auto space-y-2">
+            <div className="w-full space-y-2">
               {COMPREHENSIVE_PIPELINE.filter((_, i) => i < activeIdx).reverse().map((stage) => (
                 <div 
                   key={stage.key} 
                   className={cn(
-                    "p-3 border border-green-200 dark:border-green-700 bg-green-50 dark:bg-green-900/10 rounded-lg transition-colors cursor-pointer",
+                    "w-full p-3 border border-green-200 dark:border-green-700 bg-green-50 dark:bg-green-900/10 rounded-lg transition-colors cursor-pointer",
                     draggedStage === stage.key && "opacity-50 scale-95",
                     dragOverStage === stage.key && "ring-2 ring-blue-400 scale-105"
                   )}
