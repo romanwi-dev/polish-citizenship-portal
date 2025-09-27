@@ -603,26 +603,26 @@ export const StagePanel: React.FC<StagePanelProps> = ({ case: caseData }) => {
       <div className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-lg p-6">
         <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">Progress Overview</h3>
         
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
-          <div className="text-center p-4 bg-gray-50 dark:bg-gray-800 rounded-lg">
+        <div className="w-full space-y-4 mb-6">
+          <div className="w-full text-center p-4 bg-gray-50 dark:bg-gray-800 rounded-lg">
             <div className="text-2xl font-bold text-gray-900 dark:text-white" data-testid="text-total-stages">
               {COMPREHENSIVE_PIPELINE.length}
             </div>
             <div className="text-sm text-gray-500 dark:text-gray-400">Total Stages</div>
           </div>
-          <div className="text-center p-4 bg-green-50 dark:bg-green-900/20 rounded-lg">
+          <div className="w-full text-center p-4 bg-green-50 dark:bg-green-900/20 rounded-lg">
             <div className="text-2xl font-bold text-green-600 dark:text-green-400" data-testid="text-completed-stages">
               {activeIdx}
             </div>
             <div className="text-sm text-green-600 dark:text-green-400">Completed</div>
           </div>
-          <div className="text-center p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg">
+          <div className="w-full text-center p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg">
             <div className="text-2xl font-bold text-blue-600 dark:text-blue-400" data-testid="text-client-visible-stages">
               {COMPREHENSIVE_PIPELINE.filter(s => s.clientVisible).length}
             </div>
             <div className="text-sm text-blue-600 dark:text-blue-400">Client Visible</div>
           </div>
-          <div className="text-center p-4 bg-yellow-50 dark:bg-yellow-900/20 rounded-lg">
+          <div className="w-full text-center p-4 bg-yellow-50 dark:bg-yellow-900/20 rounded-lg">
             <div className="text-2xl font-bold text-yellow-600 dark:text-yellow-400" data-testid="text-milestone-stages">
               {COMPREHENSIVE_PIPELINE.filter(s => s.isMilestone).length}
             </div>
@@ -646,7 +646,7 @@ export const StagePanel: React.FC<StagePanelProps> = ({ case: caseData }) => {
           </div>
         </div>
 
-        <div className="grid grid-cols-5 md:grid-cols-15 gap-1">
+        <div className="w-full flex overflow-x-auto gap-1 pb-2">
           {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15].map(partNum => {
             const partStages = COMPREHENSIVE_PIPELINE.filter(s => s.part === partNum);
             const completedInPart = partStages.filter((_, i) => COMPREHENSIVE_PIPELINE.findIndex(stage => stage.key === partStages[i].key) < activeIdx).length;
@@ -814,11 +814,11 @@ export const StagePanel: React.FC<StagePanelProps> = ({ case: caseData }) => {
                       <div className="text-xs font-medium text-blue-800 dark:text-blue-200 mb-1">
                         Connected: {stage.links.length} systems
                       </div>
-                      <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 w-full">
+                      <div className="w-full flex flex-wrap gap-1">
                         {stage.links.map(link => (
                           <span 
                             key={link.id} 
-                            className="inline-flex h-4 w-full items-center justify-center rounded border border-blue-400 bg-blue-50 dark:bg-blue-900/20 px-1 text-xs font-medium text-blue-700 dark:text-blue-300 truncate"
+                            className="inline-flex h-4 items-center justify-center rounded border border-blue-400 bg-blue-50 dark:bg-blue-900/20 px-1 text-xs font-medium text-blue-700 dark:text-blue-300 truncate"
                           >
                             {link.label}
                             {link.count && link.count > 0 && ` (${link.count})`}
@@ -834,7 +834,7 @@ export const StagePanel: React.FC<StagePanelProps> = ({ case: caseData }) => {
                       <div className="text-xs font-medium text-blue-800 dark:text-blue-200 mb-1">
                         Connected Systems:
                       </div>
-                      <div className="grid grid-cols-3 sm:grid-cols-4 gap-1 w-full">
+                      <div className="w-full flex flex-wrap gap-1">
                         {/* Family Tree Connections */}
                         {stage.key.includes('FAMILY_TREE') && (
                           <>
@@ -912,11 +912,11 @@ export const StagePanel: React.FC<StagePanelProps> = ({ case: caseData }) => {
                         )}
                         
                         {/* Default Stage Links */}
-                        <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 w-full">
+                        <div className="w-full flex flex-wrap gap-1">
                           {stage.links && stage.links.map(link => (
                             <button 
                               key={link.id}
-                              className="inline-flex h-4 w-full items-center justify-center rounded border border-blue-400 bg-blue-50 dark:bg-blue-900/20 px-1 text-xs font-medium text-blue-700 dark:text-blue-300 hover:bg-blue-200 dark:hover:bg-blue-900/30 transition-colors truncate"
+                              className="inline-flex h-4 items-center justify-center rounded border border-blue-400 bg-blue-50 dark:bg-blue-900/20 px-1 text-xs font-medium text-blue-700 dark:text-blue-300 hover:bg-blue-200 dark:hover:bg-blue-900/30 transition-colors truncate"
                               onClick={() => {
                                 if (link.route) {
                                   window.open(link.route, '_blank');
@@ -1315,7 +1315,7 @@ export const StagePanel: React.FC<StagePanelProps> = ({ case: caseData }) => {
       {/* Enhanced Current Status */}
       <div className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-lg shadow-lg dark:shadow-2xl p-6">
         <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">Current Status</h3>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div className="w-full space-y-4">
           <div>
             <div className="text-sm text-gray-500 dark:text-gray-400 mb-1">Current Stage</div>
             <div className="text-lg font-medium text-gray-900 dark:text-white mb-2">

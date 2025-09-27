@@ -835,8 +835,8 @@ export const CaseDetailsUnified: React.FC<CaseDetailsUnifiedProps> = ({ caseId }
 
         {/* Content */}
         <div className={cn(
-          "min-h-[400px]",
-          isEditMode && "grid grid-cols-1 lg:grid-cols-2 gap-6"
+          "w-full min-h-[400px]",
+          isEditMode && "space-y-6"
         )}>
           {/* Main Content */}
           <div className={cn(isEditMode && "lg:pr-3")}>
