@@ -184,7 +184,33 @@ const COMPREHENSIVE_PIPELINE: StageInfo[] = [
   { key: "PART4_POA_FEDEX", label: "POA FedEx Delivery", part: 4, clientVisible: true, description: "Client sends signed POAs by FedEx to Warsaw office", importance: "critical" },
 
   // PART 5 - DATA & APPLICATION
-  { key: "PART5_MASTER_FORM", label: "Master Form Completion", part: 5, clientVisible: true, description: "Client fills the MASTER FORM with all case data", isMilestone: true, importance: "critical" },
+  { 
+    key: "PART5_MASTER_FORM", 
+    label: "Master Form Completion", 
+    part: 5, 
+    clientVisible: true, 
+    description: "Client fills the MASTER FORM with all case data", 
+    isMilestone: true, 
+    importance: "critical",
+    links: [
+      {
+        id: 'client-dashboard',
+        label: 'Client Dashboard',
+        targetType: 'familyTree',
+        route: '/client-dashboard',
+        status: 'available',
+        description: 'Access main client dashboard for form completion'
+      },
+      {
+        id: 'family-tree-data',
+        label: 'Family Tree Data',
+        targetType: 'familyTree',
+        route: '/family-tree',
+        status: 'pending',
+        description: 'Review and complete family tree information'
+      }
+    ]
+  },
   { key: "PART5_AI_PAPERWORK", label: "AI Paperwork Generation", part: 5, clientVisible: false, description: "AI Agent generates all the paperwork", isMilestone: true, importance: "critical" },
   { key: "PART5_DRAFT_APPLICATION", label: "Draft Citizenship Application", part: 5, clientVisible: true, description: "Draft citizenship application prepared", importance: "high" },
   { 
@@ -226,7 +252,32 @@ const COMPREHENSIVE_PIPELINE: StageInfo[] = [
   { key: "PART5_ADD_TO_ACCOUNT", label: "Add Copy to Account", part: 5, clientVisible: true, description: "Adding submission copy to client account", importance: "low" },
 
   // PART 6 - LOCAL DOCUMENTS
-  { key: "PART6_DOCS_CLARIFICATION", label: "Documents List Clarification", part: 6, clientVisible: true, description: "Clarifying document requirements with client", importance: "high" },
+  { 
+    key: "PART6_DOCS_CLARIFICATION", 
+    label: "Documents List Clarification", 
+    part: 6, 
+    clientVisible: true, 
+    description: "Clarifying document requirements with client", 
+    importance: "high",
+    links: [
+      {
+        id: 'document-checklist',
+        label: 'Document Checklist',
+        targetType: 'document',
+        payload: { type: 'checklist' },
+        status: 'available',
+        description: 'Review required documents checklist'
+      },
+      {
+        id: 'email-client',
+        label: 'Email Client',
+        targetType: 'email',
+        payload: { template: 'document-clarification' },
+        status: 'pending',
+        description: 'Send document clarification email'
+      }
+    ]
+  },
   { key: "PART6_GATHERING_DOCS", label: "Gathering Local Documents", part: 6, clientVisible: true, description: "Collecting local documents from client", importance: "high" },
   { key: "PART6_LOCAL_AGENT", label: "Local Agent Advising", part: 6, clientVisible: true, description: "Advising by local agent", importance: "medium" },
   { key: "PART6_PARTNER_CONNECTION", label: "Partner Connection", part: 6, clientVisible: true, description: "Connecting to our partners to help collecting documents", isMilestone: true, importance: "high" },
@@ -242,7 +293,33 @@ const COMPREHENSIVE_PIPELINE: StageInfo[] = [
   { key: "PART7_EXAMINING_ARCHIVAL", label: "Examining Archival Documents", part: 7, clientVisible: false, description: "Examining archival documents for translation and filing", importance: "medium" },
 
   // PART 8 - TRANSLATIONS
-  { key: "PART8_AI_TRANSLATIONS", label: "AI Translation Service", part: 8, clientVisible: true, description: "Translations using AI translation service on portal", importance: "high" },
+  { 
+    key: "PART8_AI_TRANSLATIONS", 
+    label: "AI Translation Service", 
+    part: 8, 
+    clientVisible: true, 
+    description: "Translations using AI translation service on portal", 
+    importance: "high",
+    links: [
+      {
+        id: 'translation-tasks',
+        label: 'Translation Tasks',
+        targetType: 'tasks',
+        payload: { filter: 'translation' },
+        status: 'active',
+        count: 5,
+        description: 'Manage document translation tasks'
+      },
+      {
+        id: 'translated-docs',
+        label: 'Translated Documents',
+        targetType: 'document',
+        payload: { type: 'translations' },
+        status: 'pending',
+        description: 'Review translated document files'
+      }
+    ]
+  },
   { key: "PART8_CERTIFIED_TRANSLATIONS", label: "Certified Translations", part: 8, clientVisible: true, description: "Certifying translations with Polish Certified Sworn Translator", importance: "critical" },
   { key: "PART8_TRANSLATIONS_AGENT", label: "Translations Agent Supervision", part: 8, clientVisible: true, description: "Dedicated translations agent supervision", isMilestone: true, importance: "high" },
   { key: "PART8_DOUBLE_CHECK", label: "Independent Double-Check", part: 8, clientVisible: true, description: "Double-checking translations by independent agent", importance: "high" },
@@ -253,7 +330,33 @@ const COMPREHENSIVE_PIPELINE: StageInfo[] = [
   { key: "PART9_BEFORE_INITIAL_RESPONSE", label: "Complete Before Initial Response", part: 9, clientVisible: false, description: "Completing all filing before initial response if possible", importance: "medium" },
 
   // PART 10 - CIVIL ACTS
-  { key: "PART10_CIVIL_ACTS_PREP", label: "Civil Acts Applications", part: 10, clientVisible: true, description: "Preparing Polish civil acts applications", importance: "high" },
+  { 
+    key: "PART10_CIVIL_ACTS_PREP", 
+    label: "Civil Acts Applications", 
+    part: 10, 
+    clientVisible: true, 
+    description: "Preparing Polish civil acts applications", 
+    importance: "high",
+    links: [
+      {
+        id: 'civil-acts-forms',
+        label: 'Civil Acts Forms',
+        targetType: 'application',
+        payload: { type: 'civil-acts' },
+        status: 'available',
+        description: 'Access Polish civil acts application forms'
+      },
+      {
+        id: 'civil-acts-tasks',
+        label: 'Civil Acts Tasks',
+        targetType: 'tasks',
+        payload: { filter: 'civil-acts' },
+        status: 'pending',
+        count: 2,
+        description: 'Track civil acts preparation progress'
+      }
+    ]
+  },
   { key: "PART10_CIVIL_ACTS_PAYMENT", label: "Civil Acts Payment", part: 10, clientVisible: true, description: "Charging payment for Polish civil acts", isMilestone: true, importance: "critical" },
   { key: "PART10_CIVIL_ACTS_AGENT", label: "Civil Acts Agent", part: 10, clientVisible: true, description: "Supervised by dedicated civil acts agent", isMilestone: true, importance: "high" },
   { key: "PART10_SUBMIT_TO_REGISTRY", label: "Submit to Civil Registry", part: 10, clientVisible: true, description: "Submitting to relevant Polish Civil Registry office", importance: "critical" },
@@ -634,8 +737,11 @@ export const StagePanel: React.FC<StagePanelProps> = ({ case: caseData }) => {
                     </div>
                     
                     {/* Stage Name */}
-                    <div className="text-xs font-medium leading-tight">
+                    <div className="text-xs font-medium leading-tight flex items-center justify-center gap-1">
                       {stage.label}
+                      {stage.links && stage.links.length > 0 && (
+                        <div className="w-1.5 h-1.5 bg-blue-600 rounded-full" title="Has related work"></div>
+                      )}
                     </div>
                     
                     {/* Part Number */}
@@ -685,7 +791,12 @@ export const StagePanel: React.FC<StagePanelProps> = ({ case: caseData }) => {
                   data-testid={`pending-stage-${stage.key}`}
                 >
                   <div className="flex items-center justify-between mb-1">
-                    <span className="text-xs font-medium text-gray-900 dark:text-white">{stage.label}</span>
+                    <div className="flex items-center gap-1">
+                      <span className="text-xs font-medium text-gray-900 dark:text-white">{stage.label}</span>
+                      {stage.links && stage.links.length > 0 && (
+                        <div className="w-1.5 h-1.5 bg-blue-600 rounded-full" title="Has related work"></div>
+                      )}
+                    </div>
                     <div className="flex items-center gap-1">
                       {stage.clientVisible && <span className="text-xs text-green-600 dark:text-green-400">Client</span>}
                       {stage.isMilestone && <span className="text-xs text-yellow-600 dark:text-yellow-400">Milestone</span>}
@@ -961,7 +1072,12 @@ export const StagePanel: React.FC<StagePanelProps> = ({ case: caseData }) => {
                   data-testid={`completed-stage-${stage.key}`}
                 >
                   <div className="flex items-center justify-between mb-1">
-                    <span className="text-xs font-medium text-green-900 dark:text-green-100">{stage.label}</span>
+                    <div className="flex items-center gap-1">
+                      <span className="text-xs font-medium text-green-900 dark:text-green-100">{stage.label}</span>
+                      {stage.links && stage.links.length > 0 && (
+                        <div className="w-1.5 h-1.5 bg-blue-600 rounded-full" title="Has related work"></div>
+                      )}
+                    </div>
                   </div>
                   <div className="text-xs text-green-700 dark:text-green-300 mb-2">{stage.description?.slice(0, 50)}...</div>
                   <div className="flex items-center justify-between">
