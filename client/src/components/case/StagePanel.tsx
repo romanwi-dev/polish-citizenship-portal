@@ -492,7 +492,7 @@ export const StagePanel: React.FC<StagePanelProps> = ({ case: caseData }) => {
       <div className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-lg shadow-lg dark:shadow-2xl p-6">
         <div className="flex items-center justify-between mb-6">
           <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
-            🏗️ Interactive Stage Management
+            🏗️ Interactive Stage Management - All 15 Parts
           </h3>
           <div className="flex items-center gap-2">
             <button 
@@ -521,7 +521,7 @@ export const StagePanel: React.FC<StagePanelProps> = ({ case: caseData }) => {
               </span>
             </div>
             <div className="max-h-96 overflow-y-auto space-y-2">
-              {COMPREHENSIVE_PIPELINE.filter((_, i) => i > activeIdx).slice(0, 8).map((stage, index) => (
+              {COMPREHENSIVE_PIPELINE.filter((_, i) => i > activeIdx).map((stage, index) => (
                 <div 
                   key={stage.key} 
                   className={cn(
@@ -610,7 +610,7 @@ export const StagePanel: React.FC<StagePanelProps> = ({ case: caseData }) => {
               </span>
             </div>
             <div className="max-h-96 overflow-y-auto space-y-2">
-              {COMPREHENSIVE_PIPELINE.filter((_, i) => i < activeIdx).slice(-8).reverse().map((stage) => (
+              {COMPREHENSIVE_PIPELINE.filter((_, i) => i < activeIdx).reverse().map((stage) => (
                 <div 
                   key={stage.key} 
                   className={cn(
