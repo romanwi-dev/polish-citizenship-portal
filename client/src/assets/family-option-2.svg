@@ -1,0 +1,153 @@
+<svg width="2000" height="1200" viewBox="0 0 2000 1200" xmlns="http://www.w3.org/2000/svg">
+  <!-- OPTION 2: Casual Walking Family in European Square -->
+  <defs>
+    <linearGradient id="sky2" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#B0E0E6"/>
+      <stop offset="100%" stop-color="#F0F8FF"/>
+    </linearGradient>
+  </defs>
+  
+  <!-- Sky -->
+  <rect width="2000" height="750" fill="url(#sky2)"/>
+  
+  <!-- European square with historic buildings -->
+  <rect x="0" y="500" width="500" height="700" fill="#F4A460"/>
+  <rect x="500" y="450" width="400" height="750" fill="#DEB887"/>
+  <rect x="900" y="480" width="300" height="720" fill="#F5DEB3"/>
+  <rect x="1200" y="420" width="450" height="780" fill="#E6E6FA"/>
+  <rect x="1650" y="460" width="350" height="740" fill="#F0E68C"/>
+  
+  <!-- Cobblestone ground -->
+  <ellipse cx="1000" cy="1150" rx="1000" ry="50" fill="#696969"/>
+  
+  <!-- Family walking together casually -->
+  <g transform="translate(500, 500)">
+    
+    <!-- Grandfather (leading) -->
+    <g transform="translate(0, 100)">
+      <circle cx="60" cy="60" r="45" fill="#FDBCB4"/>
+      <path d="M 15 45 Q 60 10 105 45" fill="#D3D3D3"/>
+      <rect x="30" y="100" width="60" height="110" rx="15" fill="#4682B4"/>
+      <rect x="10" y="110" width="25" height="85" rx="12" fill="#FDBCB4"/>
+      <rect x="85" y="110" width="25" height="85" rx="12" fill="#FDBCB4"/>
+      <rect x="40" y="210" width="20" height="95" fill="#2F4F4F"/>
+      <rect x="60" y="210" width="20" height="95" fill="#2F4F4F"/>
+      <!-- Walking pose - slightly forward lean -->
+      <ellipse cx="50" cy="310" rx="12" ry="8" fill="#000"/>
+      <ellipse cx="70" cy="310" rx="12" ry="8" fill="#000"/>
+      <!-- Happy face -->
+      <circle cx="50" cy="50" r="3" fill="#000"/>
+      <circle cx="70" cy="50" r="3" fill="#000"/>
+      <path d="M 45 70 Q 60 80 75 70" stroke="#000" stroke-width="3" fill="none"/>
+    </g>
+    
+    <!-- Grandmother -->
+    <g transform="translate(150, 110)">
+      <circle cx="60" cy="60" r="45" fill="#FDBCB4"/>
+      <path d="M 15 45 Q 60 10 105 45" fill="#F0F0F0"/>
+      <path d="M 30 100 L 90 100 L 100 210 L 20 210 Z" fill="#800080"/>
+      <rect x="10" y="110" width="25" height="75" rx="12" fill="#FDBCB4"/>
+      <rect x="85" y="110" width="25" height="75" rx="12" fill="#FDBCB4"/>
+      <rect x="40" y="210" width="20" height="95" fill="#800080"/>
+      <rect x="60" y="210" width="20" height="95" fill="#800080"/>
+      <ellipse cx="50" cy="310" rx="10" ry="6" fill="#000"/>
+      <ellipse cx="70" cy="310" rx="10" ry="6" fill="#000"/>
+      <!-- Happy face -->
+      <circle cx="50" cy="50" r="3" fill="#000"/>
+      <circle cx="70" cy="50" r="3" fill="#000"/>
+      <path d="M 45 70 Q 60 80 75 70" stroke="#000" stroke-width="3" fill="none"/>
+    </g>
+    
+    <!-- Father with passport in coat pocket -->
+    <g transform="translate(320, 80)">
+      <circle cx="70" cy="70" r="50" fill="#FDBCB4"/>
+      <path d="M 20 55 Q 70 15 120 55" fill="#8B4513"/>
+      <rect x="35" y="115" width="70" height="120" rx="18" fill="#2E7D32"/>
+      <rect x="10" y="125" width="30" height="90" rx="15" fill="#FDBCB4"/>
+      <rect x="105" y="125" width="30" height="90" rx="15" fill="#FDBCB4"/>
+      
+      <!-- Polish passport visible in coat pocket -->
+      <g transform="translate(45, 130)">
+        <rect x="0" y="0" width="25" height="35" fill="#8B0000" rx="2"/>
+        <rect x="2" y="2" width="21" height="15" fill="#FFF"/>
+        <text x="12.5" y="9" text-anchor="middle" font-size="3" font-weight="bold" fill="#8B0000">POLSKA</text>
+        <circle cx="12.5" cy="22" r="5" fill="#FFD700"/>
+        <text x="12.5" y="26" text-anchor="middle" font-size="3" fill="#8B0000">PL</text>
+      </g>
+      
+      <rect x="45" y="235" width="25" height="100" fill="#000080"/>
+      <rect x="75" y="235" width="25" height="100" fill="#000080"/>
+      <ellipse cx="57" cy="340" rx="13" ry="8" fill="#000"/>
+      <ellipse cx="87" cy="340" rx="13" ry="8" fill="#000"/>
+      <!-- Happy face -->
+      <circle cx="60" cy="60" r="3" fill="#000"/>
+      <circle cx="80" cy="60" r="3" fill="#000"/>
+      <path d="M 55 85 Q 70 95 85 85" stroke="#000" stroke-width="3" fill="none"/>
+    </g>
+    
+    <!-- Mother -->
+    <g transform="translate(480, 90)">
+      <circle cx="70" cy="70" r="50" fill="#FDBCB4"/>
+      <path d="M 20 55 Q 70 15 120 55" fill="#FFD700"/>
+      <path d="M 35 115 L 105 115 L 115 235 L 25 235 Z" fill="#FF1493"/>
+      <rect x="10" y="125" width="30" height="85" rx="15" fill="#FDBCB4"/>
+      <rect x="105" y="125" width="30" height="85" rx="15" fill="#FDBCB4"/>
+      <rect x="45" y="235" width="25" height="100" fill="#FF1493"/>
+      <rect x="75" y="235" width="25" height="100" fill="#FF1493"/>
+      <ellipse cx="57" cy="340" rx="11" ry="7" fill="#000"/>
+      <ellipse cx="87" cy="340" rx="11" ry="7" fill="#000"/>
+      <!-- Happy face -->
+      <circle cx="60" cy="60" r="3" fill="#000"/>
+      <circle cx="80" cy="60" r="3" fill="#000"/>
+      <path d="M 55 85 Q 70 95 85 85" stroke="#000" stroke-width="3" fill="none"/>
+    </g>
+    
+    <!-- Children running ahead -->
+    <!-- Older child -->
+    <g transform="translate(650, 150)">
+      <circle cx="50" cy="50" r="40" fill="#FDBCB4"/>
+      <path d="M 10 35 Q 50 5 90 35" fill="#8B4513"/>
+      <rect x="25" y="85" width="50" height="85" rx="12" fill="#FF8C00"/>
+      <rect x="5" y="95" width="20" height="65" rx="10" fill="#FDBCB4"/>
+      <rect x="75" y="95" width="20" height="65" rx="10" fill="#FDBCB4"/>
+      <rect x="35" y="170" width="15" height="75" fill="#32CD32"/>
+      <rect x="50" y="170" width="15" height="75" fill="#32CD32"/>
+      <ellipse cx="42" cy="250" rx="8" ry="5" fill="#000"/>
+      <ellipse cx="57" cy="250" rx="8" ry="5" fill="#000"/>
+      <!-- Happy face -->
+      <circle cx="42" cy="42" r="2.5" fill="#000"/>
+      <circle cx="58" cy="42" r="2.5" fill="#000"/>
+      <path d="M 38 60 Q 50 68 62 60" stroke="#000" stroke-width="2" fill="none"/>
+    </g>
+    
+    <!-- Younger child -->
+    <g transform="translate(780, 180)">
+      <circle cx="40" cy="40" r="35" fill="#FDBCB4"/>
+      <path d="M 5 25 Q 40 0 75 25" fill="#FFD700"/>
+      <rect x="20" y="70" width="40" height="70" rx="10" fill="#9370DB"/>
+      <rect x="5" y="80" width="15" height="55" rx="8" fill="#FDBCB4"/>
+      <rect x="60" y="80" width="15" height="55" rx="8" fill="#FDBCB4"/>
+      <rect x="28" y="140" width="12" height="65" fill="#FF6347"/>
+      <rect x="40" y="140" width="12" height="65" fill="#FF6347"/>
+      <ellipse cx="34" cy="210" rx="7" ry="4" fill="#000"/>
+      <ellipse cx="46" cy="210" rx="7" ry="4" fill="#000"/>
+      <!-- Happy face -->
+      <circle cx="32" cy="32" r="2" fill="#000"/>
+      <circle cx="48" cy="32" r="2" fill="#000"/>
+      <path d="M 28 48 Q 40 56 52 48" stroke="#000" stroke-width="2" fill="none"/>
+    </g>
+    
+  </g>
+  
+  <!-- EU stars in sky (40% opacity) -->
+  <g opacity="0.4">
+    <circle cx="200" cy="150" r="4" fill="#FFD700"/>
+    <circle cx="400" cy="100" r="4" fill="#FFD700"/>
+    <circle cx="600" cy="180" r="4" fill="#FFD700"/>
+    <circle cx="800" cy="120" r="4" fill="#FFD700"/>
+    <circle cx="1000" cy="200" r="4" fill="#FFD700"/>
+    <circle cx="1200" cy="140" r="4" fill="#FFD700"/>
+  </g>
+  
+
+</svg>

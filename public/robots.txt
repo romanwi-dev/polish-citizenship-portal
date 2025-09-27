@@ -1,0 +1,75 @@
+# Robots.txt for Polish Citizenship Legal Services
+# https://polishcitizenship.pl
+
+# Allow all search engines to crawl the site
+User-agent: *
+Allow: /
+
+# Specific directives for major search engines
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 1
+
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 1
+
+User-agent: Slurp
+Allow: /
+Crawl-delay: 2
+
+# Block access to sensitive areas
+Disallow: /admin/
+Disallow: /api/auth/
+Disallow: /api/user/
+Disallow: /dashboard/
+Disallow: /client-portal/
+Disallow: /.well-known/
+Disallow: /private/
+Disallow: /temp/
+Disallow: /cache/
+
+# Block access to development and system files
+Disallow: /*.json$
+Disallow: /*.log$
+Disallow: /*.env$
+Disallow: /src/
+Disallow: /node_modules/
+Disallow: /dist/
+Disallow: /.git/
+Disallow: /.vscode/
+
+# Allow access to important static files
+Allow: /favicon.ico
+Allow: /robots.txt
+Allow: /sitemap.xml
+Allow: /*.css$
+Allow: /*.js$
+Allow: /*.png$
+Allow: /*.jpg$
+Allow: /*.jpeg$
+Allow: /*.gif$
+Allow: /*.svg$
+Allow: /*.webp$
+Allow: /*.pdf$
+
+# Block search parameters that may create duplicate content
+Disallow: /*?utm_*
+Disallow: /*?ref=*
+Disallow: /*?fbclid=*
+Disallow: /*?gclid=*
+Disallow: /*?source=*
+Disallow: /*?campaign=*
+
+# Sitemap location
+Sitemap: https://polishcitizenship.pl/sitemap.xml
+
+# Additional sitemaps (if implemented)
+# Sitemap: https://polishcitizenship.pl/sitemap-blog.xml
+# Sitemap: https://polishcitizenship.pl/sitemap-images.xml
+
+# Crawl delay for general bots (in seconds)
+Crawl-delay: 1
+
+# Host directive (preferred domain)
+Host: https://polishcitizenship.pl

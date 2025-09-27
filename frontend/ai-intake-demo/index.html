@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Citizenship Intake | Polish Citizenship Services</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #e5e7eb;
+        }
+        .header h1 {
+            color: #1e40af;
+            margin: 0 0 10px 0;
+            font-size: 28px;
+            font-weight: 700;
+        }
+        .header p {
+            color: #6b7280;
+            margin: 0;
+            font-size: 16px;
+        }
+        .card {
+            background: #f8fafc;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            padding: 25px;
+            margin-bottom: 25px;
+        }
+        .card h2 {
+            color: #1e40af;
+            margin: 0 0 15px 0;
+            font-size: 20px;
+            font-weight: 600;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #374151;
+        }
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #d1d5db;
+            border-radius: 6px;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+        .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+        .btn {
+            background: #1e40af;
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .btn:hover {
+            background: #1d4ed8;
+        }
+        .btn-secondary {
+            background: #6b7280;
+            margin-left: 10px;
+        }
+        .btn-secondary:hover {
+            background: #4b5563;
+        }
+        .progress {
+            background: #e5e7eb;
+            border-radius: 10px;
+            height: 8px;
+            margin: 20px 0;
+            overflow: hidden;
+        }
+        .progress-bar {
+            background: #10b981;
+            height: 100%;
+            width: 25%;
+            transition: width 0.3s;
+        }
+        .ai-badge {
+            background: #10b981;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            display: inline-block;
+            margin-bottom: 15px;
+        }
+        @media (max-width: 768px) {
+            body { padding: 10px; }
+            .container { padding: 20px; }
+            .header h1 { font-size: 24px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="ai-badge">🤖 AI-POWERED INTAKE</div>
+            <h1>Polish Citizenship Assessment</h1>
+            <p>Intelligent document analysis and eligibility evaluation</p>
+        </div>
+
+        <div class="progress">
+            <div class="progress-bar" id="progressBar"></div>
+        </div>
+
+        <form id="intakeForm">
+            <section class="card">
+  <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:8px">
+    <a id="nav-ai-intake" href="/ai-citizenship-intake/" class="badge" style="text-decoration:none">AI Citizenship Intake</a>
+  </div>
+  <div >
+                <h2>📋 Personal Information</h2>
+                <div class="form-group">
+                    <label for="firstName">First Name(s)</label>
+                    <input type="text" id="firstName" name="firstName" required>
+                </div>
+                <div class="form-group">
+                    <label for="lastName">Last Name</label>
+                    <input type="text" id="lastName" name="lastName" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" id="phone" name="phone">
+                </div>
+                <div class="form-group">
+                    <label for="birthDate">Date of Birth</label>
+                    <input type="date" id="birthDate" name="birthDate" required>
+                </div>
+                <div class="form-group">
+                    <label for="birthPlace">Place of Birth</label>
+                    <input type="text" id="birthPlace" name="birthPlace" placeholder="City, Country">
+                </div>
+            </section>
+
+            <section class="card">
+                <h2>🇵🇱 Polish Ancestry</h2>
+                <div class="form-group">
+                    <label for="polishConnection">How are you connected to Poland?</label>
+                    <select id="polishConnection" name="polishConnection" required>
+                        <option value="">Select your connection</option>
+                        <option value="parent">Parent is/was Polish</option>
+                        <option value="grandparent">Grandparent is/was Polish</option>
+                        <option value="great-grandparent">Great-grandparent is/was Polish</option>
+                        <option value="spouse">Married to Polish citizen</option>
+                        <option value="other">Other connection</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="polishAncestorName">Polish Ancestor's Full Name</label>
+                    <input type="text" id="polishAncestorName" name="polishAncestorName">
+                </div>
+                <div class="form-group">
+                    <label for="polishAncestorBirth">Ancestor's Birth Year (if known)</label>
+                    <input type="number" id="polishAncestorBirth" name="polishAncestorBirth" min="1850" max="2010">
+                </div>
+                <div class="form-group">
+                    <label for="polishDocuments">Do you have any Polish documents?</label>
+                    <textarea id="polishDocuments" name="polishDocuments" placeholder="Describe any birth certificates, passports, or other Polish documents you have..."></textarea>
+                </div>
+            </section>
+
+            <section class="card">
+                <h2>📄 Document Upload</h2>
+                <div class="form-group">
+                    <label for="documents">Upload Documents (Optional)</label>
+                    <input type="file" id="documents" name="documents" multiple accept=".pdf,.jpg,.jpeg,.png,.doc,.docx">
+                    <small style="color: #6b7280; display: block; margin-top: 5px;">
+                        Upload birth certificates, passports, or other relevant documents
+                    </small>
+                </div>
+            </section>
+
+            <section class="card">
+                <h2>💬 Additional Information</h2>
+                <div class="form-group">
+                    <label for="additionalInfo">Tell us more about your case</label>
+                    <textarea id="additionalInfo" name="additionalInfo" placeholder="Any additional details about your Polish connection, timeline, or specific questions..."></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="urgency">How urgent is your case?</label>
+                    <select id="urgency" name="urgency">
+                        <option value="low">No rush - general inquiry</option>
+                        <option value="medium">Moderate - within 6 months</option>
+                        <option value="high">Urgent - within 3 months</option>
+                        <option value="critical">Critical - immediate assistance needed</option>
+                    </select>
+                </div>
+            </section>
+
+            <div style="text-align: center; margin-top: 30px;">
+                <button type="submit" class="btn">🚀 Submit for AI Analysis</button>
+                <button type="button" class="btn btn-secondary" onclick="saveProgress()">💾 Save Progress</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        let currentStep = 1;
+        const totalSteps = 4;
+
+        function updateProgress() {
+            const progress = (currentStep / totalSteps) * 100;
+            document.getElementById('progressBar').style.width = progress + '%';
+        }
+
+        function saveProgress() {
+            const formData = new FormData(document.getElementById('intakeForm'));
+            const data = Object.fromEntries(formData.entries());
+            localStorage.setItem('intakeProgress', JSON.stringify(data));
+            alert('Progress saved! You can continue later.');
+        }
+
+        function loadProgress() {
+            const saved = localStorage.getItem('intakeProgress');
+            if (saved) {
+                const data = JSON.parse(saved);
+                Object.keys(data).forEach(key => {
+                    const field = document.getElementById(key);
+                    if (field) field.value = data[key];
+                });
+            }
+        }
+
+        document.getElementById('intakeForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Simulate AI processing
+            const submitBtn = document.querySelector('button[type="submit"]');
+            submitBtn.innerHTML = '🤖 AI Analyzing...';
+            submitBtn.disabled = true;
+            
+            setTimeout(() => {
+                alert('🎉 Your intake has been submitted! Our AI system will analyze your case and a specialist will contact you within 24 hours.');
+                submitBtn.innerHTML = '✅ Analysis Complete';
+                localStorage.removeItem('intakeProgress');
+            }, 2000);
+        });
+
+        // Form validation and progress tracking
+        document.querySelectorAll('input, select, textarea').forEach(field => {
+            field.addEventListener('change', () => {
+                updateProgress();
+                
+                // Auto-save every 30 seconds
+                clearTimeout(window.autoSaveTimer);
+                window.autoSaveTimer = setTimeout(saveProgress, 30000);
+            });
+        });
+
+        // Load saved progress on page load
+        document.addEventListener('DOMContentLoaded', loadProgress);
+        updateProgress();
+    </script>
+</body>
+</html>

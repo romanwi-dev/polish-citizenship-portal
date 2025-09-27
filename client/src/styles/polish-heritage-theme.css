@@ -1,0 +1,385 @@
+/* 🇵🇱 POLISH HERITAGE DESIGN SYSTEM - Royal Palace Aesthetics */
+
+/* POLISH ROYAL COLOR PALETTE */
+:root {
+  --polish-red: #DC143C;
+  --polish-white: #FFFFFF;
+  --polish-gold: #FFD700;
+  --polish-navy: #1e3a8a;
+  --polish-emerald: #059669;
+  --polish-burgundy: #800020;
+  --polish-royal-blue: #002868;
+  
+  /* Luxury Gradients */
+  --gradient-heraldic: linear-gradient(135deg, #DC143C 0%, #FFFFFF 50%, #DC143C 100%);
+  --gradient-royal: linear-gradient(135deg, #FFD700 0%, #FFA500 50%, #FF8C00 100%);
+  --gradient-noble: linear-gradient(135deg, #1e3a8a 0%, #3730a3 50%, #4338ca 100%);
+  --gradient-palace: linear-gradient(135deg, #800020 0%, #DC143C 50%, #B91C1C 100%);
+  
+  /* Glass Morphism */
+  --glass-bg: rgba(255, 255, 255, 0.25);
+  --glass-border: rgba(255, 255, 255, 0.18);
+  --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  
+  /* Polish Heritage Shadows */
+  --shadow-royal: 0 20px 25px -5px rgba(220, 20, 60, 0.1), 0 10px 10px -5px rgba(220, 20, 60, 0.04);
+  --shadow-noble: 0 25px 50px -12px rgba(30, 58, 138, 0.25);
+  --shadow-golden: 0 20px 25px -5px rgba(255, 215, 0, 0.3), 0 10px 10px -5px rgba(255, 215, 0, 0.1);
+}
+
+/* HERITAGE HEADER WITH POLISH ROYAL PATTERNS */
+.heritage-header {
+  background: var(--gradient-noble);
+  position: relative;
+  overflow: hidden;
+  border-bottom: 4px solid var(--polish-gold);
+}
+
+.heritage-header::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    radial-gradient(circle at 25% 25%, rgba(255, 215, 0, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 75% 75%, rgba(220, 20, 60, 0.05) 0%, transparent 50%);
+  background-size: 100px 100px, 150px 150px;
+  animation: float 20s ease-in-out infinite;
+}
+
+.heritage-header-content {
+  position: relative;
+  z-index: 2;
+  color: white;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* LUXURY INPUT STYLING - Glass Morphism with Golden Accents */
+.luxury-input {
+  background: var(--glass-bg);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 2px solid var(--glass-border);
+  border-radius: 16px;
+  padding: 20px 24px;
+  font-size: 18px;
+  font-weight: 600;
+  color: #1f2937;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: var(--glass-shadow);
+  min-height: 64px;
+}
+
+.luxury-input:focus {
+  outline: none;
+  border: 3px solid var(--polish-gold);
+  background: rgba(255, 255, 255, 0.4);
+  box-shadow: var(--shadow-golden);
+  transform: translateY(-2px) scale(1.02);
+}
+
+.luxury-input:hover:not(:focus) {
+  border-color: var(--polish-navy);
+  box-shadow: var(--shadow-noble);
+  transform: translateY(-1px);
+}
+
+/* ENHANCED LABELS WITH POLISH HERITAGE STYLING */
+.heritage-label {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--polish-navy);
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.heritage-label::before {
+  content: '👑';
+  font-size: 14px;
+  opacity: 0.7;
+}
+
+/* PREMIUM CARD STYLING */
+.heritage-card {
+  background: linear-gradient(145deg, #ffffff 0%, #f8fafc 100%);
+  border: 2px solid rgba(30, 58, 138, 0.1);
+  border-radius: 20px;
+  box-shadow: var(--shadow-noble);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+  position: relative;
+}
+
+.heritage-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: var(--gradient-royal);
+}
+
+.heritage-card:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-royal);
+  border-color: var(--polish-gold);
+}
+
+/* LUXURY BUTTON STYLING */
+.royal-button {
+  background: var(--gradient-royal);
+  border: none;
+  border-radius: 12px;
+  padding: 16px 32px;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--polish-navy);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: var(--shadow-golden);
+  position: relative;
+  overflow: hidden;
+}
+
+.royal-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+  transition: left 0.5s;
+}
+
+.royal-button:hover {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: var(--shadow-royal);
+}
+
+.royal-button:hover::before {
+  left: 100%;
+}
+
+.royal-button:active {
+  transform: translateY(-1px) scale(1.02);
+}
+
+/* NOBLE BUTTON VARIANT */
+.noble-button {
+  background: var(--gradient-noble);
+  color: white;
+  border: 2px solid var(--polish-gold);
+}
+
+.noble-button:hover {
+  background: var(--gradient-palace);
+  box-shadow: var(--shadow-royal);
+}
+
+/* ADVANCED TAB STYLING */
+.heritage-tabs {
+  background: var(--glass-bg);
+  backdrop-filter: blur(10px);
+  border-radius: 16px;
+  padding: 8px;
+  box-shadow: var(--glass-shadow);
+  border: 1px solid var(--glass-border);
+}
+
+.heritage-tab {
+  background: transparent;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 12px;
+  font-weight: 600;
+  color: var(--polish-navy);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.heritage-tab.active {
+  background: var(--gradient-royal);
+  color: var(--polish-navy);
+  box-shadow: var(--shadow-golden);
+  transform: scale(1.05);
+}
+
+.heritage-tab.completed::after {
+  content: '✓';
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  background: var(--polish-emerald);
+  color: white;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+/* PROGRESS INDICATOR */
+.heritage-progress {
+  background: var(--glass-bg);
+  border-radius: 50px;
+  height: 8px;
+  overflow: hidden;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.heritage-progress-fill {
+  background: var(--gradient-royal);
+  height: 100%;
+  border-radius: 50px;
+  transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+}
+
+.heritage-progress-fill::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.6), transparent);
+  animation: shine 2s infinite;
+}
+
+/* PREMIUM SELECT STYLING */
+.luxury-select {
+  background: var(--glass-bg);
+  backdrop-filter: blur(16px);
+  border: 2px solid var(--glass-border);
+  border-radius: 16px;
+  padding: 20px 24px;
+  font-size: 18px;
+  font-weight: 600;
+  color: #1f2937;
+  appearance: none;
+  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24'%3E%3Cpath stroke='%23FFD700' stroke-linecap='round' stroke-linejoin='round' stroke-width='3' d='M19 9l-7 7-7-7'/%3E%3C/svg%3E");
+  background-position: right 20px center;
+  background-repeat: no-repeat;
+  background-size: 20px 20px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  min-height: 64px;
+}
+
+.luxury-select:focus {
+  outline: none;
+  border: 3px solid var(--polish-gold);
+  background-color: rgba(255, 255, 255, 0.4);
+  box-shadow: var(--shadow-golden);
+  transform: translateY(-2px) scale(1.02);
+}
+
+/* FLOATING ANIMATIONS */
+@keyframes float {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-20px) rotate(180deg); }
+}
+
+@keyframes shine {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+@keyframes pulse-gold {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(255, 215, 0, 0.7); }
+  50% { box-shadow: 0 0 0 10px rgba(255, 215, 0, 0); }
+}
+
+/* RESPONSIVE DESIGN */
+@media (max-width: 768px) {
+  .luxury-input, .luxury-select {
+    padding: 16px 20px;
+    font-size: 16px; /* Prevents zoom on iOS */
+    min-height: 56px;
+  }
+  
+  .heritage-tabs {
+    padding: 6px;
+  }
+  
+  .heritage-tab {
+    padding: 10px 16px;
+    font-size: 14px;
+  }
+  
+  .royal-button {
+    padding: 14px 24px;
+    font-size: 14px;
+  }
+}
+
+/* ERROR STATES */
+.luxury-input.error {
+  border-color: var(--polish-red);
+  box-shadow: 0 0 0 3px rgba(220, 20, 60, 0.2);
+  animation: pulse-red 0.5s ease-in-out;
+}
+
+@keyframes pulse-red {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(220, 20, 60, 0.7); }
+  50% { box-shadow: 0 0 0 5px rgba(220, 20, 60, 0); }
+}
+
+/* SUCCESS STATES */
+.luxury-input.success {
+  border-color: var(--polish-emerald);
+  box-shadow: 0 0 0 3px rgba(5, 150, 105, 0.2);
+}
+
+/* LOADING STATES */
+.loading-shimmer {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+/* ACCESSIBILITY ENHANCEMENTS */
+.luxury-input:focus-visible,
+.luxury-select:focus-visible,
+.royal-button:focus-visible {
+  outline: 3px solid var(--polish-gold);
+  outline-offset: 2px;
+}
+
+/* HIGH CONTRAST MODE */
+@media (prefers-contrast: high) {
+  .luxury-input, .luxury-select {
+    border-width: 3px;
+    background: white;
+  }
+  
+  .heritage-label {
+    font-weight: 900;
+  }
+}
+
+/* REDUCED MOTION */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

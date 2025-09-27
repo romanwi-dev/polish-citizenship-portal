@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Polish Citizenship by Descent | Polish Passport Legal Services</title>
+    
+    <!-- Preconnect to external domains -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="dns-prefetch" href="//polishcitizenship.typeform.com">
+    
+    <!-- Preload critical resources -->
+    <link rel="preload" href="/src/index.css" as="style">
+    <link rel="preload" href="/src/main.tsx" as="script" crossorigin>
+    
+    <!-- Performance optimizations -->
+    <meta http-equiv="x-dns-prefetch-control" content="on">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    
+    <!-- PWA manifest -->
+    <link rel="manifest" href="/manifest.json">
+    
+    <!-- Theme color -->
+    <meta name="theme-color" content="#1e40af">
+    
+    <!-- Apple touch icon -->
+    <link rel="apple-touch-icon" href="/favicon.png">
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Expert legal assistance for Polish citizenship by descent and Polish passport applications. Confirm eligibility, process documents, and reclaim your EU citizenship. Professional services since 2010.">
+    <meta name="keywords" content="polish citizenship, polish passport, citizenship by descent, polish citizenship by descent, EU citizenship, polish citizenship jewish ancestry, polish citizenship 1920, voivode application poland">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="Polish Citizenship by Descent | Professional Legal Services">
+    <meta property="og:description" content="Expert assistance for Polish citizenship and passport applications. Free eligibility assessment. 98% success rate.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://polishcitizenship.pl">
+    <meta property="og:image" content="/og-image.png">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Polish Citizenship by Descent Services">
+    <meta name="twitter:description" content="Reclaim your Polish citizenship and EU passport. Expert legal assistance since 2010.">
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+    
+    <!-- Performance monitoring -->
+    <script>
+      // Measure page load performance
+      window.addEventListener('load', function() {
+        if ('performance' in window && 'timing' in window.performance) {
+          setTimeout(function() {
+            const timing = window.performance.timing;
+            const pageLoadTime = timing.loadEventEnd - timing.navigationStart;
+            console.log('Page load time:', pageLoadTime + 'ms');
+            
+            // Send to analytics if needed
+            if (window.gtag) {
+              window.gtag('event', 'timing_complete', {
+                'name': 'load',
+                'value': pageLoadTime,
+                'event_category': 'Performance'
+              });
+            }
+          }, 0);
+        }
+      });
+      
+      // Prefetch resources when idle
+      if ('requestIdleCallback' in window) {
+        requestIdleCallback(function() {
+          // Prefetch critical routes
+          const routes = ['/polish-passport', '/polish-citizenship', '/citizenship-test'];
+          routes.forEach(route => {
+            const link = document.createElement('link');
+            link.rel = 'prefetch';
+            link.href = route;
+            document.head.appendChild(link);
+          });
+        });
+      }
+    </script>
+  </body>
+</html>

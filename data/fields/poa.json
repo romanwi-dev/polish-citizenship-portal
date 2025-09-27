@@ -1,0 +1,207 @@
+{
+  "formType": "POA",
+  "formName": "Power of Attorney",
+  "formNamePl": "Pełnomocnictwo",
+  "fields": [
+    {
+      "code": "POA-A-GN",
+      "plLabel": "Imiona",
+      "enLabel": "Given Names",
+      "type": "text",
+      "aliases": [
+        "imiona",
+        "imię",
+        "given names",
+        "first names",
+        "christian names",
+        "forenames"
+      ]
+    },
+    {
+      "code": "POA-A-SN",
+      "plLabel": "Nazwisko",
+      "enLabel": "Surname",
+      "type": "text",
+      "aliases": [
+        "nazwisko",
+        "surname",
+        "family name",
+        "last name"
+      ]
+    },
+    {
+      "code": "POA-A-BD",
+      "plLabel": "Data urodzenia",
+      "enLabel": "Birth Date",
+      "type": "date",
+      "aliases": [
+        "data urodzenia",
+        "birth date",
+        "date of birth",
+        "urodzony",
+        "urodzona",
+        "born"
+      ]
+    },
+    {
+      "code": "POA-A-BP",
+      "plLabel": "Miejsce urodzenia",
+      "enLabel": "Birth Place",
+      "type": "address",
+      "aliases": [
+        "miejsce urodzenia",
+        "birth place",
+        "place of birth",
+        "born in",
+        "urodzony w",
+        "urodzona w"
+      ]
+    },
+    {
+      "code": "POA-A-ID",
+      "plLabel": "Numer dowodu",
+      "enLabel": "ID Number",
+      "type": "text",
+      "aliases": [
+        "numer dowodu",
+        "dowód osobisty",
+        "id number",
+        "identity document",
+        "passport number",
+        "nr dowodu"
+      ]
+    },
+    {
+      "code": "POA-A-DATE",
+      "plLabel": "Data",
+      "enLabel": "Date",
+      "type": "date",
+      "aliases": [
+        "data",
+        "date",
+        "dnia",
+        "dated"
+      ]
+    },
+    {
+      "code": "POA-A-ADDR",
+      "plLabel": "Adres",
+      "enLabel": "Address",
+      "type": "address",
+      "aliases": [
+        "adres",
+        "address",
+        "zamieszkały",
+        "zamieszkała",
+        "residing at",
+        "residing"
+      ]
+    },
+    {
+      "code": "POA-A-PESEL",
+      "plLabel": "PESEL",
+      "enLabel": "PESEL Number",
+      "type": "number",
+      "aliases": [
+        "pesel",
+        "nr pesel",
+        "numer pesel"
+      ]
+    },
+    {
+      "code": "POA-A-NATION",
+      "plLabel": "Obywatelstwo",
+      "enLabel": "Nationality",
+      "type": "text",
+      "aliases": [
+        "obywatelstwo",
+        "nationality",
+        "citizenship",
+        "obywatel",
+        "obywatelka"
+      ]
+    },
+    {
+      "code": "POA-PURPOSE",
+      "plLabel": "Cel pełnomocnictwa",
+      "enLabel": "Purpose of Power of Attorney",
+      "type": "text",
+      "aliases": [
+        "cel",
+        "purpose",
+        "powierza",
+        "upoważnia",
+        "authorizes",
+        "grants authority"
+      ]
+    },
+    {
+      "code": "POA-ATTORNEY-GN",
+      "plLabel": "Imiona pełnomocnika",
+      "enLabel": "Attorney Given Names",
+      "type": "text",
+      "aliases": [
+        "pełnomocnik",
+        "attorney",
+        "representative",
+        "imiona pełnomocnika"
+      ]
+    },
+    {
+      "code": "POA-ATTORNEY-SN",
+      "plLabel": "Nazwisko pełnomocnika",
+      "enLabel": "Attorney Surname",
+      "type": "text",
+      "aliases": [
+        "nazwisko pełnomocnika",
+        "attorney surname",
+        "representative surname"
+      ]
+    },
+    {
+      "code": "POA-ATTORNEY-ADDR",
+      "plLabel": "Adres pełnomocnika",
+      "enLabel": "Attorney Address",
+      "type": "address",
+      "aliases": [
+        "adres pełnomocnika",
+        "attorney address",
+        "representative address"
+      ]
+    },
+    {
+      "code": "POA-NOTARY",
+      "plLabel": "Notariusz",
+      "enLabel": "Notary",
+      "type": "text",
+      "aliases": [
+        "notariusz",
+        "notary",
+        "notarized by",
+        "przed notariuszem"
+      ]
+    },
+    {
+      "code": "POA-WITNESS1",
+      "plLabel": "Świadek 1",
+      "enLabel": "Witness 1",
+      "type": "text",
+      "aliases": [
+        "świadek",
+        "witness",
+        "w obecności",
+        "in presence of"
+      ]
+    },
+    {
+      "code": "POA-WITNESS2",
+      "plLabel": "Świadek 2",
+      "enLabel": "Witness 2",
+      "type": "text",
+      "aliases": [
+        "drugi świadek",
+        "second witness"
+      ]
+    }
+  ]
+}

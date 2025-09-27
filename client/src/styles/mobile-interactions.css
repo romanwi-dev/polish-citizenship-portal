@@ -1,0 +1,94 @@
+/* Mobile-Optimized Form Field Interactions */
+.form-field-interactive {
+  -webkit-tap-highlight-color: transparent;
+}
+
+.form-field-interactive:focus,
+.form-field-interactive:active {
+  opacity: 0.9;
+  z-index: 10;
+  position: relative;
+}
+
+.form-field-interactive:hover {
+  opacity: 0.95;
+}
+
+/* iPhone-Optimized Input Fields */
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="number"],
+textarea,
+select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="tel"]:focus,
+input[type="number"]:focus,
+textarea:focus,
+select:focus {
+  opacity: 1;
+  border-color: #3b82f6;
+  outline: none;
+  position: relative;
+  z-index: 20;
+}
+
+/* Wisdom Field Interactions */
+.wisdom-field-hover {
+  cursor: pointer;
+}
+
+.wisdom-field-hover:hover {
+  opacity: 0.9;
+}
+
+.wisdom-field-hover:active {
+  opacity: 0.8;
+}
+
+/* Timeline Section Gradients */
+.timeline-section-1 {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.timeline-section-2 {
+  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+}
+
+.timeline-section-3 {
+  background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+}
+
+.timeline-section-4 {
+  background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+}
+
+.timeline-section-5 {
+  background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+}
+
+.timeline-section-6 {
+  background: linear-gradient(135deg, #30cfd0 0%, #330867 100%);
+}
+
+/* Mobile Touch Optimization */
+@media (max-width: 768px) {
+  .form-field-interactive,
+  input,
+  textarea,
+  select,
+  button {
+    min-height: 48px;
+    font-size: 16px !important; /* Prevents zoom on iOS */
+  }
+  
+  .wisdom-field-hover:active {
+    opacity: 0.8;
+  }
+}

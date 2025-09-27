@@ -1,0 +1,103 @@
+/* ===== Hard iOS/Safari fixes for cases page ===== */
+.cases-page, .cases-page * { -webkit-tap-highlight-color: transparent; }
+.cases-page.no-transform {
+  transform: none !important;
+  will-change: auto !important;
+}
+.cases-page .layout, .cases-page .content, .cases-page .viewport {
+  overflow: visible !important;
+}
+
+/* Grid must be 1 column on mobile and allow full width */
+.case-grid {
+  display: grid; grid-template-columns: minmax(0,1fr);
+  gap: 14px; padding: 12px 14px 24px;
+}
+@media (min-width: 840px){
+  .case-grid { grid-template-columns: repeat(2, minmax(0,1fr)); }
+}
+@media (min-width: 1200px){
+  .case-grid { grid-template-columns: repeat(3, minmax(0,1fr)); }
+}
+
+/* Cards fill width; no inner transforms that create containing blocks */
+.case-card {
+  width: 100%; max-width: 100%;
+  border-radius: 16px;
+  border: 1px solid color-mix(in oklab, #fff, transparent 70%);
+  background: color-mix(in oklab, var(--bg, #0b0b0d), white 10%);
+  box-shadow: 0 2px 12px rgba(0,0,0,.22);
+  transform: none !important;           /* kill transforms that break iOS overlays */
+  will-change: auto !important;
+  contain: layout paint;                 /* fast but doesn't break position fixed */
+}
+
+/* Chip row scrolls horizontally */
+.case-card__chips {
+  display: flex; gap: 8px;
+  overflow-x: auto; -webkit-overflow-scrolling: touch;
+  scrollbar-width: none; padding-bottom: 4px; margin: 4px -4px 0;
+}
+.case-card__chips::-webkit-scrollbar { display: none; }
+
+/* Portal menu + sheet layers */
+.case-menu { position: fixed; z-index: 10000; min-width: 240px;
+  border-radius: 14px; padding: 8px;
+  background: color-mix(in oklab, var(--bg, #0b0b0d), white 14%);
+  border: 1px solid color-mix(in oklab, #fff, transparent 70%);
+  backdrop-filter: saturate(140%) blur(12px);
+  box-shadow: 0 16px 44px rgba(0,0,0,.35);
+}
+.sheet-backdrop { position: fixed; inset: 0; z-index: 11000;
+  background: rgba(0,0,0,.45); display: flex; align-items: flex-end;
+}
+.edit-sheet { width: 100%; max-height: 92dvh;
+  background: color-mix(in oklab, var(--bg, #0b0b0d), white 12%);
+  border-top-left-radius: 18px; border-top-right-radius: 18px; overflow: hidden;
+}
+.edit-sheet__header { display:flex; justify-content:space-between; align-items:center;
+  padding: 12px 16px; border-bottom: 1px solid color-mix(in oklab, #fff, transparent 76%);
+}
+.edit-sheet__scroll { height: calc(92dvh - 56px); overflow: auto; -webkit-overflow-scrolling: touch;
+  padding: 12px 16px 24px;
+}
+.edit-form { display: grid; gap: 12px; min-height: 0; }
+.edit-panel-scroll { 
+  max-height: calc(90vh - 120px); 
+  overflow-y: auto; 
+  -webkit-overflow-scrolling: touch;
+  scroll-behavior: smooth;
+}
+.select__menu, .dropdown-menu { max-height: 50dvh; overflow: auto; -webkit-overflow-scrolling: touch; }
+
+/* Light mode variants */
+.light .case-card { background: #ffffff; }
+.light .case-menu, .light .edit-sheet { background: #f7f8fb; }
+
+/* Menu button styles */
+.btn-menu {
+  display: block; width: 100%; padding: 8px 12px;
+  background: transparent; border: none; text-align: left;
+  color: inherit; cursor: pointer; border-radius: 6px;
+  transition: background-color 0.15s ease;
+}
+.btn-menu:hover { background: rgba(255,255,255,0.1); }
+
+.btn-kebab {
+  background: transparent; border: none; padding: 4px 8px;
+  cursor: pointer; border-radius: 4px; font-size: 16px;
+  transition: background-color 0.15s ease;
+}
+.btn-kebab:hover { background: rgba(255,255,255,0.1); }
+
+.btn-ghost {
+  background: transparent; border: none; padding: 8px;
+  cursor: pointer; border-radius: 6px; display: flex;
+  align-items: center; justify-content: center;
+  transition: background-color 0.15s ease;
+}
+.btn-ghost:hover { background: rgba(255,255,255,0.1); }
+
+.edit-sheet__title {
+  font-size: 16px; font-weight: 600; color: inherit;
+}

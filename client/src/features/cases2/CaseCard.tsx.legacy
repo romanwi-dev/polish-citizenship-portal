@@ -1,0 +1,165 @@
+import React, { memo } from 'react'
+import { useLocation } from 'wouter'
+import { MoreHorizontal, Eye, Settings, FileText, Plus } from 'lucide-react'
+import { Card, CardBody } from '@/ui/Card'
+import { Button } from '@/ui/Button'
+import { Badge } from '@/ui/Badge'
+import { Dropdown, DropdownItem } from '@/ui/Dropdown'
+import { cn } from '@/lib/utils'
+import { CaseData } from './types'
+
+interface CaseCardProps {
+  case: CaseData
+  onAction: (action: string, caseId: string) => void
+  className?: string
+}
+
+function getTierVariant(tier: string): "success" | "warning" | "danger" | "neutral" {
+  switch (tier.toUpperCase()) {
+    case 'VIP': return 'success'
+    case 'GLOBAL': return 'warning' 
+    case 'STANDARD': return 'neutral'
+    case 'BASIC': return 'danger'
+    default: return 'neutral'
+  }
+}
+
+function getStageColor(stage: string): string {
+  switch (stage.toLowerCase()) {
+    case 'completed': return 'text-green-600'
+    case 'in_progress': return 'text-blue-600'
+    case 'pending': return 'text-yellow-600'
+    case 'stalled': return 'text-red-600'
+    default: return 'text-gray-600'
+  }
+}
+
+export const CaseCard: React.FC<CaseCardProps> = memo(({ case: caseData, onAction, className }) => {
+  const [, navigate] = useLocation()
+
+  const handleView = () => {
+    navigate(`/cases2/${caseData.id}?tab=overview`)
+  }
+
+  const handleControlRoom = () => {
+    navigate(`/cases2/${caseData.id}?tab=overview`)
+  }
+
+  const handleOBY = () => {
+    navigate(`/cases2/${caseData.id}?tab=oby`)
+  }
+
+  const handleUSC = () => {
+    navigate(`/cases2/${caseData.id}?tab=usc`)
+  }
+
+  const dropdownActions = [
+    { label: 'Edit', action: 'edit' },
+    { label: 'Postpone', action: 'postpone' },
+    { label: 'Suspend', action: 'suspend' },
+    { label: 'Cancel', action: 'cancel' },
+    { label: 'Archive', action: 'archive' },
+    { label: 'Delete', action: 'delete', variant: 'danger' as const }
+  ]
+
+  return (
+    <Card className={cn("h-full transition-all duration-200 hover:shadow-lg", className)}>
+      <CardBody className="p-4 space-y-4">
+        {/* Top Row: Name + Tier + Kebab */}
+        <div className="flex items-start justify-between">
+          <div className="flex-1 min-w-0">
+            <h3 className="font-semibold text-[var(--text)] truncate" title={caseData.name}>
+              {caseData.name}
+            </h3>
+            <p className="text-sm text-[var(--muted)] truncate" title={caseData.email}>
+              {caseData.email}
+            </p>
+          </div>
+          
+          <div className="flex items-center gap-2 flex-shrink-0">
+            <Badge variant={getTierVariant(caseData.tier)}>
+              {caseData.tier}
+            </Badge>
+            
+            <Dropdown
+              trigger={
+                <Button variant="ghost" size="sm" className="p-1 h-8 w-8">
+                  <MoreHorizontal className="h-4 w-4" />
+                </Button>
+              }
+            >
+              {dropdownActions.map((action) => (
+                <DropdownItem
+                  key={action.action}
+                  variant={action.variant}
+                  onClick={() => onAction(action.action, caseData.id)}
+                >
+                  {action.label}
+                </DropdownItem>
+              ))}
+            </Dropdown>
+          </div>
+        </div>
+
+        {/* Middle: KPIs */}
+        <div className="grid grid-cols-3 gap-3 text-center">
+          <div>
+            <p className={cn("text-sm font-medium", getStageColor(caseData.stage))}>
+              {caseData.stage}
+            </p>
+            <p className="text-xs text-[var(--muted)]">Stage</p>
+          </div>
+          
+          <div>
+            <p className="text-sm font-medium text-[var(--text)]">
+              {caseData.score}%
+            </p>
+            <p className="text-xs text-[var(--muted)]">Score</p>
+          </div>
+          
+          <div>
+            <p className="text-sm font-medium text-[var(--text)]">
+              {caseData.ageMonths}m
+            </p>
+            <p className="text-xs text-[var(--muted)]">Age</p>
+          </div>
+        </div>
+
+        {/* Progress Bar (if score available) */}
+        {caseData.score !== undefined && (
+          <div className="w-full bg-gray-200 rounded-full h-2 dark:bg-gray-700">
+            <div
+              className="bg-[var(--accent)] h-2 rounded-full transition-all duration-300"
+              style={{ width: `${Math.min(100, Math.max(0, caseData.score))}%` }}
+            />
+          </div>
+        )}
+
+        {/* Bottom Actions */}
+        <div className="grid grid-cols-2 gap-2">
+          <Button variant="secondary" size="sm" onClick={handleView} className="text-xs">
+            <Eye className="h-3 w-3 mr-1" />
+            View
+          </Button>
+          
+          <Button variant="secondary" size="sm" onClick={handleControlRoom} className="text-xs">
+            <Settings className="h-3 w-3 mr-1" />
+            Control Room
+          </Button>
+          
+          <Button variant="ghost" size="sm" onClick={handleOBY} className="text-xs">
+            <FileText className="h-3 w-3 mr-1" />
+            OBY
+          </Button>
+          
+          <Button variant="ghost" size="sm" onClick={handleUSC} className="text-xs">
+            <Plus className="h-3 w-3 mr-1" />
+            USC Task
+          </Button>
+        </div>
+      </CardBody>
+    </Card>
+  )
+})
+
+CaseCard.displayName = 'CaseCard'

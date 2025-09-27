@@ -1,0 +1,140 @@
+<svg width="1920" height="1080" viewBox="0 0 1920 1080" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="skyGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#87CEEB;stop-opacity:1" />
+      <stop offset="40%" style="stop-color:#E0F6FF;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#FFE4B5;stop-opacity:1" />
+    </linearGradient>
+    
+    <linearGradient id="castleGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#8B7355;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#5D4E37;stop-opacity:1" />
+    </linearGradient>
+    
+    <linearGradient id="roofGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#8B0000;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#660000;stop-opacity:1" />
+    </linearGradient>
+    
+    <linearGradient id="mountainGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#4682B4;stop-opacity:0.8" />
+      <stop offset="100%" style="stop-color:#2F4F4F;stop-opacity:0.9" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Sky Background -->
+  <rect width="1920" height="1080" fill="url(#skyGradient)" />
+  
+  <!-- Distant Mountains -->
+  <polygon points="0,600 300,400 600,450 900,350 1200,400 1500,300 1920,380 1920,1080 0,1080" 
+           fill="url(#mountainGradient)" opacity="0.6" />
+  
+  <!-- Rolling Hills -->
+  <path d="M0,700 Q400,650 800,680 T1600,660 L1920,670 L1920,1080 L0,1080 Z" 
+        fill="#228B22" opacity="0.7" />
+  
+  <!-- European Castle/Palace -->
+  <!-- Main Castle Structure -->
+  <rect x="1200" y="500" width="300" height="200" fill="url(#castleGradient)" />
+  
+  <!-- Castle Towers -->
+  <rect x="1180" y="450" width="60" height="150" fill="url(#castleGradient)" />
+  <rect x="1520" y="450" width="60" height="150" fill="url(#castleGradient)" />
+  <rect x="1350" y="400" width="80" height="200" fill="url(#castleGradient)" />
+  
+  <!-- Tower Roofs -->
+  <polygon points="1210,450 1190,400 1230,400" fill="url(#roofGradient)" />
+  <polygon points="1550,450 1530,400 1570,400" fill="url(#roofGradient)" />
+  <polygon points="1390,400 1360,350 1420,350" fill="url(#roofGradient)" />
+  
+  <!-- Castle Windows -->
+  <rect x="1220" y="500" width="15" height="25" fill="#4169E1" opacity="0.8" />
+  <rect x="1250" y="520" width="15" height="25" fill="#4169E1" opacity="0.8" />
+  <rect x="1370" y="480" width="20" height="30" fill="#4169E1" opacity="0.8" />
+  <rect x="1540" y="500" width="15" height="25" fill="#4169E1" opacity="0.8" />
+  
+  <!-- European Village Houses -->
+  <!-- House 1 -->
+  <rect x="800" y="600" width="80" height="60" fill="#D2B48C" />
+  <polygon points="840,600 820,550 860,550" fill="#8B0000" />
+  <rect x="820" y="620" width="12" height="18" fill="#654321" />
+  <rect x="845" y="620" width="10" height="10" fill="#4169E1" opacity="0.8" />
+  
+  <!-- House 2 -->
+  <rect x="900" y="590" width="90" height="70" fill="#F5DEB3" />
+  <polygon points="945,590 920,540 970,540" fill="#8B0000" />
+  <rect x="925" y="620" width="15" height="20" fill="#654321" />
+  <rect x="955" y="610" width="12" height="12" fill="#4169E1" opacity="0.8" />
+  
+  <!-- House 3 -->
+  <rect x="1000" y="610" width="70" height="50" fill="#DEB887" />
+  <polygon points="1035,610 1015,570 1055,570" fill="#8B0000" />
+  <rect x="1020" y="630" width="10" height="15" fill="#654321" />
+  <rect x="1040" y="630" width="8" height="8" fill="#4169E1" opacity="0.8" />
+  
+  <!-- European Church -->
+  <rect x="600" y="550" width="100" height="80" fill="#F5F5DC" />
+  <polygon points="650,550 630,500 670,500" fill="#8B0000" />
+  <!-- Church Tower -->
+  <rect x="630" y="450" width="40" height="100" fill="#F5F5DC" />
+  <polygon points="650,450 635,420 665,420" fill="#8B0000" />
+  <!-- Cross -->
+  <rect x="647" y="410" width="6" height="15" fill="#FFD700" />
+  <rect x="644" y="415" width="12" height="3" fill="#FFD700" />
+  <!-- Church Windows -->
+  <path d="M 645,480 Q 645,470 655,470 Q 665,470 665,480 L 665,500 L 645,500 Z" fill="#4169E1" opacity="0.8" />
+  
+  <!-- Trees and Vegetation -->
+  <!-- Tree 1 -->
+  <rect x="500" y="620" width="8" height="40" fill="#8B4513" />
+  <circle cx="504" cy="620" r="25" fill="#228B22" />
+  
+  <!-- Tree 2 -->
+  <rect x="1100" y="630" width="6" height="30" fill="#8B4513" />
+  <circle cx="1103" cy="630" r="20" fill="#228B22" />
+  
+  <!-- Tree 3 -->
+  <rect x="1600" y="640" width="10" height="35" fill="#8B4513" />
+  <circle cx="1605" cy="640" r="22" fill="#228B22" />
+  
+  <!-- European Stone Bridge -->
+  <ellipse cx="400" cy="680" rx="100" ry="15" fill="#708090" />
+  <rect x="300" y="675" width="200" height="10" fill="#708090" />
+  
+  <!-- Decorative European Elements -->
+  <!-- Polish Eagle Silhouette (subtle) -->
+  <g transform="translate(1400,300) scale(0.5)" opacity="0.3">
+    <path d="M50,20 Q30,10 20,30 Q10,50 30,60 Q50,70 70,60 Q90,50 80,30 Q70,10 50,20" fill="#FFD700" />
+    <path d="M35,35 L45,25 L55,35 L65,25 L55,45 L45,45 Z" fill="#FFD700" />
+  </g>
+  
+  <!-- Clouds -->
+  <ellipse cx="300" cy="200" rx="60" ry="30" fill="white" opacity="0.8" />
+  <ellipse cx="330" cy="190" rx="40" ry="25" fill="white" opacity="0.8" />
+  <ellipse cx="320" cy="210" rx="35" ry="20" fill="white" opacity="0.8" />
+  
+  <ellipse cx="800" cy="150" rx="70" ry="35" fill="white" opacity="0.7" />
+  <ellipse cx="840" cy="140" rx="45" ry="28" fill="white" opacity="0.7" />
+  
+  <ellipse cx="1400" cy="180" rx="55" ry="25" fill="white" opacity="0.6" />
+  <ellipse cx="1430" cy="170" rx="35" ry="20" fill="white" opacity="0.6" />
+  
+  <!-- European Countryside Path -->
+  <path d="M0,750 Q300,740 600,760 T1200,750 Q1500,745 1920,760" 
+        stroke="#D2B48C" stroke-width="15" fill="none" opacity="0.6" />
+  
+  <!-- Vineyard Rows (subtle) -->
+  <g opacity="0.4">
+    <line x1="200" y1="720" x2="180" y2="760" stroke="#228B22" stroke-width="2" />
+    <line x1="220" y1="720" x2="200" y2="760" stroke="#228B22" stroke-width="2" />
+    <line x1="240" y1="720" x2="220" y2="760" stroke="#228B22" stroke-width="2" />
+    <line x1="260" y1="720" x2="240" y2="760" stroke="#228B22" stroke-width="2" />
+  </g>
+  
+  <!-- Birds in the Distance -->
+  <g opacity="0.5">
+    <path d="M1000,250 Q1005,245 1010,250 Q1015,245 1020,250" stroke="#333" stroke-width="2" fill="none" />
+    <path d="M1050,280 Q1055,275 1060,280 Q1065,275 1070,280" stroke="#333" stroke-width="2" fill="none" />
+    <path d="M1200,230 Q1205,225 1210,230 Q1215,225 1220,230" stroke="#333" stroke-width="2" fill="none" />
+  </g>
+</svg>

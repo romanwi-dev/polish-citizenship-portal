@@ -1,0 +1,23 @@
+HTTP/1.1 302 Found
+Content-Security-Policy: default-src 'self';style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;font-src 'self' https://fonts.gstatic.com;img-src 'self' data: https:;script-src 'self' 'unsafe-inline';connect-src 'self' ws: wss:;base-uri 'self';form-action 'self';frame-ancestors 'self';object-src 'none';script-src-attr 'none';upgrade-insecure-requests
+Cross-Origin-Opener-Policy: same-origin
+Cross-Origin-Resource-Policy: same-origin
+Origin-Agent-Cluster: ?1
+Referrer-Policy: strict-origin-when-cross-origin
+Strict-Transport-Security: max-age=31536000; includeSubDomains
+X-Content-Type-Options: nosniff
+X-DNS-Prefetch-Control: off
+X-Download-Options: noopen
+X-Frame-Options: DENY
+X-Permitted-Cross-Domain-Policies: none
+X-XSS-Protection: 1; mode=block
+Permissions-Policy: geolocation=(), microphone=(), camera=()
+Set-Cookie: dropbox_oauth_state=2bd5cabf6c4e93d1daf77698fe12d360094136c0b4e3fab58fd4db8b0d716c21; Max-Age=600; Path=/; Expires=Wed, 17 Sep 2025 11:16:42 GMT; HttpOnly; SameSite=Strict
+Location: https://www.dropbox.com/oauth2/authorize?response_type=code&client_id=amv32jq8dm38j86&redirect_uri=https%3A%2F%2Fpolish-citizenship-website.8pfm8wc5m6.replit.app%2Fintegrations%2Fdropbox%2Foauth%2Fcallback&token_access_type=offline&scope=files.metadata.read+files.content.read+files.content.write+account_info.read&state=2bd5cabf6c4e93d1daf77698fe12d360094136c0b4e3fab58fd4db8b0d716c21
+Vary: Accept
+Content-Type: text/plain; charset=utf-8
+Content-Length: 407
+Date: Wed, 17 Sep 2025 11:06:42 GMT
+Connection: keep-alive
+Keep-Alive: timeout=5
+

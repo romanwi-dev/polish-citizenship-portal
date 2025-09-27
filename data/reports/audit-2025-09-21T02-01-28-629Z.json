@@ -1,0 +1,120 @@
+{
+  "startedAt": "2025-09-21T02:00:04.698Z",
+  "finishedAt": "2025-09-21T02:01:28.628Z",
+  "ms": 83930,
+  "passed": true,
+  "counts": {
+    "ok": 10,
+    "warn": 3,
+    "info": 3,
+    "error": 0
+  },
+  "items": [
+    {
+      "name": "lint",
+      "level": "WARN",
+      "code": 1,
+      "out": "npm error Missing script: \"lint\"\nnpm error\nnpm error Did you mean this?\nnpm error   npm link # Symlink a package folder\nnpm error\nnpm error To see a list of scripts, run:\nnpm error   npm run\nnpm error A complete log of this run can be found in: /home/runner/.npm/_logs/2025-09-21T02_00_04_784Z-debug-0.log"
+    },
+    {
+      "name": "typecheck",
+      "level": "WARN",
+      "code": 1,
+      "out": "TypeScript check failed: Command timeout: npm run check"
+    },
+    {
+      "name": "build",
+      "level": "OK",
+      "code": 0,
+      "out": "> rest-express@1.0.0 build\n> vite build && esbuild server/index.ts --platform=node --packages=external --bundle --format=esm --outdir=dist\n\nvite v5.4.19 building for production...\ntransforming...\n✓ 3498 modules transformed.\nrendering chunks...\ncomputing gzip size...\n../dist/public/assets/polishcitizenship.pl -  EMAIL LOGO_1755227766291-CHhzXexE.png       14.25 kB\n../dist/public/index.html                                                                 15.82 kB │ gzip:   5.08 kB\n../dist/public/assets/App-BhhKqy_s.tsx                                                    16.22 kB\n../dist/public/assets/home-CQaCJcfy.tsx                                                   19.89 kB\n../dist/public/assets/dashboard-BKcnaJcH.tsx                                              62.80 kB\n../dist/public/assets/mobile-dashboard-DT1r2ENj.tsx                                      293.66 kB\n../dist/public/assets/0959578B-3425-4932-9253-34078966BDD1_1755167405366-CMjAch9k.png  1,443.50 kB\n../dist/public/assets/FEDDC669-6C37-40B8-BA88-1CD60E01628B_1755167405366-CGpKeQk0.png  1,514.23 kB\n../dist/public/assets/43CE74D8-2F49-40ED-9F23-E6F61DD240B4_1755169120944-CSVf3-11.png  1,627.73 kB\n../dist/public/assets/7C81A660-73B1-4ECF-B8C2-DBC75D2A64EE_1755168864694-DJh143O6.png  1,630.42 kB\n../dist/public/assets/1B66A697-3B8C-4D35-B648-6DEB28BF4990_1755168864694-CYd5HJib.png  1,758.84 kB\n../dist/public/assets/9D318191-3AA7-497B-9706-B545A57762F4_1755167405365-Bm8dzOBd.png  1,781.27 kB\n../dist/public/assets/F2C4687D-6C8C-411E-A58E-E99D01DCE366_1755168864694-Br_AIt8y.png  1,793.89 kB\n../dist/public/assets/4726BF11-CA77-4316-906F-D578A49D66B3_1755167405366-1zi9wl2D.png  2,251.67 kB\n../dist/public/assets/34467458-0FCE-4412-ABD7-0A3516E2FA7C_1755167405365-WLr3c4QL.png  2,727.31 kB\n../dist/public/assets/54A33AFE-7220-4B0E-9D7C-78C04D7C03EC_1755167405365-CZo4yV_8.png  3,038.80 kB\n../dist/public/assets/index-i9U_ApIr.css                                                 333.11 kB │ gzip:  51.44 kB\n../dist/public/assets/faq-DogJUqqF.js                                                      0.16 kB │ gzip:   0.16 kB\n../dist/public/assets/client-process-CNf27wKj.js                                           0.20 kB │ gzip:   0.19 kB\n../dist/public/assets/chevron-right-sN-2uZg3.js                                            0.30 kB │ gzip:   0.25 kB\n../dist/public/assets/play-zcsJHWOa.js                                                     0.30 kB │ gzip:   0.25 kB\n../dist/public/assets/plus-BswHGZHA.js                                                     0.32 kB │ gzip:   0.26 kB\n../dist/public/assets/cloud-CN9_IckP.js                                                    0.33 kB │ gzip:   0.27 kB\n../dist/public/assets/arrow-left--m105i0e.js                                               0.33 kB │ gzip:   0.27 kB\n../dist/public/assets/message-square-CfwegdR7.js                                           0.35 kB │ gzip:   0.27 kB\n../dist/public/assets/terminal-CtuxW5j_.js                                                 0.36 kB │ gzip:   0.28 kB\n../dist/public/assets/smartphone-CAyoIVLG.js                                               0.37 kB │ gzip:   0.29 kB\n../dist/public/assets/rotate-ccw-27EGj-Fc.js                                               0.37 kB │ gzip:   0.29 kB\n../dist/public/assets/circle-x-FI0IpvNV.js                                                 0.38 kB │ gzip:   0.28 kB\n../dist/public/assets/bell-B4E6eNzK.js                                                     0.38 kB │ gzip:   0.29 kB\n../dist/public/assets/file-DltfAIij.js                                                     0.39 kB │ gzip:   0.28 kB\n../dist/public/assets/flag-jmvlaGBW.js                                                     0.39 kB │ gzip:   0.30 kB\n../dist/public/assets/briefcase-CX8TbAqL.js                                                0.39 kB │ gzip:   0.30 kB\n../dist/public/assets/target-oYE6i7nD.js                                                   0.40 kB │ gzip:   0.27 kB\n../dist/public/assets/copy-ER2XMZ3T.js                                                     0.41 kB │ gzip:   0.31 kB\n../dist/public/assets/history-Czky8MhZ.js                                                  0.41 kB │ gzip:   0.30 kB\n../dist/public/assets/test-tube-fLfA247L.js                                                0.42 kB │ gzip:   0.30 kB\n../dist/public/assets/calendar-rfM8DIwk.js                                                 0.43 kB │ gzip:   0.30 kB\n../dist/public/assets/monitor-CIJDeAXK.js                                                  0.43 kB │ gzip:   0.31 kB\n../dist/public/assets/image-BjWeBEsa.js                                                    0.44 kB │ gzip:   0.32 kB\n../dist/public/assets/pen-line-CvyxLeU-.js                                                 0.45 kB │ gzip:   0.33 kB\n../dist/public/assets/case-start-cT6tyQ8y.js                                               0.45 kB │ gzip:   0.31 kB\n../dist/public/assets/gavel-G_wFGVlo.js                                                    0.47 kB │ gzip:   0.32 kB\n../dist/public/assets/plane-CGEZ6e_x.js                                                    0.48 kB │ gzip:   0.35 kB\n../dist/public/assets/printer-Bx2md07T.js                                                  0.49 kB │ gzip:   0.34 kB\n../dist/public/assets/refresh-cw-CNXx0gx-.js                                               0.49 kB │ gzip:   0.33 kB\n../dist/public/assets/file-image-BgmiDJFQ.js                                               0.52 kB │ gzip:   0.35 kB\n../dist/public/assets/eligibility-Dp2d5PWM.js                                              0.52 kB │ gzip:   0.34 kB\n../dist/public/assets/clipboard-list-DaZmbZWE.js                                           0.58 kB │ gzip:   0.36 kB\n../dist/public/assets/eye-off-Bhe9ytDW.js                                                  0.60 kB │ gzip:   0.38 kB\n../dist/public/assets/menu-M4PJOnHs.js                                                     0.78 kB │ gzip:   0.38 kB\n../dist/public/assets/palette-BJSghgnw.js                                                  0.79 kB │ gzip:   0.45 kB\n../dist/public/assets/settings-Bz7d6rOV.js                                                 0.90 kB │ gzip:   0.44 kB\n../dist/public/assets/theme-switcher-CXjd4i7F.js                                           0.92 kB │ gzip:   0.55 kB\n../dist/public/assets/form-B9Ns38Ql.js                                                     1.66 kB │ gzip:   0.72 kB\n../dist/public/assets/switch-DS_Vg8PM.js                                                   2.34 kB │ gzip:   1.20 kB\n../dist/public/assets/privacy-policy-4tQuz07Z.js                                           2.69 kB │ gzip:   0.95 kB\n../dist/public/assets/index-Bg0ELX6N.js                                                    2.96 kB │ gzip:   1.43 kB\n../dist/public/assets/terms-of-service-BWlqcPNH.js                                         3.48 kB │ gzip:   1.18 kB\n../dist/public/assets/legal-disclaimer-DeZmpz8r.js                                         3.72 kB │ gzip:   1.29 kB\n../dist/public/assets/test-accept-delete-kNxO3b09.js                                       4.32 kB │ gzip:   1.50 kB\n../dist/public/assets/client-login-50wL4Zvi.js                                             4.41 kB │ gzip:   1.70 kB\n../dist/public/assets/testimonials-BkeAUX-m.js                                             4.96 kB │ gzip:   1.98 kB\n../dist/public/assets/TestResults-b9qGhzlG.js                                              5.33 kB │ gzip:   1.63 kB\n../dist/public/assets/cache-manager-BdDOn0uY.js                                            5.57 kB │ gzip:   1.77 kB\n../dist/public/assets/tree-access-D0ojgDOX.js                                              5.84 kB │ gzip:   2.17 kB\n../dist/public/assets/citizenship-test-C7_upjLe.js                                         5.94 kB │ gzip:   1.65 kB\n../dist/public/assets/GrokTesting-CLFFuG0-.js                                              6.40 kB │ gzip:   2.04 kB\n../dist/public/assets/law-JDmQXSHo.js                                                      6.63 kB │ gzip:   1.69 kB\n../dist/public/assets/gallery-CDL-fEJB.js                                                  7.02 kB │ gzip:   1.73 kB\n../dist/public/assets/dialog-DSGxUXJV.js                                                   7.20 kB │ gzip:   2.66 kB\n../dist/public/assets/TestRunner-DFk_8Gfm.js                                               7.30 kB │ gzip:   2.66 kB\n../dist/public/assets/secrets-dashboard-B3wOFHVQ.js                                        7.42 kB │ gzip:   2.80 kB\n../dist/public/assets/ClientPOAForm-epAH4mdv.js                                            8.88 kB │ gzip:   2.70 kB\n../dist/public/assets/styles-CsZYCLon.js                                                   9.26 kB │ gzip:   1.57 kB\n../dist/public/assets/client-home-DksGDbI1.js                                              9.46 kB │ gzip:   3.01 kB\n../dist/public/assets/performance-dashboard-C7qSQUFT.js                                    9.85 kB │ gzip:   2.74 kB\n../dist/public/assets/DesignSettings-DdfUbOBq.js                                          10.55 kB │ gzip:   3.34 kB\n../dist/public/assets/documents-Z46Cj6CJ.js                                               11.22 kB │ gzip:   1.93 kB\n../dist/public/assets/ImportsDropbox-DXRxPmqj.js                                          11.65 kB │ gzip:   3.62 kB\n../dist/public/assets/auth-ChFl-Xrq.js                                                    11.66 kB │ gzip:   2.92 kB\n../dist/public/assets/IndependentTesting-BQlTJmUL.js                                      11.73 kB │ gzip:   3.56 kB\n../dist/public/assets/document-progress-vmHLSsgw.js                                       12.17 kB │ gzip:   3.66 kB\n../dist/public/assets/document-checklist-DYVW3H8H.js                                      12.18 kB │ gzip:   3.60 kB\n../dist/public/assets/eu-benefits-BUAyg0OM.js                                             12.67 kB │ gzip:   2.59 kB\n../dist/public/assets/AutoFixTesting-XBeXQyyO.js                                          13.73 kB │ gzip:   3.79 kB\n../dist/public/assets/polish-passport-VEzrzaVn.js                                         13.74 kB │ gzip:   2.89 kB\n../dist/public/assets/document-processing-0e-Jjvdt.js                                     14.28 kB │ gzip:   4.18 kB\n../dist/public/assets/theme-customizer-DRPtrxO-.js                                        15.02 kB │ gzip:   5.02 kB\n../dist/public/assets/onboarding-BtaBGQHd.js                                              15.16 kB │ gzip:   3.87 kB\n../dist/public/assets/document-validation-nE4D-TWu.js                                     15.63 kB │ gzip:   4.59 kB\n../dist/public/assets/OpenAIDoubleCheck-CplPD-iW.js                                       15.71 kB │ gzip:   4.35 kB\n../dist/public/assets/translator-CPy1G5Gv.js                                              16.84 kB │ gzip:   4.30 kB\n../dist/public/assets/polish-citizenship-flnRghZg.js                                      17.15 kB │ gzip:   3.66 kB\n../dist/public/assets/citizenship-progress-DOoYS0sH.js                                    17.15 kB │ gzip:   4.24 kB\n../dist/public/assets/landing-iFXGk9Iv.js                                                 17.17 kB │ gzip:   3.68 kB\n../dist/public/assets/WorkflowDashboard-urnVIgcl.js                                       17.40 kB │ gzip:   4.78 kB\n../dist/public/assets/landing-spanish-D0yZURxb.js                                         17.90 kB │ gzip:   3.93 kB\n../dist/public/assets/family-history-writer-D-FrzFYI.js                                   19.17 kB │ gzip:   4.89 kB\n../dist/public/assets/translation-B8F5elXK.js                                             19.64 kB │ gzip:   5.31 kB\n../dist/public/assets/citizenship-guide-BjMJmiQI.js                                       20.15 kB │ gzip:   5.21 kB\n../dist/public/assets/micro-interactions-demo-fxvTAWrc.js                                 22.74 kB │ gzip:   3.96 kB\n../dist/public/assets/NotificationSettings-DF9K_Nj9.js                                    24.36 kB │ gzip:   5.15 kB\n../dist/public/assets/dropdown-menu-6exetslI.js                                           24.48 kB │ gzip:   7.43 kB\n../dist/public/assets/AgentControlRoom-CdZ0BVBI.js                                        30.19 kB │ gzip:   8.29 kB\n../dist/public/assets/SystemChecks-CnsdvxW9.js                                            33.28 kB │ gzip:   8.30 kB\n../dist/public/assets/CaseBoardDemo-DwEogz4R.js                                           34.40 kB │ gzip:   9.60 kB\n../dist/public/assets/admin-Dh-k1tDe.js                                                   51.01 kB │ gzip:  10.26 kB\n../dist/public/assets/proxy-B_7LAtjF.js                                                  111.57 kB │ gzip:  36.61 kB\n../dist/public/assets/mobile-dashboard-DTspvOLV.js                                       203.01 kB │ gzip:  33.90 kB\n../dist/public/assets/PdfWorkbench-BkcYmbNN.js                                           439.98 kB │ gzip: 129.10 kB\n../dist/public/assets/dashboard-D1_X7K7U.js                                              645.66 kB │ gzip: 162.90 kB\n../dist/public/assets/index-XFtrfVDq.js                                                  906.03 kB │ gzip: 245.19 kB\n✓ built in 17.58s"
+    },
+    {
+      "name": "runtime",
+      "level": "OK",
+      "code": 0,
+      "out": "CRITICAL: JWT_SECRET environment variable is required in production\n"
+    },
+    {
+      "name": "routes",
+      "level": "OK",
+      "code": 0,
+      "out": "/healthz: 200 (33ms), /: 200 (3ms), /api/system/health: 405 (7ms)"
+    },
+    {
+      "name": "secrets",
+      "level": "OK",
+      "code": 0,
+      "out": "All required secrets present. Optional: DROPBOX_APP_KEY: SET, DROPBOX_APP_SECRET: UNSET, DROPBOX_REFRESH_TOKEN: UNSET, SMTP_HOST: UNSET, SMTP_USER: UNSET, SMTP_PASS: UNSET, S3_BUCKET: UNSET, S3_REGION: UNSET"
+    },
+    {
+      "name": "storage",
+      "level": "INFO",
+      "code": 0,
+      "out": "Local storage configured"
+    },
+    {
+      "name": "database",
+      "level": "OK",
+      "code": 0,
+      "out": "Database connection successful"
+    },
+    {
+      "name": "email",
+      "level": "INFO",
+      "code": 0,
+      "out": "SMTP not configured (optional)"
+    },
+    {
+      "name": "pdf_print",
+      "level": "OK",
+      "code": 0,
+      "out": "PDF generation available (Adobe: true, pdf-lib: true)"
+    },
+    {
+      "name": "i18n",
+      "level": "OK",
+      "code": 0,
+      "out": "EN keys: 18, PL keys: 18, Coverage: 100%"
+    },
+    {
+      "name": "accessibility",
+      "level": "WARN",
+      "code": 1,
+      "out": "Accessibility check failed: Could not find Chrome (ver. 140.0.7339.82). This can occur if either\n 1. you did not perform an installation before running the script (e.g. `npx puppeteer browsers install chrome`) or\n 2. your cache path is incorrectly configured (which is: /home/runner/.cache/puppeteer).\nFor (2), check out our guide on configuring puppeteer at https://pptr.dev/guides/configuration."
+    },
+    {
+      "name": "performance",
+      "level": "OK",
+      "code": 0,
+      "out": "TTFB: 8ms, Bundle stats not found"
+    },
+    {
+      "name": "security",
+      "level": "OK",
+      "code": 0,
+      "out": "Critical: 0, High: 2"
+    },
+    {
+      "name": "links",
+      "level": "OK",
+      "code": 0,
+      "out": "Tested routes: /: 200"
+    },
+    {
+      "name": "uiux",
+      "level": "INFO",
+      "code": 0,
+      "out": "skipped (Error: Could not find Chrome (ver. 140.0.7339.82). This can occur if either\n 1. you did not perform an installation befo)"
+    }
+  ],
+  "meta": {
+    "port": 5000,
+    "storageProvider": "LOCAL",
+    "routesTested": [
+      "/healthz",
+      "/",
+      "/api/system/health"
+    ],
+    "appUrl": "https://a35e244d-3a0b-4842-8a8d-0dc464d9a6bf-00-36so448twlz2s.riker.replit.dev"
+  }
+}

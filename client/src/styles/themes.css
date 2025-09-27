@@ -1,0 +1,36 @@
+/* iOS Glass Design Tokens */
+:root {
+  /* Glass-specific radii */
+  --radius-lg: 20px;
+  --radius-xl: 24px;
+  
+  /* Glass blur effects */
+  --blur-strong: saturate(160%) blur(14px);
+  --blur-soft: saturate(140%) blur(10px);
+  
+  /* Glass backgrounds and borders */
+  --glass-bg: rgba(255,255,255,.55);
+  --glass-stroke: rgba(0,0,0,.08);
+  
+  /* Enhanced shadows */
+  --card-shadow: 0 8px 28px rgba(2,6,23,.12);
+  
+  /* iOS-style accent colors */
+  --accent: #2563eb; /* iOS-ish blue */
+  --accent-amber: #f59e0b;
+  --accent-green: #16a34a;
+  --accent-red: #dc2626;
+  
+  /* Text colors for glass components */
+  --text: #0b0b0c;
+  --text-strong: #000000;
+}
+
+.dark {
+  /* Dark mode glass overrides */
+  --glass-bg: rgba(16,22,33,.55);
+  --glass-stroke: rgba(255,255,255,.10);
+  --card-shadow: 0 10px 34px rgba(0,0,0,.45);
+  --text: #ededf0;
+  --text-strong: #ffffff;
+}

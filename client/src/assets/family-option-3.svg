@@ -1,0 +1,169 @@
+<svg width="2000" height="1200" viewBox="0 0 2000 1200" xmlns="http://www.w3.org/2000/svg">
+  <!-- OPTION 3: Celebration Scene with Passport -->
+  <defs>
+    <linearGradient id="sky3" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#FFE4B5"/>
+      <stop offset="100%" stop-color="#F0F8FF"/>
+    </linearGradient>
+  </defs>
+  
+  <!-- Warm sunset sky -->
+  <rect width="2000" height="800" fill="url(#sky3)"/>
+  
+  <!-- Beautiful European palace/government building backdrop -->
+  <rect x="300" y="300" width="1400" height="900" fill="#F5F5DC"/>
+  <polygon points="300,300 1000,150 1700,300" fill="#8B4513"/>
+  
+  <!-- Ornate columns -->
+  <rect x="500" y="400" width="60" height="800" fill="#FFF"/>
+  <rect x="700" y="400" width="60" height="800" fill="#FFF"/>
+  <rect x="900" y="400" width="60" height="800" fill="#FFF"/>
+  <rect x="1100" y="400" width="60" height="800" fill="#FFF"/>
+  <rect x="1300" y="400" width="60" height="800" fill="#FFF"/>
+  <rect x="1500" y="400" width="60" height="800" fill="#FFF"/>
+  
+  <!-- Steps -->
+  <rect x="400" y="1000" width="1200" height="50" fill="#D3D3D3"/>
+  <rect x="450" y="1050" width="1100" height="50" fill="#C0C0C0"/>
+  <rect x="500" y="1100" width="1000" height="100" fill="#A9A9A9"/>
+  
+  <!-- Family celebrating citizenship success -->
+  <g transform="translate(600, 650)">
+    
+    <!-- Grandparents (celebrating in background) -->
+    <!-- Grandfather with raised arms -->
+    <g transform="translate(-200, 0)">
+      <circle cx="60" cy="60" r="45" fill="#FDBCB4"/>
+      <path d="M 15 45 Q 60 10 105 45" fill="#E6E6FA"/>
+      <rect x="30" y="100" width="60" height="100" rx="15" fill="#4682B4"/>
+      <!-- Arms raised in celebration -->
+      <rect x="-10" y="90" width="25" height="70" rx="12" fill="#FDBCB4" transform="rotate(-30 2.5 125)"/>
+      <rect x="105" y="90" width="25" height="70" rx="12" fill="#FDBCB4" transform="rotate(30 117.5 125)"/>
+      <rect x="40" y="200" width="20" height="80" fill="#2F4F4F"/>
+      <rect x="60" y="200" width="20" height="80" fill="#2F4F4F"/>
+      <ellipse cx="50" cy="285" rx="12" ry="8" fill="#000"/>
+      <ellipse cx="70" cy="285" rx="12" ry="8" fill="#000"/>
+      <!-- Joyful face -->
+      <circle cx="50" cy="50" r="3" fill="#000"/>
+      <circle cx="70" cy="50" r="3" fill="#000"/>
+      <path d="M 40 70 Q 60 85 80 70" stroke="#000" stroke-width="3" fill="none"/>
+    </g>
+    
+    <!-- Grandmother clapping -->
+    <g transform="translate(-50, 10)">
+      <circle cx="60" cy="60" r="45" fill="#FDBCB4"/>
+      <path d="M 15 45 Q 60 10 105 45" fill="#F0F0F0"/>
+      <path d="M 30 100 L 90 100 L 100 200 L 20 200 Z" fill="#8B008B"/>
+      <!-- Arms in clapping position -->
+      <rect x="5" y="100" width="25" height="60" rx="12" fill="#FDBCB4" transform="rotate(-20 17.5 130)"/>
+      <rect x="90" y="100" width="25" height="60" rx="12" fill="#FDBCB4" transform="rotate(20 102.5 130)"/>
+      <rect x="40" y="200" width="20" height="80" fill="#8B008B"/>
+      <rect x="60" y="200" width="20" height="80" fill="#8B008B"/>
+      <ellipse cx="50" cy="285" rx="10" ry="6" fill="#000"/>
+      <ellipse cx="70" cy="285" rx="10" ry="6" fill="#000"/>
+      <!-- Joyful face -->
+      <circle cx="50" cy="50" r="3" fill="#000"/>
+      <circle cx="70" cy="50" r="3" fill="#000"/>
+      <path d="M 40 70 Q 60 85 80 70" stroke="#000" stroke-width="3" fill="none"/>
+    </g>
+    
+    <!-- Father holding up Polish passport triumphantly -->
+    <g transform="translate(120, -20)">
+      <circle cx="70" cy="70" r="50" fill="#FDBCB4"/>
+      <path d="M 20 55 Q 70 15 120 55" fill="#8B4513"/>
+      <rect x="35" y="115" width="70" height="110" rx="18" fill="#006400"/>
+      <rect x="10" y="125" width="30" height="80" rx="15" fill="#FDBCB4"/>
+      <!-- Right arm raised high with passport -->
+      <rect x="105" y="70" width="30" height="80" rx="15" fill="#FDBCB4" transform="rotate(-45 120 110)"/>
+      
+      <!-- POLISH PASSPORT held high and prominent -->
+      <g transform="translate(140, 60) rotate(-45)">
+        <rect x="0" y="0" width="40" height="55" fill="#8B0000" rx="3"/>
+        <rect x="3" y="3" width="34" height="25" fill="#FFF"/>
+        <text x="20" y="13" text-anchor="middle" font-size="6" font-weight="bold" fill="#8B0000">PASSPORT</text>
+        <text x="20" y="20" text-anchor="middle" font-size="5" font-weight="bold" fill="#8B0000">POLAND</text>
+        <circle cx="20" cy="35" r="8" fill="#FFD700"/>
+        <text x="20" y="40" text-anchor="middle" font-size="6" font-weight="bold" fill="#8B0000">PL</text>
+        <text x="20" y="50" text-anchor="middle" font-size="4" fill="#FFF">POLSKA</text>
+      </g>
+      
+      <rect x="45" y="225" width="25" height="95" fill="#000080"/>
+      <rect x="75" y="225" width="25" height="95" fill="#000080"/>
+      <ellipse cx="57" cy="325" rx="13" ry="8" fill="#000"/>
+      <ellipse cx="87" cy="325" rx="13" ry="8" fill="#000"/>
+      <!-- Triumphant smile -->
+      <circle cx="60" cy="60" r="3" fill="#000"/>
+      <circle cx="80" cy="60" r="3" fill="#000"/>
+      <path d="M 50 85 Q 70 100 90 85" stroke="#000" stroke-width="4" fill="none"/>
+    </g>
+    
+    <!-- Mother with arms around children -->
+    <g transform="translate(280, 0)">
+      <circle cx="70" cy="70" r="50" fill="#FDBCB4"/>
+      <path d="M 20 55 Q 70 15 120 55" fill="#FFD700"/>
+      <path d="M 35 115 L 105 115 L 115 225 L 25 225 Z" fill="#FF1493"/>
+      <rect x="10" y="125" width="30" height="80" rx="15" fill="#FDBCB4"/>
+      <rect x="105" y="125" width="30" height="80" rx="15" fill="#FDBCB4"/>
+      <rect x="45" y="225" width="25" height="95" fill="#FF1493"/>
+      <rect x="75" y="225" width="25" height="95" fill="#FF1493"/>
+      <ellipse cx="57" cy="325" rx="11" ry="7" fill="#000"/>
+      <ellipse cx="87" cy="325" rx="11" ry="7" fill="#000"/>
+      <!-- Joyful face -->
+      <circle cx="60" cy="60" r="3" fill="#000"/>
+      <circle cx="80" cy="60" r="3" fill="#000"/>
+      <path d="M 50 85 Q 70 100 90 85" stroke="#000" stroke-width="3" fill="none"/>
+    </g>
+    
+    <!-- Children jumping for joy -->
+    <!-- Older child jumping -->
+    <g transform="translate(450, 50)">
+      <circle cx="50" cy="40" r="40" fill="#FDBCB4"/>
+      <path d="M 10 25 Q 50 -5 90 25" fill="#8B4513"/>
+      <rect x="25" y="75" width="50" height="80" rx="12" fill="#FF8C00"/>
+      <!-- Arms up in celebration -->
+      <rect x="0" y="70" width="20" height="50" rx="10" fill="#FDBCB4" transform="rotate(-30 10 95)"/>
+      <rect x="80" y="70" width="20" height="50" rx="10" fill="#FDBCB4" transform="rotate(30 90 95)"/>
+      <!-- Legs in jumping position -->
+      <rect x="30" y="155" width="15" height="60" fill="#32CD32" transform="rotate(-15 37.5 185)"/>
+      <rect x="55" y="155" width="15" height="60" fill="#32CD32" transform="rotate(15 62.5 185)"/>
+      <ellipse cx="35" cy="220" rx="8" ry="5" fill="#000"/>
+      <ellipse cx="65" cy="220" rx="8" ry="5" fill="#000"/>
+      <!-- Excited face -->
+      <circle cx="42" cy="32" r="2.5" fill="#000"/>
+      <circle cx="58" cy="32" r="2.5" fill="#000"/>
+      <path d="M 35 50 Q 50 65 65 50" stroke="#000" stroke-width="3" fill="none"/>
+    </g>
+    
+    <!-- Younger child with arms up -->
+    <g transform="translate(570, 80)">
+      <circle cx="40" cy="30" r="35" fill="#FDBCB4"/>
+      <path d="M 5 15 Q 40 -10 75 15" fill="#FFD700"/>
+      <rect x="20" y="60" width="40" height="65" rx="10" fill="#9370DB"/>
+      <!-- Arms raised in celebration -->
+      <rect x="0" y="70" width="15" height="45" rx="8" fill="#FDBCB4" transform="rotate(-40 7.5 92.5)"/>
+      <rect x="65" y="70" width="15" height="45" rx="8" fill="#FDBCB4" transform="rotate(40 72.5 92.5)"/>
+      <rect x="28" y="125" width="12" height="55" fill="#FF6347"/>
+      <rect x="40" y="125" width="12" height="55" fill="#FF6347"/>
+      <ellipse cx="34" cy="185" rx="7" ry="4" fill="#000"/>
+      <ellipse cx="46" cy="185" rx="7" ry="4" fill="#000"/>
+      <!-- Excited face -->
+      <circle cx="32" cy="22" r="2" fill="#000"/>
+      <circle cx="48" cy="22" r="2" fill="#000"/>
+      <path d="M 25 38 Q 40 50 55 38" stroke="#000" stroke-width="2" fill="none"/>
+    </g>
+    
+  </g>
+  
+  <!-- Celebration confetti -->
+  <g opacity="0.7">
+    <rect x="300" y="200" width="8" height="8" fill="#FFD700" transform="rotate(45 304 204)"/>
+    <rect x="500" y="150" width="8" height="8" fill="#FF69B4" transform="rotate(30 504 154)"/>
+    <rect x="700" y="180" width="8" height="8" fill="#00BFFF" transform="rotate(60 704 184)"/>
+    <rect x="900" y="120" width="8" height="8" fill="#32CD32" transform="rotate(15 904 124)"/>
+    <rect x="1100" y="160" width="8" height="8" fill="#FF4500" transform="rotate(75 1104 164)"/>
+    <rect x="1300" y="100" width="8" height="8" fill="#9370DB" transform="rotate(45 1304 104)"/>
+    <rect x="1500" y="140" width="8" height="8" fill="#FFD700" transform="rotate(90 1504 144)"/>
+  </g>
+  
+
+</svg>

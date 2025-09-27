@@ -1,0 +1,293 @@
+{
+  "workflow_name": "Polish Citizenship AI Testing - Lindy Comprehensive",
+  "description": "Independent Lindy AI workflow for comprehensive testing with all mandatory rules",
+  "version": "1.0",
+  "triggers": [
+    {
+      "name": "Webhook Trigger",
+      "type": "webhook",
+      "url": "http://localhost:5000/webhook/lindy-comprehensive-testing",
+      "method": "POST",
+      "authentication": "api_key"
+    },
+    {
+      "name": "Scheduled Trigger", 
+      "type": "schedule",
+      "interval": "every 3 hours",
+      "description": "Runs comprehensive testing every 3 hours"
+    },
+    {
+      "name": "Manual Trigger",
+      "type": "manual",
+      "description": "For on-demand testing when you need immediate verification"
+    }
+  ],
+  "workflow_steps": [
+    {
+      "step": 1,
+      "name": "System Health & Security Verification",
+      "type": "http_request",
+      "method": "GET",
+      "url": "http://localhost:5000/api/health",
+      "timeout": 15000,
+      "retry_attempts": 3,
+      "success_condition": "response.status == 'ok' && response.webhooksEnabled == true",
+      "failure_action": "send_critical_alert",
+      "description": "Verify system is healthy and secure before proceeding"
+    },
+    {
+      "step": 2,
+      "name": "RULE 1: Comprehensive UI Functionality Testing",
+      "type": "http_request",
+      "method": "POST", 
+      "url": "http://localhost:5000/webhook/run-ui-tests",
+      "body": {
+        "parameters": {
+          "taskDescription": "Lindy AI - Comprehensive UI Testing with Rule 1 Enforcement",
+          "features": ["ui", "forms", "workflows", "mobile", "buttons", "navigation"],
+          "enforceRule1": true,
+          "testLevel": "comprehensive",
+          "securityChecks": true
+        }
+      },
+      "timeout": 300000,
+      "success_condition": "response.uiPassRate >= 95",
+      "on_failure": "mark_for_autofix",
+      "description": "Test all UI functionality that agents typically mess up"
+    },
+    {
+      "step": 3,
+      "name": "RULE 2: Triple AI Verification (Claude + OpenAI + Grok)",
+      "type": "parallel_execution",
+      "substeps": [
+        {
+          "name": "Claude AI Analysis",
+          "type": "http_request",
+          "method": "POST",
+          "url": "http://localhost:5000/webhook/claude-verification",
+          "body": {
+            "parameters": {
+              "taskDescription": "Lindy - Claude System Stability Analysis",
+              "analysisType": "system_stability",
+              "deepAnalysis": true
+            }
+          },
+          "timeout": 180000
+        },
+        {
+          "name": "OpenAI Security & Performance Analysis", 
+          "type": "http_request",
+          "method": "POST",
+          "url": "http://localhost:5000/webhook/openai-verification",
+          "body": {
+            "parameters": {
+              "taskDescription": "Lindy - OpenAI Security & Performance Analysis",
+              "analysisType": "security_performance",
+              "xssProtection": true,
+              "performanceBenchmarks": true
+            }
+          },
+          "timeout": 180000
+        },
+        {
+          "name": "Grok Architecture Analysis",
+          "type": "http_request", 
+          "method": "POST",
+          "url": "http://localhost:5000/webhook/grok-verification",
+          "body": {
+            "parameters": {
+              "taskDescription": "Lindy - Grok Architecture & Scalability Analysis",
+              "analysisType": "architecture_scalability",
+              "scalabilityTest": true,
+              "architectureReview": true
+            }
+          },
+          "timeout": 180000
+        }
+      ],
+      "success_condition": "all_substeps_success && average_score >= 90",
+      "on_failure": "mark_for_autofix",
+      "description": "Run parallel AI verification with Claude, OpenAI, and Grok"
+    },
+    {
+      "step": 4,
+      "name": "RULE 3: Cache Cleanup & Server Maintenance",
+      "type": "http_request",
+      "method": "POST",
+      "url": "http://localhost:5000/webhook/comprehensive-maintenance",
+      "body": {
+        "parameters": {
+          "cleanupLevel": "deep",
+          "cacheTypes": ["temporary_files", "generated_pdfs", "session_data"],
+          "serverMaintenance": true,
+          "securityScan": true,
+          "performanceOptimization": true
+        }
+      },
+      "timeout": 120000,
+      "description": "Perform comprehensive system cleanup and maintenance"
+    },
+    {
+      "step": 5,
+      "name": "RULE X: Mandatory Grok Final Architecture Verification",
+      "type": "http_request",
+      "method": "POST", 
+      "url": "http://localhost:5000/webhook/grok-final-verification",
+      "body": {
+        "parameters": {
+          "taskDescription": "Lindy - Grok Final Architecture Verification",
+          "verificationScope": "complete_architecture",
+          "scalabilityAnalysis": true,
+          "performanceProjection": true,
+          "deploymentReadiness": true
+        }
+      },
+      "timeout": 240000,
+      "success_condition": "response.architectureScore >= 95 && response.deploymentReady == true",
+      "description": "Final Grok verification for architecture and deployment readiness"
+    },
+    {
+      "step": 6,
+      "name": "Issue Detection & Classification",
+      "type": "conditional_logic",
+      "condition": "step2_ui_passrate < 95 || step3_ai_average < 90 || step5_grok_score < 95",
+      "if_true": "proceed_to_rule4_autofix",
+      "if_false": "proceed_to_final_verification",
+      "description": "Determine if RULE 4 auto-fix is needed based on all previous results"
+    },
+    {
+      "step": 7,
+      "name": "RULE 4: Superior Auto-Fix Enforcement Until Perfect",
+      "type": "iterative_loop",
+      "max_iterations": 15,
+      "stop_condition": "ui_passrate >= 98 && ai_score >= 95 && grok_score >= 95",
+      "action": {
+        "type": "http_request",
+        "method": "POST",
+        "url": "http://localhost:5000/webhook/superior-autofix",
+        "body": {
+          "parameters": {
+            "taskDescription": "Lindy - Superior Auto-Fix Enforcement",
+            "maxIterations": 15,
+            "enforceUntilPerfect": true,
+            "aggressiveMode": true,
+            "issuesContext": "{{all_previous_issues}}",
+            "fixTypes": [
+              "ui_functionality_fixes",
+              "performance_optimizations", 
+              "security_enhancements",
+              "architecture_improvements"
+            ]
+          }
+        },
+        "timeout": 600000
+      },
+      "on_max_iterations": "proceed_anyway_with_warning",
+      "description": "Keep applying fixes until everything is perfect or max iterations reached"
+    },
+    {
+      "step": 8,
+      "name": "Final Comprehensive Verification",
+      "type": "http_request",
+      "method": "POST",
+      "url": "http://localhost:5000/webhook/lindy-final-verification",
+      "body": {
+        "parameters": {
+          "taskDescription": "Lindy - Final Comprehensive Verification",
+          "verificationLevel": "complete",
+          "previousResults": "{{all_step_results}}",
+          "requirePerfection": true,
+          "deploymentCheck": true
+        }
+      },
+      "timeout": 180000,
+      "description": "Final verification of all systems and rules compliance"
+    },
+    {
+      "step": 9,
+      "name": "Results Classification & Notification",
+      "type": "conditional_branching",
+      "branches": [
+        {
+          "condition": "final_verdict == 'PERFECT'",
+          "action": "send_perfect_notification",
+          "notification": {
+            "subject": "🎉 LINDY: Perfect Implementation - No Manual Check Required!",
+            "message": "🎯 TASK COMPLETED PERFECTLY!\n\n🔴 ALL MANDATORY RULES ENFORCED BY LINDY:\n✅ Rule 1 - UI Testing: {{ui_pass_rate}}%\n✅ Rule 2 - Triple AI: Claude {{claude_score}}%, OpenAI {{openai_score}}%, Grok {{grok_score}}%\n✅ Rule 3 - Maintenance: COMPLETED\n✅ Rule X - Grok Final: {{grok_final_score}}%\n✅ Rule 4 - Auto-Fix: {{autofix_success ? 'SUCCESS' : 'N/A'}}\n\n🚀 RESULT: READY TO DEPLOY!\n📱 NO PHONE CHECKING NEEDED!\n\n⏰ At 58, your time is precious - this task is PERFECT! ✅\n\nLindy AI has ensured everything works flawlessly.",
+            "priority": "high"
+          }
+        },
+        {
+          "condition": "final_verdict == 'EXCELLENT' || final_verdict == 'GOOD'",
+          "action": "send_good_with_minor_issues_notification",
+          "notification": {
+            "subject": "✅ LINDY: Excellent Result - Minimal Manual Check",
+            "message": "🎯 TASK STATUS: {{final_verdict}}\n\n🔴 MANDATORY RULES STATUS:\n{{ui_pass_rate < 95 ? '⚠️' : '✅'}} Rule 1 - UI Testing: {{ui_pass_rate}}%\n{{ai_average < 90 ? '⚠️' : '✅'}} Rule 2 - Triple AI: {{ai_average}}%\n✅ Rule 3 - Maintenance: COMPLETED\n{{grok_final_score < 95 ? '⚠️' : '✅'}} Rule X - Grok Final: {{grok_final_score}}%\n{{autofix_success ? '✅' : '⚠️'}} Rule 4 - Auto-Fix: {{fixes_applied}} fixes applied\n\n📊 RESULT: {{final_verdict}}\n\n{{autofix_success ? '✅ Most issues auto-fixed by Lindy AI' : '⚠️ Some issues need your attention'}}\n\n🕰️ This saves you hours of manual phone checking!\n\nLindy AI has minimized your manual work significantly.",
+            "priority": "medium"
+          }
+        },
+        {
+          "condition": "final_verdict == 'FAILED' || system_down",
+          "action": "send_critical_alert",
+          "notification": {
+            "subject": "🚨 LINDY CRITICAL: System Issues - Manual Intervention Required",
+            "message": "🚨 CRITICAL SYSTEM ISSUES DETECTED\n\n❌ Task Status: {{final_verdict}}\n❌ System Health: {{system_health}}\n\n🔴 MANDATORY RULES STATUS:\n❌ Multiple rules failing\n❌ Auto-fix unable to resolve issues\n\n🚨 IMMEDIATE MANUAL INTERVENTION REQUIRED:\n1. Check Polish Citizenship app server status\n2. Verify database connections\n3. Review system logs\n4. Restart services if needed\n\n⏰ At 58, time matters - but this needs immediate attention!\n\nLindy AI has done everything possible automatically, but manual intervention is now required.",
+            "priority": "critical",
+            "immediate": true
+          }
+        }
+      ]
+    }
+  ],
+  "error_handling": {
+    "global_timeout": 1800000,
+    "retry_policy": {
+      "max_retries": 3,
+      "backoff_strategy": "exponential",
+      "base_delay": 5000
+    },
+    "fallback_actions": [
+      "log_detailed_error",
+      "capture_system_state", 
+      "send_error_notification",
+      "attempt_safe_recovery"
+    ]
+  },
+  "security": {
+    "authentication": {
+      "webhook_auth": "api_key_header",
+      "internal_api_auth": "bearer_token"
+    },
+    "rate_limiting": {
+      "max_requests_per_hour": 100,
+      "burst_limit": 10
+    },
+    "data_protection": {
+      "encrypt_sensitive_data": true,
+      "log_sanitization": true,
+      "secure_communication": "https_only"
+    }
+  },
+  "monitoring": {
+    "execution_tracking": true,
+    "performance_metrics": true,
+    "success_rate_tracking": true,
+    "alert_on_degradation": true
+  },
+  "lindy_specific_features": {
+    "natural_language_conditions": {
+      "perfect_task": "When all tests pass with flying colors and everything works perfectly",
+      "needs_attention": "When some things work but there are issues that need fixing",
+      "critical_failure": "When the system is broken and needs immediate help"
+    },
+    "smart_scheduling": {
+      "avoid_peak_hours": true,
+      "adaptive_frequency": "increase frequency if issues detected"
+    },
+    "context_awareness": {
+      "remember_previous_issues": true,
+      "learn_from_patterns": true,
+      "predict_potential_problems": true
+    }
+  }
+}

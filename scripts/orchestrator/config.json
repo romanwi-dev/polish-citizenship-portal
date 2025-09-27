@@ -1,0 +1,97 @@
+{
+  "tasks": [
+    {
+      "id": "T01-dropbox-import",
+      "desc": "Dropbox Import & Sync",
+      "globs": ["client/src/pages/admin/imports/**", "client/src/lib/dropbox/**", "client/src/state/cases.*", "server/storage.ts", "server/routes.ts"],
+      "implScript": "scripts/tasks/T01-dropbox-import.js"
+    },
+    {
+      "id": "T02-case-dashboard", 
+      "desc": "Case Dashboard KPIs & View Toggle",
+      "globs": ["client/src/pages/admin/cases/**", "client/src/components/admin/dashboard/**", "client/src/lib/analytics/**"],
+      "implScript": "scripts/tasks/T02-case-dashboard.js"
+    },
+    {
+      "id": "T03-case-cards",
+      "desc": "Case Cards Menu & Double-click Edit",
+      "globs": ["client/src/components/admin/case-card/**", "client/src/components/ui/card/**", "client/src/components/admin/case-sheet/**"],
+      "implScript": "scripts/tasks/T03-case-cards.js"
+    },
+    {
+      "id": "T04-control-room",
+      "desc": "Agent Control Room Interface", 
+      "globs": ["client/src/pages/agent/**", "client/src/components/agent/**", "client/src/lib/agent/**"],
+      "implScript": "scripts/tasks/T04-control-room.js"
+    },
+    {
+      "id": "T05-hac-panel",
+      "desc": "HAC Rules Panel & Validation",
+      "globs": ["client/src/components/admin/hac/**", "client/src/lib/hac/**", "shared/hac-rules.json"],
+      "implScript": "scripts/tasks/T05-hac-panel.js"
+    },
+    {
+      "id": "T06-typeform-intake",
+      "desc": "Typeform Intake Integration",
+      "globs": ["client/src/pages/admin/intake/**", "client/src/lib/typeform/**", "server/integrations/typeform/**"],
+      "implScript": "scripts/tasks/T06-typeform-intake.js"
+    },
+    {
+      "id": "T07-family-tree",
+      "desc": "Family Tree Visualization & Export",
+      "globs": ["client/src/pages/agent/tree/**", "client/src/components/agent/family-tree/**", "client/src/lib/genealogy/**"],
+      "implScript": "scripts/tasks/T07-family-tree.js"
+    },
+    {
+      "id": "T08-doc-needs-matrix",
+      "desc": "Document Needs Matrix & Readiness",
+      "globs": ["client/src/components/admin/doc-matrix/**", "client/src/lib/document-requirements/**", "shared/document-schemas.ts"],
+      "implScript": "scripts/tasks/T08-doc-needs-matrix.js"
+    },
+    {
+      "id": "T09-oby-draft",
+      "desc": "OBY Application Draft System",
+      "globs": ["client/src/pages/agent/oby/**", "client/src/components/forms/oby/**", "shared/oby-schema.ts"],
+      "implScript": "scripts/tasks/T09-oby-draft.js"
+    },
+    {
+      "id": "T10-poa-generator",
+      "desc": "Power of Attorney Generator",
+      "globs": ["client/src/pages/agent/poa/**", "client/src/lib/pdf-generation/**", "server/pdf/**"],
+      "implScript": "scripts/tasks/T10-poa-generator.js"
+    },
+    {
+      "id": "T11-ocr-voice",
+      "desc": "OCR & Voice Recognition Tools",
+      "globs": ["client/src/pages/admin/tools/**", "client/src/lib/ocr/**", "client/src/lib/voice/**", "server/ocr/**"],
+      "implScript": "scripts/tasks/T11-ocr-voice.js"
+    },
+    {
+      "id": "T12-system-checks",
+      "desc": "System Health Checks & Diagnostics",
+      "globs": ["client/src/pages/admin/checks/**", "client/src/lib/diagnostics/**", "server/health/**"],
+      "implScript": "scripts/tasks/T12-system-checks.js"
+    },
+    {
+      "id": "T13-notify-tasks",
+      "desc": "Notification System & Weekly Digest",
+      "globs": ["client/src/lib/notifications/**", "server/notifications/**", "server/jobs/**"],
+      "implScript": "scripts/tasks/T13-notify-tasks.js"
+    },
+    {
+      "id": "T14-print-brief",
+      "desc": "Case Brief Export & Printing",
+      "globs": ["client/src/components/admin/export/**", "client/src/lib/export/**", "server/export/**"],
+      "implScript": "scripts/tasks/T14-print-brief.js"
+    },
+    {
+      "id": "T15-i18n-toggle",
+      "desc": "Internationalization EN/PL Toggle",
+      "globs": ["client/src/i18n/**", "client/src/components/ui/language-toggle/**", "shared/translations/**"],
+      "implScript": "scripts/tasks/T15-i18n-toggle.js"
+    }
+  ],
+  "retryBudget": 1,
+  "backupDirectory": ".orchestrator/backups",
+  "logFile": ".orchestrator/run.log"
+}

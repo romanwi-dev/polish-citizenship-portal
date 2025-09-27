@@ -1,0 +1,13 @@
+{
+  "globalEnabled": true,
+  "hacNotifications": {
+    "newRequestToRoman": true,
+    "approvalToOwner": true
+  },
+  "caseNotifications": {
+    "stageChangesToClients": false
+  },
+  "romanEmail": "roman@polishcitizenship.pl",
+  "lastUpdated": "2025-09-20T01:07:36.007Z",
+  "updatedBy": "10.81.12.107"
+}

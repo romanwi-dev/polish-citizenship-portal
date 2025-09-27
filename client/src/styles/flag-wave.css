@@ -1,0 +1,79 @@
+/* Waving Flag Effect for Hero Title */
+
+/* Removed keyframes animation per user request */
+
+/* Removed keyframes animation per user request */
+
+/* Main waving flag title class */
+.hero-title-wave {
+  display: inline-block;
+  position: relative;
+  /* No animations per user request */
+}
+
+/* Removed keyframes animation per user request */
+
+/* Apply to individual words for more dynamic effect */
+.wave-word {
+  display: inline-block;
+  /* No animations per user request */
+  color: inherit;
+  text-shadow: inherit;
+}
+
+.wave-word:nth-child(1) {
+  /* No animations per user request */
+}
+
+.wave-word:nth-child(2) {
+  /* No animations per user request */
+}
+
+.wave-word:nth-child(3) {
+  /* No animations per user request */
+}
+
+.wave-word:nth-child(4) {
+  /* No animations per user request */
+}
+
+/* Shimmer effect overlay */
+.hero-title-wave::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.2) 50%,
+    transparent 100%
+  );
+  /* No animations per user request */
+}
+
+/* Removed keyframes animation per user request */
+
+/* Polish flag colors accent - removed per user request */
+
+/* Reduce motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .hero-title-wave,
+  .wave-word,
+  .hero-title-wave::before {
+    animation: none;
+  }
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+  .hero-title-wave {
+    /* No animations per user request */
+  }
+  
+  .wave-word {
+    /* No animations per user request */
+  }
+}

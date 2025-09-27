@@ -1,0 +1,277 @@
+/* ================================================
+   PRINT STYLES
+   ================================================ */
+
+@media print {
+  /* Hide interactive elements */
+  .app-header,
+  .btn-row,
+  .btn:not(.print-visible),
+  .dropdown-menu,
+  .toast,
+  .modal,
+  .tooltip,
+  nav,
+  .sidebar,
+  .floating-action,
+  .scroll-to-top {
+    display: none !important;
+  }
+
+  /* Reset backgrounds and borders for print */
+  .glass-card,
+  .glass-card-strong,
+  .glass-card-light,
+  .hac-card {
+    background: #fff !important;
+    box-shadow: none !important;
+    border-color: #ccc !important;
+    border-width: 1px !important;
+  }
+
+  /* Ensure readable text */
+  body {
+    color: #000 !important;
+    background: #fff !important;
+    font-size: 12pt !important;
+    line-height: 1.4 !important;
+  }
+
+  /* Typography for print */
+  h1, h2, h3, h4, h5, h6 {
+    color: #000 !important;
+    page-break-after: avoid;
+  }
+
+  .glass-title {
+    color: #000 !important;
+    font-size: 14pt !important;
+  }
+
+  /* Page settings */
+  @page {
+    margin: 16mm;
+    size: A4;
+  }
+
+  /* Avoid breaks inside elements */
+  .glass-card,
+  .form-section,
+  .table-row,
+  .kpi-chip {
+    page-break-inside: avoid;
+  }
+
+  /* Table styles for print */
+  .table {
+    border-collapse: collapse !important;
+    width: 100% !important;
+  }
+
+  .table th,
+  .table td {
+    border: 1px solid #000 !important;
+    padding: 4pt 6pt !important;
+    background: transparent !important;
+  }
+
+  .table th {
+    background: #f0f0f0 !important;
+    font-weight: bold !important;
+  }
+
+  /* Button styles for print-visible buttons */
+  .btn.print-visible {
+    display: inline-block !important;
+    background: #fff !important;
+    border: 1px solid #000 !important;
+    color: #000 !important;
+    padding: 2pt 6pt !important;
+    font-size: 10pt !important;
+  }
+
+  /* Form elements */
+  .input,
+  .select,
+  .textarea {
+    border: 1px solid #000 !important;
+    background: #fff !important;
+    color: #000 !important;
+    box-shadow: none !important;
+  }
+
+  /* Badge and chip styles */
+  .badge,
+  .kpi-chip {
+    border: 1px solid #000 !important;
+    background: #fff !important;
+    color: #000 !important;
+  }
+
+  .kpi-chip.ok::before {
+    content: "[OK] ";
+  }
+
+  .kpi-chip.warn::before {
+    content: "[WARN] ";
+  }
+
+  .kpi-chip.err::before {
+    content: "[ERROR] ";
+  }
+
+  /* Status indicators */
+  .status-dot {
+    width: 8pt !important;
+    height: 8pt !important;
+    border: 1px solid #000 !important;
+    background: #fff !important;
+  }
+
+  .status-dot.ok::after {
+    content: "✓";
+    font-size: 6pt;
+    color: #000;
+  }
+
+  .status-dot.warn::after {
+    content: "!";
+    font-size: 6pt;
+    color: #000;
+  }
+
+  .status-dot.err::after {
+    content: "✗";
+    font-size: 6pt;
+    color: #000;
+  }
+
+  /* Progress bars */
+  .progress-bar {
+    border: 1px solid #000 !important;
+    background: #fff !important;
+    height: 10pt !important;
+  }
+
+  .progress-fill {
+    background: #ccc !important;
+    color: #000 !important;
+  }
+
+  /* Icons */
+  .icon {
+    display: none !important;
+  }
+
+  /* Print-specific utilities */
+  .print-only {
+    display: block !important;
+  }
+
+  .no-print {
+    display: none !important;
+  }
+
+  /* Page breaks */
+  .page-break-before {
+    page-break-before: always;
+  }
+
+  .page-break-after {
+    page-break-after: always;
+  }
+
+  .page-break-inside {
+    page-break-inside: avoid;
+  }
+
+  /* Headers and footers */
+  .print-header {
+    display: block !important;
+    text-align: center;
+    border-bottom: 1px solid #000;
+    padding-bottom: 8pt;
+    margin-bottom: 16pt;
+  }
+
+  .print-footer {
+    display: block !important;
+    text-align: center;
+    border-top: 1px solid #000;
+    padding-top: 8pt;
+    margin-top: 16pt;
+    font-size: 10pt;
+  }
+
+  /* URL display for links */
+  a[href^="http"]::after {
+    content: " (" attr(href) ")";
+    font-size: 10pt;
+    color: #666;
+  }
+
+  /* QR codes and barcodes */
+  .qr-code,
+  .barcode {
+    display: block !important;
+    max-width: 100pt !important;
+    height: auto !important;
+  }
+
+  /* Signature areas */
+  .signature-area {
+    border-bottom: 1px solid #000 !important;
+    height: 30pt !important;
+    margin-top: 20pt !important;
+  }
+
+  .signature-area::before {
+    content: "Signature: ";
+    font-size: 10pt;
+    color: #666;
+  }
+
+  /* Date fields */
+  .date-field {
+    border-bottom: 1px dotted #000 !important;
+    display: inline-block !important;
+    min-width: 80pt !important;
+    height: 12pt !important;
+  }
+
+  /* Document metadata */
+  .document-meta {
+    display: block !important;
+    font-size: 9pt !important;
+    color: #666 !important;
+    border-top: 1px solid #ccc !important;
+    padding-top: 8pt !important;
+    margin-top: 16pt !important;
+  }
+
+  /* Two-column layout for print */
+  .print-two-column {
+    column-count: 2 !important;
+    column-gap: 16pt !important;
+  }
+
+  /* Landscape mode adjustments */
+  @page landscape {
+    size: A4 landscape;
+    margin: 12mm;
+  }
+
+  .landscape-only {
+    display: none !important;
+  }
+
+  @media print and (orientation: landscape) {
+    .landscape-only {
+      display: block !important;
+    }
+    
+    .portrait-only {
+      display: none !important;
+    }
+  }
+}

@@ -1,0 +1,47 @@
+/* Mobile-First Cases Grid Implementation */
+
+.cases-grid-container {
+  display: grid;
+  grid-template-columns: 1fr; /* Single column on mobile by default */
+  gap: 16px;
+  padding: 12px;
+  min-height: 400px;
+  touch-action: manipulation;
+}
+
+/* Desktop: auto-fill grid with min 360px columns */
+@media (min-width: 769px) {
+  .cases-grid-container {
+    grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+    gap: 16px;
+    padding: 16px;
+  }
+}
+
+/* Case Cards - Mobile First Styling */
+.case-card {
+  width: 100%;
+  border: 1px solid var(--border, rgba(255,255,255,0.1));
+  border-radius: 16px;
+  background: var(--panel, rgba(255,255,255,0.05));
+  padding: 16px;
+  min-height: 200px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.case-card:hover {
+  border-color: var(--primary, #3b82f6);
+  background: var(--panel-2, rgba(255,255,255,0.08));
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+}
+
+/* Ensure cards are truly full width on mobile */
+@media (max-width: 768px) {
+  .case-card {
+    width: 100%;
+    min-width: 100%;
+    max-width: 100%;
+  }
+}

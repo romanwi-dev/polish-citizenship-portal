@@ -1,0 +1,220 @@
+import React, { useState, useEffect } from 'react'
+import { useParams, useLocation, useSearch } from 'wouter'
+import { useQuery } from '@tanstack/react-query'
+import { ArrowLeft } from 'lucide-react'
+import { Card, CardHeader, CardBody } from '@/ui/Card'
+import { Button } from '@/ui/Button'
+import { TabBar } from '@/ui/TabBar'
+import { CaseDetails, TabId } from './types'
+import { OverviewPanel } from './panels/OverviewPanel'
+import { TimelinePanel } from './panels/TimelinePanel'
+import { DocumentsPanel } from './panels/DocumentsPanel'
+import { PaymentsPanel } from './panels/PaymentsPanel'
+import { TasksPanel } from './panels/TasksPanel'
+import { CAPPanel } from './panels/CAPPanel'
+import { FamilyTreePanel } from './panels/FamilyTreePanel'
+import { useToast } from '@/hooks/use-toast'
+
+const TABS = [
+  { id: 'overview', label: 'Overview', icon: null },
+  { id: 'timeline', label: 'Timeline', icon: null },
+  { id: 'documents', label: 'Documents', icon: null },
+  { id: 'payments', label: 'Payments', icon: null },
+  { id: 'tasks', label: 'Tasks', icon: null },
+  { id: 'cap', label: 'CAP', icon: null },
+  { id: 'family-tree', label: 'Family Tree', icon: null }
+] as const
+
+// Transform API data to CaseDetails format
+function transformCaseDetails(apiData: any): CaseDetails {
+  const currentTime = Date.now()
+  const createdAt = apiData.created_at ? new Date(apiData.created_at).getTime() : currentTime
+  const ageMonths = Math.max(1, Math.floor((currentTime - createdAt) / (1000 * 60 * 60 * 24 * 30)))
+  
+  const confidenceStr = apiData.confidence || "0%"
+  const confidence = parseInt(confidenceStr.replace('%', ''))
+  
+  const displayName = apiData.caseManager || `Case ${apiData.caseId || apiData.id}`
+  
+  return {
+    id: apiData.caseId || apiData.id.toString(),
+    name: displayName,
+    email: apiData.client?.email || 'No email',
+    stage: apiData.state || 'pending',
+    tier: mapTier(apiData.processing || 'standard'),
+    score: apiData.clientScore || confidence || 0,
+    confidence,
+    ageMonths,
+    difficulty: apiData.difficulty || 1,
+    updatedAt: apiData.updated_at || apiData.created_at || new Date().toISOString(),
+    processing: apiData.processing || 'standard',
+    state: apiData.state || 'pending',
+    created_at: apiData.created_at,
+    updated_at: apiData.updated_at,
+    client: {
+      name: apiData.client?.name || displayName,
+      email: apiData.client?.email || 'No email',
+      phone: apiData.client?.phone,
+      address: apiData.client?.address
+    },
+    documents: apiData.docs || [],
+    payments: apiData.payments || [],
+    tasks: apiData.tasks || [],
+    familyTree: apiData.familyTree || {},
+    timeline: apiData.timeline || []
+  }
+}
+
+function mapTier(processing: string): 'VIP' | 'GLOBAL' | 'STANDARD' | 'BASIC' {
+  switch (processing.toLowerCase()) {
+    case 'tier1':
+    case 'rush':
+    case 'vip': return 'VIP'
+    case 'tier2':
+    case 'global': return 'GLOBAL'
+    case 'tier3':
+    case 'standard': return 'STANDARD'
+    default: return 'BASIC'
+  }
+}
+
+export const CaseDetail: React.FC = () => {
+  const params = useParams()
+  const [, navigate] = useLocation()
+  const search = useSearch()
+  const { toast } = useToast()
+  
+  const caseId = params.caseId
+  const urlParams = new URLSearchParams(search)
+  const initialTab = (urlParams.get('tab') as TabId) || 'overview'
+  const [activeTab, setActiveTab] = useState<TabId>(initialTab)
+
+  // Sync tab changes with URL
+  useEffect(() => {
+    const newSearch = new URLSearchParams(search)
+    newSearch.set('tab', activeTab)
+    navigate(`/cases2/${caseId}?${newSearch.toString()}`, { replace: true })
+  }, [activeTab, caseId, navigate, search])
+
+  // Handle URL tab changes
+  useEffect(() => {
+    const urlTab = urlParams.get('tab') as TabId
+    if (urlTab && urlTab !== activeTab && TABS.some(tab => tab.id === urlTab)) {
+      setActiveTab(urlTab)
+    }
+  }, [search, activeTab])
+
+  const { data: caseData, isLoading, error } = useQuery({
+    queryKey: ['/api/admin/cases', caseId],
+    queryFn: async () => {
+      const response = await fetch(`/api/admin/cases/${caseId}`)
+      if (!response.ok) {
+        throw new Error('Failed to fetch case')
+      }
+      const data = await response.json()
+      return transformCaseDetails(data)
+    },
+    enabled: !!caseId
+  })
+
+  const handleBack = () => {
+    navigate('/admin/cases2')
+  }
+
+  const handleTabChange = (tabId: string) => {
+    setActiveTab(tabId as TabId)
+  }
+
+  const renderPanel = () => {
+    if (!caseData) return null
+
+    switch (activeTab) {
+      case 'overview':
+        return <OverviewPanel caseData={caseData} />
+      case 'timeline':
+        return <TimelinePanel caseData={caseData} />
+      case 'documents':
+        return <DocumentsPanel caseData={caseData} />
+      case 'payments':
+        return <PaymentsPanel caseData={caseData} />
+      case 'tasks':
+        return <TasksPanel caseData={caseData} />
+      case 'cap':
+        return <CAPPanel caseData={caseData} />
+      case 'family-tree':
+        return <FamilyTreePanel caseData={caseData} />
+      default:
+        return <OverviewPanel caseData={caseData} />
+    }
+  }
+
+  if (error) {
+    return (
+      <div className="min-h-screen bg-[var(--bg)] p-4">
+        <div className="max-w-2xl mx-auto">
+          <Card>
+            <CardBody className="text-center py-12">
+              <p className="text-[var(--danger)] mb-4">Failed to load case</p>
+              <Button onClick={handleBack} variant="primary">
+                Back to Cases
+              </Button>
+            </CardBody>
+          </Card>
+        </div>
+      </div>
+    )
+  }
+
+  if (isLoading || !caseData) {
+    return (
+      <div className="min-h-screen bg-[var(--bg)] p-4">
+        <div className="max-w-7xl mx-auto">
+          <div className="h-16 bg-[var(--bg-elev)] border border-[var(--border)] rounded-[var(--radius-lg)] animate-pulse mb-6" />
+          <div className="h-96 bg-[var(--bg-elev)] border border-[var(--border)] rounded-[var(--radius-lg)] animate-pulse" />
+        </div>
+      </div>
+    )
+  }
+
+  return (
+    <div className="min-h-screen bg-[var(--bg)]">
+      {/* Header */}
+      <div className="sticky top-0 z-20 bg-[var(--bg-elev)] border-b border-[var(--border)]">
+        <div className="max-w-7xl mx-auto px-4 py-4">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-4">
+              <Button variant="ghost" size="sm" onClick={handleBack}>
+                <ArrowLeft className="h-4 w-4 mr-2" />
+                Back
+              </Button>
+              
+              <div>
+                <h1 className="text-xl font-bold text-[var(--text)]">{caseData.name}</h1>
+                <p className="text-sm text-[var(--muted)]">{caseData.email}</p>
+              </div>
+            </div>
+            
+            <div className="flex items-center gap-2">
+              <Button variant="secondary" size="sm">
+                Actions
+              </Button>
+            </div>
+          </div>
+        </div>
+        
+        {/* Tabs */}
+        <TabBar
+          tabs={TABS}
+          activeTab={activeTab}
+          onTabChange={handleTabChange}
+          className="border-t-0"
+        />
+      </div>
+
+      {/* Content */}
+      <div className="max-w-7xl mx-auto p-4">
+        {renderPanel()}
+      </div>
+    </div>
+  )
+}

@@ -1,0 +1,26 @@
+{
+  "name": "Polish Citizenship by Descent",
+  "short_name": "Polish Citizenship",
+  "description": "Expert legal services for Polish citizenship and passport applications",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#1e40af",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/favicon.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/favicon.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["business", "government"],
+  "prefer_related_applications": false
+}

@@ -1,0 +1,539 @@
+/* Agent Theming Tokens for Case Boards - Dark/Light Mode Support */
+
+:root {
+  /* Dark Mode Tokens (default) */
+  --agent-bg: #0b0d10;
+  --agent-card: #14181d; 
+  --agent-glass: rgba(255, 255, 255, 0.06);
+  --agent-text: #e6ebf2;
+  --agent-muted: #a8b3c5;
+  --agent-accent: #51d2a8;
+  --agent-warn: #ff9f43;
+  --agent-error: #ff5c5c;
+  --agent-border: rgba(255, 255, 255, 0.12);
+  --agent-overlay: rgba(0, 0, 0, 0.8);
+  --agent-menu-bg: rgba(20, 24, 29, 0.95);
+  --agent-menu-border: rgba(255, 255, 255, 0.15);
+  --agent-sheet-bg: rgba(11, 13, 16, 0.98);
+  --agent-focus: rgba(81, 210, 168, 0.4);
+  --agent-hover: rgba(255, 255, 255, 0.08);
+  --agent-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+}
+
+[data-theme="light"] {
+  /* Light Mode Tokens */
+  --agent-bg: #f7f9fc;
+  --agent-card: #ffffff;
+  --agent-glass: rgba(0, 0, 0, 0.06);
+  --agent-text: #1a2433;
+  --agent-muted: #5b6b84;
+  --agent-accent: #00ff99;
+  --agent-warn: #b76e00;
+  --agent-error: #cc2222;
+  --agent-border: rgba(0, 0, 0, 0.12);
+  --agent-overlay: rgba(255, 255, 255, 0.9);
+  --agent-menu-bg: rgba(255, 255, 255, 0.98);
+  --agent-menu-border: rgba(0, 0, 0, 0.15);
+  --agent-sheet-bg: rgba(247, 249, 252, 0.98);
+  --agent-focus: rgba(0, 255, 153, 0.3);
+  --agent-hover: rgba(0, 0, 0, 0.06);
+  --agent-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+}
+
+/* Case Card Base Styles with Agent Tokens */
+.agent-case-card {
+  background: var(--agent-card);
+  border: 1px solid var(--agent-border);
+  color: var(--agent-text);
+  border-radius: 12px;
+  transition: all 0.2s ease;
+  position: relative;
+  overflow: hidden;
+  will-change: transform, opacity;
+  transform: translateZ(0);
+}
+
+.agent-case-card:hover {
+  background: var(--agent-hover);
+  box-shadow: var(--agent-shadow);
+}
+
+.agent-case-card.editing {
+  border-color: var(--agent-accent);
+  box-shadow: 0 0 0 2px var(--agent-focus);
+}
+
+/* Dropdown Menu Portal Styles */
+.agent-menu-portal {
+  position: fixed;
+  z-index: 9999;
+  pointer-events: none;
+}
+
+.agent-menu {
+  background: var(--agent-menu-bg);
+  border: 1px solid var(--agent-menu-border);
+  border-radius: 8px;
+  box-shadow: var(--agent-shadow);
+  max-width: 280px;
+  max-height: 320px;
+  overflow-y: auto;
+  padding: 8px;
+  pointer-events: auto;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  will-change: transform, opacity;
+  transform: translateZ(0);
+}
+
+.agent-menu-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 16px;
+  border-radius: 6px;
+  color: var(--agent-text);
+  cursor: pointer;
+  transition: background-color 0.12s ease;
+  min-height: 44px;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.agent-menu-item:hover {
+  background: var(--agent-hover);
+}
+
+.agent-menu-item:focus-visible {
+  outline: 2px solid var(--agent-accent);
+  outline-offset: 2px;
+}
+
+.agent-menu-item.destructive {
+  color: var(--agent-error);
+}
+
+.agent-menu-item.warning {
+  color: var(--agent-warn);
+}
+
+/* Edit Sheet Portal Styles */
+.agent-sheet-portal {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: grid;
+  grid-template-rows: auto 1fr;
+  background: var(--agent-overlay);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.agent-sheet {
+  background: var(--agent-sheet-bg);
+  border-radius: 16px 16px 0 0;
+  border: 1px solid var(--agent-border);
+  box-shadow: var(--agent-shadow);
+  display: grid;
+  grid-template-rows: auto 1fr;
+  max-height: 90vh;
+  margin: auto 0 0 0;
+}
+
+.agent-sheet-header {
+  padding: 20px 24px 16px;
+  border-bottom: 1px solid var(--agent-border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-shrink: 0;
+}
+
+.agent-sheet-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--agent-text);
+  margin: 0;
+}
+
+.agent-sheet-close {
+  background: transparent;
+  border: none;
+  color: var(--agent-muted);
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 6px;
+  transition: all 0.12s ease;
+  min-width: 44px;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.agent-sheet-close:hover {
+  background: var(--agent-hover);
+  color: var(--agent-text);
+}
+
+.agent-sheet-close:focus-visible {
+  outline: 2px solid var(--agent-accent);
+  outline-offset: 2px;
+}
+
+.agent-sheet-body {
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+  padding: 24px;
+  scrollbar-width: thin;
+  scrollbar-color: var(--agent-muted) transparent;
+}
+
+.agent-sheet-body::-webkit-scrollbar {
+  width: 6px;
+}
+
+.agent-sheet-body::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.agent-sheet-body::-webkit-scrollbar-thumb {
+  background: var(--agent-muted);
+  border-radius: 3px;
+}
+
+/* Form Controls */
+.agent-form-group {
+  margin-bottom: 20px;
+}
+
+.agent-form-label {
+  display: block;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--agent-text);
+  margin-bottom: 6px;
+}
+
+.agent-form-input {
+  width: 100%;
+  padding: 12px 16px;
+  border: 1px solid var(--agent-border);
+  border-radius: 8px;
+  background: var(--agent-card);
+  color: var(--agent-text);
+  font-size: 14px;
+  transition: all 0.12s ease;
+  min-height: 44px;
+}
+
+/* Dark mode specific background fixes - High specificity */
+[data-theme="dark"] .agent-form-input,
+.dark .agent-form-input,
+html.dark .agent-form-input,
+html[data-theme="dark"] .agent-form-input {
+  background: rgba(39, 39, 42, 0.8) !important;
+  border-color: rgba(113, 113, 122, 0.3) !important;
+  color: rgba(244, 244, 245, 0.9) !important;
+}
+
+[data-theme="dark"] .agent-form-input:focus,
+.dark .agent-form-input:focus,
+html.dark .agent-form-input:focus,
+html[data-theme="dark"] .agent-form-input:focus {
+  background: rgba(39, 39, 42, 0.9) !important;
+  border-color: var(--agent-accent) !important;
+  color: rgba(244, 244, 245, 1) !important;
+}
+
+/* Also apply to textarea elements */
+[data-theme="dark"] .agent-form-input[type="text"],
+[data-theme="dark"] .agent-form-input[type="email"],
+[data-theme="dark"] textarea.agent-form-input,
+[data-theme="dark"] select.agent-form-input,
+.dark .agent-form-input[type="text"],
+.dark .agent-form-input[type="email"],
+.dark textarea.agent-form-input,
+.dark select.agent-form-input {
+  background: rgba(39, 39, 42, 0.8) !important;
+  border-color: rgba(113, 113, 122, 0.3) !important;
+  color: rgba(244, 244, 245, 0.9) !important;
+}
+
+.agent-form-input:focus {
+  outline: none;
+  border-color: var(--agent-accent);
+  box-shadow: 0 0 0 3px var(--agent-focus);
+}
+
+.agent-form-input::placeholder {
+  color: var(--agent-muted);
+}
+
+.agent-form-textarea {
+  min-height: 88px;
+  resize: vertical;
+}
+
+.agent-form-select {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%23a8b3c5' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e");
+  background-position: right 12px center;
+  background-repeat: no-repeat;
+  background-size: 16px;
+  padding-right: 40px;
+}
+
+/* Buttons */
+.agent-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 20px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.12s ease;
+  min-height: 44px;
+  border: none;
+  position: relative;
+  overflow: hidden;
+}
+
+.agent-button-primary {
+  background: var(--agent-accent);
+  color: var(--agent-bg);
+}
+
+.agent-button-primary:hover {
+  filter: brightness(1.1);
+}
+
+.agent-button-primary:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.agent-button-secondary {
+  background: var(--agent-card);
+  color: var(--agent-text);
+  border: 1px solid var(--agent-border);
+}
+
+.agent-button-secondary:hover {
+  background: var(--agent-hover);
+}
+
+.agent-button-loading {
+  pointer-events: none;
+}
+
+.agent-button-spinner {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: inherit;
+}
+
+/* Animation Classes */
+.agent-fade-in {
+  animation: agentFadeIn 0.12s ease-out;
+}
+
+.agent-fade-out {
+  animation: agentFadeOut 0.12s ease-in;
+}
+
+.agent-scale-in {
+  animation: agentScaleIn 0.12s ease-out;
+}
+
+.agent-scale-out {
+  animation: agentScaleOut 0.12s ease-in;
+}
+
+@keyframes agentFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes agentFadeOut {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+@keyframes agentScaleIn {
+  from { 
+    opacity: 0; 
+    transform: scale(0.95) translateY(4px);
+  }
+  to { 
+    opacity: 1; 
+    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes agentScaleOut {
+  from { 
+    opacity: 1; 
+    transform: scale(1) translateY(0);
+  }
+  to { 
+    opacity: 0; 
+    transform: scale(0.95) translateY(4px);
+  }
+}
+
+/* Body Lock for Modal */
+.agent-body-lock {
+  overflow: hidden !important;
+  padding-right: var(--scrollbar-width, 0px);
+}
+
+/* Mobile-First Case Grid Layout */
+.case-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 14px;
+  padding: 12px env(safe-area-inset-left, 12px) 20px env(safe-area-inset-right, 12px);
+}
+
+.case-card {
+  width: 100%;
+  max-width: 100%;
+  border-radius: 16px;
+  background: var(--surface-elev-1, var(--agent-card));
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.25);
+  will-change: transform, opacity;
+  transform: translateZ(0);
+}
+
+.case-card__chips {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  padding-bottom: 2px;
+}
+
+.case-card__chips::-webkit-scrollbar {
+  display: none;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .agent-menu {
+    min-width: 240px;
+    max-width: calc(100vw - 32px);
+    max-height: calc(100vh - 200px);
+    border-radius: 14px;
+    backdrop-filter: saturate(140%) blur(12px);
+    background: color-mix(in lab, var(--surface-elev-3, var(--agent-menu-bg)), transparent 25%);
+    border: 1px solid color-mix(in lab, var(--border, var(--agent-menu-border)), transparent 35%);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.35);
+    will-change: transform, opacity;
+    transform: translateZ(0);
+  }
+  
+  .agent-sheet {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1100;
+    max-height: 92dvh;
+    border-top-left-radius: 18px;
+    border-top-right-radius: 18px;
+    background: var(--surface-elev-2, var(--agent-sheet-bg));
+    box-shadow: 0 -12px 40px rgba(0, 0, 0, 0.4);
+    overflow: hidden;
+    will-change: transform, opacity;
+    transform: translateZ(0);
+  }
+  
+  .agent-sheet-header {
+    padding: 16px 20px 12px;
+  }
+  
+  .agent-sheet-body {
+    height: calc(92dvh - 56px);
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+    padding: 12px 16px 24px;
+  }
+  
+  .edit-form {
+    display: grid;
+    gap: 12px;
+    min-height: 0;
+  }
+  
+  .select__menu {
+    max-height: 50dvh;
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
+/* Desktop Right-Side Column Layout */
+@media (min-width: 1024px) {
+  .agent-sheet-portal {
+    pointer-events: auto;
+  }
+  
+  .agent-sheet {
+    margin: 0 0 0 auto;
+    height: 100vh;
+    max-height: 100vh;
+    width: min(560px, 42vw);
+    border-radius: 12px 0 0 12px;
+    max-width: none;
+    display: grid;
+    grid-template-rows: auto 1fr;
+    box-shadow: -8px 0 25px -5px rgba(0, 0, 0, 0.1), -20px 0 48px -12px rgba(0, 0, 0, 0.25);
+  }
+  
+  .agent-sheet-header {
+    border-bottom: 1px solid var(--agent-border);
+  }
+  
+  .agent-sheet-body {
+    overflow-y: auto;
+    overscroll-behavior: contain;
+  }
+}
+
+/* High Contrast Mode Support */
+@media (prefers-contrast: high) {
+  :root {
+    --agent-border: rgba(255, 255, 255, 0.3);
+    --agent-menu-border: rgba(255, 255, 255, 0.3);
+  }
+  
+  [data-theme="light"] {
+    --agent-border: rgba(0, 0, 0, 0.3);
+    --agent-menu-border: rgba(0, 0, 0, 0.3);
+  }
+}
+
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+  .agent-case-card,
+  .agent-menu-item,
+  .agent-form-input,
+  .agent-button {
+    transition: none;
+  }
+  
+  .agent-fade-in,
+  .agent-fade-out,
+  .agent-scale-in,
+  .agent-scale-out {
+    animation: none;
+  }
+}

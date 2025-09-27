@@ -1,0 +1,20 @@
+/* Enhanced form styling for better visual feedback */
+.enhanced-input {
+  @apply w-full h-16 lg:h-20 text-xl lg:text-2xl px-6 border-3 border-gray-400 focus:border-blue-500 rounded-2xl bg-gray-200 focus:bg-white shadow-sm hover:bg-gray-100 focus:border-2 focus:border-blue-600;
+}
+
+.enhanced-input:focus {
+  opacity: 0.95;
+}
+
+.enhanced-input:hover:not(:focus) {
+  opacity: 0.98;
+}
+
+.enhanced-input[data-filled="true"] {
+  @apply bg-white border-green-400 shadow-md;
+}
+
+.enhanced-select {
+  @apply w-full h-16 lg:h-20 text-xl lg:text-2xl px-6 border-3 border-gray-400 focus:border-blue-500 rounded-2xl bg-gray-200 focus:bg-white shadow-sm hover:bg-gray-100 focus:border-2 focus:border-blue-600;
+}

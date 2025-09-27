@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" role="img" aria-labelledby="title desc" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <title id="title">Eligibility & Requirements icon</title>
+  <desc id="desc">Family tree nodes with a verification badge.</desc>
+  <circle cx="12" cy="4" r="2"/>
+  <circle cx="6" cy="12" r="2"/>
+  <circle cx="18" cy="12" r="2"/>
+  <path d="M12 6v2M6 10h12M6 10v2M18 10v2"/>
+  <circle cx="17.5" cy="19" r="3"/>
+  <path d="M16.3 19l1 1 1.9-2"/>
+</svg>

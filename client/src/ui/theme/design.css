@@ -1,0 +1,100 @@
+/* ================================================
+   DESIGN TOKENS - Core Design System
+   ================================================ */
+
+/* Light Theme as Default - Unified with tokens.css */
+:root {
+  --bg: #f8f9fa;
+  --bg-elev: #ffffff;
+  --text: #0b0b0c;
+  --text-muted: #6b7280;
+  --border: rgba(0,0,0,.08);
+  --surface: rgba(0, 0, 0, 0.04);
+  --surface-strong: rgba(0, 0, 0, 0.06);
+  --glass: rgba(255, 255, 255, 0.72);
+  --glass-strong: rgba(255, 255, 255, 0.88);
+  --accent: #2563eb;
+  --hac-accent: #b08900;
+  
+  /* Legacy aliases for backward compatibility */
+  --muted: var(--text-muted);
+  
+  /* Keep other design tokens */
+  --accent-2: #60d2b6;
+  --ok: #2ecc71;
+  --warn: #f1c40f;
+  --err: #e74c3c;
+  
+  --font: Inter, Noto Sans, system-ui, sans-serif;
+  --mono: ui-monospace, Menlo, Consolas, monospace;
+  --base: 15px;
+  --title: 16.5px;
+  --kpi: 16px;
+  
+  --grid-gap: 16px;
+  --grid-gap-mobile: 12px;
+  --card-padding: 14px 16px;
+  --tile-padding: 12px;
+  --radius-card: 16px;
+  --radius-chip: 12px;
+  --radius-btn: 12px;
+  --shadow: 0 6px 24px rgba(0, 0, 0, 0.22);
+  --header-shadow: 0 2px 12px rgba(0, 0, 0, 0.20);
+  
+  --btn-height: 44px;
+  --btn-padding: 0 16px;
+  --btn-font: 15px;
+  
+  --timing-fast: 140ms;
+  --timing-med: 220ms;
+  --timing-slow: 360ms;
+  --spring-1: cubic-bezier(0.17, 0.84, 0.44, 1);
+  
+  --z-header: 50;
+  --z-modal: 100;
+  --z-toast: 110;
+  --z-overlay: 90;
+}
+
+/* Dark Theme Overrides - Unified with tokens.css */
+.dark {
+  --bg: #0f1115;
+  --bg-elev: #1a1d23;
+  --text: #ededf0;
+  --text-muted: #9aa0a6;
+  --border: rgba(255,255,255,.08);
+  --surface: rgba(255, 255, 255, 0.07);
+  --surface-strong: rgba(255, 255, 255, 0.10);
+  --glass: rgba(255, 255, 255, 0.08);
+  --glass-strong: rgba(255, 255, 255, 0.14);
+  --accent: #60a5fa;
+  --hac-accent: #ffd166;
+  
+  /* Legacy aliases for backward compatibility */
+  --muted: var(--text-muted);
+}
+
+/* Base Styles */
+html, body, #root {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font);
+  font-size: var(--base);
+}
+
+.text-muted {
+  color: var(--muted);
+}
+
+code, pre {
+  font-family: var(--mono);
+}
+
+/* Accessibility - Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}

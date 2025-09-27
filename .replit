@@ -1,0 +1,100 @@
+modules = ["nodejs-20", "web", "postgresql-16", "python-3.11", "python3"]
+run = "npm run dev"
+hidden = [".config", ".git", "generated-icon.png", "node_modules", "dist"]
+
+[nix]
+channel = "stable-24_05"
+packages = ["cargo", "freetype", "glib", "gtk3", "imagemagick", "lcms2", "libiconv", "libimagequant", "libjpeg", "libtiff", "libwebp", "libxcrypt", "nss", "openjpeg", "poppler_utils", "rustc", "tcl", "tesseract", "tk", "zlib", "noto-fonts", "noto-fonts-cjk-sans", "noto-fonts-cjk-serif", "noto-fonts-emoji-blob-bin", "noto-fonts-color-emoji", "noto-fonts-monochrome-emoji"]
+
+[deployment]
+deploymentTarget = "autoscale"
+build = ["npm", "run", "build"]
+run = ["npm", "run", "start"]
+
+[[ports]]
+localPort = 3000
+externalPort = 3002
+
+[[ports]]
+localPort = 5000
+externalPort = 80
+
+[[ports]]
+localPort = 8000
+externalPort = 8000
+
+[[ports]]
+localPort = 32781
+externalPort = 4200
+
+[[ports]]
+localPort = 33635
+externalPort = 8099
+
+[[ports]]
+localPort = 34891
+externalPort = 3003
+
+[[ports]]
+localPort = 37803
+externalPort = 8080
+
+[[ports]]
+localPort = 39541
+externalPort = 5173
+
+[[ports]]
+localPort = 39683
+externalPort = 6800
+
+[[ports]]
+localPort = 40169
+externalPort = 8008
+
+[[ports]]
+localPort = 41219
+externalPort = 5000
+
+[[ports]]
+localPort = 42905
+externalPort = 8081
+
+[[ports]]
+localPort = 43857
+externalPort = 3000
+
+[[ports]]
+localPort = 44419
+externalPort = 6000
+
+[[ports]]
+localPort = 44763
+externalPort = 3001
+
+[[ports]]
+localPort = 45881
+externalPort = 9000
+
+[workflows]
+runButton = "Project"
+
+[[workflows.workflow]]
+name = "Project"
+mode = "parallel"
+author = "agent"
+
+[[workflows.workflow.tasks]]
+task = "workflow.run"
+args = "Start application"
+
+[[workflows.workflow]]
+name = "Start application"
+author = "agent"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "npm run dev"
+waitForPort = 5000
+
+[agent]
+integrations = ["javascript_openai:1.0.0", "javascript_object_storage:1.0.0", "javascript_xai:1.0.0", "javascript_database:1.0.0", "dropbox:1.0.0"]

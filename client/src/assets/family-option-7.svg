@@ -1,0 +1,186 @@
+<svg width="2000" height="1200" viewBox="0 0 2000 1200" xmlns="http://www.w3.org/2000/svg">
+  <!-- OPTION 7: Family Portrait Style with European Castle -->
+  <defs>
+    <linearGradient id="sky7" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#FFE4E1"/>
+      <stop offset="100%" stop-color="#F0F8FF"/>
+    </linearGradient>
+  </defs>
+  
+  <!-- Romantic European sky -->
+  <rect width="2000" height="800" fill="url(#sky7)"/>
+  
+  <!-- Majestic European castle backdrop -->
+  <rect x="800" y="200" width="400" height="1000" fill="#F5F5DC"/>
+  <polygon points="800,200 1000,50 1200,200" fill="#8B4513"/>
+  
+  <!-- Castle towers -->
+  <rect x="600" y="300" width="100" height="900" fill="#D3D3D3"/>
+  <polygon points="600,300 650,200 700,300" fill="#696969"/>
+  
+  <rect x="1300" y="300" width="100" height="900" fill="#D3D3D3"/>
+  <polygon points="1300,300 1350,200 1400,300" fill="#696969"/>
+  
+  <rect x="750" y="250" width="80" height="950" fill="#E6E6FA"/>
+  <polygon points="750,250 790,150 830,250" fill="#C0C0C0"/>
+  
+  <rect x="1170" y="250" width="80" height="950" fill="#E6E6FA"/>
+  <polygon points="1170,250 1210,150 1250,250" fill="#C0C0C0"/>
+  
+  <!-- Castle details -->
+  <g fill="#4682B4" opacity="0.7">
+    <rect x="850" y="400" width="30" height="40"/>
+    <rect x="920" y="400" width="30" height="40"/>
+    <rect x="1050" y="400" width="30" height="40"/>
+    <rect x="1120" y="400" width="30" height="40"/>
+  </g>
+  
+  <!-- Rolling hills -->
+  <ellipse cx="500" cy="1100" rx="600" ry="100" fill="#9ACD32"/>
+  <ellipse cx="1500" cy="1150" rx="500" ry="80" fill="#8FBC8F"/>
+  
+  <!-- Formal family portrait arrangement -->
+  <g transform="translate(600, 650)">
+    
+    <!-- Back row - Grandparents (seated on elegant chairs) -->
+    <!-- Grandfather -->
+    <g transform="translate(-100, -50)">
+      <!-- Elegant chair -->
+      <rect x="20" y="80" width="80" height="120" fill="#8B4513" rx="10"/>
+      <rect x="25" y="85" width="70" height="15" fill="#654321"/>
+      
+      <circle cx="60" cy="60" r="45" fill="#FDBCB4"/>
+      <path d="M 15 45 Q 60 10 105 45" fill="#E6E6FA"/>
+      <rect x="30" y="100" width="60" height="100" rx="15" fill="#2F2F2F"/> <!-- Formal suit -->
+      <rect x="35" y="105" width="50" height="15" fill="#FFF"/>
+      <rect x="55" y="110" width="10" height="35" fill="#8B0000"/>
+      <rect x="10" y="110" width="25" height="80" rx="12" fill="#FDBCB4"/>
+      <rect x="85" y="110" width="25" height="80" rx="12" fill="#FDBCB4"/>
+      <!-- Sitting position -->
+      <rect x="35" y="200" width="50" height="80" fill="#2F2F2F"/>
+      <ellipse cx="60" cy="285" rx="25" ry="12" fill="#000"/>
+      <ellipse cx="60" cy="285" rx="15" ry="8" fill="#000"/>
+      <!-- Distinguished expression -->
+      <circle cx="50" cy="50" r="3" fill="#000"/>
+      <circle cx="70" cy="50" r="3" fill="#000"/>
+      <path d="M 45 70 Q 60 80 75 70" stroke="#000" stroke-width="3" fill="none"/>
+    </g>
+    
+    <!-- Grandmother -->
+    <g transform="translate(200, -40)">
+      <!-- Elegant chair -->
+      <rect x="20" y="80" width="80" height="120" fill="#8B4513" rx="10"/>
+      <rect x="25" y="85" width="70" height="15" fill="#654321"/>
+      
+      <circle cx="60" cy="60" r="45" fill="#FDBCB4"/>
+      <path d="M 15 45 Q 60 10 105 45" fill="#F0F0F0"/>
+      <path d="M 30 100 L 90 100 L 100 200 L 20 200 Z" fill="#4B0082"/>
+      <rect x="10" y="110" width="25" height="70" rx="12" fill="#FDBCB4"/>
+      <rect x="85" y="110" width="25" height="70" rx="12" fill="#FDBCB4"/>
+      <!-- Sitting position -->
+      <rect x="35" y="200" width="50" height="75" fill="#4B0082"/>
+      <ellipse cx="60" cy="280" rx="25" ry="12" fill="#000"/>
+      <ellipse cx="60" cy="280" rx="15" ry="8" fill="#000"/>
+      <!-- Elegant expression -->
+      <circle cx="50" cy="50" r="3" fill="#000"/>
+      <circle cx="70" cy="50" r="3" fill="#000"/>
+      <path d="M 45 70 Q 60 80 75 70" stroke="#000" stroke-width="3" fill="none"/>
+    </g>
+    
+    <!-- Middle row - Parents standing -->
+    <!-- Father with Polish passports -->
+    <g transform="translate(-200, 80)">
+      <circle cx="70" cy="70" r="50" fill="#FDBCB4"/>
+      <path d="M 20 55 Q 70 15 120 55" fill="#8B4513"/>
+      <rect x="35" y="115" width="70" height="130" rx="18" fill="#1C1C1C"/>
+      <rect x="40" y="120" width="60" height="20" fill="#FFF"/>
+      <rect x="65" y="125" width="10" height="50" fill="#8B0000"/>
+      <rect x="10" y="125" width="30" height="100" rx="15" fill="#FDBCB4"/>
+      <rect x="105" y="125" width="30" height="100" rx="15" fill="#FDBCB4"/>
+      
+      <!-- Polish passport family collection -->
+      <g transform="translate(120, 160)">
+        <rect x="0" y="0" width="35" height="50" fill="#8B0000" rx="3"/>
+        <rect x="3" y="3" width="29" height="22" fill="#FFF"/>
+        <text x="17.5" y="12" text-anchor="middle" font-size="5" font-weight="bold" fill="#8B0000">FAMILY</text>
+        <text x="17.5" y="18" text-anchor="middle" font-size="4" font-weight="bold" fill="#8B0000">PASSPORTS</text>
+        <circle cx="17.5" cy="32" r="7" fill="#FFD700"/>
+        <text x="17.5" y="37" text-anchor="middle" font-size="5" font-weight="bold" fill="#8B0000">PL</text>
+        <text x="17.5" y="46" text-anchor="middle" font-size="3" fill="#FFF">POLSKA</text>
+      </g>
+      
+      <rect x="45" y="245" width="25" height="115" fill="#1C1C1C"/>
+      <rect x="75" y="245" width="25" height="115" fill="#1C1C1C"/>
+      <ellipse cx="57" cy="365" rx="13" ry="8" fill="#000"/>
+      <ellipse cx="87" cy="365" rx="13" ry="8" fill="#000"/>
+      <!-- Proud paternal expression -->
+      <circle cx="60" cy="60" r="3" fill="#000"/>
+      <circle cx="80" cy="60" r="3" fill="#000"/>
+      <path d="M 55 85 Q 70 95 85 85" stroke="#000" stroke-width="3" fill="none"/>
+    </g>
+    
+    <!-- Mother -->
+    <g transform="translate(300, 90)">
+      <circle cx="70" cy="70" r="50" fill="#FDBCB4"/>
+      <path d="M 20 55 Q 70 15 120 55" fill="#FFD700"/>
+      <path d="M 35 115 L 105 115 L 115 245 L 25 245 Z" fill="#8B0000"/>
+      <rect x="10" y="125" width="30" height="90" rx="15" fill="#FDBCB4"/>
+      <rect x="105" y="125" width="30" height="90" rx="15" fill="#FDBCB4"/>
+      <rect x="45" y="245" width="25" height="115" fill="#8B0000"/>
+      <rect x="75" y="245" width="25" height="115" fill="#8B0000"/>
+      <ellipse cx="57" cy="365" rx="11" ry="7" fill="#000"/>
+      <ellipse cx="87" cy="365" rx="11" ry="7" fill="#000"/>
+      <!-- Elegant maternal expression -->
+      <circle cx="60" cy="60" r="3" fill="#000"/>
+      <circle cx="80" cy="60" r="3" fill="#000"/>
+      <path d="M 55 85 Q 70 95 85 85" stroke="#000" stroke-width="3" fill="none"/>
+    </g>
+    
+    <!-- Front row - Children -->
+    <!-- Older child -->
+    <g transform="translate(-50, 200)">
+      <circle cx="50" cy="50" r="40" fill="#FDBCB4"/>
+      <path d="M 10 35 Q 50 5 90 35" fill="#8B4513"/>
+      <rect x="25" y="85" width="50" height="95" rx="12" fill="#000080"/>
+      <rect x="5" y="95" width="20" height="75" rx="10" fill="#FDBCB4"/>
+      <rect x="75" y="95" width="20" height="75" rx="10" fill="#FDBCB4"/>
+      <rect x="35" y="180" width="15" height="85" fill="#2F2F2F"/>
+      <rect x="50" y="180" width="15" height="85" fill="#2F2F2F"/>
+      <ellipse cx="42" cy="270" rx="8" ry="5" fill="#000"/>
+      <ellipse cx="57" cy="270" rx="8" ry="5" fill="#000"/>
+      <!-- Formal child expression -->
+      <circle cx="42" cy="42" r="2.5" fill="#000"/>
+      <circle cx="58" cy="42" r="2.5" fill="#000"/>
+      <path d="M 38 60 Q 50 68 62 60" stroke="#000" stroke-width="2" fill="none"/>
+    </g>
+    
+    <!-- Younger child -->
+    <g transform="translate(150, 220)">
+      <circle cx="40" cy="40" r="35" fill="#FDBCB4"/>
+      <path d="M 5 25 Q 40 0 75 25" fill="#FFD700"/>
+      <rect x="20" y="70" width="40" height="80" rx="10" fill="#FF1493"/>
+      <rect x="5" y="80" width="15" height="65" rx="8" fill="#FDBCB4"/>
+      <rect x="60" y="80" width="15" height="65" rx="8" fill="#FDBCB4"/>
+      <rect x="28" y="150" width="12" height="75" fill="#2F2F2F"/>
+      <rect x="40" y="150" width="12" height="75" fill="#2F2F2F"/>
+      <ellipse cx="34" cy="230" rx="7" ry="4" fill="#000"/>
+      <ellipse cx="46" cy="230" rx="7" ry="4" fill="#000"/>
+      <!-- Sweet child expression -->
+      <circle cx="32" cy="32" r="2" fill="#000"/>
+      <circle cx="48" cy="32" r="2" fill="#000"/>
+      <path d="M 28 48 Q 40 56 52 48" stroke="#000" stroke-width="2" fill="none"/>
+    </g>
+    
+  </g>
+  
+  <!-- Romantic European atmosphere -->
+  <g opacity="0.6">
+    <!-- Floating petals -->
+    <ellipse cx="300" cy="400" rx="4" ry="8" fill="#FFB6C1" transform="rotate(30 300 400)"/>
+    <ellipse cx="500" cy="350" rx="3" ry="6" fill="#FFC0CB" transform="rotate(-20 500 350)"/>
+    <ellipse cx="1600" cy="450" rx="4" ry="8" fill="#FFB6C1" transform="rotate(45 1600 450)"/>
+    <ellipse cx="1400" cy="380" rx="3" ry="6" fill="#FFC0CB" transform="rotate(-30 1400 380)"/>
+  </g>
+  
+
+</svg>

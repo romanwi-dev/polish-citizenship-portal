@@ -1,0 +1,331 @@
+{
+  "formType": "OBY",
+  "formName": "Citizenship Application",
+  "formNamePl": "Wniosek o obywatelstwo",
+  "fields": [
+    {
+      "code": "OBY-A-GN",
+      "plLabel": "Imiona wnioskodawcy",
+      "enLabel": "Applicant Given Names",
+      "type": "text",
+      "aliases": [
+        "imiona",
+        "imię",
+        "given names",
+        "first names",
+        "christian names",
+        "forenames",
+        "wnioskodawca"
+      ]
+    },
+    {
+      "code": "OBY-A-SN",
+      "plLabel": "Nazwisko wnioskodawcy",
+      "enLabel": "Applicant Surname",
+      "type": "text",
+      "aliases": [
+        "nazwisko",
+        "surname",
+        "family name",
+        "last name"
+      ]
+    },
+    {
+      "code": "OBY-A-BD",
+      "plLabel": "Data urodzenia wnioskodawcy",
+      "enLabel": "Applicant Birth Date",
+      "type": "date",
+      "aliases": [
+        "data urodzenia",
+        "birth date",
+        "date of birth",
+        "urodzony",
+        "urodzona",
+        "born"
+      ]
+    },
+    {
+      "code": "OBY-A-BP",
+      "plLabel": "Miejsce urodzenia wnioskodawcy",
+      "enLabel": "Applicant Birth Place",
+      "type": "address",
+      "aliases": [
+        "miejsce urodzenia",
+        "birth place",
+        "place of birth",
+        "born in",
+        "urodzony w",
+        "urodzona w"
+      ]
+    },
+    {
+      "code": "OBY-A-ADDR",
+      "plLabel": "Adres wnioskodawcy",
+      "enLabel": "Applicant Address",
+      "type": "address",
+      "aliases": [
+        "adres",
+        "address",
+        "zamieszkały",
+        "zamieszkała",
+        "residing at",
+        "residing"
+      ]
+    },
+    {
+      "code": "OBY-A-PESEL",
+      "plLabel": "PESEL wnioskodawcy",
+      "enLabel": "Applicant PESEL",
+      "type": "number",
+      "aliases": [
+        "pesel",
+        "nr pesel",
+        "numer pesel"
+      ]
+    },
+    {
+      "code": "OBY-A-NATION",
+      "plLabel": "Obecne obywatelstwo",
+      "enLabel": "Current Nationality",
+      "type": "text",
+      "aliases": [
+        "obywatelstwo",
+        "nationality",
+        "citizenship",
+        "current citizenship",
+        "obecne obywatelstwo"
+      ]
+    },
+    {
+      "code": "OBY-F-GN",
+      "plLabel": "Imiona ojca",
+      "enLabel": "Father Given Names",
+      "type": "text",
+      "aliases": [
+        "imiona ojca",
+        "imię ojca",
+        "father names",
+        "father given names",
+        "ojciec"
+      ]
+    },
+    {
+      "code": "OBY-F-SN",
+      "plLabel": "Nazwisko ojca",
+      "enLabel": "Father Surname",
+      "type": "text",
+      "aliases": [
+        "nazwisko ojca",
+        "father surname",
+        "father family name"
+      ]
+    },
+    {
+      "code": "OBY-F-BD",
+      "plLabel": "Data urodzenia ojca",
+      "enLabel": "Father Birth Date",
+      "type": "date",
+      "aliases": [
+        "data urodzenia ojca",
+        "father birth date",
+        "father date of birth"
+      ]
+    },
+    {
+      "code": "OBY-F-BP",
+      "plLabel": "Miejsce urodzenia ojca",
+      "enLabel": "Father Birth Place",
+      "type": "address",
+      "aliases": [
+        "miejsce urodzenia ojca",
+        "father birth place",
+        "father place of birth"
+      ]
+    },
+    {
+      "code": "OBY-F-NATION",
+      "plLabel": "Obywatelstwo ojca",
+      "enLabel": "Father Nationality",
+      "type": "text",
+      "aliases": [
+        "obywatelstwo ojca",
+        "father nationality",
+        "father citizenship"
+      ]
+    },
+    {
+      "code": "OBY-M-GN",
+      "plLabel": "Imiona matki",
+      "enLabel": "Mother Given Names",
+      "type": "text",
+      "aliases": [
+        "imiona matki",
+        "imię matki",
+        "mother names",
+        "mother given names",
+        "matka"
+      ]
+    },
+    {
+      "code": "OBY-M-SN",
+      "plLabel": "Nazwisko matki",
+      "enLabel": "Mother Surname",
+      "type": "text",
+      "aliases": [
+        "nazwisko matki",
+        "mother surname",
+        "mother family name",
+        "nazwisko panieńskie"
+      ]
+    },
+    {
+      "code": "OBY-M-BD",
+      "plLabel": "Data urodzenia matki",
+      "enLabel": "Mother Birth Date",
+      "type": "date",
+      "aliases": [
+        "data urodzenia matki",
+        "mother birth date",
+        "mother date of birth"
+      ]
+    },
+    {
+      "code": "OBY-M-BP",
+      "plLabel": "Miejsce urodzenia matki",
+      "enLabel": "Mother Birth Place",
+      "type": "address",
+      "aliases": [
+        "miejsce urodzenia matki",
+        "mother birth place",
+        "mother place of birth"
+      ]
+    },
+    {
+      "code": "OBY-M-NATION",
+      "plLabel": "Obywatelstwo matki",
+      "enLabel": "Mother Nationality",
+      "type": "text",
+      "aliases": [
+        "obywatelstwo matki",
+        "mother nationality",
+        "mother citizenship"
+      ]
+    },
+    {
+      "code": "OBY-ANCESTOR-TYPE",
+      "plLabel": "Typ przodka",
+      "enLabel": "Ancestor Type",
+      "type": "text",
+      "aliases": [
+        "przodek",
+        "ancestor",
+        "rodzic",
+        "parent",
+        "dziadek",
+        "grandfather",
+        "babcia",
+        "grandmother"
+      ]
+    },
+    {
+      "code": "OBY-ANCESTOR-GN",
+      "plLabel": "Imiona przodka",
+      "enLabel": "Ancestor Given Names",
+      "type": "text",
+      "aliases": [
+        "imiona przodka",
+        "ancestor names"
+      ]
+    },
+    {
+      "code": "OBY-ANCESTOR-SN",
+      "plLabel": "Nazwisko przodka",
+      "enLabel": "Ancestor Surname",
+      "type": "text",
+      "aliases": [
+        "nazwisko przodka",
+        "ancestor surname"
+      ]
+    },
+    {
+      "code": "OBY-ANCESTOR-BD",
+      "plLabel": "Data urodzenia przodka",
+      "enLabel": "Ancestor Birth Date",
+      "type": "date",
+      "aliases": [
+        "data urodzenia przodka",
+        "ancestor birth date"
+      ]
+    },
+    {
+      "code": "OBY-ANCESTOR-BP",
+      "plLabel": "Miejsce urodzenia przodka",
+      "enLabel": "Ancestor Birth Place",
+      "type": "address",
+      "aliases": [
+        "miejsce urodzenia przodka",
+        "ancestor birth place"
+      ]
+    },
+    {
+      "code": "OBY-MARRIAGE-DATE",
+      "plLabel": "Data ślubu",
+      "enLabel": "Marriage Date",
+      "type": "date",
+      "aliases": [
+        "data ślubu",
+        "marriage date",
+        "date of marriage",
+        "ślub",
+        "married"
+      ]
+    },
+    {
+      "code": "OBY-MARRIAGE-PLACE",
+      "plLabel": "Miejsce ślubu",
+      "enLabel": "Marriage Place",
+      "type": "address",
+      "aliases": [
+        "miejsce ślubu",
+        "marriage place",
+        "place of marriage"
+      ]
+    },
+    {
+      "code": "OBY-SPOUSE-GN",
+      "plLabel": "Imiona małżonka",
+      "enLabel": "Spouse Given Names",
+      "type": "text",
+      "aliases": [
+        "imiona małżonka",
+        "spouse names",
+        "małżonek",
+        "małżonka"
+      ]
+    },
+    {
+      "code": "OBY-SPOUSE-SN",
+      "plLabel": "Nazwisko małżonka",
+      "enLabel": "Spouse Surname",
+      "type": "text",
+      "aliases": [
+        "nazwisko małżonka",
+        "spouse surname"
+      ]
+    },
+    {
+      "code": "OBY-DOCUMENTS",
+      "plLabel": "Dokumenty",
+      "enLabel": "Documents",
+      "type": "text",
+      "aliases": [
+        "dokumenty",
+        "documents",
+        "załączniki",
+        "attachments",
+        "akt urodzenia",
+        "birth certificate"
+      ]
+    }
+  ]
+}

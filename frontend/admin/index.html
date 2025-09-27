@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Admin — Cases (Mobile)</title>
+<link rel="stylesheet" href="/static/admin/style.css?v=7">
+</head>
+<body>
+<main class="container">
+
+  <div class="toolbar-wrap">
+    <div class="toolbar">
+      <input id="email" class="input" placeholder="staff email" inputmode="email" autocomplete="username">
+      <input id="password" class="input" placeholder="password" type="password" autocomplete="current-password">
+      <button class="btn" id="login">Login</button>
+      <button class="btn secondary" id="bootstrap">Bootstrap Admin</button>
+      <span id="who" class="badge">not logged in</span>
+    </div>
+    <div class="toolbar" style="margin-top:8px">
+      <input id="q" class="input" placeholder="Search messages & filenames…" enterkeyhint="search">
+      <button class="btn" id="search">Search</button>
+      <button class="btn secondary" id="export">CSV</button>
+      <span id="count" class="badge">0 results</span>
+    </div>
+  </div>
+
+  <div id="cards" class="list" aria-live="polite"></div>
+
+  <div style="display:flex;gap:8px;justify-content:space-between;margin:14px 0">
+    <button class="btn secondary" id="prev">Prev</button>
+    <button class="btn" id="next">Next</button>
+  </div>
+
+</main>
+
+<aside class="drawer" id="drawer" aria-hidden="true" aria-label="Case details">
+  <div class="drawer-head">
+    <h3>Case <span id="d-id"></span></h3>
+    <button class="btn secondary" id="close">Close</button>
+  </div>
+  <div class="drawer-body">
+    <div class="row-muted" id="d-meta"></div>
+
+    <div style="display:flex; gap:8px; align-items:center; flex-wrap:wrap">
+      <label class="row-muted" for="d-status">Status</label>
+      <select id="d-status" class="input" style="flex:1">
+        <option>OPEN</option><option>ON HOLD</option><option>CLOSED</option>
+      </select>
+      <button class="btn" id="d-save">Save</button>
+    </div>
+
+    <div style="display:flex; gap:8px; flex-wrap:wrap">
+      <input id="d-email" class="input" placeholder="client email" inputmode="email" style="flex:1 1 240px">
+      <input id="d-phone" class="input" placeholder="+12025550123" inputmode="tel" style="flex:1 1 180px">
+      <button class="btn secondary" id="d-contact">Update Contact</button>
+    </div>
+
+    <div style="display:flex; gap:8px; flex-wrap:wrap">
+      <textarea id="d-sms-message" class="input" placeholder="Type SMS message to client..." rows="3" style="flex:1 1 100%; resize:vertical; margin-bottom:8px;"></textarea>
+      <button class="btn" id="d-sms-send" style="flex:1">📱 Send SMS</button>
+      <button class="btn secondary" id="d-wa-nudge" style="flex:1">WhatsApp Nudge</button>
+    </div>
+
+    <div style="display:flex; gap:8px; flex-wrap:wrap">
+      <button class="btn warn" id="d-anon" style="flex:1">Anonymize (GDPR)</button>
+      <button class="btn danger" id="d-del" style="flex:1">Hard Delete</button>
+    </div>
+
+    <section>
+      <h4>Messages</h4>
+      <div id="d-msgs"></div>
+    </section>
+
+    <section>
+      <h4>Evidence</h4>
+      <div id="d-ev"></div>
+    </section>
+  </div>
+
+  <div class="actions-bottom">
+    <button class="btn" id="d-save-bottom">Save</button>
+    <button class="btn secondary" id="d-email-bottom">Email</button>
+    <button class="btn secondary" id="d-wa-bottom">WhatsApp</button>
+  </div>
+</aside>
+
+<script>
+let JWT = localStorage.getItem('STAFF_JWT') || '';
+let ROLE = localStorage.getItem('STAFF_ROLE') || '';
+function authHeaders(){ const h={}; if(JWT) h['Authorization']='Bearer '+JWT; return h; }
+function setWho(){ document.getElementById('who').textContent = JWT ? ('logged as '+ROLE) : 'not logged in'; }
+async function fetchJSON(url){ const r=await fetch(url,{headers:authHeaders()}); if(r.status===401) alert('Unauthorized — login first.'); return r.json(); }
+async function sendJSON(url,method,body){ const r=await fetch(url,{method,headers:Object.assign({'Content-Type':'application/json'},authHeaders()),body:JSON.stringify(body||{})}); return r.json(); }
+
+let limit=20, offset=0, q='';
+const cards = document.getElementById('cards');
+
+document.getElementById('login').onclick = async ()=>{
+  const email = document.getElementById('email').value.trim();
+  const password = document.getElementById('password').value;
+  const d = await sendJSON('/api/staff/login','POST',{email,password});
+  if(d.ok){ JWT=d.token; ROLE=d.role; localStorage.setItem('STAFF_JWT',JWT); localStorage.setItem('STAFF_ROLE',ROLE); setWho(); load(); }
+  else alert('Login failed');
+};
+document.getElementById('bootstrap').onclick = async ()=>{
+  const email = prompt('Admin email'); const password = prompt('Admin password (min 8 chars)');
+  if(!email||!password) return;
+  const d = await sendJSON('/api/staff/bootstrap','POST',{email,password,role:'ADMIN'});
+  if(d.ok){ JWT=d.token; ROLE=d.role; localStorage.setItem('STAFF_JWT',JWT); localStorage.setItem('STAFF_ROLE',ROLE); setWho(); load(); }
+  else alert('Bootstrap failed: '+JSON.stringify(d));
+};
+document.getElementById('search').onclick = ()=>{ q=document.getElementById('q').value.trim(); offset=0; load(); };
+document.getElementById('prev').onclick = ()=>{ offset=Math.max(0, offset-limit); load(); };
+document.getElementById('next').onclick = ()=>{ offset += limit; load(); };
+document.getElementById('export').onclick=()=>{ window.open(`/api/admin/cases.csv?q=${encodeURIComponent(q)}&sort=created_at&dir=desc&limit=1000&offset=0`, '_blank'); };
+setWho();
+
+async function load(){
+  const d = await fetchJSON(`/api/admin/cases?sort=created_at&dir=desc&limit=${limit}&offset=${offset}&q=${encodeURIComponent(q)}`);
+  document.getElementById('count').textContent = (d.total||0) + ' results';
+  cards.innerHTML = (d.cases||[]).map(c=>`
+    <article class="card-row">
+      <div class="row-top">
+        <div><b>#${c.id}</b></div>
+        <div class="row-tags">
+          <span class="badge">${c.status||''}</span>
+          ${c.verdict? `<span class="badge">${c.verdict}</span>`:''}
+          ${c.confidence? `<span class="badge">${c.confidence}</span>`:''}
+        </div>
+      </div>
+      <div class="row-meta">${new Date(c.created_at).toLocaleString()}</div>
+      <div class="row-meta">Msgs: ${c.messages||0} • Docs: ${c.evidence||0}</div>
+      <div><button class="btn btn-open" data-id="${c.id}" style="width:100%;margin-top:6px">Open</button></div>
+    </article>
+  `).join('');
+  cards.querySelectorAll('.btn-open').forEach(b=>b.onclick=()=>openCase(+b.dataset.id));
+}
+
+const dr = document.getElementById('drawer');
+function openDrawer(){ dr.classList.add('open'); dr.setAttribute('aria-hidden','false'); }
+function closeDrawer(){ dr.classList.remove('open'); dr.setAttribute('aria-hidden','true'); }
+document.getElementById('close').onclick = closeDrawer;
+
+async function openCase(id){
+  const d = await fetchJSON(`/api/admin/case/${id}`);
+  const c = d.case;
+  document.getElementById('d-id').textContent = '#'+c.id;
+  document.getElementById('d-status').value = c.status || 'OPEN';
+  document.getElementById('d-meta').textContent = `Verdict: ${c.verdict||'-'} (${c.confidence||'-'}) • Created: ${new Date(c.created_at).toLocaleString()}`;
+  document.getElementById('d-email').value = c.client_email || '';
+  document.getElementById('d-phone').value = c.client_phone || '';
+  document.getElementById('d-msgs').innerHTML = c.messages.map(m=>`
+    <div style="padding:10px;border:1px solid var(--border);border-radius:10px;margin-bottom:8px">
+      <b>${m.who}</b> — <span class="row-muted">${new Date(m.ts).toLocaleString()}</span><br>${(m.text||'').replace(/</g,'&lt;')}
+    </div>`).join('');
+  document.getElementById('d-ev').innerHTML = c.evidence.map(e=>`
+    <div style="padding:10px;border:1px solid var(--border);border-radius:10px;margin-bottom:8px">
+      <div><b>${e.filename}</b> • ${e.method||''} • pages: ${e.pages||1}</div>
+      ${e.excerpt ? `<div class="row-muted" style="margin-top:4px">${e.excerpt.replace(/</g,'&lt;')}</div>`:''}
+      ${e.path ? `<div style="margin-top:6px"><a class="btn secondary" href="${e.path.startsWith('data/')?'/'+e.path:'/data/uploads/'+e.path.split('/').pop()}" target="_blank">Download</a></div>`:''}
+    </div>`).join('');
+  openDrawer();
+
+  const save = async ()=>{ await sendJSON(`/api/admin/case/${id}/status`,'PATCH',{status: document.getElementById('d-status').value}); load(); };
+  const updateContact = async ()=>{ await sendJSON(`/api/admin/case/${id}/contact`,'PATCH',{email: document.getElementById('d-email').value, phone: document.getElementById('d-phone').value}); openCase(id); };
+  const emailNudge = async ()=>{
+    const subj = prompt('Subject','Quick next step on your Polish citizenship case');
+    const msg = prompt('Message','Hi! Please upload the naturalization certificate or book a short call.');
+    const to = document.getElementById('d-email').value || null;
+    const r = await sendJSON(`/api/admin/case/${id}/nudge/email`,'POST',{subject:subj,message:msg,email_override:to});
+    alert(r.ok ? 'Email sent' : 'Email failed: '+JSON.stringify(r));
+  };
+  const sendSMS = async ()=>{
+    const message = document.getElementById('d-sms-message').value.trim();
+    if(!message) { alert('Please enter SMS message'); return; }
+    const phone = document.getElementById('d-phone').value || null;
+    const r = await sendJSON(`/api/admin/case/${id}/sms`,'POST',{message, phone});
+    if(r.ok && r.sent) {
+      alert(`SMS sent successfully to ${r.phone}`);
+      document.getElementById('d-sms-message').value = '';
+      openCase(id); // Refresh to show sent message
+    } else {
+      alert('SMS failed: ' + (r.error || 'Unknown error'));
+    }
+  };
+  const waNudge = async ()=>{
+    const msg = prompt('WhatsApp message','Hi! Quick nudge to upload the naturalization certificate so we can proceed. Thanks!');
+    const to = document.getElementById('d-phone').value || null;
+    const r = await sendJSON(`/api/admin/case/${id}/nudge/whatsapp`,'POST',{message:msg,phone_override:to});
+    alert(r.ok ? 'WhatsApp nudge triggered' : 'WA failed: '+JSON.stringify(r));
+  };
+  const anon = async ()=>{ if(!confirm('Anonymize this case?')) return; const r = await sendJSON(`/api/admin/case/${id}/anonymize`,'POST',{}); alert(r.ok?'Case anonymized':'Failed'); load(); closeDrawer(); };
+  const del = async ()=>{ if(!confirm('HARD DELETE this case?')) return; const r = await fetch(`/api/admin/case/${id}`,{method:'DELETE', headers:authHeaders()}); alert(r.ok?'Case deleted':'Failed'); load(); closeDrawer(); };
+
+  document.getElementById('d-save').onclick = save;
+  document.getElementById('d-contact').onclick = updateContact;
+  document.getElementById('d-sms-send').onclick = sendSMS;
+  document.getElementById('d-wa-nudge').onclick = waNudge;
+  document.getElementById('d-anon').onclick = anon;
+  document.getElementById('d-del').onclick = del;
+
+  document.getElementById('d-save-bottom').onclick = save;
+  document.getElementById('d-email-bottom').onclick = emailNudge;
+  document.getElementById('d-wa-bottom').onclick = waNudge;
+}
+load();
+</script>
+</body>
+</html>

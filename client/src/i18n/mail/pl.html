@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{subject}}</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        .email-container {
+            background: white;
+            border-radius: 8px;
+            padding: 30px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .header {
+            background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+        .header p {
+            margin: 10px 0 0 0;
+            opacity: 0.9;
+            font-size: 14px;
+        }
+        .content {
+            margin-bottom: 30px;
+        }
+        .details-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: #f8f9fa;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        .details-table th,
+        .details-table td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        .details-table th {
+            background: #dc2626;
+            color: white;
+            font-weight: bold;
+        }
+        .details-table tr:last-child td {
+            border-bottom: none;
+        }
+        .footer {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #e5e7eb;
+            text-align: center;
+            font-size: 12px;
+            color: #666;
+        }
+        .button {
+            display: inline-block;
+            padding: 12px 24px;
+            background: #dc2626;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+        .button:hover {
+            background: #b91c1c;
+        }
+        .status-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+        .status-pending {
+            background: #fef3c7;
+            color: #92400e;
+        }
+        .status-approved {
+            background: #d1fae5;
+            color: #065f46;
+        }
+        .status-declined {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+    </style>
+</head>
+<body>
+    <div class="email-container">
+        <!-- Szablon żądania HAC -->
+        {{#if isHACRequest}}
+        <div class="header">
+            <h1>🔔 Nowe żądanie HAC</h1>
+            <p>System współpracy wspomaganej człowiekiem</p>
+        </div>
+        
+        <div class="content">
+            <h2 style="color: #dc2626;">Szczegóły żądania</h2>
+            <table class="details-table">
+                <tr>
+                    <th>ID żądania</th>
+                    <td>{{requestId}}</td>
+                </tr>
+                <tr>
+                    <th>ID sprawy</th>
+                    <td>{{caseId}}</td>
+                </tr>
+                <tr>
+                    <th>Typ</th>
+                    <td>{{requestType}}</td>
+                </tr>
+                <tr>
+                    <th>Priorytet</th>
+                    <td><span class="status-badge status-pending">{{priority}}</span></td>
+                </tr>
+                <tr>
+                    <th>Przesłano</th>
+                    <td>{{submittedAt}}</td>
+                </tr>
+            </table>
+            
+            {{#if description}}
+            <h3>Opis</h3>
+            <p style="background: #f8f9fa; padding: 15px; border-radius: 6px; border-left: 4px solid #dc2626;">
+                {{description}}
+            </p>
+            {{/if}}
+            
+            <div style="text-align: center; margin: 30px 0;">
+                <a href="{{dashboardUrl}}" class="button">Przejrzyj żądanie</a>
+            </div>
+        </div>
+        {{/if}}
+        
+        <!-- Szablon aktualizacji statusu sprawy -->
+        {{#if isCaseUpdate}}
+        <div class="header">
+            <h1>📋 Aktualizacja statusu sprawy</h1>
+            <p>Wniosek o obywatelstwo polskie</p>
+        </div>
+        
+        <div class="content">
+            <p>Witaj {{clientName}},</p>
+            
+            <p>Twoja sprawa o obywatelstwo polskie została zaktualizowana:</p>
+            
+            <table class="details-table">
+                <tr>
+                    <th>ID sprawy</th>
+                    <td>{{caseId}}</td>
+                </tr>
+                <tr>
+                    <th>Aktualny status</th>
+                    <td><span class="status-badge status-{{statusClass}}">{{status}}</span></td>
+                </tr>
+                <tr>
+                    <th>Postęp</th>
+                    <td>{{progress}}% ukończone</td>
+                </tr>
+                <tr>
+                    <th>Ostatnia aktualizacja</th>
+                    <td>{{updatedAt}}</td>
+                </tr>
+            </table>
+            
+            {{#if nextSteps}}
+            <h3>Następne kroki</h3>
+            <ul style="background: #f8f9fa; padding: 15px; border-radius: 6px;">
+                {{#each nextSteps}}
+                <li style="margin: 5px 0;">{{this}}</li>
+                {{/each}}
+            </ul>
+            {{/if}}
+            
+            <div style="text-align: center; margin: 30px 0;">
+                <a href="{{caseUrl}}" class="button">Zobacz szczegóły sprawy</a>
+            </div>
+        </div>
+        {{/if}}
+        
+        <!-- Szablon ogólny -->
+        {{#unless isHACRequest}}{{#unless isCaseUpdate}}
+        <div class="header">
+            <h1>{{title}}</h1>
+            {{#if subtitle}}<p>{{subtitle}}</p>{{/if}}
+        </div>
+        
+        <div class="content">
+            {{{content}}}
+        </div>
+        {{/unless}}{{/unless}}
+        
+        <div class="footer">
+            <p>Ten email został wysłany przez Portal Obywatelstwa Polskiego</p>
+            <p>Jeśli masz pytania, skontaktuj się z naszym zespołem wsparcia.</p>
+            <p style="margin-top: 15px;">
+                <a href="{{unsubscribeUrl}}" style="color: #666; text-decoration: none;">Wypisz się</a> |
+                <a href="{{contactUrl}}" style="color: #666; text-decoration: none;">Kontakt ze wsparciem</a>
+            </p>
+        </div>
+    </div>
+</body>
+</html>

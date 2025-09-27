@@ -1,0 +1,19 @@
+{
+  "id": "hac_1758178753683_y87468lkj",
+  "caseId": "TEST-456",
+  "type": "tree_update",
+  "payload": {
+    "persons": [
+      {
+        "id": "test",
+        "name": "Test Person"
+      }
+    ]
+  },
+  "submittedAt": "2025-09-18T06:59:13.683Z",
+  "submittedBy": "127.0.0.1",
+  "status": "declined",
+  "declinedAt": "2025-09-18T06:59:24.783Z",
+  "declinedBy": "Test Admin",
+  "reason": "Testing decline functionality"
+}

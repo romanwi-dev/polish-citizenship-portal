@@ -1,0 +1,144 @@
+<svg width="2000" height="1200" viewBox="0 0 2000 1200" xmlns="http://www.w3.org/2000/svg">
+  <!-- OPTION 1: Classic European Family Portrait -->
+  <defs>
+    <linearGradient id="sky1" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#87CEEB"/>
+      <stop offset="100%" stop-color="#E0F6FF"/>
+    </linearGradient>
+  </defs>
+  
+  <!-- Beautiful European cityscape background -->
+  <rect width="2000" height="800" fill="url(#sky1)"/>
+  
+  <!-- Historic European buildings -->
+  <rect x="0" y="600" width="400" height="600" fill="#F5DEB3"/>
+  <polygon points="0,600 200,450 400,600" fill="#8B4513"/>
+  <rect x="400" y="550" width="300" height="650" fill="#DDD"/>
+  <rect x="700" y="580" width="250" height="620" fill="#F0F0F0"/>
+  <rect x="950" y="520" width="350" height="680" fill="#E8E8E8"/>
+  <rect x="1300" y="560" width="300" height="640" fill="#F5F5DC"/>
+  <rect x="1600" y="500" width="400" height="700" fill="#DDD"/>
+  
+  <!-- Windows -->
+  <g fill="#4169E1" opacity="0.7">
+    <rect x="100" y="650" width="25" height="35"/>
+    <rect x="150" y="650" width="25" height="35"/>
+    <rect x="250" y="650" width="25" height="35"/>
+    <rect x="300" y="650" width="25" height="35"/>
+  </g>
+  
+  <!-- Ground -->
+  <rect x="0" y="1000" width="2000" height="200" fill="#8B7355"/>
+  
+  <!-- 3-Generation Family - Formal Portrait Style -->
+  <g transform="translate(700, 400)">
+    
+    <!-- Grandparents (back row) -->
+    <!-- Grandfather -->
+    <g transform="translate(-50, 50)">
+      <circle cx="60" cy="60" r="45" fill="#FDBCB4"/>
+      <path d="M 15 45 Q 60 10 105 45" fill="#E6E6FA"/>
+      <rect x="30" y="100" width="60" height="120" rx="15" fill="#2F4F4F"/>
+      <rect x="10" y="110" width="25" height="90" rx="12" fill="#FDBCB4"/>
+      <rect x="85" y="110" width="25" height="90" rx="12" fill="#FDBCB4"/>
+      <rect x="40" y="220" width="20" height="100" fill="#000080"/>
+      <rect x="60" y="220" width="20" height="100" fill="#000080"/>
+      <!-- Happy face -->
+      <circle cx="50" cy="50" r="3" fill="#000"/>
+      <circle cx="70" cy="50" r="3" fill="#000"/>
+      <path d="M 45 70 Q 60 80 75 70" stroke="#000" stroke-width="3" fill="none"/>
+    </g>
+    
+    <!-- Grandmother -->
+    <g transform="translate(100, 50)">
+      <circle cx="60" cy="60" r="45" fill="#FDBCB4"/>
+      <path d="M 15 45 Q 60 10 105 45" fill="#F0F0F0"/>
+      <path d="M 30 100 L 90 100 L 100 220 L 20 220 Z" fill="#8B008B"/>
+      <rect x="10" y="110" width="25" height="80" rx="12" fill="#FDBCB4"/>
+      <rect x="85" y="110" width="25" height="80" rx="12" fill="#FDBCB4"/>
+      <rect x="40" y="220" width="20" height="100" fill="#8B008B"/>
+      <rect x="60" y="220" width="20" height="100" fill="#8B008B"/>
+      <!-- Happy face -->
+      <circle cx="50" cy="50" r="3" fill="#000"/>
+      <circle cx="70" cy="50" r="3" fill="#000"/>
+      <path d="M 45 70 Q 60 80 75 70" stroke="#000" stroke-width="3" fill="none"/>
+    </g>
+    
+    <!-- Parents (middle row) with Polish passport -->
+    <!-- Father -->
+    <g transform="translate(-150, 150)">
+      <circle cx="70" cy="70" r="50" fill="#FDBCB4"/>
+      <path d="M 20 55 Q 70 15 120 55" fill="#8B4513"/>
+      <rect x="35" y="115" width="70" height="130" rx="18" fill="#006400"/>
+      <rect x="10" y="125" width="30" height="100" rx="15" fill="#FDBCB4"/>
+      <rect x="105" y="125" width="30" height="100" rx="15" fill="#FDBCB4"/>
+      
+      <!-- Polish Passport prominently displayed -->
+      <g transform="translate(120, 150)">
+        <rect x="0" y="0" width="35" height="50" fill="#8B0000" rx="3"/>
+        <rect x="3" y="3" width="29" height="20" fill="#FFF"/>
+        <text x="17.5" y="12" text-anchor="middle" font-size="5" font-weight="bold" fill="#8B0000">PASSPORT</text>
+        <text x="17.5" y="18" text-anchor="middle" font-size="4" font-weight="bold" fill="#8B0000">POLAND</text>
+        <circle cx="17.5" cy="30" r="7" fill="#FFD700"/>
+        <text x="17.5" y="35" text-anchor="middle" font-size="5" font-weight="bold" fill="#8B0000">PL</text>
+        <text x="17.5" y="45" text-anchor="middle" font-size="3" fill="#FFF">POLSKA</text>
+      </g>
+      
+      <rect x="45" y="245" width="25" height="110" fill="#000080"/>
+      <rect x="75" y="245" width="25" height="110" fill="#000080"/>
+      <!-- Happy face -->
+      <circle cx="60" cy="60" r="3" fill="#000"/>
+      <circle cx="80" cy="60" r="3" fill="#000"/>
+      <path d="M 55 85 Q 70 95 85 85" stroke="#000" stroke-width="3" fill="none"/>
+    </g>
+    
+    <!-- Mother -->
+    <g transform="translate(50, 150)">
+      <circle cx="70" cy="70" r="50" fill="#FDBCB4"/>
+      <path d="M 20 55 Q 70 15 120 55" fill="#FFD700"/>
+      <path d="M 35 115 L 105 115 L 115 245 L 25 245 Z" fill="#E91E63"/>
+      <rect x="10" y="125" width="30" height="90" rx="15" fill="#FDBCB4"/>
+      <rect x="105" y="125" width="30" height="90" rx="15" fill="#FDBCB4"/>
+      <rect x="45" y="245" width="25" height="110" fill="#E91E63"/>
+      <rect x="75" y="245" width="25" height="110" fill="#E91E63"/>
+      <!-- Happy face -->
+      <circle cx="60" cy="60" r="3" fill="#000"/>
+      <circle cx="80" cy="60" r="3" fill="#000"/>
+      <path d="M 55 85 Q 70 95 85 85" stroke="#000" stroke-width="3" fill="none"/>
+    </g>
+    
+    <!-- Children (front row) -->
+    <!-- Older child -->
+    <g transform="translate(-100, 280)">
+      <circle cx="50" cy="50" r="40" fill="#FDBCB4"/>
+      <path d="M 10 35 Q 50 5 90 35" fill="#8B4513"/>
+      <rect x="25" y="85" width="50" height="90" rx="12" fill="#FF8C00"/>
+      <rect x="5" y="95" width="20" height="70" rx="10" fill="#FDBCB4"/>
+      <rect x="75" y="95" width="20" height="70" rx="10" fill="#FDBCB4"/>
+      <rect x="35" y="175" width="15" height="80" fill="#32CD32"/>
+      <rect x="50" y="175" width="15" height="80" fill="#32CD32"/>
+      <!-- Happy face -->
+      <circle cx="42" cy="42" r="2.5" fill="#000"/>
+      <circle cx="58" cy="42" r="2.5" fill="#000"/>
+      <path d="M 38 60 Q 50 68 62 60" stroke="#000" stroke-width="2" fill="none"/>
+    </g>
+    
+    <!-- Younger child -->
+    <g transform="translate(80, 300)">
+      <circle cx="40" cy="40" r="35" fill="#FDBCB4"/>
+      <path d="M 5 25 Q 40 0 75 25" fill="#FFD700"/>
+      <rect x="20" y="70" width="40" height="75" rx="10" fill="#9370DB"/>
+      <rect x="5" y="80" width="15" height="60" rx="8" fill="#FDBCB4"/>
+      <rect x="60" y="80" width="15" height="60" rx="8" fill="#FDBCB4"/>
+      <rect x="28" y="145" width="12" height="70" fill="#FF6347"/>
+      <rect x="40" y="145" width="12" height="70" fill="#FF6347"/>
+      <!-- Happy face -->
+      <circle cx="32" cy="32" r="2" fill="#000"/>
+      <circle cx="48" cy="32" r="2" fill="#000"/>
+      <path d="M 28 48 Q 40 56 52 48" stroke="#000" stroke-width="2" fill="none"/>
+    </g>
+    
+  </g>
+  
+
+</svg>

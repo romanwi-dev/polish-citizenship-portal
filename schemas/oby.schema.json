@@ -1,0 +1,256 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://polishcitizenship.pl/schemas/oby.schema.json",
+  "title": "OBYWATELSTWO Polish Citizenship Application Schema",
+  "description": "Comprehensive schema for Polish citizenship by descent applications (~140 fields)",
+  "type": "object",
+  "required": [
+    "_meta",
+    "applicant"
+  ],
+  "properties": {
+    "_meta": {
+      "type": "object",
+      "properties": {
+        "schemaVersion": { "type": "string", "default": "1.0.0" },
+        "generatedAt": { "type": "string", "format": "date-time" },
+        "caseId": { "type": "string" },
+        "clientId": { "type": "string" }
+      }
+    },
+
+    "applicant": {
+      "type": "object",
+      "description": "Primary applicant information",
+      "required": [
+        "OBY-A-GN",
+        "OBY-A-SN",
+        "OBY-A-DOB",
+        "OBY-A-POB"
+      ],
+      "properties": {
+        "OBY-A-GN": { "type": "string", "description": "Given names" },
+        "OBY-A-SN": { "type": "string", "description": "Surname" },
+        "OBY-A-DOB": { "type": "string", "format": "date", "description": "Date of birth" },
+        "OBY-A-POB": { "type": "string", "description": "Place of birth (city)" },
+        "OBY-A-POB-COUNTRY": { "type": "string", "description": "Country of birth" },
+        "OBY-A-POB-STATE": { "type": "string", "description": "State/Province of birth" },
+        "OBY-A-GENDER": { "type": "string", "enum": ["M", "F", "X"], "description": "Gender" },
+        "OBY-A-NATIONALITY": { "type": "string", "description": "Current nationality" },
+        "OBY-A-PASSPORT-NO": { "type": "string", "description": "Passport number" },
+        "OBY-A-PASSPORT-COUNTRY": { "type": "string", "description": "Passport issuing country" },
+        "OBY-A-PASSPORT-ISSUED": { "type": "string", "format": "date", "description": "Passport issue date" },
+        "OBY-A-PASSPORT-EXPIRES": { "type": "string", "format": "date", "description": "Passport expiry date" },
+        "OBY-A-MARITAL-STATUS": { "type": "string", "enum": ["single", "married", "divorced", "widowed"], "description": "Marital status" },
+        "OBY-A-SPOUSE-NAME": { "type": "string", "description": "Spouse full name" },
+        "OBY-A-SPOUSE-NATIONALITY": { "type": "string", "description": "Spouse nationality" },
+        "OBY-A-CHILDREN-COUNT": { "type": "integer", "minimum": 0, "description": "Number of children" },
+        "OBY-A-EDUCATION": { "type": "string", "description": "Highest education level" },
+        "OBY-A-PROFESSION": { "type": "string", "description": "Current profession" },
+        "OBY-A-EMPLOYER": { "type": "string", "description": "Current employer" },
+        "OBY-A-INCOME": { "type": "string", "description": "Annual income" },
+        "OBY-A-POLISH-LANGUAGE": { "type": "string", "enum": ["none", "basic", "intermediate", "advanced", "native"], "description": "Polish language proficiency" },
+        "OBY-A-CRIMINAL-RECORD": { "type": "boolean", "description": "Has criminal record" },
+        "OBY-A-CRIMINAL-DETAILS": { "type": "string", "description": "Criminal record details" },
+        "OBY-A-MILITARY-SERVICE": { "type": "boolean", "description": "Military service obligations" },
+        "OBY-A-MILITARY-DETAILS": { "type": "string", "description": "Military service details" },
+        "OBY-A-OTHER-CITIZENSHIPS": { "type": "array", "items": { "type": "string" }, "description": "Other citizenships held" },
+        "OBY-A-RENOUNCE-CITIZENSHIPS": { "type": "boolean", "description": "Willing to renounce other citizenships" },
+        "OBY-A-PREVIOUS-APPLICATIONS": { "type": "boolean", "description": "Previous Polish citizenship applications" },
+        "OBY-A-PREVIOUS-DETAILS": { "type": "string", "description": "Previous application details" },
+        "OBY-A-BIRTH-CERT-NO": { "type": "string", "description": "Birth certificate number" },
+        "OBY-A-BIRTH-CERT-PLACE": { "type": "string", "description": "Birth certificate issuing place" },
+        "OBY-A-BIRTH-CERT-DATE": { "type": "string", "format": "date", "description": "Birth certificate issue date" }
+      }
+    },
+
+    "parent1": {
+      "type": "object",
+      "description": "First parent (Polish lineage)",
+      "properties": {
+        "OBY-P1-GN": { "type": "string", "description": "Given names" },
+        "OBY-P1-SN": { "type": "string", "description": "Surname" },
+        "OBY-P1-MAIDEN": { "type": "string", "description": "Maiden name" },
+        "OBY-P1-DOB": { "type": "string", "format": "date", "description": "Date of birth" },
+        "OBY-P1-POB": { "type": "string", "description": "Place of birth" },
+        "OBY-P1-POB-COUNTRY": { "type": "string", "description": "Country of birth" },
+        "OBY-P1-DOD": { "type": "string", "format": "date", "description": "Date of death" },
+        "OBY-P1-POD": { "type": "string", "description": "Place of death" },
+        "OBY-P1-NATIONALITY": { "type": "string", "description": "Nationality" },
+        "OBY-P1-POLISH-CITIZEN": { "type": "boolean", "description": "Was Polish citizen" },
+        "OBY-P1-CITIZENSHIP-LOST": { "type": "boolean", "description": "Lost Polish citizenship" },
+        "OBY-P1-CITIZENSHIP-LOST-DATE": { "type": "string", "format": "date", "description": "Date citizenship lost" },
+        "OBY-P1-CITIZENSHIP-LOST-REASON": { "type": "string", "description": "Reason citizenship lost" },
+        "OBY-P1-EMIGRATION-DATE": { "type": "string", "format": "date", "description": "Emigration from Poland date" },
+        "OBY-P1-EMIGRATION-DESTINATION": { "type": "string", "description": "Emigration destination country" },
+        "OBY-P1-MARRIAGE-DATE": { "type": "string", "format": "date", "description": "Marriage date" },
+        "OBY-P1-MARRIAGE-PLACE": { "type": "string", "description": "Marriage place" },
+        "OBY-P1-BIRTH-CERT-NO": { "type": "string", "description": "Birth certificate number" },
+        "OBY-P1-DEATH-CERT-NO": { "type": "string", "description": "Death certificate number" },
+        "OBY-P1-MARRIAGE-CERT-NO": { "type": "string", "description": "Marriage certificate number" },
+        "OBY-P1-PASSPORT-NO": { "type": "string", "description": "Polish passport number" }
+      }
+    },
+
+    "parent2": {
+      "type": "object", 
+      "description": "Second parent",
+      "properties": {
+        "OBY-P2-GN": { "type": "string", "description": "Given names" },
+        "OBY-P2-SN": { "type": "string", "description": "Surname" },
+        "OBY-P2-MAIDEN": { "type": "string", "description": "Maiden name" },
+        "OBY-P2-DOB": { "type": "string", "format": "date", "description": "Date of birth" },
+        "OBY-P2-POB": { "type": "string", "description": "Place of birth" },
+        "OBY-P2-POB-COUNTRY": { "type": "string", "description": "Country of birth" },
+        "OBY-P2-DOD": { "type": "string", "format": "date", "description": "Date of death" },
+        "OBY-P2-POD": { "type": "string", "description": "Place of death" },
+        "OBY-P2-NATIONALITY": { "type": "string", "description": "Nationality" },
+        "OBY-P2-POLISH-CITIZEN": { "type": "boolean", "description": "Was Polish citizen" },
+        "OBY-P2-CITIZENSHIP-LOST": { "type": "boolean", "description": "Lost Polish citizenship" },
+        "OBY-P2-CITIZENSHIP-LOST-DATE": { "type": "string", "format": "date", "description": "Date citizenship lost" },
+        "OBY-P2-CITIZENSHIP-LOST-REASON": { "type": "string", "description": "Reason citizenship lost" },
+        "OBY-P2-EMIGRATION-DATE": { "type": "string", "format": "date", "description": "Emigration from Poland date" },
+        "OBY-P2-EMIGRATION-DESTINATION": { "type": "string", "description": "Emigration destination country" },
+        "OBY-P2-MARRIAGE-DATE": { "type": "string", "format": "date", "description": "Marriage date" },
+        "OBY-P2-MARRIAGE-PLACE": { "type": "string", "description": "Marriage place" },
+        "OBY-P2-BIRTH-CERT-NO": { "type": "string", "description": "Birth certificate number" },
+        "OBY-P2-DEATH-CERT-NO": { "type": "string", "description": "Death certificate number" },
+        "OBY-P2-MARRIAGE-CERT-NO": { "type": "string", "description": "Marriage certificate number" },
+        "OBY-P2-PASSPORT-NO": { "type": "string", "description": "Polish passport number" }
+      }
+    },
+
+    "grandparent1": {
+      "type": "object",
+      "description": "First grandparent (Polish ancestor)",
+      "properties": {
+        "OBY-GP1-GN": { "type": "string", "description": "Given names" },
+        "OBY-GP1-SN": { "type": "string", "description": "Surname" },
+        "OBY-GP1-MAIDEN": { "type": "string", "description": "Maiden name" },
+        "OBY-GP1-DOB": { "type": "string", "format": "date", "description": "Date of birth" },
+        "OBY-GP1-POB": { "type": "string", "description": "Place of birth" },
+        "OBY-GP1-POB-COUNTRY": { "type": "string", "description": "Country of birth" },
+        "OBY-GP1-DOD": { "type": "string", "format": "date", "description": "Date of death" },
+        "OBY-GP1-POD": { "type": "string", "description": "Place of death" },
+        "OBY-GP1-RELATIONSHIP": { "type": "string", "enum": ["paternal-grandfather", "paternal-grandmother", "maternal-grandfather", "maternal-grandmother"], "description": "Relationship to applicant" },
+        "OBY-GP1-POLISH-CITIZEN": { "type": "boolean", "description": "Was Polish citizen" },
+        "OBY-GP1-CITIZENSHIP-LOST": { "type": "boolean", "description": "Lost Polish citizenship" },
+        "OBY-GP1-CITIZENSHIP-LOST-DATE": { "type": "string", "format": "date", "description": "Date citizenship lost" },
+        "OBY-GP1-EMIGRATION-DATE": { "type": "string", "format": "date", "description": "Emigration from Poland date" },
+        "OBY-GP1-EMIGRATION-DESTINATION": { "type": "string", "description": "Emigration destination" },
+        "OBY-GP1-BIRTH-CERT-NO": { "type": "string", "description": "Birth certificate number" },
+        "OBY-GP1-DEATH-CERT-NO": { "type": "string", "description": "Death certificate number" }
+      }
+    },
+
+    "grandparent2": {
+      "type": "object",
+      "description": "Second grandparent",
+      "properties": {
+        "OBY-GP2-GN": { "type": "string", "description": "Given names" },
+        "OBY-GP2-SN": { "type": "string", "description": "Surname" },
+        "OBY-GP2-MAIDEN": { "type": "string", "description": "Maiden name" },
+        "OBY-GP2-DOB": { "type": "string", "format": "date", "description": "Date of birth" },
+        "OBY-GP2-POB": { "type": "string", "description": "Place of birth" },
+        "OBY-GP2-POB-COUNTRY": { "type": "string", "description": "Country of birth" },
+        "OBY-GP2-DOD": { "type": "string", "format": "date", "description": "Date of death" },
+        "OBY-GP2-POD": { "type": "string", "description": "Place of death" },
+        "OBY-GP2-RELATIONSHIP": { "type": "string", "enum": ["paternal-grandfather", "paternal-grandmother", "maternal-grandfather", "maternal-grandmother"], "description": "Relationship to applicant" },
+        "OBY-GP2-POLISH-CITIZEN": { "type": "boolean", "description": "Was Polish citizen" },
+        "OBY-GP2-CITIZENSHIP-LOST": { "type": "boolean", "description": "Lost Polish citizenship" },
+        "OBY-GP2-CITIZENSHIP-LOST-DATE": { "type": "string", "format": "date", "description": "Date citizenship lost" },
+        "OBY-GP2-EMIGRATION-DATE": { "type": "string", "format": "date", "description": "Emigration from Poland date" },
+        "OBY-GP2-EMIGRATION-DESTINATION": { "type": "string", "description": "Emigration destination" },
+        "OBY-GP2-BIRTH-CERT-NO": { "type": "string", "description": "Birth certificate number" },
+        "OBY-GP2-DEATH-CERT-NO": { "type": "string", "description": "Death certificate number" }
+      }
+    },
+
+    "lineage": {
+      "type": "object",
+      "description": "Ancestry and lineage details",
+      "properties": {
+        "OBY-L-CLAIM-BASIS": { "type": "string", "enum": ["jus-sanguinis", "naturalization", "restoration"], "description": "Basis for citizenship claim" },
+        "OBY-L-ANCESTOR-LINE": { "type": "string", "enum": ["paternal", "maternal", "both"], "description": "Ancestral line of claim" },
+        "OBY-L-GENERATION": { "type": "string", "enum": ["parent", "grandparent", "great-grandparent"], "description": "Generation of Polish ancestor" },
+        "OBY-L-CONTINUOUS-LINEAGE": { "type": "boolean", "description": "Continuous Polish citizenship in lineage" },
+        "OBY-L-MILITARY-INTERRUPTION": { "type": "boolean", "description": "Military service interrupted citizenship" },
+        "OBY-L-NATURALIZATION-INTERRUPTION": { "type": "boolean", "description": "Naturalization elsewhere interrupted citizenship" },
+        "OBY-L-PARTITION-PERIOD": { "type": "boolean", "description": "Born during partition period" },
+        "OBY-L-PARTITION-REGION": { "type": "string", "description": "Partition region (Prussian, Austrian, Russian)" },
+        "OBY-L-POST-1920-CITIZENSHIP": { "type": "boolean", "description": "Polish citizenship after 1920" },
+        "OBY-L-EMIGRATION-BEFORE-1918": { "type": "boolean", "description": "Emigration before 1918" },
+        "OBY-L-REPATRIATION": { "type": "boolean", "description": "Family repatriation to Poland" },
+        "OBY-L-REPATRIATION-DATE": { "type": "string", "format": "date", "description": "Repatriation date" },
+        "OBY-L-WARTIME-LOSS": { "type": "boolean", "description": "Citizenship lost during wartime" },
+        "OBY-L-COMMUNIST-PERIOD": { "type": "boolean", "description": "Emigration during communist period" },
+        "OBY-L-SOLIDARITY-CONNECTION": { "type": "boolean", "description": "Family connection to Solidarity movement" }
+      }
+    },
+
+    "contact": {
+      "type": "object",
+      "description": "Contact information",
+      "properties": {
+        "OBY-C-EMAIL": { "type": "string", "format": "email", "description": "Primary email" },
+        "OBY-C-EMAIL-ALT": { "type": "string", "format": "email", "description": "Alternative email" },
+        "OBY-C-PHONE": { "type": "string", "description": "Primary phone number" },
+        "OBY-C-PHONE-ALT": { "type": "string", "description": "Alternative phone number" },
+        "OBY-C-PHONE-COUNTRY": { "type": "string", "description": "Phone country code" },
+        "OBY-C-PREFERRED-CONTACT": { "type": "string", "enum": ["email", "phone", "post"], "description": "Preferred contact method" },
+        "OBY-C-PREFERRED-LANGUAGE": { "type": "string", "enum": ["polish", "english", "other"], "description": "Preferred correspondence language" },
+        "OBY-C-EMERGENCY-CONTACT": { "type": "string", "description": "Emergency contact name" },
+        "OBY-C-EMERGENCY-PHONE": { "type": "string", "description": "Emergency contact phone" },
+        "OBY-C-EMERGENCY-RELATIONSHIP": { "type": "string", "description": "Emergency contact relationship" }
+      }
+    },
+
+    "addresses": {
+      "type": "object",
+      "description": "Address information",
+      "properties": {
+        "OBY-ADDR-CURRENT-STREET": { "type": "string", "description": "Current street address" },
+        "OBY-ADDR-CURRENT-CITY": { "type": "string", "description": "Current city" },
+        "OBY-ADDR-CURRENT-STATE": { "type": "string", "description": "Current state/province" },
+        "OBY-ADDR-CURRENT-POSTAL": { "type": "string", "description": "Current postal code" },
+        "OBY-ADDR-CURRENT-COUNTRY": { "type": "string", "description": "Current country" },
+        "OBY-ADDR-CURRENT-FROM": { "type": "string", "format": "date", "description": "Current address from date" },
+        "OBY-ADDR-PREV-STREET": { "type": "string", "description": "Previous street address" },
+        "OBY-ADDR-PREV-CITY": { "type": "string", "description": "Previous city" },
+        "OBY-ADDR-PREV-COUNTRY": { "type": "string", "description": "Previous country" },
+        "OBY-ADDR-MAILING-SAME": { "type": "boolean", "description": "Mailing address same as current" }
+      }
+    },
+
+    "documents": {
+      "type": "object",
+      "description": "Document references and status",
+      "properties": {
+        "OBY-DOC-BIRTH-CERT": { "type": "boolean", "description": "Birth certificate provided" },
+        "OBY-DOC-PASSPORT": { "type": "boolean", "description": "Passport copy provided" },
+        "OBY-DOC-MARRIAGE-CERT": { "type": "boolean", "description": "Marriage certificate provided" },
+        "OBY-DOC-PARENT-BIRTH-CERT": { "type": "boolean", "description": "Parent birth certificate provided" },
+        "OBY-DOC-GRANDPARENT-BIRTH-CERT": { "type": "boolean", "description": "Grandparent birth certificate provided" },
+        "OBY-DOC-NATURALIZATION-CERT": { "type": "boolean", "description": "Naturalization certificate provided" },
+        "OBY-DOC-MILITARY-RECORDS": { "type": "boolean", "description": "Military records provided" },
+        "OBY-DOC-CRIMINAL-RECORD": { "type": "boolean", "description": "Criminal record check provided" },
+        "OBY-DOC-PHOTOS": { "type": "boolean", "description": "Passport photos provided" },
+        "OBY-DOC-ADDITIONAL": { "type": "array", "items": { "type": "string" }, "description": "Additional documents provided" }
+      }
+    },
+
+    "declarations": {
+      "type": "object",
+      "description": "Legal declarations and attestations",
+      "properties": {
+        "OBY-DECL-ACCURACY": { "type": "boolean", "description": "Declares information accuracy" },
+        "OBY-DECL-ALLEGIANCE": { "type": "boolean", "description": "Declares allegiance to Poland" },
+        "OBY-DECL-NO-TERRORISM": { "type": "boolean", "description": "Declares no terrorism involvement" },
+        "OBY-DECL-NO-TREASON": { "type": "boolean", "description": "Declares no treason against Poland" },
+        "OBY-DECL-OATH-WILLINGNESS": { "type": "boolean", "description": "Willing to take citizenship oath" }
+      }
+    }
+  },
+
+  "additionalProperties": false
+}

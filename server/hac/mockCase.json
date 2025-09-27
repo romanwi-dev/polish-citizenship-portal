@@ -1,0 +1,81 @@
+{
+  "case_id": "C-2025-0013",
+  "client": {
+    "name": "Jan Marek Kowalski",
+    "email": "jan@example.com",
+    "current_surname": "KOWALSKI",
+    "birth_surname": "NOWAK"
+  },
+  "status": {
+    "pipeline_state": "USC_IN_FLIGHT",
+    "created_date": "2025-09-15",
+    "last_updated": "2025-09-17"
+  },
+  "usc": {
+    "birth": {
+      "registered": false,
+      "registration_pending": true,
+      "office": "USC Warszawa"
+    }
+  },
+  "documents": [
+    {
+      "type": "passport",
+      "status": "RECEIVED",
+      "filename": "passport_kowalski.pdf",
+      "has_sworn_translation": false,
+      "is_foreign": false
+    },
+    {
+      "type": "birth_cert_foreign", 
+      "status": "RECEIVED",
+      "filename": "birth_cert_brazil.pdf",
+      "has_sworn_translation": false,
+      "is_foreign": true,
+      "origin_country": "Brazil"
+    },
+    {
+      "type": "birth_cert_PL",
+      "status": "PENDING",
+      "filename": null,
+      "has_sworn_translation": false,
+      "is_foreign": false,
+      "note": "Umiejscowienie not completed yet"
+    }
+  ],
+  "name_changes": {
+    "has_sprostowanie_note": false,
+    "legal_name_change_docs": []
+  },
+  "oby_attachments": [
+    {"id": 1, "name": "Birth certificate", "linked": true},
+    {"id": 2, "name": "Passport copy", "linked": true}, 
+    {"id": 3, "name": "Parent birth certificate", "linked": false},
+    {"id": 4, "name": "Grandparent birth certificate", "linked": false},
+    {"id": 5, "name": "Marriage certificate", "linked": false},
+    {"id": 6, "name": "Death certificate", "linked": false},
+    {"id": 7, "name": "Residence proof", "linked": false},
+    {"id": 8, "name": "Employment proof", "linked": false},
+    {"id": 9, "name": "Criminal record check", "linked": false},
+    {"id": 10, "name": "Additional documents", "linked": false}
+  ],
+  "foreign_docs": [
+    {
+      "type": "birth_cert_foreign",
+      "has_sworn_translation": false,
+      "translation_status": "pending"
+    }
+  ],
+  "mapped_fields": {
+    "OBY-I-GIVEN": "JAN MAREK",
+    "OBY-I-SURNAME": "KOWALSKI",
+    "OBY-I-BIRTHSUR": "NOWAK", 
+    "OBY-I-SEX": "mężczyzna",
+    "OBY-I-DOB": "12-03-1989",
+    "OBY-I-POB": "RIO DE JANEIRO, BRAZYLIA",
+    "POA-A-GN": "JAN MAREK",
+    "POA-A-SN": "KOWALSKI",
+    "POA-A-ID": "AB1234567",
+    "POA-A-DATE": "16-09-2025"
+  }
+}

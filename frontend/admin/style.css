@@ -1,0 +1,330 @@
+:root {
+  --bg: #0f1419;
+  --card: #1a1f2e;
+  --border: #2a3441;
+  --ink: #e6f1ff;
+  --muted: #8b949e;
+  --accent: #58a6ff;
+  --accent2: #39d353;
+  --gradient: linear-gradient(135deg, #0969da, #1f6feb);
+  --tap: 48px;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif;
+  min-height: 100vh;
+  line-height: 1.5;
+}
+
+.container {
+  padding: 16px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.toolbar-wrap {
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  background: rgba(15, 20, 25, 0.95);
+  backdrop-filter: blur(12px);
+  padding: 12px 0;
+  margin: -16px -16px 16px -16px;
+  border-bottom: 1px solid var(--border);
+}
+
+.toolbar {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 0 16px;
+}
+
+.input {
+  flex: 1;
+  min-height: var(--tap);
+  background: var(--card);
+  border: 1px solid var(--border);
+  color: var(--ink);
+  border-radius: 6px;
+  padding: 12px 16px;
+  font-size: 14px;
+  transition: border-color 0.2s;
+}
+
+.input:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+
+.btn {
+  min-height: var(--tap);
+  background: var(--gradient);
+  border: 0;
+  color: #ffffff;
+  padding: 12px 16px;
+  border-radius: 6px;
+  font-weight: 500;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn:hover {
+  opacity: 0.9;
+}
+
+.btn.secondary {
+  background: var(--card);
+  border: 1px solid var(--border);
+  color: var(--ink);
+}
+
+.btn.danger {
+  background: #e74c3c;
+}
+
+.btn.warn {
+  background: #f39c12;
+  color: #ffffff;
+}
+
+.badge {
+  display: inline-block;
+  padding: 4px 8px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  font-size: 12px;
+  font-weight: 500;
+  background: var(--card);
+  color: var(--ink);
+}
+
+.list {
+  display: grid;
+  gap: 12px;
+  margin: 16px 0;
+}
+
+.card-row {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 16px;
+  background: var(--card);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  transition: border-color 0.2s;
+}
+
+.card-row:hover {
+  border-color: var(--accent);
+}
+
+.row-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.row-top > div:first-child b {
+  font-size: 16px;
+  color: var(--accent);
+}
+
+.row-tags {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.row-tags .badge {
+  font-size: 11px;
+  padding: 3px 6px;
+}
+
+.row-meta {
+  color: var(--muted);
+  font-size: 13px;
+  margin: 4px 0;
+}
+
+.row-meta:first-of-type {
+  font-weight: 500;
+  color: var(--accent2);
+}
+
+.drawer {
+  position: fixed;
+  right: 0;
+  top: 0;
+  height: 100%;
+  width: 480px;
+  max-width: 100vw;
+  background: var(--bg);
+  border-left: 1px solid var(--border);
+  transform: translateX(100%);
+  transition: transform 0.3s ease;
+  z-index: 50;
+  display: flex;
+  flex-direction: column;
+}
+
+.drawer.open {
+  transform: translateX(0);
+}
+
+.drawer-head {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px;
+  border-bottom: 1px solid var(--border);
+  background: var(--card);
+}
+
+.drawer-head h3 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.drawer-body {
+  padding: 16px;
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  flex: 1;
+  padding-bottom: calc(80px + env(safe-area-inset-bottom));
+}
+
+.drawer-body section h4 {
+  margin: 0 0 8px 0;
+  font-size: 16px;
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.drawer-body > div {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 12px;
+}
+
+.row-muted {
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+.actions-bottom {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  max-width: 100vw;
+  background: rgba(15, 20, 25, 0.95);
+  backdrop-filter: blur(12px);
+  border-top: 1px solid var(--border);
+  padding: 12px;
+  display: flex;
+  gap: 8px;
+  z-index: 60;
+  padding-bottom: calc(12px + env(safe-area-inset-bottom));
+}
+
+.actions-bottom .btn {
+  flex: 1;
+  font-size: 13px;
+}
+
+textarea.input {
+  font-family: inherit;
+  line-height: 1.4;
+  padding: 10px;
+  min-height: 80px;
+}
+
+select.input {
+  appearance: none;
+  background-image: linear-gradient(45deg, transparent 50%, var(--accent) 50%), linear-gradient(135deg, var(--accent) 50%, transparent 50%);
+  background-position: calc(100% - 16px) calc(50% + 1px), calc(100% - 12px) calc(50% + 1px);
+  background-size: 4px 4px, 4px 4px;
+  background-repeat: no-repeat;
+}
+
+#d-msgs > div, #d-ev > div {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 12px;
+  margin-bottom: 8px;
+  transition: border-color 0.2s;
+}
+
+#d-msgs > div:hover, #d-ev > div:hover {
+  border-color: var(--accent);
+}
+
+#d-msgs b {
+  color: var(--accent);
+  font-weight: 600;
+}
+
+#d-ev b {
+  color: var(--accent2);
+  font-weight: 600;
+}
+
+@media (min-width: 900px) {
+  .actions-bottom {
+    position: static;
+    background: transparent;
+    border-top: 0;
+    padding: 0;
+    margin-top: 16px;
+  }
+  .drawer {
+    width: 500px;
+  }
+  .toolbar {
+    flex-wrap: nowrap;
+  }
+  .card-row {
+    padding: 20px;
+  }
+}
+
+@media (max-width: 600px) {
+  .toolbar {
+    padding: 0 12px;
+  }
+  .container {
+    padding: 12px;
+  }
+  .toolbar-wrap {
+    margin: -12px -12px 12px -12px;
+  }
+  .card-row {
+    padding: 12px;
+  }
+  .badge {
+    padding: 3px 6px;
+    font-size: 11px;
+  }
+  .row-top {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aktualizacja Statusu Sprawy</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        .email-container {
+            background: white;
+            border-radius: 8px;
+            padding: 30px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .header {
+            background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+        .header p {
+            margin: 10px 0 0 0;
+            opacity: 0.9;
+            font-size: 14px;
+        }
+        .content {
+            margin-bottom: 30px;
+        }
+        .details-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: #f8fafc;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        .details-table th,
+        .details-table td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        .details-table th {
+            background: #3b82f6;
+            color: white;
+            font-weight: bold;
+        }
+        .details-table tr:last-child td {
+            border-bottom: none;
+        }
+        .footer {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #e5e7eb;
+            text-align: center;
+            font-size: 12px;
+            color: #666;
+        }
+        .button {
+            display: inline-block;
+            padding: 12px 24px;
+            background: #3b82f6;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+        .button:hover {
+            background: #2563eb;
+        }
+        .status-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+            text-transform: uppercase;
+            background: #dbeafe;
+            color: #1e40af;
+        }
+        .stage-transition {
+            background: #f1f5f9;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border-left: 4px solid #3b82f6;
+        }
+    </style>
+</head>
+<body>
+    <div class="email-container">
+        <div class="header">
+            <h1>📈 Aktualizacja Statusu Sprawy</h1>
+            <p>Twoja sprawa o polskie obywatelstwo przeszła do kolejnego etapu</p>
+        </div>
+        
+        <div class="content">
+            <p>Dzień dobry,</p>
+            
+            <p>Informujemy, że Twoja sprawa o polskie obywatelstwo została zaktualizowana do nowego etapu.</p>
+            
+            <div class="stage-transition">
+                <h3 style="margin: 0 0 10px 0; color: #1e40af;">Zmiana Etapu</h3>
+                <p style="margin: 5px 0;">
+                    <strong>Z:</strong> {{oldStage}}
+                </p>
+                <p style="margin: 5px 0;">
+                    <strong>Do:</strong> <span class="status-badge">{{newStage}}</span>
+                </p>
+            </div>
+            
+            <table class="details-table">
+                <tr>
+                    <th>ID Sprawy</th>
+                    <td>{{caseId}}</td>
+                </tr>
+                <tr>
+                    <th>Aktualny Status</th>
+                    <td><span class="status-badge">{{newStage}}</span></td>
+                </tr>
+                <tr>
+                    <th>Zaktualizowano</th>
+                    <td>{{updatedAt}}</td>
+                </tr>
+                {{#if estimatedCompletion}}
+                <tr>
+                    <th>Szacowane Zakończenie</th>
+                    <td>{{estimatedCompletion}}</td>
+                </tr>
+                {{/if}}
+            </table>
+            
+            {{#if notes}}
+            <h3>Uwagi do Aktualizacji</h3>
+            <p style="background: #f8fafc; padding: 15px; border-radius: 6px; border-left: 4px solid #3b82f6;">
+                {{notes}}
+            </p>
+            {{/if}}
+            
+            {{#if nextSteps}}
+            <h3>Następne Kroki</h3>
+            <ul style="background: #f8fafc; padding: 15px; border-radius: 6px;">
+                {{#each nextSteps}}
+                <li style="margin: 5px 0;">{{this}}</li>
+                {{/each}}
+            </ul>
+            {{/if}}
+            
+            <p>Pełne szczegóły i postęp Twojej sprawy możesz zobaczyć w portalu klienta.</p>
+            
+            <div style="text-align: center; margin: 30px 0;">
+                <a href="{{caseUrl}}" class="button">Zobacz Szczegóły Sprawy</a>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>Ten e-mail został wysłany przez Portal Obywatelstwa Polskiego</p>
+            <p>W przypadku pytań, prosimy o kontakt z naszym zespołem wsparcia.</p>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,368 @@
+/* iOS Safari Mobile Fixes for /admin/cases */
+
+:root {
+  --card-radius: 16px;
+  --card-bg: color-mix(in oklab, canvas 88%, black 12%);
+  --elev: 0 8px 24px rgba(0,0,0,.18);
+}
+
+/* Mobile Case Cards Layout - Let React Grid Layout handle positioning */
+@media (max-width: 768px) {
+  .casesGrid {
+    /* Don't override display - let React Grid Layout work */
+    padding: 12px;
+  }
+  
+  .caseCard {
+    width: 100%;
+    margin: 12px 0;
+    min-width: calc(100vw - 24px);
+  }
+  
+  /* Ensure cards are truly full width on mobile */
+  .case-card-dnd {
+    width: 100% !important;
+    /* Keep transforms for React Grid Layout to work properly */
+  }
+}
+
+@media (min-width: 769px) {
+  .casesGrid {
+    /* Don't override display - let React Grid Layout handle the grid */
+    padding: 16px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+}
+
+.caseCard {
+  border-radius: var(--card-radius);
+  background: var(--card-bg);
+  box-shadow: var(--elev);
+}
+
+/* Dropdown Menu Fixes */
+.caseMenu {
+  position: fixed;
+  z-index: 9999;
+  pointer-events: auto;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  padding: 8px 0;
+  min-width: 220px;
+}
+
+.dark .caseMenu {
+  background: #1f2937;
+  border-color: #374151;
+}
+
+.btn-menu {
+  width: 100%;
+  padding: 12px 16px;
+  text-align: left;
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.2s;
+}
+
+.btn-menu:hover {
+  background: #f3f4f6;
+}
+
+.dark .btn-menu:hover {
+  background: #374151;
+}
+
+/* Edit Sheet Mobile Fixes */
+.editSheet {
+  position: fixed;
+  inset: 0;
+  z-index: 9998;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (max-width: 768px) {
+  .editSheet {
+    align-items: stretch;
+    justify-content: stretch;
+  }
+  
+  .editSheetContent {
+    width: 100%;
+    height: 100%;
+    background: white;
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior: contain;
+    padding: 20px;
+  }
+  
+  .dark .editSheetContent {
+    background: #111827;
+  }
+}
+
+@media (min-width: 769px) {
+  .editSheetContent {
+    width: 90%;
+    max-width: 600px;
+    height: auto;
+    max-height: 90vh;
+    background: white;
+    border-radius: 12px;
+    overflow: auto;
+    padding: 24px;
+  }
+  
+  .dark .editSheetContent {
+    background: #111827;
+  }
+}
+
+/* Form inputs must be >= 16px to prevent iOS zoom */
+.editSheetContent input,
+.editSheetContent select,
+.editSheetContent textarea {
+  font-size: 16px !important;
+  -webkit-appearance: none;
+  border-radius: 8px;
+  border: 1px solid #d1d5db;
+  padding: 12px;
+  width: 100%;
+}
+
+.dark .editSheetContent input,
+.dark .editSheetContent select,
+.dark .editSheetContent textarea {
+  border-color: #4b5563;
+  background: #1f2937;
+  color: white;
+}
+
+/* Body scroll lock when modal is open */
+body.lock {
+  overflow: hidden;
+  position: fixed;
+  width: 100%;
+}
+
+/* Touch and Performance Optimizations */
+.case-card-dnd {
+  touch-action: manipulation;
+}
+
+.casesGrid .react-grid-item.react-grid-placeholder {
+  background: rgba(59, 130, 246, 0.15);
+  border-radius: var(--card-radius);
+}
+
+/* Button wrapping and responsive layout */
+.case-card-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.case-card-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+/* Hamburger button positioning */
+.case-menu-trigger {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 32px;
+  height: 32px;
+  border-radius: 6px;
+  border: none;
+  background: rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  z-index: 10;
+}
+
+.case-menu-trigger:hover {
+  background: rgba(0, 0, 0, 0.2);
+}
+
+/* Animation for menu flipping */
+.caseMenu.flip-up {
+  animation: slideUpIn 0.2s ease-out;
+}
+
+.caseMenu.flip-down {
+  animation: slideDownIn 0.2s ease-out;
+}
+
+@keyframes slideUpIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideDownIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ===== Mobile Sheet Additional Styles ===== */
+.sheet-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(4px);
+  z-index: 1000;
+  display: flex;
+  align-items: flex-end;
+  animation: fadeIn 0.2s ease-out;
+}
+
+.edit-sheet {
+  background: white;
+  border-radius: 20px 20px 0 0;
+  width: 100%;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 -8px 32px rgba(0, 0, 0, 0.15);
+  animation: slideUp 0.3s ease-out;
+}
+
+.dark .edit-sheet {
+  background: rgb(24, 24, 27);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+.edit-sheet__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 20px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  flex-shrink: 0;
+}
+
+.dark .edit-sheet__header {
+  border-bottom-color: rgba(255, 255, 255, 0.1);
+}
+
+.edit-sheet__title {
+  font-size: 18px;
+  font-weight: 600;
+  color: rgb(39, 39, 42);
+}
+
+.dark .edit-sheet__title {
+  color: rgb(244, 244, 245);
+}
+
+.edit-sheet__scroll {
+  flex: 1;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  padding: 20px;
+}
+
+.edit-sheet__scroll input,
+.edit-sheet__scroll textarea,
+.edit-sheet__scroll select {
+  font-size: 16px !important; /* Prevent iOS zoom */
+  min-height: 44px; /* Apple tap target size */
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Debug HOTFIX removed - using proper React Grid Layout implementation */
+
+/* Prevent Safari zoom on inputs */
+@media (max-width: 768px) {
+  input[type="text"],
+  input[type="email"], 
+  input[type="number"],
+  textarea,
+  select {
+    font-size: 16px !important;
+    min-height: 44px !important;
+  }
+}
+
+/* Mobile edit sheet improvements */
+@media (max-width: 768px) {
+  .editSheet {
+    z-index: 1100 !important;
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    background: rgba(0, 0, 0, 0.5) !important;
+    display: flex !important;
+    align-items: flex-end !important;
+  }
+  
+  .editSheetContent {
+    background: white !important;
+    border-radius: 20px 20px 0 0 !important;
+    width: 100% !important;
+    max-height: 90vh !important;
+    overflow-y: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+    padding: 20px !important;
+  }
+}
+
+/* Dropdown menu improvements */
+@media (max-width: 768px) {
+  [data-radix-popper-content-wrapper] {
+    z-index: 1200 !important;
+    position: fixed !important;
+  }
+  
+  /* Ensure dropdowns don't clip */
+  .dropdown-menu-content {
+    max-width: calc(100vw - 20px) !important;
+    z-index: 1200 !important;
+  }
+}

@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Polish Citizenship Pre-Screen</title>
+  <style>
+    :root { --bg:#0b0d10; --card:#12161b; --text:#e9eef3; --muted:#a9b4bf; --accent:#6bc1ff; }
+    * { box-sizing: border-box; }
+    body { margin:0; background:var(--bg); color:var(--text); font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif; }
+    .wrap { max-width: 780px; margin: 0 auto; padding: 28px 18px 64px; }
+    header { margin-bottom: 18px; }
+    h1 { margin: 0 0 8px; font-size: 1.6rem; }
+    p.lead { margin: 0; color: var(--muted); }
+    .card { background: var(--card); border: 1px solid #1e2630; padding: 18px; border-radius: 12px; margin-top: 18px; }
+    .q { font-weight: 600; margin-bottom: 12px; }
+    .btns { display: flex; gap: 10px; flex-wrap: wrap; }
+    button { padding: 10px 14px; border-radius: 10px; border: 1px solid #273243; background: #18202a; color: var(--text); cursor: pointer; }
+    button:hover { border-color: var(--accent); }
+    .note { margin-top: 12px; color: var(--muted); }
+    .result { font-weight: 600; }
+    .footer { margin-top: 28px; color: var(--muted); font-size: .9rem; }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <h1>Polish Citizenship — 60-Second Pre-Screen</h1>
+      <p class="lead">Answer a few questions. Get a quick sense of potential eligibility and next steps.</p>
+    </header>
+
+    <div class="card" id="card"></div>
+
+    <div class="footer">
+      <p>Health check: <a href="/healthz" target="_blank">/healthz</a>. • You can return to your main site at <a href="/">/</a>.</p>
+    </div>
+  </div>
+
+  <script>
+    // Minimal state machine
+    const card = document.getElementById('card');
+    const state = { step: 1, bornInPoland: null, renounced: null, docs: null, relation: null };
+
+    const render = () => {
+      card.innerHTML = '';
+      const q = document.createElement('div');
+      q.className = 'q';
+      const btns = document.createElement('div');
+      btns.className = 'btns';
+      const note = document.createElement('div'); note.className = 'note';
+
+      const addBtn = (text, cb) => {
+        const b = document.createElement('button');
+        b.textContent = text;
+        b.onclick = cb;
+        btns.appendChild(b);
+      };
+
+      if (state.step === 1) {
+        q.textContent = 'Was at least one parent / grandparent / great-grandparent born in Poland (after 1918)?';
+        addBtn('Yes', () => { state.bornInPoland = 'yes'; state.step = 2; render(); });
+        addBtn('No',  () => { state.bornInPoland = 'no';  state.step = 'end_no'; render(); });
+        addBtn('Unsure', () => { state.bornInPoland = 'unsure'; state.step = 'explain_born'; render(); });
+        note.innerHTML = 'Tip: "Poland after 1918" excludes territories that were not Poland at the time.';
+      }
+      else if (state.step === 'explain_born') {
+        q.textContent = 'What counts as "born in Poland after 1918"?';
+        note.innerHTML = 'Use official birth records; borders shifted before/after 1918. If unsure, we can check archives for you.';
+        addBtn('Back', () => { state.step = 1; render(); });
+      }
+      else if (state.step === 'end_no') {
+        q.innerHTML = '<span class="result">You likely do not qualify via descent.</span>';
+        note.innerHTML = 'You can still book a consult—edge cases exist (e.g., adoption, other legal routes).';
+        addBtn('Start over', () => { Object.assign(state, {step:1, bornInPoland:null, renounced:null, docs:null, relation:null}); render(); });
+      }
+      else if (state.step === 2) {
+        q.textContent = 'Did that ancestor ever formally renounce or lose Polish citizenship?';
+        addBtn('No', () => { state.renounced = 'no'; state.step = 3; render(); });
+        addBtn('Yes', () => { state.renounced = 'yes'; state.step = 'end_renounced'; render(); });
+        addBtn("Don't know", () => { state.renounced = 'unknown'; state.step = 'guide_renounce'; render(); });
+        note.innerHTML = 'Some renunciations (or foreign military service, etc.) can break eligibility. We can help check.';
+      }
+      else if (state.step === 'guide_renounce') {
+        q.textContent = 'Don't know if they renounced?';
+        note.innerHTML = 'Look for passports, naturalization papers, military service records. We can search registries/archives.';
+        addBtn('Back', () => { state.step = 2; render(); });
+      }
+      else if (state.step === 'end_renounced') {
+        q.innerHTML = '<span class="result">They renounced—eligibility may be broken.</span>';
+        note.innerHTML = 'A case review is needed to confirm exceptions.';
+        addBtn('Start over', () => { Object.assign(state, {step:1, bornInPoland:null, renounced:null, docs:null, relation:null}); render(); });
+      }
+      else if (state.step === 3) {
+        q.textContent = 'Do you have official documents for that ancestor?';
+        addBtn('Yes',  () => { state.docs = 'yes'; state.step = 4; render(); });
+        addBtn('Some', () => { state.docs = 'some'; state.step = 'doc_help'; render(); });
+        addBtn('None', () => { state.docs = 'none'; state.step = 'doc_none'; render(); });
+        note.innerHTML = 'Typical docs: birth/marriage certificates, passports, residency records.';
+      }
+      else if (state.step === 'doc_help') {
+        q.textContent = 'You have some documents.';
+        note.innerHTML = 'We can note what's missing and help you locate the rest (civil registry, church books, archives).';
+        addBtn('Continue', () => { state.step = 4; render(); });
+      }
+      else if (state.step === 'doc_none') {
+        q.textContent = 'You have no documents yet.';
+        note.innerHTML = 'Documents are essential—but we can search archives on your behalf.';
+        addBtn('Continue', () => { state.step = 4; render(); });
+      }
+      else if (state.step === 4) {
+        q.textContent = 'What's your relationship to this ancestor?';
+        addBtn('Parent', () => { state.relation = 'parent'; state.step = 'result'; render(); });
+        addBtn('Grandparent', () => { state.relation = 'grandparent'; state.step = 'result'; render(); });
+        addBtn('Great-grandparent', () => { state.relation = 'great-grandparent'; state.step = 'result'; render(); });
+      }
+      else if (state.step === 'result') {
+        q.innerHTML = '<span class="result">Based on your answers, you may be eligible.</span>';
+        note.innerHTML = 'Next: a short review to confirm details & documents.';
+        const actions = document.createElement('div'); actions.className = 'btns';
+        const book = document.createElement('a'); book.href = '#'; book.textContent = 'Book a consult'; book.target = '_blank';
+        const startOver = document.createElement('button'); startOver.textContent = 'Start over';
+        startOver.onclick = () => { Object.assign(state, {step:1, bornInPoland:null, renounced:null, docs:null, relation:null}); render(); };
+        actions.appendChild(startOver);
+        card.appendChild(q); card.appendChild(actions); card.appendChild(note);
+        return;
+      }
+
+      card.appendChild(q);
+      card.appendChild(btns);
+      card.appendChild(note);
+    };
+
+    render();
+  </script>
+</body>
+</html>

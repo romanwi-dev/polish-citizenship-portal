@@ -1,0 +1,98 @@
+/* Print rules for Family-Tree Document Radar (A4 landscape, 1 page) */
+@page { size: A4 landscape; margin: 12mm; }
+@media print {
+  /* Reset & typography for print */
+  html, body { background: #fff !important; color: #000 !important; }
+  * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+
+  /* Hide app chrome */
+  header, nav, .app-sidebar, .app-footer,
+  .btn, .btn-primary, .btn-ghost, .btn-icon,
+  .non-print, .toast, .floating-toolbar {
+    display: none !important;
+  }
+
+  /* Radar container takes full width */
+  .doc-radar-print {
+    display: block;
+    width: 100%;
+    font-size: 12.5px; /* slightly larger for print legibility */
+    line-height: 1.35;
+  }
+
+  /* Title & subtitle */
+  .doc-radar-title {
+    font-weight: 700;
+    font-size: 18px;
+    margin: 0 0 4mm 0;
+  }
+  .doc-radar-sub {
+    font-size: 12.5px;
+    margin: 0 0 6mm 0;
+    color: #222;
+  }
+
+  /* 3-column grid: Applicant | Parents | Grandparents */
+  .doc-radar-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 6mm;
+  }
+
+  /* Person card */
+  .doc-person {
+    border: 1px solid #111;
+    border-radius: 6px;
+    padding: 4mm;
+    break-inside: avoid; /* avoid splitting cards */
+  }
+  .doc-person .person-header {
+    display: flex; justify-content: space-between; align-items: baseline;
+    border-bottom: 1px solid #111; padding-bottom: 2mm; margin-bottom: 3mm;
+  }
+  .person-name { font-weight: 700; font-size: 13.5px; }
+  .person-role { font-size: 11.5px; color: #222; }
+
+  /* Chip row */
+  .doc-chiprow { display: flex; flex-wrap: wrap; gap: 2.5mm; }
+
+  /* Chips: use both color + pattern + label for print clarity */
+  .chip { border-radius: 12px; padding: 1.5mm 3mm; border: 1px solid #111; font-weight: 600; }
+  /* HAVE = solid fill */
+  .chip.have     { background: #0a7d33; color: #fff; border-color: #0a7d33; }
+  /* IN PROGRESS = diagonal stripes */
+  .chip.progress {
+    background: repeating-linear-gradient(
+      45deg, #f7e08c, #f7e08c 3mm, #fff3be 3mm, #fff3be 6mm
+    );
+    color: #111; border-color: #d1a400;
+  }
+  /* NEEDED = outline only */
+  .chip.needed   { background: #fff; color: #111; border-style: dashed; }
+
+  /* Legend */
+  .doc-legend {
+    margin-top: 6mm; border-top: 1px solid #111; padding-top: 4mm;
+    display: grid; grid-template-columns: auto 1fr; gap: 2mm 6mm;
+  }
+  .legend-chip { display: inline-block; }
+  .legend-text { font-size: 11.5px; color: #222; }
+
+  /* Footer summary (counts) */
+  .doc-summary {
+    margin-top: 4mm; font-size: 12px; display: flex; gap: 8mm;
+  }
+
+  /* Ensure one page if possible */
+  .avoid-break { break-inside: avoid; }
+}
+
+/* Screen tweaks so what-you-see ≈ what-you-print */
+@media screen {
+  .doc-radar-print .chip.have { background: #16a34a; color: #fff; border-color: #16a34a; }
+  .doc-radar-print .chip.progress {
+    background: repeating-linear-gradient(45deg, #fde68a, #fde68a 12px, #fff7cc 12px, #fff7cc 24px);
+    color: #111; border-color: #d1a400;
+  }
+  .doc-radar-print .chip.needed { background: transparent; border-style: dashed; }
+}

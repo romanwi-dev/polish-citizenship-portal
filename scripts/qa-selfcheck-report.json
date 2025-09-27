@@ -1,0 +1,184 @@
+{
+  "summary": {
+    "timestamp": "2025-09-19T10:31:13.616Z",
+    "overallStatus": "failed",
+    "totalChecks": 8,
+    "passedChecks": 2,
+    "failedChecks": 6,
+    "warningChecks": 0
+  },
+  "results": {
+    "environment": {
+      "success": true,
+      "checks": {
+        "nodeEnv": "development",
+        "qaMode": false,
+        "databaseUrl": true,
+        "workingDirectory": "/home/runner/workspace/scripts"
+      }
+    },
+    "health": {
+      "success": true,
+      "data": {
+        "status": "warning",
+        "timestamp": "2025-09-19T10:31:03.770Z",
+        "duration": "2611ms",
+        "summary": {
+          "totalChecks": 10,
+          "passed": 10,
+          "warnings": 1,
+          "errors": 0
+        },
+        "checks": {
+          "basic": {
+            "status": "ok",
+            "timestamp": "2025-09-19T10:31:01.159Z",
+            "uptime": 1610.916584772,
+            "memory": {
+              "used": 193,
+              "total": 211,
+              "external": 16
+            },
+            "env": "development"
+          },
+          "storage": {
+            "status": "ok",
+            "type": "dropbox",
+            "health": {
+              "status": "ok",
+              "type": "dropbox",
+              "timestamp": "2025-09-19T10:31:01.160Z"
+            },
+            "qaMode": false
+          },
+          "database": {
+            "status": "ok",
+            "connected": true,
+            "testQuery": "passed",
+            "resultCount": 1,
+            "pool": {
+              "totalCount": 1,
+              "idleCount": 0,
+              "waitingCount": 0
+            }
+          },
+          "environment": {
+            "status": "ok",
+            "required": {
+              "NODE_ENV": "set",
+              "DATABASE_URL": "set"
+            },
+            "optional": {
+              "DROPBOX_ACCESS_TOKEN": "not set",
+              "OPENAI_API_KEY": "set",
+              "QA_MODE": "not set"
+            },
+            "missing": []
+          },
+          "apiDependencies": {
+            "status": "ok",
+            "services": {
+              "openai": "configured",
+              "dropbox": "not configured"
+            }
+          },
+          "fileSystem": {
+            "status": "ok",
+            "permissions": {
+              "read": true,
+              "write": true,
+              "delete": true
+            }
+          },
+          "i18n": {
+            "status": "ok",
+            "locales": {
+              "en": {
+                "loaded": true,
+                "keyCount": 18
+              },
+              "pl": {
+                "loaded": true,
+                "keyCount": 18
+              }
+            }
+          },
+          "printCss": {
+            "status": "ok",
+            "exists": true,
+            "hasNonPrintClass": true,
+            "hasPageRules": true,
+            "hasMediaPrint": true
+          },
+          "security": {
+            "status": "ok",
+            "headers": {
+              "helmet": "configured",
+              "cors": "configured",
+              "compression": "configured"
+            }
+          },
+          "qaMode": {
+            "status": "ok",
+            "enabled": false,
+            "mockStorage": false,
+            "environment": "development"
+          }
+        },
+        "warnings": [
+          "Dropbox not configured - using mock storage"
+        ],
+        "errors": [],
+        "qaMode": false,
+        "version": "1.0.0"
+      }
+    },
+    "unitTests": {
+      "code": 1,
+      "stdout": "RUN  v3.2.4 /home/runner/workspace/scripts",
+      "stderr": "No test files found, exiting with code 1\n\ninclude: tests/**/*.{test,spec}.{js,mjs,ts}, tests/unit/**/*.{test,spec}.{js,mjs,ts}, **/*.{test,spec}.{js,mjs,ts}\nexclude:  node_modules/**, dist/**, build/**, e2e-tests/**, tests/e2e/**",
+      "success": false
+    },
+    "e2eTests": {
+      "code": 1,
+      "stdout": "Error: No tests found.\nMake sure that arguments are regular expressions matching test files.\nYou may need to escape symbols like \"$\" or \"*\" and quote the arguments.\n\n\u001b[1A\u001b[2K",
+      "stderr": "",
+      "success": false
+    },
+    "i18n": {
+      "code": 1,
+      "stdout": "",
+      "stderr": "node:internal/modules/cjs/loader:1215\n  throw err;\n  ^\n\nError: Cannot find module '/home/runner/workspace/scripts/scripts/i18n-audit.mjs'\n    at Module._resolveFilename (node:internal/modules/cjs/loader:1212:15)\n    at Module._load (node:internal/modules/cjs/loader:1043:27)\n    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:164:12)\n    at node:internal/main/run_main_module:28:49 {\n  code: 'MODULE_NOT_FOUND',\n  requireStack: []\n}\n\nNode.js v20.19.3",
+      "success": false
+    },
+    "accessibility": {
+      "code": 1,
+      "stdout": "Error: No tests found.\nMake sure that arguments are regular expressions matching test files.\nYou may need to escape symbols like \"$\" or \"*\" and quote the arguments.\n\n\u001b[1A\u001b[2K",
+      "stderr": "",
+      "success": false
+    },
+    "ux": {
+      "code": 1,
+      "stdout": "Error: No tests found.\nMake sure that arguments are regular expressions matching test files.\nYou may need to escape symbols like \"$\" or \"*\" and quote the arguments.\n\n\u001b[1A\u001b[2K",
+      "stderr": "",
+      "success": false
+    },
+    "printCSS": {
+      "success": false,
+      "error": "Print CSS file missing"
+    }
+  },
+  "qaHarness": {
+    "version": "1.0.0",
+    "features": [
+      "Health monitoring",
+      "Unit testing",
+      "E2E testing",
+      "i18n validation",
+      "Accessibility testing",
+      "UX validation",
+      "Print CSS validation",
+      "Environment checks"
+    ]
+  }
+}

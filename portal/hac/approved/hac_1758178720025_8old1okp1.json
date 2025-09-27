@@ -1,0 +1,20 @@
+{
+  "id": "hac_1758178720025_8old1okp1",
+  "caseId": "TEST-123",
+  "type": "case_update",
+  "payload": {
+    "status": "test",
+    "notes": "Testing HAC system"
+  },
+  "submittedAt": "2025-09-18T06:58:40.025Z",
+  "submittedBy": "127.0.0.1",
+  "status": "approved",
+  "approvedAt": "2025-09-18T06:59:00.629Z",
+  "approvedBy": "Test Admin",
+  "comments": "Testing approval system",
+  "applyResult": {
+    "applied": true,
+    "details": "Updated case.json for case TEST-123",
+    "targetFile": "case.json"
+  }
+}

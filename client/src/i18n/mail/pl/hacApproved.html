@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wniosek HAC Zatwierdzony</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        .email-container {
+            background: white;
+            border-radius: 8px;
+            padding: 30px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .header {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+        .header p {
+            margin: 10px 0 0 0;
+            opacity: 0.9;
+            font-size: 14px;
+        }
+        .content {
+            margin-bottom: 30px;
+        }
+        .details-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: #f0f9ff;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        .details-table th,
+        .details-table td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #e0f2fe;
+        }
+        .details-table th {
+            background: #10b981;
+            color: white;
+            font-weight: bold;
+        }
+        .details-table tr:last-child td {
+            border-bottom: none;
+        }
+        .footer {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #e5e7eb;
+            text-align: center;
+            font-size: 12px;
+            color: #666;
+        }
+        .button {
+            display: inline-block;
+            padding: 12px 24px;
+            background: #10b981;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+        .button:hover {
+            background: #059669;
+        }
+        .success-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+            text-transform: uppercase;
+            background: #d1fae5;
+            color: #065f46;
+        }
+    </style>
+</head>
+<body>
+    <div class="email-container">
+        <div class="header">
+            <h1>✅ Wniosek HAC Zatwierdzony</h1>
+            <p>Twoja aktualizacja sprawy została zatwierdzona</p>
+        </div>
+        
+        <div class="content">
+            <p>Dzień dobry,</p>
+            
+            <p>Doskonała wiadomość! Twój wniosek o Współpracę Wspomaganą przez Człowieka (HAC) został zatwierdzony i Twoja sprawa została odpowiednio zaktualizowana.</p>
+            
+            <table class="details-table">
+                <tr>
+                    <th>ID Wniosku</th>
+                    <td>{{hacRequest.id}}</td>
+                </tr>
+                <tr>
+                    <th>ID Sprawy</th>
+                    <td>{{hacRequest.caseId}}</td>
+                </tr>
+                <tr>
+                    <th>Typ Wniosku</th>
+                    <td>{{hacRequest.requestType}}</td>
+                </tr>
+                <tr>
+                    <th>Status</th>
+                    <td><span class="success-badge">Zatwierdzony</span></td>
+                </tr>
+                <tr>
+                    <th>Zatwierdzono</th>
+                    <td>{{hacRequest.approvedAt}}</td>
+                </tr>
+            </table>
+            
+            {{#if hacRequest.description}}
+            <h3>Opis Wniosku</h3>
+            <p style="background: #f0f9ff; padding: 15px; border-radius: 6px; border-left: 4px solid #10b981;">
+                {{hacRequest.description}}
+            </p>
+            {{/if}}
+            
+            {{#if hacRequest.adminNotes}}
+            <h3>Uwagi Administratora</h3>
+            <p style="background: #f9fafb; padding: 15px; border-radius: 6px;">
+                {{hacRequest.adminNotes}}
+            </p>
+            {{/if}}
+            
+            <p>Informacje o Twojej sprawie zostały zaktualizowane i możesz sprawdzić najnowszy status w swoim portalu klienta.</p>
+            
+            <div style="text-align: center; margin: 30px 0;">
+                <a href="{{dashboardUrl}}" class="button">Zobacz Status Sprawy</a>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>Ten e-mail został wysłany przez Portal Obywatelstwa Polskiego</p>
+            <p>W przypadku pytań, prosimy o kontakt z naszym zespołem wsparcia.</p>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,255 @@
+/* ================================================
+   UNIFIED DESIGN SYSTEM - Master Theme File
+   Polish Citizenship Portal Design System v1.0
+   ================================================ */
+
+/* Core Design Tokens */
+@import './design.css';
+
+/* Layout System */
+@import '../layout/layout.css';
+
+/* Component Systems */
+@import './buttons.css';
+@import './glass.css';
+@import './forms.css';
+@import './components.css';
+@import './icons.css';
+
+/* Print Styles */
+@import './print.css';
+
+/* ================================================
+   GLOBAL OVERRIDES & ENHANCEMENTS
+   ================================================ */
+
+/* Ensure smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--surface);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 4px;
+  transition: background var(--timing-fast);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--muted);
+}
+
+/* Hide scrollbars in dark theme for cleaner look */
+:root:not(.theme-light) ::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+:root:not(.theme-light) ::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+:root:not(.theme-light) ::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+:root:not(.theme-light) ::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* Focus management */
+*:focus {
+  outline: none;
+}
+
+*:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* Selection styling */
+::selection {
+  background: color-mix(in oklab, var(--accent) 30%, transparent);
+  color: var(--text);
+}
+
+/* ================================================
+   THEME TOGGLE UTILITIES
+   ================================================ */
+
+.theme-toggle {
+  background: none;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 8px;
+  cursor: pointer;
+  color: var(--muted);
+  transition: all var(--timing-fast);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+}
+
+.theme-toggle:hover {
+  color: var(--text);
+  background: var(--surface);
+  transform: scale(1.05);
+}
+
+/* ================================================
+   ENHANCED MOBILE OPTIMIZATIONS
+   ================================================ */
+
+@media (max-width: 768px) {
+  /* Larger touch targets */
+  .btn {
+    min-height: 48px;
+    padding: 0 20px;
+  }
+  
+  .btn-sm {
+    min-height: 44px;
+    padding: 0 16px;
+  }
+  
+  /* Better mobile spacing */
+  .board-page {
+    padding: 12px;
+  }
+  
+  /* Mobile-optimized cards */
+  .glass-card {
+    padding: 12px;
+    border-radius: 12px;
+  }
+  
+  /* Mobile typography */
+  .glass-title {
+    font-size: 18px;
+  }
+}
+
+/* ================================================
+   ACCESSIBILITY ENHANCEMENTS
+   ================================================ */
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  :root {
+    --border: #ffffff;
+    --text: #ffffff;
+    --muted: #cccccc;
+  }
+  
+  :root.theme-light {
+    --border: #000000;
+    --text: #000000;
+    --muted: #333333;
+  }
+}
+
+/* Reduced transparency for accessibility */
+@media (prefers-reduced-transparency: reduce) {
+  .glass-card,
+  .glass-card-strong,
+  .modal,
+  .dropdown-menu,
+  .toast {
+    backdrop-filter: none;
+    background: var(--surface-strong);
+  }
+}
+
+/* Focus indicators for keyboard navigation */
+.keyboard-navigation *:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* ================================================
+   PERFORMANCE OPTIMIZATIONS
+   ================================================ */
+
+/* GPU acceleration for animations */
+.btn,
+.glass-card,
+.modal,
+.toast {
+  transform: translateZ(0);
+  will-change: transform;
+}
+
+/* Optimize font rendering */
+body {
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ================================================
+   DEVELOPER UTILITIES
+   ================================================ */
+
+/* Debug mode utilities */
+.debug-mode .glass-card {
+  outline: 1px dashed #ff0000;
+}
+
+.debug-mode .btn {
+  outline: 1px dashed #00ff00;
+}
+
+.debug-mode .input {
+  outline: 1px dashed #0000ff;
+}
+
+/* Grid debug helper */
+.debug-grid .board-grid {
+  background-image: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 1fr,
+    rgba(255, 0, 0, 0.1) 1fr,
+    rgba(255, 0, 0, 0.1) calc(1fr + 1px)
+  );
+}
+
+/* ================================================
+   DESIGN SYSTEM STATUS INDICATOR
+   ================================================ */
+
+.design-system-info {
+  position: fixed;
+  bottom: 16px;
+  left: 16px;
+  background: var(--glass-strong);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 8px 12px;
+  font-size: 11px;
+  color: var(--muted);
+  font-family: var(--mono);
+  z-index: var(--z-toast);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.design-system-info.visible {
+  opacity: 1;
+}
+
+.design-system-info::before {
+  content: "🎨 Design System v1.0 Active";
+}

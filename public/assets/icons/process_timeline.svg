@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" role="img" aria-labelledby="title desc" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <title id="title">Process & Timeline icon</title>
+  <desc id="desc">Calendar with a clock.</desc>
+  <rect x="3" y="4.5" width="14" height="12" rx="2" ry="2"/>
+  <path d="M3 8h14M7 3v3M13 3v3"/>
+  <circle cx="19" cy="18" r="3.5"/>
+  <path d="M19 16.5v1.8l1.2.7"/>
+</svg>

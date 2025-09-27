@@ -1,0 +1,15 @@
+{
+  "caseId": "C-1758095891552-ORKY",
+  "client": {
+    "name": "Dan LEVINE",
+    "email": "daniellevine@gmail.com"
+  },
+  "processing": "standard",
+  "difficulty": 4,
+  "clientScore": 75,
+  "source": "dropbox",
+  "dropboxPath": "/cases/v i p (15)/levine",
+  "createdAt": "2025-09-17T07:58:11.553Z",
+  "lineage": "Test lineage from API",
+  "updatedAt": "2025-09-18T06:41:37.469Z"
+}

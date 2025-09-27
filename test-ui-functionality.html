@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Test UI Functionality</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        .test-section { margin: 20px 0; padding: 15px; border: 1px solid #ccc; border-radius: 5px; }
+        button { padding: 10px 20px; margin: 5px; background: #007bff; color: white; border: none; border-radius: 5px; cursor: pointer; }
+        button:hover { background: #0056b3; }
+        .result { margin: 10px 0; padding: 10px; background: #f8f9fa; border-radius: 5px; }
+    </style>
+</head>
+<body>
+    <h1>Polish Citizenship App - Test Functionality</h1>
+    
+    <div class="test-section">
+        <h3>🔧 Test PDF Fill API</h3>
+        <button onclick="testPDFFill()">Test PDF Fill with Sample Data</button>
+        <div id="pdf-result" class="result"></div>
+    </div>
+    
+    <div class="test-section">
+        <h3>📄 Test OCR Upload</h3>
+        <input type="file" id="file-input" accept="image/*,application/pdf">
+        <p style="color: #666; font-size: 14px;">✅ Supports: PDF, JPG, PNG, TIFF files</p>
+        <button onclick="testOCRUpload()">Test OCR Document Processing</button>
+        <div id="ocr-result" class="result"></div>
+    </div>
+    
+    <div class="test-section">
+        <h3>🔗 Direct Dashboard Access</h3>
+        <button onclick="window.open('/', '_blank')">Open Main Dashboard</button>
+        <p>1. Go to Section 5 (PDF Templates)<br>
+        2. Click "POA SINGLE" button<br>
+        3. Click purple "FILL WITH YOUR DATA & SAVE" button<br>
+        4. Check downloads for filled PDF</p>
+    </div>
+
+    <script>
+        async function testPDFFill() {
+            const resultDiv = document.getElementById('pdf-result');
+            resultDiv.innerHTML = '⏳ Testing PDF fill...';
+            
+            try {
+                const response = await fetch('/api/pdf/fill-template', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        templateName: 'Test POA Single',
+                        templateUrl: '/attached_assets/POA CITIZENSHIP SINGLE_1755043086081.pdf',
+                        applicantData: {
+                            firstName: 'John',
+                            lastName: 'Kowalski',
+                            email: 'john.kowalski@email.com',
+                            phone: '+1-555-123-4567',
+                            address: '123 Main Street',
+                            city: 'New York',
+                            country: 'United States'
+                        },
+                        familyTreeData: {
+                            applicantName: 'John Kowalski',
+                            applicantBirthDate: '15.01.1985',
+                            applicantBirthPlace: 'Chicago, USA',
+                            polishParentName: 'Anna KOWALSKA',
+                            polishParentBirthDate: '20.05.1960',
+                            polishParentBirthPlace: 'Warsaw, Poland'
+                        }
+                    })
+                });
+                
+                if (response.ok) {
+                    const blob = await response.blob();
+                    const url = window.URL.createObjectURL(blob);
+                    const a = document.createElement('a');
+                    a.href = url;
+                    a.download = 'test_filled_poa.pdf';
+                    a.click();
+                    window.URL.revokeObjectURL(url);
+                    
+                    resultDiv.innerHTML = '✅ SUCCESS! PDF filled and downloaded. Check your Downloads folder.';
+                    resultDiv.style.background = '#d4edda';
+                    resultDiv.style.color = '#155724';
+                } else {
+                    const error = await response.text();
+                    resultDiv.innerHTML = `❌ FAILED: ${response.status} - ${error}`;
+                    resultDiv.style.background = '#f8d7da';
+                    resultDiv.style.color = '#721c24';
+                }
+            } catch (error) {
+                resultDiv.innerHTML = `❌ ERROR: ${error.message}`;
+                resultDiv.style.background = '#f8d7da';
+                resultDiv.style.color = '#721c24';
+            }
+        }
+        
+        async function testOCRUpload() {
+            const fileInput = document.getElementById('file-input');
+            const resultDiv = document.getElementById('ocr-result');
+            
+            if (!fileInput.files[0]) {
+                resultDiv.innerHTML = '⚠️ Please select a file first';
+                return;
+            }
+            
+            resultDiv.innerHTML = '⏳ Processing document with OCR...';
+            
+            try {
+                const formData = new FormData();
+                formData.append('file', fileInput.files[0]);
+                formData.append('type', 'passport');
+                
+                const response = await fetch('/api/upload-document', {
+                    method: 'POST',
+                    body: formData
+                });
+                
+                if (response.ok) {
+                    const result = await response.json();
+                    resultDiv.innerHTML = `
+                        ✅ SUCCESS! OCR completed:<br>
+                        <strong>Extracted Text:</strong> ${result.extractedText.substring(0, 200)}...<br>
+                        <strong>Polish Translation:</strong> ${result.translatedText.substring(0, 200)}...<br>
+                        <strong>Document Type:</strong> ${result.documentType}<br>
+                        <strong>Confidence:</strong> ${result.confidence}
+                    `;
+                    resultDiv.style.background = '#d4edda';
+                    resultDiv.style.color = '#155724';
+                } else {
+                    const error = await response.text();
+                    resultDiv.innerHTML = `❌ FAILED: ${response.status} - ${error}`;
+                    resultDiv.style.background = '#f8d7da';
+                    resultDiv.style.color = '#721c24';
+                }
+            } catch (error) {
+                resultDiv.innerHTML = `❌ ERROR: ${error.message}`;
+                resultDiv.style.background = '#f8d7da';
+                resultDiv.style.color = '#721c24';
+            }
+        }
+    </script>
+</body>
+</html>

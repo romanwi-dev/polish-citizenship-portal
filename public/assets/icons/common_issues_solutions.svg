@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" role="img" aria-labelledby="title desc" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <title id="title">Common Issues & Solutions — Tools + Check</title>
+  <desc id="desc">Crossed wrench and screwdriver with a check badge.</desc>
+  <path d="M9.5 3l2 2-6.5 6.5-2-2z"/>
+  <path d="M5.5 8.5l2 2"/>
+  <path d="M18 4.5a2.5 2.5 0 0 1-3.5 3.5l-6.2 6.2a2.5 2.5 0 1 0 3.5 3.5l6.2-6.2A2.5 2.5 0 1 1 18 4.5z"/>
+  <circle cx="18.5" cy="18.5" r="3"/>
+  <path d="M17.3 18.5l1 1 1.7-2"/>
+</svg>

@@ -1,0 +1,8 @@
+INTEGRATION TASK REQUIREMENTS:
+1. Add Independent AI Testing Agent to AI TESTING dropdown menu
+2. Create UI interface for 10x iteration testing  
+3. Connect to independent-ai-testing-agent.mjs backend
+4. Show real-time results from Claude API analysis
+5. Display brutally honest success rates and issues found
+6. Make accessible from dropdown menu as user requested
+7. Test that it continues to catch implementing AI mistakes objectively
