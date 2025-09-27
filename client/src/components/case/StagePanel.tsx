@@ -347,50 +347,39 @@ export const StagePanel: React.FC<StagePanelProps> = ({ case: caseData }) => {
 
   return (
     <div className="stage-panel space-y-6">
-      {/* Enhanced Legend & Controls */}
-      <div className="bg-gradient-to-r from-blue-50 to-green-50 dark:from-blue-900/20 dark:to-green-900/20 border border-blue-200 dark:border-blue-700 rounded-lg p-4">
+      {/* Simple Legend */}
+      <div className="bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-4">
         <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-4">
           <div>
-            <h3 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Interactive Stage Management System</h3>
+            <h3 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Polish Citizenship Case Pipeline</h3>
             <div className="flex flex-wrap items-center gap-4 text-xs">
               <div className="flex items-center gap-1">
-                <div className="w-3 h-3 bg-green-500 rounded-full"></div>
-                <span className="text-green-700 dark:text-green-300">👁️ Client Visible</span>
+                <div className="w-3 h-3 bg-red-100 dark:bg-red-900 border border-red-300 dark:border-red-700 rounded"></div>
+                <span className="text-gray-700 dark:text-gray-300">Critical</span>
               </div>
               <div className="flex items-center gap-1">
-                <div className="w-3 h-3 bg-gray-400 rounded-full"></div>
-                <span className="text-gray-600 dark:text-gray-400">🔒 Admin Only</span>
+                <div className="w-3 h-3 bg-orange-100 dark:bg-orange-900 border border-orange-300 dark:border-orange-700 rounded"></div>
+                <span className="text-gray-700 dark:text-gray-300">High Priority</span>
               </div>
               <div className="flex items-center gap-1">
-                <div className="w-3 h-3 bg-yellow-400 rounded-full"></div>
-                <span className="text-yellow-600 dark:text-yellow-400">🏆 Major Milestone</span>
+                <div className="w-3 h-3 bg-blue-100 dark:bg-blue-900 border border-blue-300 dark:border-blue-700 rounded"></div>
+                <span className="text-gray-700 dark:text-gray-300">Medium Priority</span>
               </div>
               <div className="flex items-center gap-1">
-                <div className="w-3 h-3 bg-blue-500 rounded-full"></div>
-                <span className="text-blue-600 dark:text-blue-400">⚡ Interactive</span>
+                <div className="w-3 h-3 bg-gray-100 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded"></div>
+                <span className="text-gray-700 dark:text-gray-300">Low Priority</span>
               </div>
             </div>
           </div>
-          <div className="flex items-center gap-2">
-            <button 
-              className="text-xs px-3 py-1 bg-purple-500 text-white rounded-full hover:bg-purple-600 transition-colors"
-              data-testid="button-stage-analytics"
-            >
-              📊 Analytics
-            </button>
-            <button 
-              className="text-xs px-3 py-1 bg-orange-500 text-white rounded-full hover:bg-orange-600 transition-colors"
-              data-testid="button-export-timeline"
-            >
-              📤 Export Timeline
-            </button>
+          <div className="text-sm text-gray-500 dark:text-gray-400">
+            Case Age: {ageDays} days • {COMPREHENSIVE_PIPELINE.length} stages total
           </div>
         </div>
       </div>
 
       {/* Progress Overview Dashboard */}
-      <div className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-lg shadow-lg dark:shadow-2xl p-6">
-        <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">📈 Progress Overview</h3>
+      <div className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-lg p-6">
+        <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">Progress Overview</h3>
         
         <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
           <div className="text-center p-4 bg-gray-50 dark:bg-gray-800 rounded-lg">
@@ -472,68 +461,72 @@ export const StagePanel: React.FC<StagePanelProps> = ({ case: caseData }) => {
         </div>
       </div>
 
-      {/* Simplified Horizontal Stage Rail */}
-      <div className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-lg shadow-lg dark:shadow-2xl p-6">
+      {/* Interactive Stage Pipeline */}
+      <div className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-lg p-6">
         <div className="flex items-center justify-between mb-4">
           <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
-            Complete Stage Pipeline (15 Parts)
+            Stage Pipeline
           </h3>
           <div className="text-sm text-gray-500 dark:text-gray-400">
-            {COMPREHENSIVE_PIPELINE.length} stages • Click to focus
+            {COMPREHENSIVE_PIPELINE.length} stages total
           </div>
         </div>
         
         <div className="relative">
-          <div className="flex overflow-x-auto gap-2 pb-4 stage-horizontal-rail">
+          <div className="flex overflow-x-auto gap-3 pb-4">
             {COMPREHENSIVE_PIPELINE.map((stage, i) => {
               const isActive = i === activeIdx;
               const isCompleted = i < activeIdx;
-              const isClientVisible = stage.clientVisible;
-              const isMilestone = stage.isMilestone;
+              
+              // Get importance-based background colors
+              const getImportanceStyles = (importance?: string) => {
+                if (isActive) {
+                  return "border-blue-600 bg-blue-600 text-white shadow-lg";
+                }
+                if (isCompleted) {
+                  return "border-green-600 bg-green-600 text-white";
+                }
+                
+                switch (importance) {
+                  case 'critical':
+                    return "border-red-300 bg-red-50 dark:bg-red-900/20 dark:border-red-700 text-red-900 dark:text-red-100 hover:bg-red-100 dark:hover:bg-red-900/30";
+                  case 'high':
+                    return "border-orange-300 bg-orange-50 dark:bg-orange-900/20 dark:border-orange-700 text-orange-900 dark:text-orange-100 hover:bg-orange-100 dark:hover:bg-orange-900/30";
+                  case 'medium':
+                    return "border-blue-300 bg-blue-50 dark:bg-blue-900/20 dark:border-blue-700 text-blue-900 dark:text-blue-100 hover:bg-blue-100 dark:hover:bg-blue-900/30";
+                  case 'low':
+                  default:
+                    return "border-gray-300 bg-gray-50 dark:bg-gray-800 dark:border-gray-600 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700";
+                }
+              };
               
               return (
                 <div 
                   key={stage.key} 
                   className={cn(
-                    "flex-shrink-0 px-3 py-2 rounded-lg border cursor-pointer transition-all duration-200 hover:shadow-sm",
-                    isActive 
-                      ? "border-blue-500 bg-blue-100 dark:bg-blue-900/30 text-blue-900 dark:text-blue-100" 
-                      : isCompleted 
-                      ? "border-green-500 bg-green-100 dark:bg-green-900/30 text-green-900 dark:text-green-100"
-                      : "border-gray-300 bg-gray-50 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:border-gray-400"
+                    "flex-shrink-0 px-4 py-3 rounded-lg border-2 cursor-pointer transition-all duration-200",
+                    "min-w-[140px] text-center", // Bigger stages
+                    getImportanceStyles(stage.importance)
                   )}
                   onClick={() => handleMarkActive(stage.key)}
-                  title={`${stage.label} - ${stage.description} (Part ${stage.part})`}
+                  title={`${stage.label} - ${stage.description} (Part ${stage.part})${stage.importance ? ` - ${stage.importance.toUpperCase()} priority` : ''}`}
                   data-testid={`stage-chip-${stage.key}`}
                 >
-                  {/* Simple Chip Content */}
-                  <div className="flex items-center gap-2">
-                    {/* Stage Number & Status */}
-                    <div className={cn(
-                      "w-5 h-5 rounded-full flex items-center justify-center text-xs font-bold",
-                      isActive ? "bg-blue-500 text-white" : isCompleted ? "bg-green-500 text-white" : "bg-gray-400 text-white"
-                    )}>
+                  <div className="space-y-1">
+                    {/* Stage Number */}
+                    <div className="text-sm font-bold">
                       {isCompleted ? "✓" : i + 1}
                     </div>
                     
                     {/* Stage Name */}
-                    <span className="text-xs font-medium truncate max-w-20">
+                    <div className="text-xs font-medium leading-tight">
                       {stage.label}
-                    </span>
+                    </div>
                     
-                    {/* Part Badge */}
-                    <span className="text-xs px-1 py-0.5 bg-gray-200 dark:bg-gray-700 rounded text-gray-600 dark:text-gray-400">
-                      P{stage.part}
-                    </span>
-                    
-                    {/* Indicators */}
-                    {stage.actionItems && stage.actionItems.length > 0 && (
-                      <span className="text-xs bg-blue-500 text-white rounded-full w-4 h-4 flex items-center justify-center font-bold" title={`${stage.actionItems.length} actions available`}>
-                        {stage.actionItems.length}
-                      </span>
-                    )}
-                    {isMilestone && <span className="text-xs">🏆</span>}
-                    {isClientVisible && <span className="text-xs">👁️</span>}
+                    {/* Part Number */}
+                    <div className="text-xs opacity-70">
+                      Part {stage.part}
+                    </div>
                   </div>
                 </div>
               );
@@ -542,25 +535,14 @@ export const StagePanel: React.FC<StagePanelProps> = ({ case: caseData }) => {
         </div>
       </div>
 
-      {/* Interactive Kanban-Style Stage Management */}
-      <div className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-lg shadow-lg dark:shadow-2xl p-6">
+      {/* Stage Management */}
+      <div className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-lg p-6">
         <div className="flex items-center justify-between mb-6">
           <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
-            🏗️ Interactive Stage Management - All 15 Parts
+            Stage Management
           </h3>
-          <div className="flex items-center gap-2">
-            <button 
-              className="text-xs px-3 py-1 bg-blue-500 text-white rounded-full hover:bg-blue-600 transition-colors"
-              data-testid="button-add-stage"
-            >
-              + Add Stage
-            </button>
-            <button 
-              className="text-xs px-3 py-1 bg-green-500 text-white rounded-full hover:bg-green-600 transition-colors"
-              data-testid="button-bulk-edit"
-            >
-              Bulk Edit
-            </button>
+          <div className="text-sm text-gray-500 dark:text-gray-400">
+            Current: {COMPREHENSIVE_PIPELINE[activeIdx]?.label || 'None'}
           </div>
         </div>
 
@@ -593,8 +575,8 @@ export const StagePanel: React.FC<StagePanelProps> = ({ case: caseData }) => {
                   <div className="flex items-center justify-between mb-1">
                     <span className="text-xs font-medium text-gray-900 dark:text-white">{stage.label}</span>
                     <div className="flex items-center gap-1">
-                      {stage.clientVisible && <span className="text-green-500 text-xs">👁️</span>}
-                      {stage.isMilestone && <span className="text-yellow-500 text-xs">🏆</span>}
+                      {stage.clientVisible && <span className="text-xs text-green-600 dark:text-green-400">Client</span>}
+                      {stage.isMilestone && <span className="text-xs text-yellow-600 dark:text-yellow-400">Milestone</span>}
                     </div>
                   </div>
                   <div className="text-xs text-gray-500 dark:text-gray-400 mb-2">{stage.description?.slice(0, 50)}...</div>
@@ -627,42 +609,19 @@ export const StagePanel: React.FC<StagePanelProps> = ({ case: caseData }) => {
                           <p className="text-xs text-gray-600 dark:text-gray-400">{stage.description}</p>
                         </div>
                         
-                        {/* Action Items Section */}
-                        {stage.actionItems && stage.actionItems.length > 0 && (
-                          <div>
-                            <label className="text-xs font-medium text-gray-700 dark:text-gray-300 block mb-2">Required Actions</label>
-                            <div className="space-y-2">
-                              {stage.actionItems.map((action, idx) => (
-                                <div key={idx} className="flex items-center justify-between p-2 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-600 rounded">
-                                  <div className="flex items-center gap-2 flex-1">
-                                    <span className="text-sm">{action.icon}</span>
-                                    <div className="flex-1 min-w-0">
-                                      <div className="text-xs font-medium text-gray-900 dark:text-gray-100 truncate">{action.title}</div>
-                                      <div className="text-xs text-gray-500 dark:text-gray-400 truncate">{action.description}</div>
-                                    </div>
-                                    <div className={cn(
-                                      "text-xs px-1.5 py-0.5 rounded-full font-medium",
-                                      action.priority === 'high' ? "bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-300" :
-                                      action.priority === 'medium' ? "bg-yellow-100 text-yellow-700 dark:bg-yellow-900/30 dark:text-yellow-300" :
-                                      "bg-gray-100 text-gray-700 dark:bg-gray-800 dark:text-gray-300"
-                                    )}>
-                                      {action.priority || 'medium'}
-                                    </div>
-                                  </div>
-                                  {action.link && (
-                                    <button
-                                      className="ml-2 text-xs px-2 py-1 bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors"
-                                      onClick={() => action.link && (window.location.href = action.link)}
-                                      data-testid={`button-action-${stage.key}-${idx}`}
-                                    >
-                                      Go
-                                    </button>
-                                  )}
-                                </div>
-                              ))}
-                            </div>
+                        {/* Stage Importance */}
+                        <div>
+                          <label className="text-xs font-medium text-gray-700 dark:text-gray-300 block mb-1">Priority Level</label>
+                          <div className={cn(
+                            "text-xs px-2 py-1 rounded font-medium inline-block",
+                            stage.importance === 'critical' ? "bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-300" :
+                            stage.importance === 'high' ? "bg-orange-100 text-orange-700 dark:bg-orange-900/30 dark:text-orange-300" :
+                            stage.importance === 'medium' ? "bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-300" :
+                            "bg-gray-100 text-gray-700 dark:bg-gray-800 dark:text-gray-300"
+                          )}>
+                            {stage.importance || 'low'} priority
                           </div>
-                        )}
+                        </div>
                         
                         <div>
                           <label className="text-xs font-medium text-gray-700 dark:text-gray-300 block mb-1">Stage Notes</label>
