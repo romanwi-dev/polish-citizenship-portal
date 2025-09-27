@@ -894,6 +894,39 @@ export const StagePanel: React.FC<StagePanelProps> = ({ case: caseData }) => {
                           </span>
                         </div>
                         
+                        {/* Active Stage Related Work */}
+                        {COMPREHENSIVE_PIPELINE[activeIdx].links && COMPREHENSIVE_PIPELINE[activeIdx].links!.length > 0 && (
+                          <div>
+                            <label className="text-xs font-medium text-gray-700 dark:text-gray-300 block mb-2">Quick Actions</label>
+                            <div className="space-y-1">
+                              {COMPREHENSIVE_PIPELINE[activeIdx].links!.map(link => (
+                                <div key={link.id} className="flex items-center justify-between p-2 bg-blue-50 dark:bg-blue-900/10 border border-blue-200 dark:border-blue-700 rounded">
+                                  <div className="flex items-center gap-2">
+                                    <span className="text-xs font-medium text-blue-900 dark:text-blue-100">{link.label}</span>
+                                    {link.count && (
+                                      <span className="text-xs bg-blue-200 dark:bg-blue-800 text-blue-800 dark:text-blue-200 px-1 py-0.5 rounded">
+                                        {link.count}
+                                      </span>
+                                    )}
+                                  </div>
+                                  <button 
+                                    className="text-xs px-2 py-1 bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors"
+                                    onClick={() => {
+                                      toast({
+                                        title: "Quick Action",
+                                        description: `Opening ${link.label}...`,
+                                      });
+                                    }}
+                                    data-testid={`button-active-link-${link.id}`}
+                                  >
+                                    Go
+                                  </button>
+                                </div>
+                              ))}
+                            </div>
+                          </div>
+                        )}
+                        
                         <div className="flex gap-1">
                           <button 
                             className="text-xs px-2 py-1 bg-yellow-500 text-white rounded hover:bg-yellow-600 transition-colors"
