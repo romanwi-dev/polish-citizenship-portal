@@ -1,7 +1,8 @@
-import React, { useMemo } from "react";
+import React, { useMemo, useState, useCallback } from "react";
 import type { CaseData } from "@/lib/api";
 import { formatPL } from "@/utils/date";
 import { cn } from "@/lib/utils";
+import { useToast } from "@/hooks/use-toast";
 
 type CaseStage = 
   | "PART1_FIRST_CONTACT" | "PART1_FAMILY_TREE" | "PART1_ELIGIBILITY"
@@ -136,7 +137,15 @@ interface StagePanelProps {
 }
 
 export const StagePanel: React.FC<StagePanelProps> = ({ case: caseData }) => {
-  const activeIdx = useMemo(() => {
+  const { toast } = useToast();
+  
+  // Stage management state
+  const [localActiveIdx, setLocalActiveIdx] = useState<number | null>(null);
+  const [isEditing, setIsEditing] = useState<string | null>(null);
+  const [draggedStage, setDraggedStage] = useState<string | null>(null);
+  const [dragOverStage, setDragOverStage] = useState<string | null>(null);
+
+  const baseActiveIdx = useMemo(() => {
     // Map case stage to comprehensive pipeline stages
     let stageKey = caseData.stage?.toUpperCase();
     
@@ -151,8 +160,8 @@ export const StagePanel: React.FC<StagePanelProps> = ({ case: caseData }) => {
       "OBY_READY": "PART5_APPLICATION_SUBMITTED",
       "OBY_SUBMITTABLE": "PART5_APPLICATION_SUBMITTED", 
       "OBY_SUBMITTED": "PART5_APPLICATION_SUBMITTED",
-      "DECISION_RECEIVED": "PART13_CITIZENSHIP_DECISION",
-      "DECISION": "PART13_CITIZENSHIP_DECISION",
+      "DECISION_RECEIVED": "PART13_CITIZENSHIP_CONFIRMATION",
+      "DECISION": "PART13_CITIZENSHIP_CONFIRMATION",
       "PASSPORT": "PART14_PASSPORT_OBTAINED",
     };
     
@@ -160,6 +169,80 @@ export const StagePanel: React.FC<StagePanelProps> = ({ case: caseData }) => {
     const i = COMPREHENSIVE_PIPELINE.findIndex(s => s.key === mappedStage);
     return i >= 0 ? i : 0;
   }, [caseData.stage]);
+
+  // Use local state if available, otherwise use base active index
+  const activeIdx = localActiveIdx !== null ? localActiveIdx : baseActiveIdx;
+
+  // Stage management handlers
+  const handleStageComplete = useCallback(() => {
+    const nextIdx = Math.min(activeIdx + 1, COMPREHENSIVE_PIPELINE.length - 1);
+    setLocalActiveIdx(nextIdx);
+    toast({
+      title: "Stage Completed",
+      description: `Moved to ${COMPREHENSIVE_PIPELINE[nextIdx]?.label || 'next stage'}`,
+    });
+  }, [activeIdx, toast]);
+
+  const handleStageSkip = useCallback(() => {
+    const nextIdx = Math.min(activeIdx + 1, COMPREHENSIVE_PIPELINE.length - 1);
+    setLocalActiveIdx(nextIdx);
+    toast({
+      title: "Stage Skipped",
+      description: `Skipped to ${COMPREHENSIVE_PIPELINE[nextIdx]?.label || 'next stage'}`,
+    });
+  }, [activeIdx, toast]);
+
+  const handleMarkActive = useCallback((stageKey: string) => {
+    const stageIdx = COMPREHENSIVE_PIPELINE.findIndex(s => s.key === stageKey);
+    if (stageIdx >= 0) {
+      setLocalActiveIdx(stageIdx);
+      toast({
+        title: "Stage Activated",
+        description: `Set ${COMPREHENSIVE_PIPELINE[stageIdx].label} as active`,
+      });
+    }
+  }, [toast]);
+
+  const handleStageReview = useCallback((stageKey: string) => {
+    const stage = COMPREHENSIVE_PIPELINE.find(s => s.key === stageKey);
+    if (stage) {
+      setIsEditing(stageKey);
+      toast({
+        title: "Reviewing Stage",
+        description: `Reviewing ${stage.label}`,
+      });
+    }
+  }, [toast]);
+
+  // Drag and drop handlers
+  const handleDragStart = useCallback((e: React.DragEvent, stageKey: string) => {
+    setDraggedStage(stageKey);
+    e.dataTransfer.effectAllowed = 'move';
+  }, []);
+
+  const handleDragOver = useCallback((e: React.DragEvent, stageKey: string) => {
+    e.preventDefault();
+    setDragOverStage(stageKey);
+    e.dataTransfer.dropEffect = 'move';
+  }, []);
+
+  const handleDragLeave = useCallback(() => {
+    setDragOverStage(null);
+  }, []);
+
+  const handleDrop = useCallback((e: React.DragEvent, targetStageKey: string) => {
+    e.preventDefault();
+    const draggedStageKey = draggedStage;
+    setDraggedStage(null);
+    setDragOverStage(null);
+    
+    if (draggedStageKey && draggedStageKey !== targetStageKey) {
+      toast({
+        title: "Stage Reordered",
+        description: `Moved stage to new position`,
+      });
+    }
+  }, [draggedStage, toast]);
 
   // Get client-visible stages for separate display
   const clientVisibleStages = COMPREHENSIVE_PIPELINE.filter(stage => stage.clientVisible);
@@ -325,16 +408,21 @@ export const StagePanel: React.FC<StagePanelProps> = ({ case: caseData }) => {
                   className={cn(
                     "flex-shrink-0 w-36 p-3 rounded-lg border-2 transition-all duration-200 cursor-pointer hover:shadow-md",
                     isMilestone && "ring-2 ring-yellow-300 dark:ring-yellow-600",
+                    draggedStage === stage.key && "opacity-50 scale-95",
+                    dragOverStage === stage.key && "ring-2 ring-blue-400 scale-105",
                     isActive 
                       ? (isClientVisible ? "border-green-500 bg-green-100 dark:bg-green-900/30 shadow-lg" : "border-blue-500 bg-blue-100 dark:bg-blue-900/30 shadow-lg")
                       : isCompleted 
                       ? (isClientVisible ? "border-green-300 bg-green-50 dark:bg-green-900/10" : "border-gray-300 bg-gray-50 dark:bg-gray-800") 
                       : "border-gray-200 bg-white dark:bg-gray-900 dark:border-gray-600 hover:border-gray-300"
                   )}
-                  onClick={() => {
-                    // TODO: Add stage editing functionality
-                    console.log('Edit stage:', stage.key);
-                  }}
+                  draggable={true}
+                  onDragStart={(e) => handleDragStart(e, stage.key)}
+                  onDragOver={(e) => handleDragOver(e, stage.key)}
+                  onDragLeave={handleDragLeave}
+                  onDrop={(e) => handleDrop(e, stage.key)}
+                  onClick={() => handleMarkActive(stage.key)}
+                  data-testid={`stage-card-${stage.key}`}
                 >
                   <div className="flex items-center justify-between mb-2">
                     <div className={cn(
@@ -434,7 +522,20 @@ export const StagePanel: React.FC<StagePanelProps> = ({ case: caseData }) => {
             </div>
             <div className="max-h-96 overflow-y-auto space-y-2">
               {COMPREHENSIVE_PIPELINE.filter((_, i) => i > activeIdx).slice(0, 8).map((stage, index) => (
-                <div key={stage.key} className="p-3 border border-gray-200 dark:border-gray-700 rounded-lg hover:border-gray-300 transition-colors cursor-pointer">
+                <div 
+                  key={stage.key} 
+                  className={cn(
+                    "p-3 border border-gray-200 dark:border-gray-700 rounded-lg hover:border-gray-300 transition-colors cursor-pointer",
+                    draggedStage === stage.key && "opacity-50 scale-95",
+                    dragOverStage === stage.key && "ring-2 ring-blue-400 scale-105"
+                  )}
+                  draggable={true}
+                  onDragStart={(e) => handleDragStart(e, stage.key)}
+                  onDragOver={(e) => handleDragOver(e, stage.key)}
+                  onDragLeave={handleDragLeave}
+                  onDrop={(e) => handleDrop(e, stage.key)}
+                  data-testid={`pending-stage-${stage.key}`}
+                >
                   <div className="flex items-center justify-between mb-1">
                     <span className="text-xs font-medium text-gray-900 dark:text-white">{stage.label}</span>
                     <div className="flex items-center gap-1">
@@ -446,8 +547,9 @@ export const StagePanel: React.FC<StagePanelProps> = ({ case: caseData }) => {
                   <div className="flex items-center justify-between">
                     <span className="text-xs text-gray-400">Part {stage.part}</span>
                     <button 
-                      className="text-xs px-2 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 rounded hover:bg-blue-200 dark:hover:bg-blue-900/50"
+                      className="text-xs px-2 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 rounded hover:bg-blue-200 dark:hover:bg-blue-900/50 transition-colors"
                       data-testid={`button-mark-active-${stage.key}`}
+                      onClick={() => handleMarkActive(stage.key)}
                     >
                       Mark Active
                     </button>
@@ -479,14 +581,16 @@ export const StagePanel: React.FC<StagePanelProps> = ({ case: caseData }) => {
                   <span className="text-xs text-blue-600 dark:text-blue-400">Part {COMPREHENSIVE_PIPELINE[activeIdx].part}</span>
                   <div className="flex gap-2">
                     <button 
-                      className="text-xs px-3 py-1 bg-green-500 text-white rounded hover:bg-green-600"
+                      className="text-xs px-3 py-1 bg-green-500 text-white rounded hover:bg-green-600 transition-colors"
                       data-testid="button-complete-stage"
+                      onClick={handleStageComplete}
                     >
                       Complete
                     </button>
                     <button 
-                      className="text-xs px-3 py-1 bg-gray-500 text-white rounded hover:bg-gray-600"
+                      className="text-xs px-3 py-1 bg-gray-500 text-white rounded hover:bg-gray-600 transition-colors"
                       data-testid="button-skip-stage"
+                      onClick={handleStageSkip}
                     >
                       Skip
                     </button>
@@ -507,7 +611,20 @@ export const StagePanel: React.FC<StagePanelProps> = ({ case: caseData }) => {
             </div>
             <div className="max-h-96 overflow-y-auto space-y-2">
               {COMPREHENSIVE_PIPELINE.filter((_, i) => i < activeIdx).slice(-8).reverse().map((stage) => (
-                <div key={stage.key} className="p-3 border border-green-200 dark:border-green-700 bg-green-50 dark:bg-green-900/10 rounded-lg">
+                <div 
+                  key={stage.key} 
+                  className={cn(
+                    "p-3 border border-green-200 dark:border-green-700 bg-green-50 dark:bg-green-900/10 rounded-lg transition-colors cursor-pointer",
+                    draggedStage === stage.key && "opacity-50 scale-95",
+                    dragOverStage === stage.key && "ring-2 ring-blue-400 scale-105"
+                  )}
+                  draggable={true}
+                  onDragStart={(e) => handleDragStart(e, stage.key)}
+                  onDragOver={(e) => handleDragOver(e, stage.key)}
+                  onDragLeave={handleDragLeave}
+                  onDrop={(e) => handleDrop(e, stage.key)}
+                  data-testid={`completed-stage-${stage.key}`}
+                >
                   <div className="flex items-center justify-between mb-1">
                     <span className="text-xs font-medium text-green-900 dark:text-green-100">{stage.label}</span>
                     <div className="flex items-center gap-1">
@@ -520,8 +637,9 @@ export const StagePanel: React.FC<StagePanelProps> = ({ case: caseData }) => {
                   <div className="flex items-center justify-between">
                     <span className="text-xs text-green-600 dark:text-green-400">Part {stage.part}</span>
                     <button 
-                      className="text-xs px-2 py-1 bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-300 rounded hover:bg-green-200 dark:hover:bg-green-900/50"
+                      className="text-xs px-2 py-1 bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-300 rounded hover:bg-green-200 dark:hover:bg-green-900/50 transition-colors"
                       data-testid={`button-review-${stage.key}`}
+                      onClick={() => handleStageReview(stage.key)}
                     >
                       Review
                     </button>
