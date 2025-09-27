@@ -687,14 +687,14 @@ export const StagePanel: React.FC<StagePanelProps> = ({ case: caseData }) => {
                 <div className="flex items-center justify-between mb-2">
                   <span className="font-semibold text-blue-900 dark:text-blue-100">{COMPREHENSIVE_PIPELINE[activeIdx].label}</span>
                   <div className="flex items-center gap-2">
-                    {COMPREHENSIVE_PIPELINE[activeIdx].clientVisible && <span className="text-green-500" title="Client Visible">👁️</span>}
-                    {COMPREHENSIVE_PIPELINE[activeIdx].isMilestone && <span className="text-yellow-500" title="Major Milestone">🏆</span>}
+                    {COMPREHENSIVE_PIPELINE[activeIdx].clientVisible && <span className="text-xs bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-300 px-2 py-1 rounded">Client Visible</span>}
+                    {COMPREHENSIVE_PIPELINE[activeIdx].isMilestone && <span className="text-xs bg-yellow-100 dark:bg-yellow-900/30 text-yellow-700 dark:text-yellow-300 px-2 py-1 rounded">Milestone</span>}
                     <button 
-                      className="text-blue-600 hover:text-blue-800 text-sm transition-colors"
+                      className="text-xs px-2 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 rounded hover:bg-blue-200 dark:hover:bg-blue-900/50 transition-colors"
                       onClick={() => handleExpandStage(COMPREHENSIVE_PIPELINE[activeIdx].key)}
                       data-testid="button-edit-active-stage"
                     >
-                      {expandedStage === COMPREHENSIVE_PIPELINE[activeIdx].key ? '📝' : '✏️'}
+                      {expandedStage === COMPREHENSIVE_PIPELINE[activeIdx].key ? 'Collapse' : 'Expand'}
                     </button>
                   </div>
                 </div>
