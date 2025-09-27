@@ -21,6 +21,15 @@ type CaseStage =
   | "PART14_PASSPORT_PREP" | "PART14_FINAL_PAYMENT" | "PART14_PASSPORT_OBTAINED"
   | "PART15_EXTENDED_SERVICES";
 
+interface StageActionItem {
+  type: 'task' | 'pdf' | 'document' | 'letter' | 'email';
+  title: string;
+  description: string;
+  link?: string; // Link to task, template, or workflow
+  icon: string;
+  priority?: 'high' | 'medium' | 'low';
+}
+
 interface StageInfo {
   key: CaseStage | string;
   label: string;
@@ -28,15 +37,49 @@ interface StageInfo {
   clientVisible: boolean;
   description?: string;
   isMilestone?: boolean; // For stages marked with >>>> in the corrected workflow
+  actionItems?: StageActionItem[]; // Links to tasks, PDFs, documents, letters, emails
 }
 
 const COMPREHENSIVE_PIPELINE: StageInfo[] = [
   // PART 1 - FIRST STEPS
-  { key: "PART1_FIRST_CONTACT", label: "First Contact", part: 1, clientVisible: true, description: "Initial client contact and inquiry" },
+  { 
+    key: "PART1_FIRST_CONTACT", 
+    label: "First Contact", 
+    part: 1, 
+    clientVisible: true, 
+    description: "Initial client contact and inquiry",
+    actionItems: [
+      { type: 'task', title: 'Schedule Initial Call', description: 'Book consultation call with client', icon: '📞', priority: 'high', link: '/tasks/schedule-call' },
+      { type: 'email', title: 'Welcome Email', description: 'Send welcome and next steps email', icon: '📧', priority: 'high', link: '/templates/welcome-email' },
+      { type: 'document', title: 'Client Intake Form', description: 'Send initial intake questionnaire', icon: '📋', priority: 'medium', link: '/documents/intake-form' }
+    ]
+  },
   { key: "PART1_CONTACT_WAVING", label: "Contact Waving", part: 1, clientVisible: false, description: "Follow-up contact wave" },
   { key: "PART1_ANSWERING_INQUIRY", label: "Answering Inquiry", part: 1, clientVisible: false, description: "Responding to client inquiry" },
-  { key: "PART1_CITIZENSHIP_TEST", label: "Citizenship Test", part: 1, clientVisible: true, description: "Citizenship eligibility assessment test" },
-  { key: "PART1_FAMILY_TREE", label: "Family Tree", part: 1, clientVisible: true, description: "Family tree analysis and documentation", isMilestone: true },
+  { 
+    key: "PART1_CITIZENSHIP_TEST", 
+    label: "Citizenship Test", 
+    part: 1, 
+    clientVisible: true, 
+    description: "Citizenship eligibility assessment test",
+    actionItems: [
+      { type: 'task', title: 'Administer Eligibility Test', description: 'Complete comprehensive eligibility assessment', icon: '📝', priority: 'high', link: '/ai-citizenship-intake' },
+      { type: 'pdf', title: 'Test Results Report', description: 'Generate eligibility assessment PDF', icon: '📄', priority: 'medium', link: '/templates/eligibility-report' }
+    ]
+  },
+  { 
+    key: "PART1_FAMILY_TREE", 
+    label: "Family Tree", 
+    part: 1, 
+    clientVisible: true, 
+    description: "Family tree analysis and documentation", 
+    isMilestone: true,
+    actionItems: [
+      { type: 'task', title: 'Build Family Tree', description: 'Complete 4-generation family tree analysis', icon: '🌳', priority: 'high', link: '/client-dashboard?tab=tree' },
+      { type: 'pdf', title: 'Family Tree PDF', description: 'Generate detailed family tree document', icon: '📊', priority: 'high', link: '/api/family-tree/export' },
+      { type: 'document', title: 'Genealogy Documents', description: 'Collect supporting genealogical documents', icon: '📜', priority: 'medium', link: '/documents/genealogy' }
+    ]
+  },
   { key: "PART1_ELIGIBILITY_EXAM", label: "Eligibility Examination", part: 1, clientVisible: false, description: "Eligibility examination (yes, maybe, no)" },
   { key: "PART1_DIFFICULTY_EVAL", label: "Case Difficulty Evaluation", part: 1, clientVisible: false, description: "Case difficulty evaluation on 1-10 scale" },
   { key: "PART1_ELIGIBILITY_CALL", label: "Eligibility Call", part: 1, clientVisible: true, description: "Initial eligibility consultation call", isMilestone: true },
@@ -52,9 +95,41 @@ const COMPREHENSIVE_PIPELINE: StageInfo[] = [
   { key: "PART3_ACCOUNT_OPENING", label: "Portal Account Opening", part: 3, clientVisible: true, description: "Opening account on client portal", isMilestone: true },
 
   // PART 4 - DETAILS & POAs
-  { key: "PART4_BASIC_DETAILS", label: "Basic Details Collection", part: 4, clientVisible: true, description: "Client provides passport copy, address, birth certificate, phone number, family history" },
-  { key: "PART4_POA_PREP", label: "POA Preparation", part: 4, clientVisible: true, description: "Preparing the Power of Attorney documents" },
-  { key: "PART4_POA_EMAIL", label: "POA Email", part: 4, clientVisible: true, description: "Emailing the POAs to client" },
+  { 
+    key: "PART4_BASIC_DETAILS", 
+    label: "Basic Details Collection", 
+    part: 4, 
+    clientVisible: true, 
+    description: "Client provides passport copy, address, birth certificate, phone number, family history",
+    actionItems: [
+      { type: 'task', title: 'Upload Passport Copy', description: 'Client uploads valid passport copy', icon: '📘', priority: 'high', link: '/client-dashboard?tab=documents' },
+      { type: 'document', title: 'Birth Certificate', description: 'Obtain certified birth certificate', icon: '📋', priority: 'high', link: '/documents/birth-certificate' },
+      { type: 'task', title: 'Complete Address Verification', description: 'Verify current address and history', icon: '🏠', priority: 'medium', link: '/tasks/address-verification' }
+    ]
+  },
+  { 
+    key: "PART4_POA_PREP", 
+    label: "POA Preparation", 
+    part: 4, 
+    clientVisible: true, 
+    description: "Preparing the Power of Attorney documents",
+    actionItems: [
+      { type: 'pdf', title: 'Generate POA Documents', description: 'Create Power of Attorney PDF forms', icon: '📄', priority: 'high', link: '/templates/poa-adult-form' },
+      { type: 'document', title: 'POA Templates', description: 'Access all POA document templates', icon: '📝', priority: 'high', link: '/client-dashboard?tab=documents&section=templates' },
+      { type: 'task', title: 'Review POA Details', description: 'Verify all POA information is correct', icon: '✅', priority: 'medium', link: '/tasks/poa-review' }
+    ]
+  },
+  { 
+    key: "PART4_POA_EMAIL", 
+    label: "POA Email", 
+    part: 4, 
+    clientVisible: true, 
+    description: "Emailing the POAs to client",
+    actionItems: [
+      { type: 'email', title: 'Send POA Email', description: 'Email POA documents to client', icon: '📧', priority: 'high', link: '/templates/poa-email' },
+      { type: 'letter', title: 'POA Cover Letter', description: 'Generate POA instruction letter', icon: '✉️', priority: 'medium', link: '/templates/poa-instructions' }
+    ]
+  },
   { key: "PART4_POA_FEDEX", label: "POA FedEx Delivery", part: 4, clientVisible: true, description: "Client sends signed POAs by FedEx to Warsaw office" },
 
   // PART 5 - DATA & APPLICATION
@@ -483,6 +558,11 @@ export const StagePanel: React.FC<StagePanelProps> = ({ case: caseData }) => {
                     </span>
                     
                     {/* Indicators */}
+                    {stage.actionItems && stage.actionItems.length > 0 && (
+                      <span className="text-xs bg-blue-500 text-white rounded-full w-4 h-4 flex items-center justify-center font-bold" title={`${stage.actionItems.length} actions available`}>
+                        {stage.actionItems.length}
+                      </span>
+                    )}
                     {isMilestone && <span className="text-xs">🏆</span>}
                     {isClientVisible && <span className="text-xs">👁️</span>}
                   </div>
@@ -577,6 +657,43 @@ export const StagePanel: React.FC<StagePanelProps> = ({ case: caseData }) => {
                           <label className="text-xs font-medium text-gray-700 dark:text-gray-300 block mb-1">Full Description</label>
                           <p className="text-xs text-gray-600 dark:text-gray-400">{stage.description}</p>
                         </div>
+                        
+                        {/* Action Items Section */}
+                        {stage.actionItems && stage.actionItems.length > 0 && (
+                          <div>
+                            <label className="text-xs font-medium text-gray-700 dark:text-gray-300 block mb-2">Required Actions</label>
+                            <div className="space-y-2">
+                              {stage.actionItems.map((action, idx) => (
+                                <div key={idx} className="flex items-center justify-between p-2 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-600 rounded">
+                                  <div className="flex items-center gap-2 flex-1">
+                                    <span className="text-sm">{action.icon}</span>
+                                    <div className="flex-1 min-w-0">
+                                      <div className="text-xs font-medium text-gray-900 dark:text-gray-100 truncate">{action.title}</div>
+                                      <div className="text-xs text-gray-500 dark:text-gray-400 truncate">{action.description}</div>
+                                    </div>
+                                    <div className={cn(
+                                      "text-xs px-1.5 py-0.5 rounded-full font-medium",
+                                      action.priority === 'high' ? "bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-300" :
+                                      action.priority === 'medium' ? "bg-yellow-100 text-yellow-700 dark:bg-yellow-900/30 dark:text-yellow-300" :
+                                      "bg-gray-100 text-gray-700 dark:bg-gray-800 dark:text-gray-300"
+                                    )}>
+                                      {action.priority || 'medium'}
+                                    </div>
+                                  </div>
+                                  {action.link && (
+                                    <button
+                                      className="ml-2 text-xs px-2 py-1 bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors"
+                                      onClick={() => action.link && (window.location.href = action.link)}
+                                      data-testid={`button-action-${stage.key}-${idx}`}
+                                    >
+                                      Go
+                                    </button>
+                                  )}
+                                </div>
+                              ))}
+                            </div>
+                          </div>
+                        )}
                         
                         <div>
                           <label className="text-xs font-medium text-gray-700 dark:text-gray-300 block mb-1">Stage Notes</label>
@@ -790,6 +907,36 @@ export const StagePanel: React.FC<StagePanelProps> = ({ case: caseData }) => {
                           <label className="text-xs font-medium text-green-700 dark:text-green-300 block mb-1">Completion Summary</label>
                           <p className="text-xs text-green-600 dark:text-green-400">{stage.description}</p>
                         </div>
+                        
+                        {/* Action Items Reference Section for Completed Stages */}
+                        {stage.actionItems && stage.actionItems.length > 0 && (
+                          <div>
+                            <label className="text-xs font-medium text-green-700 dark:text-green-300 block mb-2">Actions That Were Completed</label>
+                            <div className="space-y-2">
+                              {stage.actionItems.map((action, idx) => (
+                                <div key={idx} className="flex items-center justify-between p-2 bg-green-100 dark:bg-green-900/20 border border-green-200 dark:border-green-700 rounded opacity-75">
+                                  <div className="flex items-center gap-2 flex-1">
+                                    <span className="text-sm">{action.icon}</span>
+                                    <div className="flex-1 min-w-0">
+                                      <div className="text-xs font-medium text-green-800 dark:text-green-200 truncate line-through">{action.title}</div>
+                                      <div className="text-xs text-green-600 dark:text-green-400 truncate">{action.description}</div>
+                                    </div>
+                                    <span className="text-xs text-green-600 dark:text-green-400">✓ Done</span>
+                                  </div>
+                                  {action.link && (
+                                    <button
+                                      className="ml-2 text-xs px-2 py-1 bg-green-500 text-white rounded hover:bg-green-600 transition-colors"
+                                      onClick={() => action.link && (window.location.href = action.link)}
+                                      data-testid={`button-completed-action-${stage.key}-${idx}`}
+                                    >
+                                      View
+                                    </button>
+                                  )}
+                                </div>
+                              ))}
+                            </div>
+                          </div>
+                        )}
                         
                         <div>
                           <label className="text-xs font-medium text-green-700 dark:text-green-300 block mb-1">Completion Notes & Outcomes</label>
