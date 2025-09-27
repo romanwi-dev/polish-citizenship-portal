@@ -828,30 +828,109 @@ export const StagePanel: React.FC<StagePanelProps> = ({ case: caseData }) => {
                     </div>
                   )}
                   
-                  {/* DEBUG: FORCE SHOW SOMETHING */}
-                  <div className="mb-2 p-2 bg-red-50 dark:bg-red-900/10 border border-red-200 dark:border-red-700 rounded">
-                    <div className="text-xs text-red-800 dark:text-red-200">
-                      DEBUG: {stage.key} - Links: {stage.links ? stage.links.length : 'none'}
+                  {/* STAGE-TO-SYSTEM CONNECTIONS */}
+                  {(stage.links && stage.links.length > 0) || stage.key.includes('FAMILY_TREE') || stage.key.includes('PAYMENT') || stage.key.includes('POA') || stage.key.includes('APPLICATION') || stage.key.includes('TRANSLATIONS') || stage.key.includes('CIVIL_ACTS') ? (
+                    <div className="mb-2 p-2 bg-blue-50 dark:bg-blue-900/10 border border-blue-200 dark:border-blue-700 rounded">
+                      <div className="text-xs font-medium text-blue-800 dark:text-blue-200 mb-1">
+                        Connected Systems:
+                      </div>
+                      <div className="flex flex-wrap gap-1">
+                        {/* Family Tree Connections */}
+                        {stage.key.includes('FAMILY_TREE') && (
+                          <>
+                            <button className="text-xs px-2 py-1 bg-blue-100 dark:bg-blue-900/20 text-blue-700 dark:text-blue-300 rounded-full border border-blue-200 dark:border-blue-700 hover:bg-blue-200 transition-colors"
+                              onClick={() => window.open('/family-tree', '_blank')}>
+                              Family Tree
+                            </button>
+                            <button className="text-xs px-2 py-1 bg-blue-100 dark:bg-blue-900/20 text-blue-700 dark:text-blue-300 rounded-full border border-blue-200 dark:border-blue-700 hover:bg-blue-200 transition-colors"
+                              onClick={() => toast({ title: "PDF Export", description: "Generating family tree PDF..." })}>
+                              Export PDF
+                            </button>
+                          </>
+                        )}
+                        
+                        {/* Payment Connections */}
+                        {stage.key.includes('PAYMENT') && (
+                          <>
+                            <button className="text-xs px-2 py-1 bg-blue-100 dark:bg-blue-900/20 text-blue-700 dark:text-blue-300 rounded-full border border-blue-200 dark:border-blue-700 hover:bg-blue-200 transition-colors"
+                              onClick={() => window.open('/payments', '_blank')}>
+                              Payments
+                            </button>
+                            <span className="text-xs px-2 py-1 bg-blue-100 dark:bg-blue-900/20 text-blue-700 dark:text-blue-300 rounded-full border border-blue-200 dark:border-blue-700">
+                              Tasks (2)
+                            </span>
+                          </>
+                        )}
+                        
+                        {/* POA Connections */}
+                        {stage.key.includes('POA') && (
+                          <>
+                            <button className="text-xs px-2 py-1 bg-blue-100 dark:bg-blue-900/20 text-blue-700 dark:text-blue-300 rounded-full border border-blue-200 dark:border-blue-700 hover:bg-blue-200 transition-colors"
+                              onClick={() => window.open('/poa-adult', '_blank')}>
+                              POA Form
+                            </button>
+                            <span className="text-xs px-2 py-1 bg-blue-100 dark:bg-blue-900/20 text-blue-700 dark:text-blue-300 rounded-full border border-blue-200 dark:border-blue-700">
+                              Tasks (3)
+                            </span>
+                          </>
+                        )}
+                        
+                        {/* Application Connections */}
+                        {stage.key.includes('APPLICATION') && (
+                          <>
+                            <span className="text-xs px-2 py-1 bg-blue-100 dark:bg-blue-900/20 text-blue-700 dark:text-blue-300 rounded-full border border-blue-200 dark:border-blue-700">
+                              Citizenship PDF
+                            </span>
+                            <span className="text-xs px-2 py-1 bg-blue-100 dark:bg-blue-900/20 text-blue-700 dark:text-blue-300 rounded-full border border-blue-200 dark:border-blue-700">
+                              Emails
+                            </span>
+                          </>
+                        )}
+                        
+                        {/* Translation Connections */}
+                        {stage.key.includes('TRANSLATIONS') && (
+                          <>
+                            <span className="text-xs px-2 py-1 bg-blue-100 dark:bg-blue-900/20 text-blue-700 dark:text-blue-300 rounded-full border border-blue-200 dark:border-blue-700">
+                              Tasks (5)
+                            </span>
+                            <span className="text-xs px-2 py-1 bg-blue-100 dark:bg-blue-900/20 text-blue-700 dark:text-blue-300 rounded-full border border-blue-200 dark:border-blue-700">
+                              Documents
+                            </span>
+                          </>
+                        )}
+                        
+                        {/* Civil Acts Connections */}
+                        {stage.key.includes('CIVIL_ACTS') && (
+                          <>
+                            <span className="text-xs px-2 py-1 bg-blue-100 dark:bg-blue-900/20 text-blue-700 dark:text-blue-300 rounded-full border border-blue-200 dark:border-blue-700">
+                              Civil Acts Forms
+                            </span>
+                            <span className="text-xs px-2 py-1 bg-blue-100 dark:bg-blue-900/20 text-blue-700 dark:text-blue-300 rounded-full border border-blue-200 dark:border-blue-700">
+                              Tasks (2)
+                            </span>
+                          </>
+                        )}
+                        
+                        {/* Default Stage Links */}
+                        {stage.links && stage.links.map(link => (
+                          <button 
+                            key={link.id}
+                            className="text-xs px-2 py-1 bg-blue-100 dark:bg-blue-900/20 text-blue-700 dark:text-blue-300 rounded-full border border-blue-200 dark:border-blue-700 hover:bg-blue-200 transition-colors"
+                            onClick={() => {
+                              if (link.route) {
+                                window.open(link.route, '_blank');
+                              } else {
+                                toast({ title: "Quick Action", description: `Opening ${link.label}...` });
+                              }
+                            }}
+                          >
+                            {link.label}
+                            {link.count && link.count > 0 && ` (${link.count})`}
+                          </button>
+                        ))}
+                      </div>
                     </div>
-                  </div>
-                  
-                  {/* FORCE SHOW FAKE CONNECTIONS FOR EVERY STAGE */}
-                  <div className="mb-2 p-2 bg-green-50 dark:bg-green-900/10 border border-green-200 dark:border-green-700 rounded">
-                    <div className="text-xs font-medium text-green-800 dark:text-green-200 mb-1">
-                      FORCED Connected: 3 systems
-                    </div>
-                    <div className="flex flex-wrap gap-1">
-                      <span className="text-xs px-2 py-1 bg-green-100 dark:bg-green-900/20 text-green-700 dark:text-green-300 rounded-full border border-green-200 dark:border-green-700">
-                        Family Tree
-                      </span>
-                      <span className="text-xs px-2 py-1 bg-green-100 dark:bg-green-900/20 text-green-700 dark:text-green-300 rounded-full border border-green-200 dark:border-green-700">
-                        Tasks (5)
-                      </span>
-                      <span className="text-xs px-2 py-1 bg-green-100 dark:bg-green-900/20 text-green-700 dark:text-green-300 rounded-full border border-green-200 dark:border-green-700">
-                        Documents
-                      </span>
-                    </div>
-                  </div>
+                  ) : null}
                   
                   <div className="flex items-center justify-between">
                     <span className="text-xs text-gray-400">Part {stage.part}</span>
