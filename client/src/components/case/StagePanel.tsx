@@ -807,6 +807,9 @@ export const StagePanel: React.FC<StagePanelProps> = ({ case: caseData }) => {
                   {/* CONNECTED SYSTEMS DISPLAY */}
                   {stage.links && stage.links.length > 0 && (
                     <div className="mb-2 p-2 bg-blue-50 dark:bg-blue-900/10 border border-blue-200 dark:border-blue-700 rounded">
+                      <div className="text-xs font-medium text-blue-800 dark:text-blue-200 mb-1">
+                        Connected: {stage.links.length} systems
+                      </div>
                       <div className="flex flex-wrap gap-1">
                         {stage.links.map(link => (
                           <span 
@@ -820,6 +823,13 @@ export const StagePanel: React.FC<StagePanelProps> = ({ case: caseData }) => {
                       </div>
                     </div>
                   )}
+                  
+                  {/* DEBUG: FORCE SHOW SOMETHING */}
+                  <div className="mb-2 p-2 bg-red-50 dark:bg-red-900/10 border border-red-200 dark:border-red-700 rounded">
+                    <div className="text-xs text-red-800 dark:text-red-200">
+                      DEBUG: {stage.key} - Links: {stage.links ? stage.links.length : 'none'}
+                    </div>
+                  </div>
                   
                   <div className="flex items-center justify-between">
                     <span className="text-xs text-gray-400">Part {stage.part}</span>
