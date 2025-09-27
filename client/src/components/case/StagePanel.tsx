@@ -136,67 +136,118 @@ export const StagePanel: React.FC<StagePanelProps> = ({ case: caseData }) => {
 
   return (
     <div className="stage-panel space-y-6">
-      {/* Client-Visible Stages */}
-      <div className="bg-white dark:bg-gray-900 border border-green-200 dark:border-green-700 rounded-lg shadow-lg dark:shadow-2xl p-6">
-        <h3 className="text-lg font-semibold text-green-800 dark:text-green-200 mb-6">
-          🔍 Client-Visible Progress
-        </h3>
-        <div className="stage-stepper">
-          {clientVisibleStages.map((s, i) => {
-            const globalIdx = COMPREHENSIVE_PIPELINE.findIndex(stage => stage.key === s.key);
-            return (
-              <div key={s.key} className={cn(
-                "step",
-                globalIdx <= activeIdx && "is-done",
-                globalIdx === activeIdx && "is-active"
-              )}>
-                <div className="step-dot" />
-                <div className="step-label">{s.label}</div>
-                {i < clientVisibleStages.length - 1 && <div className="step-rail" />}
-              </div>
-            );
-          })}
-        </div>
-        <div className="mt-4 text-xs text-green-700 dark:text-green-300">
-          These stages are visible to clients on their portal account
+      {/* Legend Banner */}
+      <div className="bg-gradient-to-r from-blue-50 to-green-50 dark:from-blue-900/20 dark:to-green-900/20 border border-blue-200 dark:border-blue-700 rounded-lg p-4">
+        <div className="flex items-center justify-between">
+          <h3 className="text-sm font-semibold text-gray-900 dark:text-white">Stage Visibility Legend</h3>
+          <div className="flex items-center gap-4 text-xs">
+            <div className="flex items-center gap-1">
+              <div className="w-3 h-3 bg-green-500 rounded-full"></div>
+              <span className="text-green-700 dark:text-green-300">👁️ Client Visible</span>
+            </div>
+            <div className="flex items-center gap-1">
+              <div className="w-3 h-3 bg-gray-400 rounded-full"></div>
+              <span className="text-gray-600 dark:text-gray-400">🔒 Admin Only</span>
+            </div>
+          </div>
         </div>
       </div>
 
-      {/* Full Process Overview */}
+      {/* All Stages Horizontal Scrollable Rail */}
+      <div className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-lg shadow-lg dark:shadow-2xl p-6">
+        <div className="flex items-center justify-between mb-4">
+          <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
+            Complete Stage Pipeline (15 Parts)
+          </h3>
+          <div className="text-sm text-gray-500 dark:text-gray-400">
+            Scroll horizontally to see all stages →
+          </div>
+        </div>
+        
+        <div className="relative">
+          <div className="flex overflow-x-auto gap-3 pb-4 stage-horizontal-rail">
+            {COMPREHENSIVE_PIPELINE.map((stage, i) => {
+              const isActive = i === activeIdx;
+              const isCompleted = i < activeIdx;
+              const isClientVisible = stage.clientVisible;
+              
+              return (
+                <div key={stage.key} className={cn(
+                  "flex-shrink-0 w-32 p-3 rounded-lg border-2 transition-all duration-200",
+                  isActive 
+                    ? (isClientVisible ? "border-green-500 bg-green-100 dark:bg-green-900/30" : "border-blue-500 bg-blue-100 dark:bg-blue-900/30")
+                    : isCompleted 
+                    ? (isClientVisible ? "border-green-300 bg-green-50 dark:bg-green-900/10" : "border-gray-300 bg-gray-50 dark:bg-gray-800") 
+                    : "border-gray-200 bg-white dark:bg-gray-900 dark:border-gray-600"
+                )}>
+                  <div className="flex items-center justify-between mb-2">
+                    <div className={cn(
+                      "w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold",
+                      isActive 
+                        ? (isClientVisible ? "bg-green-500 text-white" : "bg-blue-500 text-white")
+                        : isCompleted 
+                        ? (isClientVisible ? "bg-green-400 text-white" : "bg-gray-400 text-white") 
+                        : "bg-gray-200 text-gray-600"
+                    )}>
+                      {stage.part}
+                    </div>
+                    <div className="flex items-center gap-1">
+                      {isClientVisible ? (
+                        <span className="text-green-500" title="Client Visible">👁️</span>
+                      ) : (
+                        <span className="text-gray-400" title="Admin Only">🔒</span>
+                      )}
+                    </div>
+                  </div>
+                  <div className="text-xs font-medium text-gray-900 dark:text-white line-clamp-2 mb-1">
+                    {stage.label}
+                  </div>
+                  <div className="text-xs text-gray-500 dark:text-gray-400 line-clamp-1">
+                    {stage.description?.slice(0, 40)}...
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </div>
+
+      {/* Part Summary Overview */}
       <div className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-lg shadow-lg dark:shadow-2xl p-6">
         <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-6">
-          📋 Complete 15-Part Process Overview
+          📋 Parts Summary
         </h3>
-        <div className="space-y-4">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15].map(partNum => {
             const partStages = COMPREHENSIVE_PIPELINE.filter(s => s.part === partNum);
             const hasActiveStage = partStages.some(s => COMPREHENSIVE_PIPELINE.findIndex(stage => stage.key === s.key) === activeIdx);
             const isCompleted = partStages.every(s => COMPREHENSIVE_PIPELINE.findIndex(stage => stage.key === s.key) < activeIdx);
+            const hasClientStages = partStages.some(s => s.clientVisible);
             
             return (
               <div key={partNum} className={cn(
-                "p-3 rounded-lg border",
+                "p-3 rounded-lg border text-center",
                 hasActiveStage ? "border-blue-500 bg-blue-50 dark:bg-blue-900/20" : 
                 isCompleted ? "border-green-500 bg-green-50 dark:bg-green-900/20" : 
                 "border-gray-200 bg-gray-50 dark:bg-gray-800"
               )}>
-                <div className="flex items-center justify-between mb-2">
-                  <h4 className="font-semibold text-sm">
-                    PART {partNum} - {partStages[0]?.description?.split(' - ')[0] || `Stage ${partNum}`}
-                  </h4>
-                  <div className="flex items-center gap-2">
-                    {partStages.some(s => s.clientVisible) && (
-                      <span className="text-xs px-2 py-1 bg-green-100 text-green-800 rounded-full">CLIENT</span>
-                    )}
-                    <span className={cn(
-                      "w-3 h-3 rounded-full",
-                      hasActiveStage ? "bg-blue-500" : 
-                      isCompleted ? "bg-green-500" : "bg-gray-300"
-                    )} />
+                <div className="flex items-center justify-center gap-2 mb-2">
+                  <div className={cn(
+                    "w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold",
+                    hasActiveStage ? "bg-blue-500 text-white" : 
+                    isCompleted ? "bg-green-500 text-white" : "bg-gray-300 text-gray-600"
+                  )}>
+                    {partNum}
                   </div>
+                  {hasClientStages && (
+                    <span className="text-green-500" title="Contains client-visible stages">👁️</span>
+                  )}
                 </div>
-                <div className="text-xs text-gray-600 dark:text-gray-400">
-                  {partStages.map(s => s.label).join(" → ")}
+                <div className="text-xs font-medium text-gray-900 dark:text-white mb-1">
+                  PART {partNum}
+                </div>
+                <div className="text-xs text-gray-500 dark:text-gray-400">
+                  {partStages.length} stage{partStages.length > 1 ? 's' : ''}
                 </div>
               </div>
             );
@@ -204,17 +255,32 @@ export const StagePanel: React.FC<StagePanelProps> = ({ case: caseData }) => {
         </div>
       </div>
 
-      {/* Current status summary */}
+      {/* Enhanced Current Status */}
       <div className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-lg shadow-lg dark:shadow-2xl p-6">
         <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">Current Status</h3>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           <div>
-            <div className="text-sm text-gray-500 dark:text-gray-400">Current Stage</div>
-            <div className="text-lg font-medium text-gray-900 dark:text-white">
+            <div className="text-sm text-gray-500 dark:text-gray-400 mb-1">Current Stage</div>
+            <div className="text-lg font-medium text-gray-900 dark:text-white mb-2">
               {COMPREHENSIVE_PIPELINE[activeIdx]?.label || "Not Set"}
             </div>
-            <div className="text-xs text-gray-500 dark:text-gray-400 mt-1">
-              Part {COMPREHENSIVE_PIPELINE[activeIdx]?.part} • {COMPREHENSIVE_PIPELINE[activeIdx]?.clientVisible ? "Client Visible" : "Internal"}
+            <div className="flex items-center gap-2">
+              <span className="text-xs text-gray-500 dark:text-gray-400">
+                Part {COMPREHENSIVE_PIPELINE[activeIdx]?.part}
+              </span>
+              <div className="flex items-center gap-1">
+                {COMPREHENSIVE_PIPELINE[activeIdx]?.clientVisible ? (
+                  <div className="flex items-center gap-1 px-2 py-1 bg-green-100 dark:bg-green-900/30 rounded-full">
+                    <span className="text-green-500">👁️</span>
+                    <span className="text-xs font-medium text-green-700 dark:text-green-300">Client Visible</span>
+                  </div>
+                ) : (
+                  <div className="flex items-center gap-1 px-2 py-1 bg-gray-100 dark:bg-gray-800 rounded-full">
+                    <span className="text-gray-400">🔒</span>
+                    <span className="text-xs font-medium text-gray-600 dark:text-gray-400">Admin Only</span>
+                  </div>
+                )}
+              </div>
             </div>
           </div>
           <div>
