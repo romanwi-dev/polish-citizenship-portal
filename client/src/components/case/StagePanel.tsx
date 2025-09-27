@@ -818,7 +818,7 @@ export const StagePanel: React.FC<StagePanelProps> = ({ case: caseData }) => {
                         {stage.links.map(link => (
                           <span 
                             key={link.id} 
-                            className="inline-flex h-6 w-full items-center justify-center rounded-full border border-blue-400 bg-blue-50 dark:bg-blue-900/20 px-2 text-xs font-medium text-blue-700 dark:text-blue-300 truncate"
+                            className="inline-flex h-4 w-full items-center justify-center rounded border border-blue-400 bg-blue-50 dark:bg-blue-900/20 px-1 text-xs font-medium text-blue-700 dark:text-blue-300 truncate"
                           >
                             {link.label}
                             {link.count && link.count > 0 && ` (${link.count})`}
@@ -834,15 +834,15 @@ export const StagePanel: React.FC<StagePanelProps> = ({ case: caseData }) => {
                       <div className="text-xs font-medium text-blue-800 dark:text-blue-200 mb-1">
                         Connected Systems:
                       </div>
-                      <div className="flex flex-wrap gap-1">
+                      <div className="grid grid-cols-3 sm:grid-cols-4 gap-1 w-full">
                         {/* Family Tree Connections */}
                         {stage.key.includes('FAMILY_TREE') && (
                           <>
-                            <button className="text-xs px-2 py-1 bg-blue-100 dark:bg-blue-900/20 text-blue-700 dark:text-blue-300 rounded-full border border-blue-200 dark:border-blue-700 hover:bg-blue-200 transition-colors"
+                            <button className="inline-flex h-4 items-center justify-center rounded border border-blue-400 bg-blue-50 dark:bg-blue-900/20 px-1 text-xs font-medium text-blue-700 dark:text-blue-300 hover:bg-blue-200 transition-colors"
                               onClick={() => window.open('/family-tree', '_blank')}>
                               Family Tree
                             </button>
-                            <button className="text-xs px-2 py-1 bg-blue-100 dark:bg-blue-900/20 text-blue-700 dark:text-blue-300 rounded-full border border-blue-200 dark:border-blue-700 hover:bg-blue-200 transition-colors"
+                            <button className="inline-flex h-4 items-center justify-center rounded border border-blue-400 bg-blue-50 dark:bg-blue-900/20 px-1 text-xs font-medium text-blue-700 dark:text-blue-300 hover:bg-blue-200 transition-colors"
                               onClick={() => toast({ title: "PDF Export", description: "Generating family tree PDF..." })}>
                               Export PDF
                             </button>
@@ -852,11 +852,11 @@ export const StagePanel: React.FC<StagePanelProps> = ({ case: caseData }) => {
                         {/* Payment Connections */}
                         {stage.key.includes('PAYMENT') && (
                           <>
-                            <button className="text-xs px-2 py-1 bg-blue-100 dark:bg-blue-900/20 text-blue-700 dark:text-blue-300 rounded-full border border-blue-200 dark:border-blue-700 hover:bg-blue-200 transition-colors"
+                            <button className="inline-flex h-4 items-center justify-center rounded border border-blue-400 bg-blue-50 dark:bg-blue-900/20 px-1 text-xs font-medium text-blue-700 dark:text-blue-300 hover:bg-blue-200 transition-colors"
                               onClick={() => window.open('/payments', '_blank')}>
                               Payments
                             </button>
-                            <span className="text-xs px-2 py-1 bg-blue-100 dark:bg-blue-900/20 text-blue-700 dark:text-blue-300 rounded-full border border-blue-200 dark:border-blue-700">
+                            <span className="inline-flex h-4 items-center justify-center rounded border border-blue-400 bg-blue-50 dark:bg-blue-900/20 px-1 text-xs font-medium text-blue-700 dark:text-blue-300">
                               Tasks (2)
                             </span>
                           </>
@@ -865,11 +865,11 @@ export const StagePanel: React.FC<StagePanelProps> = ({ case: caseData }) => {
                         {/* POA Connections */}
                         {stage.key.includes('POA') && (
                           <>
-                            <button className="text-xs px-2 py-1 bg-blue-100 dark:bg-blue-900/20 text-blue-700 dark:text-blue-300 rounded-full border border-blue-200 dark:border-blue-700 hover:bg-blue-200 transition-colors"
+                            <button className="inline-flex h-4 items-center justify-center rounded border border-blue-400 bg-blue-50 dark:bg-blue-900/20 px-1 text-xs font-medium text-blue-700 dark:text-blue-300 hover:bg-blue-200 transition-colors"
                               onClick={() => window.open('/poa-adult', '_blank')}>
                               POA Form
                             </button>
-                            <span className="text-xs px-2 py-1 bg-blue-100 dark:bg-blue-900/20 text-blue-700 dark:text-blue-300 rounded-full border border-blue-200 dark:border-blue-700">
+                            <span className="inline-flex h-4 items-center justify-center rounded border border-blue-400 bg-blue-50 dark:bg-blue-900/20 px-1 text-xs font-medium text-blue-700 dark:text-blue-300">
                               Tasks (3)
                             </span>
                           </>
@@ -878,10 +878,10 @@ export const StagePanel: React.FC<StagePanelProps> = ({ case: caseData }) => {
                         {/* Application Connections */}
                         {stage.key.includes('APPLICATION') && (
                           <>
-                            <span className="text-xs px-2 py-1 bg-blue-100 dark:bg-blue-900/20 text-blue-700 dark:text-blue-300 rounded-full border border-blue-200 dark:border-blue-700">
+                            <span className="inline-flex h-4 items-center justify-center rounded border border-blue-400 bg-blue-50 dark:bg-blue-900/20 px-1 text-xs font-medium text-blue-700 dark:text-blue-300">
                               Citizenship PDF
                             </span>
-                            <span className="text-xs px-2 py-1 bg-blue-100 dark:bg-blue-900/20 text-blue-700 dark:text-blue-300 rounded-full border border-blue-200 dark:border-blue-700">
+                            <span className="inline-flex h-4 items-center justify-center rounded border border-blue-400 bg-blue-50 dark:bg-blue-900/20 px-1 text-xs font-medium text-blue-700 dark:text-blue-300">
                               Emails
                             </span>
                           </>
@@ -890,10 +890,10 @@ export const StagePanel: React.FC<StagePanelProps> = ({ case: caseData }) => {
                         {/* Translation Connections */}
                         {stage.key.includes('TRANSLATIONS') && (
                           <>
-                            <span className="text-xs px-2 py-1 bg-blue-100 dark:bg-blue-900/20 text-blue-700 dark:text-blue-300 rounded-full border border-blue-200 dark:border-blue-700">
+                            <span className="inline-flex h-4 items-center justify-center rounded border border-blue-400 bg-blue-50 dark:bg-blue-900/20 px-1 text-xs font-medium text-blue-700 dark:text-blue-300">
                               Tasks (5)
                             </span>
-                            <span className="text-xs px-2 py-1 bg-blue-100 dark:bg-blue-900/20 text-blue-700 dark:text-blue-300 rounded-full border border-blue-200 dark:border-blue-700">
+                            <span className="inline-flex h-4 items-center justify-center rounded border border-blue-400 bg-blue-50 dark:bg-blue-900/20 px-1 text-xs font-medium text-blue-700 dark:text-blue-300">
                               Documents
                             </span>
                           </>
@@ -902,10 +902,10 @@ export const StagePanel: React.FC<StagePanelProps> = ({ case: caseData }) => {
                         {/* Civil Acts Connections */}
                         {stage.key.includes('CIVIL_ACTS') && (
                           <>
-                            <span className="text-xs px-2 py-1 bg-blue-100 dark:bg-blue-900/20 text-blue-700 dark:text-blue-300 rounded-full border border-blue-200 dark:border-blue-700">
+                            <span className="inline-flex h-4 items-center justify-center rounded border border-blue-400 bg-blue-50 dark:bg-blue-900/20 px-1 text-xs font-medium text-blue-700 dark:text-blue-300">
                               Civil Acts Forms
                             </span>
-                            <span className="text-xs px-2 py-1 bg-blue-100 dark:bg-blue-900/20 text-blue-700 dark:text-blue-300 rounded-full border border-blue-200 dark:border-blue-700">
+                            <span className="inline-flex h-4 items-center justify-center rounded border border-blue-400 bg-blue-50 dark:bg-blue-900/20 px-1 text-xs font-medium text-blue-700 dark:text-blue-300">
                               Tasks (2)
                             </span>
                           </>
@@ -916,7 +916,7 @@ export const StagePanel: React.FC<StagePanelProps> = ({ case: caseData }) => {
                           {stage.links && stage.links.map(link => (
                             <button 
                               key={link.id}
-                              className="inline-flex h-6 w-full items-center justify-center rounded-full border border-blue-400 bg-blue-50 dark:bg-blue-900/20 px-2 text-xs font-medium text-blue-700 dark:text-blue-300 hover:bg-blue-200 dark:hover:bg-blue-900/30 transition-colors truncate"
+                              className="inline-flex h-4 w-full items-center justify-center rounded border border-blue-400 bg-blue-50 dark:bg-blue-900/20 px-1 text-xs font-medium text-blue-700 dark:text-blue-300 hover:bg-blue-200 dark:hover:bg-blue-900/30 transition-colors truncate"
                               onClick={() => {
                                 if (link.route) {
                                   window.open(link.route, '_blank');
