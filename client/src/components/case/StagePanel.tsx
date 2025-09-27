@@ -835,6 +835,24 @@ export const StagePanel: React.FC<StagePanelProps> = ({ case: caseData }) => {
                     </div>
                   </div>
                   
+                  {/* FORCE SHOW FAKE CONNECTIONS FOR EVERY STAGE */}
+                  <div className="mb-2 p-2 bg-green-50 dark:bg-green-900/10 border border-green-200 dark:border-green-700 rounded">
+                    <div className="text-xs font-medium text-green-800 dark:text-green-200 mb-1">
+                      FORCED Connected: 3 systems
+                    </div>
+                    <div className="flex flex-wrap gap-1">
+                      <span className="text-xs px-2 py-1 bg-green-100 dark:bg-green-900/20 text-green-700 dark:text-green-300 rounded-full border border-green-200 dark:border-green-700">
+                        Family Tree
+                      </span>
+                      <span className="text-xs px-2 py-1 bg-green-100 dark:bg-green-900/20 text-green-700 dark:text-green-300 rounded-full border border-green-200 dark:border-green-700">
+                        Tasks (5)
+                      </span>
+                      <span className="text-xs px-2 py-1 bg-green-100 dark:bg-green-900/20 text-green-700 dark:text-green-300 rounded-full border border-green-200 dark:border-green-700">
+                        Documents
+                      </span>
+                    </div>
+                  </div>
+                  
                   <div className="flex items-center justify-between">
                     <span className="text-xs text-gray-400">Part {stage.part}</span>
                     <div className="flex gap-1">
