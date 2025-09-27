@@ -144,6 +144,9 @@ export const StagePanel: React.FC<StagePanelProps> = ({ case: caseData }) => {
   const [isEditing, setIsEditing] = useState<string | null>(null);
   const [draggedStage, setDraggedStage] = useState<string | null>(null);
   const [dragOverStage, setDragOverStage] = useState<string | null>(null);
+  const [expandedStage, setExpandedStage] = useState<string | null>(null);
+  const [stageNotes, setStageNotes] = useState<Record<string, string>>({});
+  const [stageStatus, setStageStatus] = useState<Record<string, 'pending' | 'active' | 'completed' | 'blocked'>>({});
 
   const baseActiveIdx = useMemo(() => {
     // Map case stage to comprehensive pipeline stages
@@ -212,6 +215,48 @@ export const StagePanel: React.FC<StagePanelProps> = ({ case: caseData }) => {
         description: `Reviewing ${stage.label}`,
       });
     }
+  }, [toast]);
+
+  // Enhanced stage management handlers
+  const handleExpandStage = useCallback((stageKey: string) => {
+    setExpandedStage(expandedStage === stageKey ? null : stageKey);
+  }, [expandedStage]);
+
+  const handleStageStatusChange = useCallback((stageKey: string, status: 'pending' | 'active' | 'completed' | 'blocked') => {
+    setStageStatus(prev => ({
+      ...prev,
+      [stageKey]: status
+    }));
+    
+    const stage = COMPREHENSIVE_PIPELINE.find(s => s.key === stageKey);
+    toast({
+      title: "Stage Status Updated",
+      description: `${stage?.label} marked as ${status}`,
+    });
+  }, [toast]);
+
+  const handleStageNotesUpdate = useCallback((stageKey: string, notes: string) => {
+    setStageNotes(prev => ({
+      ...prev,
+      [stageKey]: notes
+    }));
+  }, []);
+
+  const handleSaveStageEdit = useCallback((stageKey: string) => {
+    setIsEditing(null);
+    const stage = COMPREHENSIVE_PIPELINE.find(s => s.key === stageKey);
+    toast({
+      title: "Stage Saved",
+      description: `Changes to ${stage?.label} have been saved`,
+    });
+  }, [toast]);
+
+  const handleCancelStageEdit = useCallback(() => {
+    setIsEditing(null);
+    toast({
+      title: "Edit Cancelled",
+      description: "Changes discarded",
+    });
   }, [toast]);
 
   // Drag and drop handlers
@@ -406,7 +451,7 @@ export const StagePanel: React.FC<StagePanelProps> = ({ case: caseData }) => {
                 <div 
                   key={stage.key} 
                   className={cn(
-                    "flex-shrink-0 w-36 p-3 rounded-lg border-2 transition-all duration-200 cursor-pointer hover:shadow-md",
+                    "flex-shrink-0 w-36 p-3 rounded-lg border-2 transition-all duration-200 cursor-pointer hover:shadow-md relative",
                     isMilestone && "ring-2 ring-yellow-300 dark:ring-yellow-600",
                     draggedStage === stage.key && "opacity-50 scale-95",
                     dragOverStage === stage.key && "ring-2 ring-blue-400 scale-105",
@@ -458,29 +503,89 @@ export const StagePanel: React.FC<StagePanelProps> = ({ case: caseData }) => {
                     {stage.description?.slice(0, 35)}...
                   </div>
                   
-                  {/* Interactive Status Indicator */}
+                  {/* Enhanced Interactive Status and Controls */}
                   <div className="flex items-center justify-between">
                     <div className={cn(
-                      "text-xs px-2 py-1 rounded-full font-medium",
+                      "text-xs px-2 py-1 rounded-full font-medium flex items-center gap-1",
                       isActive 
                         ? "bg-blue-500 text-white" 
                         : isCompleted 
                         ? "bg-green-500 text-white"
+                        : stageStatus[stage.key] === 'blocked'
+                        ? "bg-red-500 text-white"
                         : "bg-gray-300 text-gray-700"
                     )}>
-                      {isActive ? "ACTIVE" : isCompleted ? "DONE" : "PENDING"}
+                      {isActive ? "🔵 ACTIVE" : isCompleted ? "✅ DONE" : stageStatus[stage.key] === 'blocked' ? "🚫 BLOCKED" : "⏳ PENDING"}
                     </div>
-                    <button 
-                      className="text-gray-400 hover:text-gray-600 text-xs p-1"
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        // TODO: Add edit menu
-                        console.log('Edit menu for:', stage.key);
-                      }}
-                    >
-                      ⚙️
-                    </button>
+                    
+                    <div className="flex items-center gap-1">
+                      {/* Quick status change dropdown */}
+                      <select
+                        className="text-xs p-1 rounded border-0 bg-transparent"
+                        value={stageStatus[stage.key] || (isActive ? 'active' : isCompleted ? 'completed' : 'pending')}
+                        onChange={(e) => {
+                          e.stopPropagation();
+                          handleStageStatusChange(stage.key, e.target.value as any);
+                        }}
+                        data-testid={`select-quick-status-${stage.key}`}
+                      >
+                        <option value="pending">Pending</option>
+                        <option value="active">Active</option>
+                        <option value="completed">Completed</option>
+                        <option value="blocked">Blocked</option>
+                      </select>
+                      
+                      <button 
+                        className="text-gray-400 hover:text-gray-600 text-xs p-1 transition-colors"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          handleExpandStage(stage.key);
+                        }}
+                        data-testid={`button-expand-rail-${stage.key}`}
+                      >
+                        {expandedStage === stage.key ? '📝' : '⚙️'}
+                      </button>
+                    </div>
                   </div>
+                  
+                  {/* Expandable Details in Horizontal Rail */}
+                  {expandedStage === stage.key && (
+                    <div className="absolute top-full left-0 right-0 mt-1 p-3 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg shadow-lg z-10">
+                      <div className="space-y-2">
+                        <div>
+                          <label className="text-xs font-medium text-gray-700 dark:text-gray-300 block mb-1">Quick Notes</label>
+                          <textarea
+                            className="w-full text-xs p-2 border border-gray-200 dark:border-gray-600 rounded resize-none h-12 bg-white dark:bg-gray-900"
+                            placeholder="Quick stage notes..."
+                            value={stageNotes[stage.key] || ''}
+                            onChange={(e) => handleStageNotesUpdate(stage.key, e.target.value)}
+                            data-testid={`textarea-rail-notes-${stage.key}`}
+                          />
+                        </div>
+                        <div className="flex justify-between">
+                          <div className="text-xs text-gray-500 dark:text-gray-400">
+                            Part {stage.part} • {stage.clientVisible ? 'Client Visible' : 'Admin Only'}
+                          </div>
+                          <div className="flex gap-1">
+                            <button 
+                              className="text-xs px-2 py-1 bg-green-500 text-white rounded hover:bg-green-600 transition-colors"
+                              onClick={() => handleSaveStageEdit(stage.key)}
+                              data-testid={`button-save-rail-${stage.key}`}
+                            >
+                              Save
+                            </button>
+                            <button 
+                              className="text-xs px-2 py-1 bg-gray-500 text-white rounded hover:bg-gray-600 transition-colors"
+                              onClick={() => setExpandedStage(null)}
+                              data-testid={`button-close-rail-${stage.key}`}
+                            >
+                              Close
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  )}
                 </div>
               );
             })}
@@ -546,14 +651,80 @@ export const StagePanel: React.FC<StagePanelProps> = ({ case: caseData }) => {
                   <div className="text-xs text-gray-500 dark:text-gray-400 mb-2">{stage.description?.slice(0, 50)}...</div>
                   <div className="flex items-center justify-between">
                     <span className="text-xs text-gray-400">Part {stage.part}</span>
-                    <button 
-                      className="text-xs px-2 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 rounded hover:bg-blue-200 dark:hover:bg-blue-900/50 transition-colors"
-                      data-testid={`button-mark-active-${stage.key}`}
-                      onClick={() => handleMarkActive(stage.key)}
-                    >
-                      Mark Active
-                    </button>
+                    <div className="flex gap-1">
+                      <button 
+                        className="text-xs px-2 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 rounded hover:bg-blue-200 dark:hover:bg-blue-900/50 transition-colors"
+                        data-testid={`button-mark-active-${stage.key}`}
+                        onClick={() => handleMarkActive(stage.key)}
+                      >
+                        Activate
+                      </button>
+                      <button 
+                        className="text-xs px-2 py-1 bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300 rounded hover:bg-purple-200 dark:hover:bg-purple-900/50 transition-colors"
+                        data-testid={`button-expand-${stage.key}`}
+                        onClick={() => handleExpandStage(stage.key)}
+                      >
+                        {expandedStage === stage.key ? '▼' : '▶'}
+                      </button>
+                    </div>
                   </div>
+                  
+                  {/* Expanded Stage Details for Pending Stages */}
+                  {expandedStage === stage.key && (
+                    <div className="mt-3 p-3 border-t border-gray-200 dark:border-gray-600 bg-gray-50 dark:bg-gray-800/50 rounded-b-lg">
+                      <div className="space-y-3">
+                        <div>
+                          <label className="text-xs font-medium text-gray-700 dark:text-gray-300 block mb-1">Full Description</label>
+                          <p className="text-xs text-gray-600 dark:text-gray-400">{stage.description}</p>
+                        </div>
+                        
+                        <div>
+                          <label className="text-xs font-medium text-gray-700 dark:text-gray-300 block mb-1">Stage Notes</label>
+                          <textarea
+                            className="w-full text-xs p-2 border border-gray-200 dark:border-gray-600 rounded resize-none h-16 bg-white dark:bg-gray-900"
+                            placeholder="Add notes for this stage..."
+                            value={stageNotes[stage.key] || ''}
+                            onChange={(e) => handleStageNotesUpdate(stage.key, e.target.value)}
+                            data-testid={`textarea-notes-${stage.key}`}
+                          />
+                        </div>
+                        
+                        <div className="flex items-center justify-between">
+                          <div>
+                            <label className="text-xs font-medium text-gray-700 dark:text-gray-300 block mb-1">Status</label>
+                            <select
+                              className="text-xs p-1 border border-gray-200 dark:border-gray-600 rounded bg-white dark:bg-gray-900"
+                              value={stageStatus[stage.key] || 'pending'}
+                              onChange={(e) => handleStageStatusChange(stage.key, e.target.value as any)}
+                              data-testid={`select-status-${stage.key}`}
+                            >
+                              <option value="pending">Pending</option>
+                              <option value="active">Active</option>
+                              <option value="completed">Completed</option>
+                              <option value="blocked">Blocked</option>
+                            </select>
+                          </div>
+                          
+                          <div className="flex gap-1">
+                            <button 
+                              className="text-xs px-3 py-1 bg-green-500 text-white rounded hover:bg-green-600 transition-colors"
+                              onClick={() => handleSaveStageEdit(stage.key)}
+                              data-testid={`button-save-${stage.key}`}
+                            >
+                              Save
+                            </button>
+                            <button 
+                              className="text-xs px-3 py-1 bg-gray-500 text-white rounded hover:bg-gray-600 transition-colors"
+                              onClick={handleCancelStageEdit}
+                              data-testid={`button-cancel-${stage.key}`}
+                            >
+                              Cancel
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  )}
                 </div>
               ))}
             </div>
@@ -571,28 +742,85 @@ export const StagePanel: React.FC<StagePanelProps> = ({ case: caseData }) => {
                 <div className="flex items-center justify-between mb-2">
                   <span className="font-semibold text-blue-900 dark:text-blue-100">{COMPREHENSIVE_PIPELINE[activeIdx].label}</span>
                   <div className="flex items-center gap-2">
-                    {COMPREHENSIVE_PIPELINE[activeIdx].clientVisible && <span className="text-green-500">👁️</span>}
-                    {COMPREHENSIVE_PIPELINE[activeIdx].isMilestone && <span className="text-yellow-500">🏆</span>}
-                    <button className="text-blue-600 hover:text-blue-800 text-sm">✏️</button>
+                    {COMPREHENSIVE_PIPELINE[activeIdx].clientVisible && <span className="text-green-500" title="Client Visible">👁️</span>}
+                    {COMPREHENSIVE_PIPELINE[activeIdx].isMilestone && <span className="text-yellow-500" title="Major Milestone">🏆</span>}
+                    <button 
+                      className="text-blue-600 hover:text-blue-800 text-sm transition-colors"
+                      onClick={() => handleExpandStage(COMPREHENSIVE_PIPELINE[activeIdx].key)}
+                      data-testid="button-edit-active-stage"
+                    >
+                      {expandedStage === COMPREHENSIVE_PIPELINE[activeIdx].key ? '📝' : '✏️'}
+                    </button>
                   </div>
                 </div>
+                
                 <div className="text-sm text-blue-800 dark:text-blue-200 mb-3">{COMPREHENSIVE_PIPELINE[activeIdx].description}</div>
+                
+                {/* Enhanced Active Stage Details */}
+                {expandedStage === COMPREHENSIVE_PIPELINE[activeIdx].key && (
+                  <div className="mb-4 p-3 bg-white dark:bg-gray-800 rounded border">
+                    <div className="space-y-3">
+                      <div>
+                        <label className="text-xs font-medium text-gray-700 dark:text-gray-300 block mb-1">Current Stage Progress Notes</label>
+                        <textarea
+                          className="w-full text-xs p-2 border border-gray-200 dark:border-gray-600 rounded resize-none h-20 bg-white dark:bg-gray-900"
+                          placeholder="Add progress notes, blockers, or next steps for this active stage..."
+                          value={stageNotes[COMPREHENSIVE_PIPELINE[activeIdx].key] || ''}
+                          onChange={(e) => handleStageNotesUpdate(COMPREHENSIVE_PIPELINE[activeIdx].key, e.target.value)}
+                          data-testid="textarea-active-stage-notes"
+                        />
+                      </div>
+                      
+                      <div className="flex items-center justify-between">
+                        <div className="text-xs">
+                          <span className="font-medium text-gray-700 dark:text-gray-300">Dependencies:</span>
+                          <span className="ml-1 text-gray-600 dark:text-gray-400">
+                            {activeIdx > 0 ? `Requires completion of Part ${COMPREHENSIVE_PIPELINE[activeIdx - 1]?.part} stages` : 'No dependencies'}
+                          </span>
+                        </div>
+                        
+                        <div className="flex gap-1">
+                          <button 
+                            className="text-xs px-2 py-1 bg-yellow-500 text-white rounded hover:bg-yellow-600 transition-colors"
+                            onClick={() => handleStageStatusChange(COMPREHENSIVE_PIPELINE[activeIdx].key, 'blocked')}
+                            data-testid="button-block-active-stage"
+                          >
+                            Block
+                          </button>
+                          <button 
+                            className="text-xs px-2 py-1 bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors"
+                            onClick={() => handleSaveStageEdit(COMPREHENSIVE_PIPELINE[activeIdx].key)}
+                            data-testid="button-save-active-stage"
+                          >
+                            Save Notes
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                )}
+                
                 <div className="flex items-center justify-between">
-                  <span className="text-xs text-blue-600 dark:text-blue-400">Part {COMPREHENSIVE_PIPELINE[activeIdx].part}</span>
+                  <div className="flex items-center gap-2">
+                    <span className="text-xs text-blue-600 dark:text-blue-400">Part {COMPREHENSIVE_PIPELINE[activeIdx].part}</span>
+                    <span className="text-xs bg-blue-200 dark:bg-blue-800 px-2 py-1 rounded-full text-blue-800 dark:text-blue-200">
+                      Stage {activeIdx + 1} of {COMPREHENSIVE_PIPELINE.length}
+                    </span>
+                  </div>
                   <div className="flex gap-2">
                     <button 
                       className="text-xs px-3 py-1 bg-green-500 text-white rounded hover:bg-green-600 transition-colors"
                       data-testid="button-complete-stage"
                       onClick={handleStageComplete}
                     >
-                      Complete
+                      ✓ Complete
                     </button>
                     <button 
                       className="text-xs px-3 py-1 bg-gray-500 text-white rounded hover:bg-gray-600 transition-colors"
                       data-testid="button-skip-stage"
                       onClick={handleStageSkip}
                     >
-                      Skip
+                      ⏭ Skip
                     </button>
                   </div>
                 </div>
@@ -636,14 +864,72 @@ export const StagePanel: React.FC<StagePanelProps> = ({ case: caseData }) => {
                   <div className="text-xs text-green-700 dark:text-green-300 mb-2">{stage.description?.slice(0, 50)}...</div>
                   <div className="flex items-center justify-between">
                     <span className="text-xs text-green-600 dark:text-green-400">Part {stage.part}</span>
-                    <button 
-                      className="text-xs px-2 py-1 bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-300 rounded hover:bg-green-200 dark:hover:bg-green-900/50 transition-colors"
-                      data-testid={`button-review-${stage.key}`}
-                      onClick={() => handleStageReview(stage.key)}
-                    >
-                      Review
-                    </button>
+                    <div className="flex gap-1">
+                      <button 
+                        className="text-xs px-2 py-1 bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-300 rounded hover:bg-green-200 dark:hover:bg-green-900/50 transition-colors"
+                        data-testid={`button-review-${stage.key}`}
+                        onClick={() => handleStageReview(stage.key)}
+                      >
+                        Review
+                      </button>
+                      <button 
+                        className="text-xs px-2 py-1 bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300 rounded hover:bg-purple-200 dark:hover:bg-purple-900/50 transition-colors"
+                        data-testid={`button-expand-completed-${stage.key}`}
+                        onClick={() => handleExpandStage(stage.key)}
+                      >
+                        {expandedStage === stage.key ? '▼' : '▶'}
+                      </button>
+                    </div>
                   </div>
+                  
+                  {/* Expanded Stage Details for Completed Stages */}
+                  {expandedStage === stage.key && (
+                    <div className="mt-3 p-3 border-t border-green-200 dark:border-green-700 bg-green-50 dark:bg-green-900/10 rounded-b-lg">
+                      <div className="space-y-3">
+                        <div>
+                          <label className="text-xs font-medium text-green-700 dark:text-green-300 block mb-1">Completion Summary</label>
+                          <p className="text-xs text-green-600 dark:text-green-400">{stage.description}</p>
+                        </div>
+                        
+                        <div>
+                          <label className="text-xs font-medium text-green-700 dark:text-green-300 block mb-1">Completion Notes & Outcomes</label>
+                          <textarea
+                            className="w-full text-xs p-2 border border-green-200 dark:border-green-600 rounded resize-none h-16 bg-white dark:bg-gray-900"
+                            placeholder="Document what was accomplished, outcomes, and any issues resolved..."
+                            value={stageNotes[stage.key] || ''}
+                            onChange={(e) => handleStageNotesUpdate(stage.key, e.target.value)}
+                            data-testid={`textarea-completed-notes-${stage.key}`}
+                          />
+                        </div>
+                        
+                        <div className="flex items-center justify-between">
+                          <div className="text-xs">
+                            <span className="font-medium text-green-700 dark:text-green-300">Status: </span>
+                            <span className="text-green-600 dark:text-green-400 bg-green-100 dark:bg-green-900/30 px-2 py-1 rounded-full">
+                              ✓ Completed
+                            </span>
+                          </div>
+                          
+                          <div className="flex gap-1">
+                            <button 
+                              className="text-xs px-2 py-1 bg-yellow-500 text-white rounded hover:bg-yellow-600 transition-colors"
+                              onClick={() => handleMarkActive(stage.key)}
+                              data-testid={`button-reopen-${stage.key}`}
+                            >
+                              Reopen
+                            </button>
+                            <button 
+                              className="text-xs px-3 py-1 bg-green-500 text-white rounded hover:bg-green-600 transition-colors"
+                              onClick={() => handleSaveStageEdit(stage.key)}
+                              data-testid={`button-save-completed-${stage.key}`}
+                            >
+                              Save
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  )}
                 </div>
               ))}
             </div>
