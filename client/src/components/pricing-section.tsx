@@ -23,7 +23,7 @@ export default function PricingSection() {
         </div>
 
         {/* Pricing Cards */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-7xl mx-auto mb-16">
+        <div className="grid md:grid-cols-3 gap-8 max-w-7xl mx-auto mb-16">
           {/* Standard */}
           <Card className="bg-gray-100 dark:bg-gray-800 border border-gray-300 dark:border-gray-600 hover:shadow-lg transition-all duration-200 h-full flex flex-col">
             <CardHeader className="p-8 pb-4 flex-shrink-0">
@@ -174,60 +174,6 @@ export default function PricingSection() {
             </CardContent>
           </Card>
 
-          {/* VIP+ */}
-          <Card className="bg-black text-white border-2 border-black relative hover:shadow-2xl transition-all duration-200 h-full flex flex-col">
-            <div className="absolute -top-6 left-1/2 transform -translate-x-1/2">
-              <Badge className="bg-white text-black px-4 py-2 rounded-full font-semibold">
-                EXCLUSIVE
-              </Badge>
-            </div>
-            <CardHeader className="p-8 pb-4 pt-12 flex-shrink-0">
-              <div className="flex items-center justify-between mb-4">
-                <h3 className="text-2xl font-bold">VIP+</h3>
-                <Crown className="w-6 h-6 text-white" />
-              </div>
-              <p className="text-gray-300 italic mb-6">Reserved for chosen clients and exceptional cases</p>
-              <div className="mb-6">
-                <div className="text-4xl font-bold mb-2">Individually Quoted</div>
-                <div className="text-gray-300">Custom pricing structure</div>
-                <div className="text-sm text-gray-400 mt-1">Tailored to case complexity</div>
-              </div>
-              <div className="bg-gray-800 rounded-lg p-3 text-center">
-                <div className="text-white font-semibold">12-15 months</div>
-              </div>
-            </CardHeader>
-            <CardContent className="p-8 pt-4 flex-grow flex flex-col">
-              <ul className="space-y-3 mb-8 flex-grow">
-                <li className="flex items-start">
-                  <Crown className="w-5 h-5 text-white mr-3 mt-0.5 flex-shrink-0" />
-                  <span className="text-gray-300">Ultra-priority processing</span>
-                </li>
-                <li className="flex items-start">
-                  <Shield className="w-5 h-5 text-white mr-3 mt-0.5 flex-shrink-0" />
-                  <span className="text-gray-300">Direct ministry contacts</span>
-                </li>
-                <li className="flex items-start">
-                  <Zap className="w-5 h-5 text-white mr-3 mt-0.5 flex-shrink-0" />
-                  <span className="text-gray-300">Accelerated government liaison</span>
-                </li>
-                <li className="flex items-start">
-                  <Users2 className="w-5 h-5 text-white mr-3 mt-0.5 flex-shrink-0" />
-                  <span className="text-gray-300">Executive legal counsel</span>
-                </li>
-                <li className="flex items-start">
-                  <Phone className="w-5 h-5 text-white mr-3 mt-0.5 flex-shrink-0" />
-                  <span className="text-gray-300">Personal hotline access</span>
-                </li>
-                <li className="flex items-start">
-                  <CheckCircle2 className="w-5 h-5 text-white mr-3 mt-0.5 flex-shrink-0" />
-                  <span className="text-gray-300">Success guarantee</span>
-                </li>
-              </ul>
-              <Button className="w-full bg-white text-black hover:bg-gray-100 font-semibold mt-auto">
-                Apply for Selection
-              </Button>
-            </CardContent>
-          </Card>
         </div>
 
         {/* Citizenship Test CTA in Pricing Section */}
