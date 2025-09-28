@@ -15,6 +15,7 @@ import { TasksTab } from '@/features/tasks/TasksTab';
 import { FamilyTreeTab } from '@/features/familyTree/FamilyTreeTab';
 import { CaseWithCAP } from '@/features/cap/capRules';
 import { StagePanel } from '@/components/case/StagePanel';
+import DocumentsPanel from '@/components/casePanels/DocumentsPanel';
 import '@/styles/tokens.css';
 
 type TabId = TabKey;
@@ -90,42 +91,7 @@ export const TimelinePanel: React.FC<{ case: CaseData }> = ({ case: caseData }) 
   </div>
 );
 
-export const DocumentsPanel: React.FC<{ case: CaseData }> = ({ case: caseData }) => (
-  <div className="space-y-4">
-    {caseData.documents && caseData.documents.length > 0 ? (
-      caseData.documents.map((doc, index) => (
-        <div key={doc.id || index} className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-lg shadow-lg dark:shadow-2xl p-4">
-          <div className="flex items-center justify-between">
-            <div>
-              <h4 className="text-gray-900 dark:text-white font-medium">{doc.name}</h4>
-              <p className="text-gray-500 dark:text-gray-400 text-sm">{doc.type}</p>
-            </div>
-            <div className="text-right">
-              <span className={cn(
-                'px-2 py-1 rounded text-xs font-medium',
-                doc.status === 'verified' ? 'bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200' :
-                doc.status === 'pending' ? 'bg-yellow-100 dark:bg-yellow-900 text-yellow-800 dark:text-yellow-200' :
-                'bg-red-100 dark:bg-red-900 text-red-800 dark:text-red-200'
-              )}>
-                {doc.status}
-              </span>
-              {doc.uploadedAt && (
-                <p className="text-gray-500 dark:text-gray-400 text-xs mt-1">
-                  {plDate(doc.uploadedAt)}
-                </p>
-              )}
-            </div>
-          </div>
-        </div>
-      ))
-    ) : (
-      <div className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-lg shadow-lg dark:shadow-2xl p-8 text-center">
-        <FileText className="h-12 w-12 text-gray-500 dark:text-gray-400 mx-auto mb-4" />
-        <p className="text-gray-500 dark:text-gray-400">No documents uploaded yet</p>
-      </div>
-    )}
-  </div>
-);
+// Using DocumentsPanel component imported from casePanels - has 12 document placeholders
 
 // Service Payment placeholders (12 hardcoded)
 const SERVICE_PAYMENT_LABELS = [
@@ -681,7 +647,7 @@ export const CaseDetailsUnified: React.FC<CaseDetailsUnifiedProps> = ({ caseId }
     switch (activeTabId) {
       case 'overview': return <OverviewPanel case={currentCaseData} />;
       case 'stage': return <StagePanel case={currentCaseData} />;
-      case 'documents': return <DocumentsPanel case={currentCaseData} />;
+      case 'documents': return <DocumentsPanel caseId={currentCaseData.id} caseData={currentCaseData} />;
       case 'payments': return <PaymentsPanel case={currentCaseData} />;
       case 'tasks': return <TasksTab caseData={currentCaseData as CaseWithCAP} />;
       case 'authority': return <CAPTab caseData={currentCaseData as CaseWithCAP} />;
