@@ -1,4 +1,4 @@
-import React, { useMemo, useState, useCallback } from "react";
+import React, { useMemo, useState, useCallback, useRef } from "react";
 import type { CaseData } from "@/lib/api";
 import type { StageActionLink } from "@shared/schema";
 import { formatPL } from "@/utils/date";
@@ -401,6 +401,9 @@ interface StagePanelProps {
 export const StagePanel: React.FC<StagePanelProps> = ({ case: caseData }) => {
   const { toast } = useToast();
   
+  // Stage Pipeline scrolling ref
+  const stagePipelineRef = useRef<HTMLDivElement>(null);
+  
   // Stage management state
   const [localActiveIdx, setLocalActiveIdx] = useState<number | null>(null);
   const [isEditing, setIsEditing] = useState<string | null>(null);
@@ -710,6 +713,25 @@ export const StagePanel: React.FC<StagePanelProps> = ({ case: caseData }) => {
                 const stageIndex = COMPREHENSIVE_PIPELINE.findIndex(s => s.key === firstStageInPart.key);
                 if (stageIndex >= 0) {
                   setLocalActiveIdx(stageIndex);
+                  
+                  // Auto-scroll Stage Pipeline to the selected stage
+                  setTimeout(() => {
+                    if (stagePipelineRef.current) {
+                      const stageElement = stagePipelineRef.current.querySelector(`[data-testid="stage-chip-${firstStageInPart.key}"]`);
+                      if (stageElement) {
+                        stageElement.scrollIntoView({
+                          behavior: 'smooth',
+                          block: 'nearest',
+                          inline: 'center'
+                        });
+                      } else {
+                        console.warn(`Stage element not found for key: ${firstStageInPart.key}`);
+                      }
+                    } else {
+                      console.warn('Stage pipeline ref not available');
+                    }
+                  }, 100);
+                  
                   toast({
                     title: `Jumped to Part ${partNum}`,
                     description: `Set ${firstStageInPart.label} as active stage`,
@@ -780,7 +802,7 @@ export const StagePanel: React.FC<StagePanelProps> = ({ case: caseData }) => {
         </div>
         
         <div className="relative">
-          <div className="flex overflow-x-auto gap-3 pb-4">
+          <div ref={stagePipelineRef} className="flex overflow-x-auto gap-3 pb-4">
             {COMPREHENSIVE_PIPELINE.map((stage, i) => {
               const isActive = i === activeIdx;
               const isCompleted = i < activeIdx;
