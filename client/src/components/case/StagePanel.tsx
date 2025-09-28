@@ -688,7 +688,13 @@ export const StagePanel: React.FC<StagePanelProps> = ({ case: caseData }) => {
           </div>
         </div>
 
-        <div className="w-full flex overflow-x-auto gap-3 pb-2 scrollbar-thin scrollbar-track-transparent scrollbar-thumb-gray-300 dark:scrollbar-thumb-gray-600">
+        {/* Part Progression Tabs - Separate Section */}
+        <div className="mt-6 pt-4 border-t border-gray-200 dark:border-gray-700">
+          <div className="flex items-center justify-between mb-3">
+            <h4 className="text-sm font-medium text-gray-700 dark:text-gray-300">Part Progression</h4>
+            <div className="text-xs text-gray-500 dark:text-gray-400">Click to jump • Double-click to complete</div>
+          </div>
+          <div className="w-full flex overflow-x-auto gap-3 pb-2 scrollbar-thin scrollbar-track-transparent scrollbar-thumb-gray-300 dark:scrollbar-thumb-gray-600">
           {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15].map(partNum => {
             const partStages = COMPREHENSIVE_PIPELINE.filter(s => s.part === partNum);
             const completedInPart = partStages.filter((_, i) => COMPREHENSIVE_PIPELINE.findIndex(stage => stage.key === partStages[i].key) < activeIdx).length;
@@ -757,6 +763,7 @@ export const StagePanel: React.FC<StagePanelProps> = ({ case: caseData }) => {
               </div>
             );
           })}
+          </div>
         </div>
       </div>
 
