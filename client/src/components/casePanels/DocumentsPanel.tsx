@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { Upload } from 'lucide-react';
 import { IOS26Card, IOS26CardBody } from '@/components/ui/card';
-import { DocumentsDropboxSidebar } from '@/features/ingest/DocumentsDropboxSidebar';
-import { ReviewDrawer } from '@/features/ingest/ReviewDrawer';
+import { DocumentsDropboxSidebar } from '../../features/ingest/DocumentsDropboxSidebar';
+import { ReviewDrawer } from '../../features/ingest/ReviewDrawer';
 import { cn } from '@/lib/utils';
 
 interface CaseData {
@@ -51,23 +51,32 @@ ActionButton.displayName = 'ActionButton';
 export default function DocumentsPanel({ caseId, caseData }: DocumentsPanelProps) {
   const [selectedSuggestion, setSelectedSuggestion] = useState<string | null>(null);
   
-  const documents = Array.from({ length: 12 }, (_, i) => ({
-    id: `doc-${i + 1}`,
-    name: `Document ${i + 1}`,
-    status: caseData.documents?.[`doc${i + 1}`]?.status || 'pending'
-  }));
+  const documents = [
+    { id: 'family-tree', name: 'Family Tree Template', status: caseData.documents?.['family-tree']?.status || 'pending' },
+    { id: 'poa-married', name: 'POA Citizenship (Married)', status: caseData.documents?.['poa-married']?.status || 'pending' },
+    { id: 'poa-single', name: 'POA Citizenship (Single)', status: caseData.documents?.['poa-single']?.status || 'pending' },
+    { id: 'poa-minor', name: 'POA Citizenship (Minor)', status: caseData.documents?.['poa-minor']?.status || 'pending' },
+    { id: 'citizenship-form', name: 'Citizenship Application Form', status: caseData.documents?.['citizenship-form']?.status || 'pending' },
+    { id: 'citizenship-form-alt', name: 'Citizenship Application (Alt)', status: caseData.documents?.['citizenship-form-alt']?.status || 'pending' },
+    { id: 'foreign-act-reg', name: 'Foreign Act Registration', status: caseData.documents?.['foreign-act-reg']?.status || 'pending' },
+    { id: 'civil-completion', name: 'Civil Records Completion', status: caseData.documents?.['civil-completion']?.status || 'pending' },
+    { id: 'civil-correction', name: 'Civil Records Correction', status: caseData.documents?.['civil-correction']?.status || 'pending' },
+    { id: 'civil-copy-request', name: 'Civil Records Copy Request', status: caseData.documents?.['civil-copy-request']?.status || 'pending' },
+    { id: 'passport-docs', name: 'Passport & ID Documents', status: caseData.documents?.['passport-docs']?.status || 'pending' },
+    { id: 'supporting-docs', name: 'Supporting Documents', status: caseData.documents?.['supporting-docs']?.status || 'pending' }
+  ];
 
   return (
     <div className="flex gap-6">
       {/* Main Documents Grid */}
       <div className="flex-1">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+        <div className="w-full space-y-3">
           {documents.map((doc) => (
             <IOS26Card key={doc.id} strong={true}>
               <IOS26CardBody>
-                <div className="flex items-center justify-between p-4">
-                  <div>
-                    <h4 className="font-medium">{doc.name}</h4>
+                <div className="w-full flex items-center justify-between p-4">
+                  <div className="flex-1">
+                    <h4 className="font-medium text-base">{doc.name}</h4>
                     <div className="flex items-center gap-2 mt-2">
                       <div className={cn(
                         "w-3 h-3 rounded-full",
