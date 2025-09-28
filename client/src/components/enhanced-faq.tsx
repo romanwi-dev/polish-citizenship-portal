@@ -82,9 +82,10 @@ export default function EnhancedFAQ() {
 
       <div className="max-w-5xl mx-auto px-5 py-10">
         <header className="mb-7">
-          <h1 className="text-6xl lg:text-7xl xl:text-8xl font-bold mb-6 tracking-tight leading-tight text-center">
+          <h1 className="text-5xl font-black mb-6 text-center leading-tight"
+              style={{ fontFamily: 'Arial Black, Arial, sans-serif' }}>
             <span className="block text-black dark:text-white">Find Answers</span>
-            <span className="block text-blue-600 dark:text-blue-400">Instantly</span>
+            <span className="block text-blue-800 dark:text-blue-400">Instantly</span>
           </h1>
         </header>
 

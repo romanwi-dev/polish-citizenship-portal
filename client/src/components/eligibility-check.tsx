@@ -73,9 +73,10 @@ export default function EligibilityCheck() {
           <Badge className="bg-primary-blue text-white px-6 py-3 rounded-full font-semibold mb-6">
             Professional Assessment
           </Badge>
-          <h2 className="text-6xl lg:text-7xl xl:text-8xl font-bold mb-6 leading-tight tracking-tight">
-            <span className="block text-blue-600 dark:text-blue-400">Comprehensive Eligibility</span>
-            <span className="block text-blue-600 dark:text-blue-400">Assessment</span>
+          <h2 className="text-5xl font-black mb-6 text-center leading-tight"
+              style={{ fontFamily: 'Arial Black, Arial, sans-serif' }}>
+            <span className="block text-black dark:text-white">Comprehensive Eligibility</span>
+            <span className="block text-blue-800 dark:text-blue-400">Assessment</span>
           </h2>
           <p className="text-lg text-neutral-cool max-w-3xl mx-auto leading-relaxed">
             Get a detailed professional evaluation of your case. Our experts analyze eligibility, assess complexity, 

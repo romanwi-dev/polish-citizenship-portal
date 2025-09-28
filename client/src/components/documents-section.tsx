@@ -53,9 +53,10 @@ export default function DocumentsSection() {
     <section id="documents" className="py-32 bg-gray-50 dark:bg-gray-900">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-24">
-          <h2 className="text-6xl lg:text-7xl xl:text-8xl font-bold mb-6 tracking-tight leading-tight">
+          <h2 className="text-5xl font-black mb-6 text-center leading-tight"
+              style={{ fontFamily: 'Arial Black, Arial, sans-serif' }}>
             <span className="block text-black dark:text-white">Required</span>
-            <span className="block text-blue-600 dark:text-blue-400">Documents</span>
+            <span className="block text-blue-800 dark:text-blue-400">Documents</span>
           </h2>
           <p className="text-2xl font-semibold text-gray-700 dark:text-gray-300 max-w-4xl mx-auto leading-relaxed">
             Essential documentation needed for Polish citizenship confirmation.

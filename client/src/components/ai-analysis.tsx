@@ -27,9 +27,10 @@ export default function AiAnalysis() {
             <Brain className="mr-2 h-4 w-4" />
             AI-Powered Analysis
           </Badge>
-          <h2 className="text-6xl lg:text-7xl xl:text-8xl font-bold mb-6 leading-tight tracking-tight">
-            <span className="block text-blue-600 dark:text-blue-400">How Our AI Analysis</span>
-            <span className="block text-blue-600 dark:text-blue-400">System Works</span>
+          <h2 className="text-5xl font-black mb-6 text-center leading-tight"
+              style={{ fontFamily: 'Arial Black, Arial, sans-serif' }}>
+            <span className="block text-black dark:text-white">How Our AI Analysis</span>
+            <span className="block text-blue-800 dark:text-blue-400">System Works</span>
           </h2>
           <p className="text-lg text-neutral-cool mb-12 max-w-3xl mx-auto leading-relaxed">
             Our proprietary AI analyzes <strong>180+ data points</strong> from 20 years of case history 

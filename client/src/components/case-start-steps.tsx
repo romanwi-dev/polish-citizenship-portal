@@ -74,8 +74,10 @@ export default function CaseStartSteps({ compact = false }: CaseStartStepsProps)
       <section id="case-start" className="py-16 bg-gradient-to-br from-slate-50 to-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold text-blue-600 dark:text-blue-400 mb-4">
-              How to Start Your Case
+            <h2 className="text-5xl font-black mb-6 text-center leading-tight"
+                style={{ fontFamily: 'Arial Black, Arial, sans-serif' }}>
+              <span className="block text-black dark:text-white">How to Start Your</span>
+              <span className="block text-blue-800 dark:text-blue-400">Case</span>
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
               5 Simple Steps to Begin Your Citizenship Application
@@ -142,8 +144,10 @@ export default function CaseStartSteps({ compact = false }: CaseStartStepsProps)
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="text-center mb-16">
-          <h1 className="text-5xl font-bold text-blue-600 dark:text-blue-400 mb-6">
-            How to Start Your Case
+          <h1 className="text-5xl font-black mb-6 text-center leading-tight"
+              style={{ fontFamily: 'Arial Black, Arial, sans-serif' }}>
+            <span className="block text-black dark:text-white">How to Start Your</span>
+            <span className="block text-blue-800 dark:text-blue-400">Case</span>
           </h1>
           <p className="text-2xl text-gray-600 max-w-4xl mx-auto">
             Follow these 5 simple steps to begin your Polish citizenship application

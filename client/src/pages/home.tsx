@@ -94,18 +94,11 @@ const Home = memo(function Home() {
       <section>
         <div className="container">
           <div className="responsive-card">
-            <EditableText
-              contentKey="homepage-main-heading"
-              fallback="The Most Comprehensive Online Legal Service for Polish Citizenship and Polish European Passport"
-              pageId="homepage"
-              as="h2"
-              className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 text-center leading-tight tracking-tight transition-colors duration-300 text-blue-600 dark:text-blue-400"
-              style={{ 
-                fontFamily: 'var(--theme-font-accent, Playfair Display, serif)',
-                letterSpacing: 'var(--ios26-letter-spacing)',
-                lineHeight: 'var(--ios26-line-height)'
-              }}
-            />
+            <h2 className="text-5xl font-black mb-6 text-center leading-tight"
+                style={{ fontFamily: 'Arial Black, Arial, sans-serif' }}>
+              <span className="block text-black dark:text-white">The Most Comprehensive Online Legal Service</span>
+              <span className="block text-blue-800 dark:text-blue-400">for Polish Citizenship and Polish European Passport</span>
+            </h2>
             <div 
               className="prose prose-lg max-w-none leading-relaxed transition-colors duration-300"
               style={{ 
@@ -133,18 +126,11 @@ const Home = memo(function Home() {
               />
               
               <div className="border-t border-white/20 pt-8">
-                <EditableText
-                  contentKey="homepage-ai-heading"
-                  fallback="AI Deep Case Analyzes"
-                  pageId="homepage"
-                  as="h3"
-                  className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 text-center leading-tight tracking-tight transition-colors duration-300 text-blue-600 dark:text-blue-400"
-                  style={{ 
-                    fontFamily: 'var(--theme-font-accent, Playfair Display, serif)',
-                    letterSpacing: 'var(--ios26-letter-spacing)',
-                    lineHeight: 'var(--ios26-line-height)'
-                  }}
-                />
+                <h3 className="text-5xl font-black mb-6 text-center leading-tight"
+                    style={{ fontFamily: 'Arial Black, Arial, sans-serif' }}>
+                  <span className="block text-black dark:text-white">AI Deep Case</span>
+                  <span className="block text-blue-800 dark:text-blue-400">Analyzes</span>
+                </h3>
                 <EditableText
                   contentKey="homepage-ai-description-1"
                   fallback="We are now able to 'predict' the probability of success and the time of the procedure in advance in each case of Polish citizenship by descent with HIGH ACCURACY based on the cases we processed over the last twenty years, with AI analyzes and human-expert knowledge. This has revolutionized our approach, allowing us to offer personalized guidance and support to our clients right from the initial consultation. By leveraging this combination of AI and expert insights, we can identify potential challenges and opportunities unique to each case, ensuring a more streamlined and efficient application process."
@@ -172,18 +158,11 @@ const Home = memo(function Home() {
               </div>
               
               <div className="border-t border-blue-200 pt-8 mt-8">
-                <EditableText
-                  contentKey="homepage-polish-people-heading"
-                  fallback="Over 20 Million People of Polish Descent"
-                  pageId="homepage"
-                  as="h3"
-                  className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 text-center leading-tight tracking-tight transition-colors duration-300 text-blue-600 dark:text-blue-400"
-                  style={{ 
-                    fontFamily: 'var(--theme-font-accent, Playfair Display, serif)',
-                    letterSpacing: 'var(--ios26-letter-spacing)',
-                    lineHeight: 'var(--ios26-line-height)'
-                  }}
-                />
+                <h3 className="text-5xl font-black mb-6 text-center leading-tight"
+                    style={{ fontFamily: 'Arial Black, Arial, sans-serif' }}>
+                  <span className="block text-black dark:text-white">Over 20 Million People</span>
+                  <span className="block text-blue-800 dark:text-blue-400">of Polish Descent</span>
+                </h3>
                 <EditableText
                   contentKey="homepage-polish-people-description"
                   fallback="There are more than 20 million people of Polish descent that live outside of Poland today , which itself has a population of about 38,5 million. This means that more than 1/3 of Poles and people of Polish descent actually live outside of the country. For many generations of European unrest, people have been emigrating outside of Poland, especially in the 20th century."
@@ -203,13 +182,10 @@ const Home = memo(function Home() {
               </div>
               
               <div className="border-t border-blue-200 pt-8 mt-8">
-                <h3 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 text-center leading-tight tracking-tight transition-colors duration-300 text-blue-600 dark:text-blue-400"
-                    style={{ 
-                      fontFamily: 'var(--theme-font-accent, Playfair Display, serif)',
-                      letterSpacing: 'var(--ios26-letter-spacing)',
-                      lineHeight: 'var(--ios26-line-height)'
-                    }}>
-                  The Benefits of Polish European Citizenship
+                <h3 className="text-5xl font-black mb-6 text-center leading-tight"
+                    style={{ fontFamily: 'Arial Black, Arial, sans-serif' }}>
+                  <span className="block text-black dark:text-white">The Benefits of Polish</span>
+                  <span className="block text-blue-800 dark:text-blue-400">European Citizenship</span>
                 </h3>
                 <p className="mb-4">
                   The education system in Europe is outstanding and offers the best elementary schools, top high schools, and some of the world's best universities. The latest medical technology and the best pharmaceutical developments ensure that your health is in good hands in Europe. With a Polish European passport you can freely move, travel, live, and work in any of the 28 member states of the EU.
@@ -464,13 +440,10 @@ const Home = memo(function Home() {
       {/* CTA: Final Consultation Call to Action */}
       <section className="py-16 glass-card-primary">
         <div className="max-w-4xl mx-auto px-4 text-center">
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 text-center leading-tight tracking-tight transition-colors duration-300 text-white"
-              style={{ 
-                fontFamily: 'var(--theme-font-accent, Playfair Display, serif)',
-                letterSpacing: 'var(--ios26-letter-spacing)',
-                lineHeight: 'var(--ios26-line-height)'
-              }}>
-            Ready to Start Your Polish Citizenship Journey?
+          <h2 className="text-5xl font-black mb-6 text-center leading-tight"
+              style={{ fontFamily: 'Arial Black, Arial, sans-serif' }}>
+            <span className="block text-black dark:text-white">Ready to Start Your Polish</span>
+            <span className="block text-blue-800 dark:text-blue-400">Citizenship Journey?</span>
           </h2>
           <p className="text-xl text-white/80 mb-8">
             Get expert guidance from our team of legal professionals with over 20 years of experience

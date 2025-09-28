@@ -99,9 +99,10 @@ export default function ClientProcessSteps({ compact = false }: ClientProcessSte
       <section id="client-process" className="py-16 bg-gradient-to-br from-slate-50 to-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-6xl lg:text-7xl xl:text-8xl font-bold mb-6 leading-tight tracking-tight max-w-4xl mx-auto">
-              <span className="block text-blue-600 dark:text-blue-400">How to Become Our</span>
-              <span className="block text-blue-600 dark:text-blue-400">Client</span>
+            <h2 className="text-5xl font-black mb-6 text-center leading-tight"
+                style={{ fontFamily: 'Arial Black, Arial, sans-serif' }}>
+              <span className="block text-black dark:text-white">How to Become Our</span>
+              <span className="block text-blue-800 dark:text-blue-400">Client</span>
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
               8 Clear Steps to Polish Citizenship
@@ -152,9 +153,10 @@ export default function ClientProcessSteps({ compact = false }: ClientProcessSte
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="text-center mb-16">
-          <h1 className="text-6xl lg:text-7xl xl:text-8xl font-bold mb-6 leading-tight tracking-tight max-w-4xl mx-auto">
-            <span className="block text-blue-600 dark:text-blue-400">How to Become Our</span>
-            <span className="block text-blue-600 dark:text-blue-400">Client</span>
+          <h1 className="text-5xl font-black mb-6 text-center leading-tight"
+              style={{ fontFamily: 'Arial Black, Arial, sans-serif' }}>
+            <span className="block text-black dark:text-white">How to Become Our</span>
+            <span className="block text-blue-800 dark:text-blue-400">Client</span>
           </h1>
           <p className="text-2xl text-gray-600 max-w-4xl mx-auto">
             Follow these 8 clear steps to become our registered client and start your citizenship case
