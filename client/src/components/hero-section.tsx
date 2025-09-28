@@ -47,14 +47,12 @@ const HeroSection = memo(function HeroSection() {
 
         {/* Main Headline */}
         <div className="text-center max-w-5xl mx-auto mb-16">
-          <h1 className="text-6xl lg:text-8xl xl:text-9xl font-bold mb-8 leading-[0.9] tracking-tight drop-shadow-lg" style={{letterSpacing: 'var(--ios26-letter-spacing)', lineHeight: 'var(--ios26-line-height)'}}>
-            <span className="text-black dark:text-white">
-              <span className="block">
-                Polish Citizenship
-              </span>
-              <span className="block text-blue-600 dark:text-blue-400">
-                by Descent
-              </span>
+          <h1 className="text-8xl lg:text-9xl xl:text-[12rem] font-bold mb-8 leading-[0.8] tracking-tight drop-shadow-lg" style={{letterSpacing: 'var(--ios26-letter-spacing)', lineHeight: 'var(--ios26-line-height)'}}>
+            <span className="block text-red-600 dark:text-red-500">
+              Polish Citizenship
+            </span>
+            <span className="block text-white">
+              by Descent
             </span>
           </h1>
           <EditableText
