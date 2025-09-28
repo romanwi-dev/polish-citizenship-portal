@@ -203,9 +203,9 @@ const PolishCrownTimeline = memo(function PolishCrownTimeline() {
       <div className="max-w-full mx-auto px-4 sm:px-6 lg:px-20">
         {/* Header */}
         <div className="text-center mb-24">
-          <h2 className="text-4xl lg:text-5xl font-bold mb-6 tracking-tight">
-            <span className="block text-neutral-warm">Complete Legal Process</span>
-            <span className="block text-primary-blue">Timeline</span>
+          <h2 className="text-8xl lg:text-9xl xl:text-[10rem] font-bold mb-6 tracking-tight leading-[0.8]">
+            <span className="block text-black dark:text-white">Complete Legal Process</span>
+            <span className="block text-blue-600 dark:text-blue-400">Timeline</span>
           </h2>
           <p style={{ 
             fontSize: '1.125rem', 

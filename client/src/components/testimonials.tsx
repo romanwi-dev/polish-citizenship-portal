@@ -64,7 +64,7 @@ export default function Testimonials() {
     <section id="testimonials">
       <div className="container">
         <div className="text-center mb-24">
-          <h2 className="text-6xl lg:text-8xl font-bold mb-6 tracking-tight leading-tight">
+          <h2 className="text-8xl lg:text-9xl xl:text-[10rem] font-bold mb-6 tracking-tight leading-[0.8]">
             <span className="block text-black dark:text-white">Client Success</span>
             <span className="block text-blue-600 dark:text-blue-400">Stories</span>
           </h2>

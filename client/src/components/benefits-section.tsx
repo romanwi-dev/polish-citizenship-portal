@@ -60,8 +60,9 @@ export default function BenefitsSection() {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-20">
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-8">
-            Benefits of Polish European Citizenship
+          <h2 className="text-8xl lg:text-9xl xl:text-[10rem] font-bold mb-8 tracking-tight leading-[0.8]">
+            <span className="block text-black dark:text-white">Benefits of Polish</span>
+            <span className="block text-blue-600 dark:text-blue-400">European Citizenship</span>
           </h2>
           <p className="text-2xl font-semibold text-gray-700 dark:text-gray-300 max-w-4xl mx-auto leading-relaxed">
             With over 20 million people of Polish descent worldwide, obtaining
