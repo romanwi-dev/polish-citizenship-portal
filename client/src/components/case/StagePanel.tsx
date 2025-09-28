@@ -688,36 +688,71 @@ export const StagePanel: React.FC<StagePanelProps> = ({ case: caseData }) => {
           </div>
         </div>
 
-        <div className="w-full flex overflow-x-auto gap-1 pb-2">
+        <div className="w-full flex overflow-x-auto gap-3 pb-2 scrollbar-thin scrollbar-track-transparent scrollbar-thumb-gray-300 dark:scrollbar-thumb-gray-600">
           {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15].map(partNum => {
             const partStages = COMPREHENSIVE_PIPELINE.filter(s => s.part === partNum);
             const completedInPart = partStages.filter((_, i) => COMPREHENSIVE_PIPELINE.findIndex(stage => stage.key === partStages[i].key) < activeIdx).length;
             const progressPercent = partStages.length > 0 ? (completedInPart / partStages.length) * 100 : 0;
             const hasActive = partStages.some(s => COMPREHENSIVE_PIPELINE.findIndex(stage => stage.key === s.key) === activeIdx);
             
+            const handlePartClick = () => {
+              // Find the first stage of this part and make it active
+              const firstStageInPart = partStages[0];
+              if (firstStageInPart) {
+                const stageIndex = COMPREHENSIVE_PIPELINE.findIndex(s => s.key === firstStageInPart.key);
+                if (stageIndex >= 0) {
+                  setLocalActiveIdx(stageIndex);
+                  toast({
+                    title: `Jumped to Part ${partNum}`,
+                    description: `Set ${firstStageInPart.label} as active stage`,
+                  });
+                }
+              }
+            };
+
+            const handlePartDoubleClick = () => {
+              // Double-click to mark entire part as completed
+              const lastStageInPart = partStages[partStages.length - 1];
+              if (lastStageInPart) {
+                const stageIndex = COMPREHENSIVE_PIPELINE.findIndex(s => s.key === lastStageInPart.key);
+                if (stageIndex >= 0) {
+                  setLocalActiveIdx(stageIndex + 1);
+                  toast({
+                    title: `Part ${partNum} Completed`,
+                    description: `Marked all stages in Part ${partNum} as completed`,
+                  });
+                }
+              }
+            };
+            
             return (
-              <div key={partNum} className="text-center">
-                <div 
+              <div key={partNum} className="text-center flex-shrink-0">
+                <button 
+                  onClick={handlePartClick}
+                  onDoubleClick={handlePartDoubleClick}
                   className={cn(
-                    "w-8 h-8 rounded-lg flex items-center justify-center text-xs font-bold mb-1 transition-all duration-200",
+                    "w-14 h-14 rounded-xl flex items-center justify-center text-sm font-bold mb-2 transition-all duration-200 hover:scale-105 active:scale-95 shadow-md hover:shadow-lg cursor-pointer border-2",
                     hasActive 
-                      ? "bg-blue-500 text-white ring-2 ring-blue-300" 
+                      ? "bg-blue-500 text-white ring-2 ring-blue-300 border-blue-600 shadow-blue-200" 
                       : progressPercent === 100 
-                      ? "bg-green-500 text-white" 
+                      ? "bg-green-500 text-white border-green-600 hover:bg-green-600 shadow-green-200" 
                       : progressPercent > 0 
-                      ? "bg-yellow-400 text-gray-800" 
-                      : "bg-gray-200 text-gray-600"
+                      ? "bg-yellow-400 text-gray-800 border-yellow-500 hover:bg-yellow-500 shadow-yellow-200" 
+                      : "bg-gray-200 text-gray-600 border-gray-300 hover:bg-gray-300 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-600 dark:hover:bg-gray-600"
                   )}
                   data-testid={`part-indicator-${partNum}`}
-                  title={`Part ${partNum}: ${completedInPart}/${partStages.length} completed`}
+                  title={`Part ${partNum}: ${completedInPart}/${partStages.length} completed (Click to jump, Double-click to complete)`}
                 >
                   {partNum}
-                </div>
-                <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-1">
+                </button>
+                <div className="w-14 bg-gray-200 dark:bg-gray-700 rounded-full h-2 mx-auto">
                   <div 
-                    className="bg-gradient-to-r from-blue-400 to-green-400 h-1 rounded-full transition-all duration-300"
+                    className="bg-gradient-to-r from-blue-400 to-green-400 h-2 rounded-full transition-all duration-300"
                     style={{ width: `${progressPercent}%` }}
                   ></div>
+                </div>
+                <div className="text-xs text-gray-500 dark:text-gray-400 mt-1 font-medium">
+                  {completedInPart}/{partStages.length}
                 </div>
               </div>
             );
