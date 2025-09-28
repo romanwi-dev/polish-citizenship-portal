@@ -99,7 +99,7 @@ const Home = memo(function Home() {
               fallback="The Most Comprehensive Online Legal Service for Polish Citizenship and Polish European Passport"
               pageId="homepage"
               as="h2"
-              className="text-6xl lg:text-7xl xl:text-8xl font-bold mb-6 text-center leading-tight tracking-tight transition-colors duration-300 text-blue-600 dark:text-blue-400"
+              className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 text-center leading-tight tracking-tight transition-colors duration-300 text-blue-600 dark:text-blue-400"
               style={{ 
                 fontFamily: 'var(--theme-font-accent, Playfair Display, serif)',
                 letterSpacing: 'var(--ios26-letter-spacing)',
