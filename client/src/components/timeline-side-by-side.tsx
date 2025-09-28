@@ -26,111 +26,149 @@ const PolishCrownTimeline = memo(function PolishCrownTimeline() {
   const steps = [
     {
       number: 1,
-      title: "INITIAL CONSULTATION",
-      description: "Comprehensive assessment of your family heritage and Polish ancestry eligibility",
+      title: "PART 1 - FIRST STEPS",
+      description: "First contact, citizenship test, family tree, eligibility examination, and eligibility call",
       icon: Search,
       color: "bg-red-600",
       lightColor: "bg-red-50",
-      timing: "Day 1"
+      timing: "Week 1",
+      isMilestone: true
     },
     {
       number: 2,
-      title: "LEGAL CASE ANALYSIS", 
-      description: "Expert legal review of your lineage under Polish citizenship law with success probability",
+      title: "PART 2 - TERMS & PRICING",
+      description: "Initial assessment, full process info with pricing, client confirmation, and document list",
       icon: Scale,
       color: "bg-red-700",
       lightColor: "bg-red-50",
-      timing: "Week 1"
+      timing: "Week 1-2"
     },
     {
       number: 3,
-      title: "POLISH ARCHIVES RESEARCH",
-      description: "Systematic search through Civil Registry offices and municipal archives in Poland",
-      icon: Building2,
+      title: "PART 3 - ADVANCE & ACCOUNT",
+      description: "Advance payment processing and opening client portal account",
+      icon: UserCheck,
       color: "bg-red-800",
       lightColor: "bg-red-50",
-      timing: "Weeks 1-4"
+      timing: "Week 2",
+      isMilestone: true
     },
     {
       number: 4,
-      title: "INTERNATIONAL ARCHIVES SEARCH",
-      description: "Research across Ukrainian, Lithuanian and international archives for historical documents",
-      icon: Globe2,
-      color: "bg-red-900",
-      lightColor: "bg-red-50",
-      timing: "Weeks 2-6"
+      title: "PART 4 - DETAILS & POAs",
+      description: "Client provides basic details, POA preparation, and signed documents via FedEx",
+      icon: FileText,
+      color: "bg-orange-600",
+      lightColor: "bg-orange-50",
+      timing: "Week 2-3"
     },
     {
       number: 5,
-      title: "DOCUMENT AUTHENTICATION",
-      description: "Professional apostille certification and certified Polish translation services",
-      icon: FileCheck,
-      color: "bg-green-600",
-      lightColor: "bg-green-50",
-      timing: "Weeks 4-8"
+      title: "PART 5 - DATA & APPLICATION",
+      description: "Master form completion, AI paperwork generation, and official citizenship application submission",
+      icon: Send,
+      color: "bg-orange-700",
+      lightColor: "bg-orange-50",
+      timing: "Week 3-4",
+      isMilestone: true
     },
     {
       number: 6,
-      title: "APPLICATION PREPARATION",
-      description: "Meticulous preparation and comprehensive legal review of your citizenship application",
-      icon: FileText,
-      color: "bg-green-700",
-      lightColor: "bg-green-50",
-      timing: "Weeks 6-10"
+      title: "PART 6 - LOCAL DOCUMENTS",
+      description: "Document clarification, gathering local documents, and partner collaboration for collection",
+      icon: FileCheck,
+      color: "bg-yellow-600",
+      lightColor: "bg-yellow-50",
+      timing: "Week 4-8",
+      isMilestone: true
     },
     {
       number: 7,
-      title: "GOVERNMENT SUBMISSION",
-      description: "Official submission to the Masovian Voivoda's Office in Warsaw with tracking setup",
-      icon: Send,
-      color: "bg-green-800",
-      lightColor: "bg-green-50",
-      timing: "Week 10"
+      title: "PART 7 - POLISH DOCUMENTS",
+      description: "Polish archives search, international search, and partner processing for archival documents",
+      icon: Building2,
+      color: "bg-yellow-700",
+      lightColor: "bg-yellow-50",
+      timing: "Week 4-12",
+      isMilestone: true
     },
     {
       number: 8,
-      title: "GOVERNMENT REVIEW PROCESS",
-      description: "Polish authorities review your case while we monitor progress and handle requests",
-      icon: Timer,
-      color: "bg-green-900",
+      title: "PART 8 - TRANSLATIONS",
+      description: "AI translation service, certified sworn translator certification, and translation agent supervision",
+      icon: Globe2,
+      color: "bg-green-600",
       lightColor: "bg-green-50",
-      timing: "Months 3-18"
+      timing: "Week 8-16",
+      isMilestone: true
     },
     {
       number: 9,
-      title: "POLISH CITIZENSHIP CONFIRMATION",
-      description: "Receive official citizenship confirmation recognizing you as a Polish and EU citizen",
-      icon: Crown,
-      color: "bg-red-600",
-      lightColor: "bg-red-100",
-      timing: "Month 18",
-      isImportant: true
+      title: "PART 9 - FILING DOCUMENTS",
+      description: "Submitting local documents and detailed family information before initial response",
+      icon: Timer,
+      color: "bg-green-700",
+      lightColor: "bg-green-50",
+      timing: "Week 12-18"
     },
     {
       number: 10,
-      title: "POLISH CIVIL DOCUMENTS",
-      description: "Obtain official Polish birth certificate and civil acts for passport application",
-      icon: UserCheck,
-      color: "bg-blue-700",
-      lightColor: "bg-blue-50",
-      timing: "Weeks 1-2"
+      title: "PART 10 - CIVIL ACTS",
+      description: "Polish civil acts applications, payment processing, and dedicated civil acts agent supervision",
+      icon: ShieldCheck,
+      color: "bg-green-800",
+      lightColor: "bg-green-50",
+      timing: "Week 16-20",
+      isMilestone: true
     },
     {
       number: 11,
-      title: "EU PASSPORT APPLICATION",
-      description: "Complete Polish passport application with consulate appointment and biometric processing",
-      icon: Award,
-      color: "bg-blue-800",
+      title: "PART 11 - INITIAL RESPONSE",
+      description: "Receiving initial response from Masovian Voivoda's office and extending procedure term",
+      icon: Clock3,
+      color: "bg-blue-600",
       lightColor: "bg-blue-50",
-      timing: "Weeks 2-6"
+      timing: "Month 10-18",
+      isMilestone: true
     },
     {
       number: 12,
-      title: "FAMILY EXTENSION SERVICES", 
-      description: "Assistance extending citizenship to spouse and children with ongoing EU rights support",
-      icon: Users,
-      color: "bg-blue-900",
+      title: "PART 12 - PUSH SCHEMES",
+      description: "Offering push schemes (PUSH, NUDGE, SIT-DOWN) and implementing strategies in practice",
+      icon: MapPin,
+      color: "bg-blue-700",
       lightColor: "bg-blue-50",
+      timing: "Month 12-20",
+      isMilestone: true
+    },
+    {
+      number: 13,
+      title: "PART 13 - CITIZENSHIP DECISION",
+      description: "Polish citizenship confirmation decision received and added to client portal account",
+      icon: Crown,
+      color: "bg-purple-600",
+      lightColor: "bg-purple-50",
+      timing: "Month 18-24",
+      isImportant: true,
+      isMilestone: true
+    },
+    {
+      number: 14,
+      title: "PART 14 - POLISH PASSPORT",
+      description: "Document preparation, final payment, FedEx delivery, consulate visit, and passport application",
+      icon: Award,
+      color: "bg-purple-700",
+      lightColor: "bg-purple-50",
+      timing: "Month 20-26",
+      isMilestone: true
+    },
+    {
+      number: 15,
+      title: "PART 15 - EXTENDED SERVICES",
+      description: "Extended family legal services for comprehensive ongoing support",
+      icon: Users,
+      color: "bg-purple-800",
+      lightColor: "bg-purple-50",
       timing: "Ongoing"
     },
   ];
@@ -175,7 +213,7 @@ const PolishCrownTimeline = memo(function PolishCrownTimeline() {
             maxWidth: '768px', 
             margin: '0 auto'
           }}>
-            Your journey to Polish citizenship through our comprehensive 12-step process. Many steps are processed SIMULTANEOUSLY to save time.
+            Your journey to Polish citizenship through our comprehensive 15-part process. Many parts are processed SIMULTANEOUSLY to save time.
           </p>
         </div>
 
@@ -214,7 +252,8 @@ const PolishCrownTimeline = memo(function PolishCrownTimeline() {
                       {/* Title - Flat on background */}
                       <div className="text-center mb-6">
                         <h3 className={`text-2xl font-bold text-gray-900 ${
-                          step.isImportant ? 'text-red-800 text-3xl' : ''
+                          step.isImportant ? 'text-red-800 text-3xl' : 
+                          step.isMilestone ? 'text-blue-800 text-2xl' : ''
                         }`}>
                           {step.title}
                         </h3>
@@ -262,11 +301,13 @@ const PolishCrownTimeline = memo(function PolishCrownTimeline() {
                             <span className="text-sm font-semibold text-blue-800">Key Action</span>
                           </div>
                           <p className="text-sm text-gray-700">
-                            {step.number <= 3 ? "Assessment & Research Phase" :
-                             step.number <= 6 ? "Documentation & Preparation" :
-                             step.number <= 8 ? "Government Processing" :
-                             step.number <= 9 ? "Citizenship Confirmation" :
-                             "Document & Passport Phase"}
+                            {step.number <= 3 ? "Initial Setup & Payment" :
+                             step.number <= 5 ? "Details & Application" :
+                             step.number <= 8 ? "Documentation & Translation" :
+                             step.number <= 10 ? "Filing & Civil Acts" :
+                             step.number <= 12 ? "Government Processing" :
+                             step.number <= 13 ? "Citizenship Confirmation" :
+                             "Passport & Extended Services"}
                           </p>
                         </div>
                         
@@ -277,8 +318,9 @@ const PolishCrownTimeline = memo(function PolishCrownTimeline() {
                           </div>
                           <p className="text-sm text-gray-700">
                             {step.isImportant ? "Critical Milestone" :
-                             step.number <= 4 ? "Foundation Building" :
-                             step.number <= 8 ? "Process Execution" :
+                             step.isMilestone ? "Major Milestone" :
+                             step.number <= 5 ? "Foundation Building" :
+                             step.number <= 10 ? "Active Processing" :
                              "Final Achievement"}
                           </p>
                         </div>
