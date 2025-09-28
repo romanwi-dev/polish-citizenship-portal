@@ -270,7 +270,7 @@ const PolishCrownTimeline = memo(function PolishCrownTimeline() {
                   </div>
 
                   {/* Infographic Board - Below content on mobile, pushed to screen edges on desktop */}
-                  <div className={`w-full lg:w-5/12 mt-4 lg:mt-0 ${isEven ? 'lg:pl-32 lg:pr-0' : 'lg:pr-32 lg:pl-0'}`}>
+                  <div className={`w-full lg:w-8/12 xl:w-7/12 mt-4 lg:mt-0 ${isEven ? 'lg:pl-32 lg:pr-0' : 'lg:pr-32 lg:pl-0'}`}>
                     <Card className="p-6 bg-gradient-to-br from-blue-50 to-indigo-100 border-2 border-blue-200 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
                       {/* Infographic Header */}
                       <div className="flex items-center justify-between mb-4">
