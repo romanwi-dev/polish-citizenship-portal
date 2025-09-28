@@ -129,7 +129,7 @@ const Home = memo(function Home() {
                 pageId="homepage"
                 as="p"
                 multiline={true}
-                className="text-lg font-medium text-primary mb-8"
+                className="text-lg font-medium text-blue-600 dark:text-blue-400 mb-8"
               />
               
               <div className="border-t border-white/20 pt-8">
@@ -162,7 +162,7 @@ const Home = memo(function Home() {
                   pageId="homepage"
                   as="p"
                   multiline={true}
-                  className="text-lg font-medium text-primary"
+                  className="text-lg font-medium text-blue-600 dark:text-blue-400"
                 />
               </div>
               
@@ -193,13 +193,13 @@ const Home = memo(function Home() {
               </div>
               
               <div className="border-t border-blue-200 pt-8 mt-8">
-                <h3 className="text-2xl md:text-3xl font-bold text-primary mb-4">
+                <h3 className="text-2xl md:text-3xl font-bold text-blue-600 dark:text-blue-400 mb-4">
                   The Benefits of Polish European Citizenship
                 </h3>
                 <p className="mb-4">
                   The education system in Europe is outstanding and offers the best elementary schools, top high schools, and some of the world's best universities. The latest medical technology and the best pharmaceutical developments ensure that your health is in good hands in Europe. With a Polish European passport you can freely move, travel, live, and work in any of the 28 member states of the EU.
                 </p>
-                <p className="text-lg font-medium text-primary">
+                <p className="text-lg font-medium text-blue-600 dark:text-blue-400">
                   Businesses enjoy the benefits of duty-free imports and exports across country borders within the member states of the European Union. And, of course, we have the Champions League!
                 </p>
               </div>
