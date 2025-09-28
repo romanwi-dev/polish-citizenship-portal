@@ -100,9 +100,37 @@ button[class*="touch-target"]::before {
   pointer-events: none;
 }
 
-/* Remove ripple effect from Part Progression badges */
-button[data-testid^="part-indicator-"]::before {
+/* AGGRESSIVE FIX: Remove ALL pseudo-elements from Part Progression badges */
+button[data-testid^="part-indicator-"]::before,
+button[data-testid^="part-indicator-"]::after {
   display: none !important;
+  content: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+}
+
+/* Ensure Part Progression badges are completely clean */
+button[data-testid^="part-indicator-"] {
+  position: relative !important;
+  overflow: visible !important;
+  background-clip: padding-box !important;
+  isolation: isolate !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06) !important;
+  border: 2px solid transparent !important;
+  z-index: auto !important;
+}
+
+/* Remove any animated button classes from Part Progression badges */
+button[data-testid^="part-indicator-"].animated-button::before,
+button[data-testid^="part-indicator-"].animated-button::after,
+button[data-testid^="part-indicator-"].button-shine::before,
+button[data-testid^="part-indicator-"].button-shine::after {
+  display: none !important;
+  content: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
 }
 
 .btn:active::before,

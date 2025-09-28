@@ -36,6 +36,19 @@
     max-width: none !important;
     overflow-x: auto !important;
   }
+
+  /* CRITICAL FIX: Completely disable ALL pseudo-elements on Part Progression badges */
+  button[data-testid^="part-indicator-"]::before,
+  button[data-testid^="part-indicator-"]::after {
+    display: none !important;
+    content: none !important;
+    background: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    position: static !important;
+    width: 0 !important;
+    height: 0 !important;
+  }
 }
 
 /* Horizontal scrollable button container */
