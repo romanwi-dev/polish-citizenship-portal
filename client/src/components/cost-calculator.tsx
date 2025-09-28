@@ -71,9 +71,9 @@ export default function CostCalculator() {
           <Badge className="bg-primary-blue text-white px-6 py-3 rounded-full font-semibold mb-6">
             Interactive Cost Calculator
           </Badge>
-          <h2 className="text-4xl lg:text-5xl font-bold text-neutral-warm mb-6 tracking-tight">
-            Calculate Your
-            <span className="block text-primary-blue">Investment</span>
+          <h2 className="text-6xl lg:text-7xl xl:text-8xl font-bold mb-6 leading-tight tracking-tight">
+            <span className="block text-black dark:text-white">Calculate Your</span>
+            <span className="block text-blue-600 dark:text-blue-400">Investment</span>
           </h2>
           <p className="text-lg text-neutral-cool max-w-3xl mx-auto leading-relaxed">
             Get an instant estimate based on your specific case complexity and requirements.

@@ -36,9 +36,9 @@ export default function ServiceOverview() {
           <div className="glass-card-primary text-white px-6 py-3 rounded-full font-semibold mb-6 inline-block">
             Legal Expertise Since 2003
           </div>
-          <h2 className="text-4xl lg:text-5xl font-bold mb-6 tracking-tight" style={{letterSpacing: 'var(--ios26-letter-spacing)', lineHeight: 'var(--ios26-line-height)'}}>
-            <span className="block text-neutral-warm">Professional Legal</span>
-            <span className="block text-primary-blue">Expert Assistance</span>
+          <h2 className="text-6xl lg:text-7xl xl:text-8xl font-bold mb-6 leading-tight tracking-tight">
+            <span className="block text-black dark:text-white">Professional Legal</span>
+            <span className="block text-blue-600 dark:text-blue-400">Expert Assistance</span>
           </h2>
           <p style={{ 
             fontSize: '1.125rem', 
