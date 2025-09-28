@@ -18,6 +18,7 @@ import QuickAccessBar from "@/components/quick-access-bar";
 import DocumentsSection from "@/components/documents-section";
 import ProcedureGuide from "@/components/procedure-guide";
 import Testimonials from "@/components/testimonials";
+import PolishCrownTimeline from "@/components/timeline-side-by-side";
 
 // European city images
 import { 
@@ -209,6 +210,8 @@ const Home = memo(function Home() {
         </div>
       </section>
 
+      {/* NEW TIMELINE - Beautiful Polish Crown Design */}
+      <PolishCrownTimeline />
       
       {/* WISDOM 1: Important Tips */}
       <div className="max-w-6xl mx-auto px-4 md:px-6 py-4">
