@@ -107,39 +107,6 @@ export const FamilyTreeTab: React.FC<FamilyTreeTabProps> = ({ caseId, className 
   if (isMobile) {
     return (
       <div className={cn("space-y-4", className)}>
-        {/* Eligibility Status */}
-        <div className="pc-card p-4">
-          <div className="flex items-center gap-3 mb-3">
-            {eligibility.isEligible ? (
-              <CheckCircle className="h-5 w-5 text-[var(--pc-success)]" />
-            ) : (
-              <AlertTriangle className="h-5 w-5 text-[var(--pc-danger)]" />
-            )}
-            <h3 className="font-semibold text-[var(--pc-text-primary)]">
-              Eligibility Status
-            </h3>
-          </div>
-          
-          <div className={cn(
-            "px-3 py-2 rounded-lg text-sm font-medium",
-            eligibility.isEligible 
-              ? "bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200"
-              : "bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200"
-          )}>
-            {eligibility.isEligible ? "ELIGIBLE" : `${eligibility.blockers.length} BLOCKERS`}
-          </div>
-
-          {eligibility.blockers.length > 0 && (
-            <div className="mt-3 space-y-1">
-              {eligibility.blockers.map((blocker, index) => (
-                <div key={index} className="text-sm text-[var(--pc-danger)] flex items-start gap-2">
-                  <AlertCircle className="h-4 w-4 mt-0.5 flex-shrink-0" />
-                  {blocker}
-                </div>
-              ))}
-            </div>
-          )}
-        </div>
 
         {/* Mobile Navigation */}
         <div className="pc-card p-2">
@@ -215,52 +182,6 @@ export const FamilyTreeTab: React.FC<FamilyTreeTabProps> = ({ caseId, className 
     <div className={cn("grid grid-cols-1 lg:grid-cols-2 gap-6 h-full", className)}>
       {/* Left Column: Tree View */}
       <div className="space-y-4">
-        {/* Eligibility Status */}
-        <div className="pc-card p-4">
-          <div className="flex items-center justify-between mb-3">
-            <div className="flex items-center gap-3">
-              {eligibility.isEligible ? (
-                <CheckCircle className="h-5 w-5 text-[var(--pc-success)]" />
-              ) : (
-                <AlertTriangle className="h-5 w-5 text-[var(--pc-danger)]" />
-              )}
-              <h3 className="font-semibold text-[var(--pc-text-primary)]">
-                Eligibility Status
-              </h3>
-            </div>
-            
-            <div className={cn(
-              "px-3 py-1 rounded-full text-sm font-medium",
-              eligibility.isEligible 
-                ? "bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200"
-                : "bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200"
-            )}>
-              {eligibility.isEligible ? "ELIGIBLE" : `${eligibility.blockers.length} BLOCKERS`}
-            </div>
-          </div>
-
-          {eligibility.blockers.length > 0 && (
-            <div className="space-y-2">
-              {eligibility.blockers.map((blocker, index) => (
-                <div key={index} className="text-sm text-[var(--pc-danger)] flex items-start gap-2">
-                  <AlertCircle className="h-4 w-4 mt-0.5 flex-shrink-0" />
-                  {blocker}
-                </div>
-              ))}
-            </div>
-          )}
-
-          {eligibility.warnings.length > 0 && (
-            <div className="mt-3 space-y-2">
-              {eligibility.warnings.map((warning, index) => (
-                <div key={index} className="text-sm text-[var(--pc-warn)] flex items-start gap-2">
-                  <AlertTriangle className="h-4 w-4 mt-0.5 flex-shrink-0" />
-                  {warning}
-                </div>
-              ))}
-            </div>
-          )}
-        </div>
 
         {/* Tree Visualization */}
         <TreeView data={familyTreeData} className="flex-1" />
