@@ -244,7 +244,7 @@ const PolishCrownTimeline = memo(function PolishCrownTimeline() {
                     <div className="relative py-4">
                       {/* Step Number - Above title */}
                       <div className="text-center mb-8">
-                        <span className={`text-7xl lg:text-8xl font-bold text-blue-900 dark:text-blue-400 animate-pulse transform transition-all duration-1000 hover:scale-110 z-10 relative`} style={{ textShadow: '2px 2px 4px rgba(0,0,0,0.3)' }}>
+                        <span className={`text-7xl lg:text-8xl font-bold text-blue-900 dark:text-blue-400 transform transition-all duration-1000 hover:scale-110 z-10 relative`} style={{ textShadow: '2px 2px 4px rgba(0,0,0,0.3)' }}>
                           {step.number}
                         </span>
                       </div>
