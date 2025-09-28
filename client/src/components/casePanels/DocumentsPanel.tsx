@@ -70,9 +70,21 @@ export default function DocumentsPanel({ caseId, caseData }: DocumentsPanelProps
     <div className="flex gap-6">
       {/* Main Documents Grid */}
       <div className="flex-1">
-        <div className="w-full space-y-3">
-          {documents.map((doc) => (
-            <IOS26Card key={doc.id} strong={true}>
+        <div className="relative" style={{ paddingBottom: `${documents.length * 8}px` }}>
+          {documents.map((doc, index) => (
+            <IOS26Card 
+              key={doc.id} 
+              strong={true}
+              className={cn(
+                "w-full transition-all duration-300",
+                index === 0 ? "relative" : "absolute top-0 left-0"
+              )}
+              style={{ 
+                transform: `translateY(${index * 8}px)`,
+                opacity: index === 0 ? 1 : Math.max(0.3, 0.8 - (index * 0.1)),
+                zIndex: documents.length - index
+              }}
+            >
               <IOS26CardBody>
                 <div className="w-full flex items-center justify-between p-4">
                   <div className="flex-1">
