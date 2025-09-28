@@ -197,13 +197,13 @@ const PolishCrownTimeline = memo(function PolishCrownTimeline() {
   return (
     <section 
       id="process" 
-      className="py-16 relative"
+      className="py-16 relative bg-white dark:bg-gray-900"
       data-testid="polish-timeline-section"
     >
       <div className="max-w-full mx-auto px-4 sm:px-6 lg:px-20">
         {/* Header */}
         <div className="text-center mb-24">
-          <h2 className="text-8xl lg:text-9xl xl:text-[10rem] font-bold mb-6 tracking-tight leading-[0.8]">
+          <h2 className="text-9xl lg:text-[12rem] xl:text-[14rem] font-bold mb-6 tracking-tight leading-[0.8] antialiased" style={{textRendering: 'optimizeLegibility', WebkitFontSmoothing: 'antialiased'}}>
             <span className="block text-black dark:text-white">Complete Legal Process</span>
             <span className="block text-blue-600 dark:text-blue-400">Timeline</span>
           </h2>
