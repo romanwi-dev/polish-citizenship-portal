@@ -99,9 +99,8 @@ const Home = memo(function Home() {
               fallback="The Most Comprehensive Online Legal Service for Polish Citizenship and Polish European Passport"
               pageId="homepage"
               as="h2"
-              className="text-6xl lg:text-7xl xl:text-8xl font-bold mb-6 text-center leading-tight tracking-tight transition-colors duration-300"
+              className="text-6xl lg:text-7xl xl:text-8xl font-bold mb-6 text-center leading-tight tracking-tight transition-colors duration-300 text-blue-600 dark:text-blue-400"
               style={{ 
-                color: 'var(--theme-text, #0c4a6e)',
                 fontFamily: 'var(--theme-font-accent, Playfair Display, serif)',
                 letterSpacing: 'var(--ios26-letter-spacing)',
                 lineHeight: 'var(--ios26-line-height)'
@@ -139,7 +138,7 @@ const Home = memo(function Home() {
                   fallback="AI Deep Case Analyzes"
                   pageId="homepage"
                   as="h3"
-                  className="text-2xl md:text-3xl font-bold text-primary mb-4"
+                  className="text-2xl md:text-3xl font-bold text-blue-600 dark:text-blue-400 mb-4"
                 />
                 <EditableText
                   contentKey="homepage-ai-description-1"
@@ -173,7 +172,7 @@ const Home = memo(function Home() {
                   fallback="Over 20 Million People of Polish Descent"
                   pageId="homepage"
                   as="h3"
-                  className="text-2xl md:text-3xl font-bold text-primary mb-4"
+                  className="text-2xl md:text-3xl font-bold text-blue-600 dark:text-blue-400 mb-4"
                 />
                 <EditableText
                   contentKey="homepage-polish-people-description"
