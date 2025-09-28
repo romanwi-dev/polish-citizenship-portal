@@ -53,7 +53,7 @@ export default function DocumentsSection() {
     <section id="documents" className="py-32 bg-gray-50 dark:bg-gray-900">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-24">
-          <h2 className="text-5xl font-black mb-6 text-center leading-tight"
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-black mb-6 text-center leading-tight"
               style={{ fontFamily: 'Arial Black, Arial, sans-serif' }}>
             <span className="block text-black dark:text-white">Required</span>
             <span className="block text-blue-800 dark:text-blue-400">Documents</span>

@@ -94,7 +94,7 @@ const Home = memo(function Home() {
       <section>
         <div className="container">
           <div className="responsive-card">
-            <h2 className="text-5xl font-black mb-6 text-center leading-tight"
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-black mb-6 text-center leading-tight"
                 style={{ fontFamily: 'Arial Black, Arial, sans-serif' }}>
               <span className="block text-black dark:text-white">The Most Comprehensive Online Legal Service</span>
               <span className="block text-blue-800 dark:text-blue-400">for Polish Citizenship and Polish European Passport</span>
@@ -126,7 +126,7 @@ const Home = memo(function Home() {
               />
               
               <div className="border-t border-white/20 pt-8">
-                <h3 className="text-5xl font-black mb-6 text-center leading-tight"
+                <h3 className="text-3xl md:text-4xl lg:text-5xl font-black mb-6 text-center leading-tight"
                     style={{ fontFamily: 'Arial Black, Arial, sans-serif' }}>
                   <span className="block text-black dark:text-white">AI Deep Case</span>
                   <span className="block text-blue-800 dark:text-blue-400">Analyzes</span>
@@ -158,7 +158,7 @@ const Home = memo(function Home() {
               </div>
               
               <div className="border-t border-blue-200 pt-8 mt-8">
-                <h3 className="text-5xl font-black mb-6 text-center leading-tight"
+                <h3 className="text-3xl md:text-4xl lg:text-5xl font-black mb-6 text-center leading-tight"
                     style={{ fontFamily: 'Arial Black, Arial, sans-serif' }}>
                   <span className="block text-black dark:text-white">Over 20 Million People</span>
                   <span className="block text-blue-800 dark:text-blue-400">of Polish Descent</span>
@@ -182,7 +182,7 @@ const Home = memo(function Home() {
               </div>
               
               <div className="border-t border-blue-200 pt-8 mt-8">
-                <h3 className="text-5xl font-black mb-6 text-center leading-tight"
+                <h3 className="text-3xl md:text-4xl lg:text-5xl font-black mb-6 text-center leading-tight"
                     style={{ fontFamily: 'Arial Black, Arial, sans-serif' }}>
                   <span className="block text-black dark:text-white">The Benefits of Polish</span>
                   <span className="block text-blue-800 dark:text-blue-400">European Citizenship</span>

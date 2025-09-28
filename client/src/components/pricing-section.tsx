@@ -13,7 +13,7 @@ export default function PricingSection() {
             <div className="w-3 h-3 bg-blue-500 rounded-full mr-3"></div>
             <span className="text-blue-800 font-semibold text-lg tracking-wide">TRANSPARENT REAL PRICING</span>
           </div>
-          <h2 className="text-5xl font-black mb-6 text-center leading-tight"
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-black mb-6 text-center leading-tight"
               style={{ fontFamily: 'Arial Black, Arial, sans-serif' }}>
             <span className="block text-black dark:text-white">Polish Citizenship Services</span>
             <span className="block text-blue-800 dark:text-blue-400">Choose Your Path</span>

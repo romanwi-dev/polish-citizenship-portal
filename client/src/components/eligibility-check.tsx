@@ -73,7 +73,7 @@ export default function EligibilityCheck() {
           <Badge className="bg-primary-blue text-white px-6 py-3 rounded-full font-semibold mb-6">
             Professional Assessment
           </Badge>
-          <h2 className="text-5xl font-black mb-6 text-center leading-tight"
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-black mb-6 text-center leading-tight"
               style={{ fontFamily: 'Arial Black, Arial, sans-serif' }}>
             <span className="block text-black dark:text-white">Comprehensive Eligibility</span>
             <span className="block text-blue-800 dark:text-blue-400">Assessment</span>
