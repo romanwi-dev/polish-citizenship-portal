@@ -138,7 +138,12 @@ const Home = memo(function Home() {
                   fallback="AI Deep Case Analyzes"
                   pageId="homepage"
                   as="h3"
-                  className="text-2xl md:text-3xl font-bold text-blue-600 dark:text-blue-400 mb-4"
+                  className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 text-center leading-tight tracking-tight transition-colors duration-300 text-blue-600 dark:text-blue-400"
+                  style={{ 
+                    fontFamily: 'var(--theme-font-accent, Playfair Display, serif)',
+                    letterSpacing: 'var(--ios26-letter-spacing)',
+                    lineHeight: 'var(--ios26-line-height)'
+                  }}
                 />
                 <EditableText
                   contentKey="homepage-ai-description-1"
@@ -172,7 +177,12 @@ const Home = memo(function Home() {
                   fallback="Over 20 Million People of Polish Descent"
                   pageId="homepage"
                   as="h3"
-                  className="text-2xl md:text-3xl font-bold text-blue-600 dark:text-blue-400 mb-4"
+                  className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 text-center leading-tight tracking-tight transition-colors duration-300 text-blue-600 dark:text-blue-400"
+                  style={{ 
+                    fontFamily: 'var(--theme-font-accent, Playfair Display, serif)',
+                    letterSpacing: 'var(--ios26-letter-spacing)',
+                    lineHeight: 'var(--ios26-line-height)'
+                  }}
                 />
                 <EditableText
                   contentKey="homepage-polish-people-description"
@@ -193,7 +203,12 @@ const Home = memo(function Home() {
               </div>
               
               <div className="border-t border-blue-200 pt-8 mt-8">
-                <h3 className="text-2xl md:text-3xl font-bold text-blue-600 dark:text-blue-400 mb-4">
+                <h3 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 text-center leading-tight tracking-tight transition-colors duration-300 text-blue-600 dark:text-blue-400"
+                    style={{ 
+                      fontFamily: 'var(--theme-font-accent, Playfair Display, serif)',
+                      letterSpacing: 'var(--ios26-letter-spacing)',
+                      lineHeight: 'var(--ios26-line-height)'
+                    }}>
                   The Benefits of Polish European Citizenship
                 </h3>
                 <p className="mb-4">
@@ -449,7 +464,12 @@ const Home = memo(function Home() {
       {/* CTA: Final Consultation Call to Action */}
       <section className="py-16 glass-card-primary">
         <div className="max-w-4xl mx-auto px-4 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 text-center leading-tight tracking-tight transition-colors duration-300 text-white"
+              style={{ 
+                fontFamily: 'var(--theme-font-accent, Playfair Display, serif)',
+                letterSpacing: 'var(--ios26-letter-spacing)',
+                lineHeight: 'var(--ios26-line-height)'
+              }}>
             Ready to Start Your Polish Citizenship Journey?
           </h2>
           <p className="text-xl text-white/80 mb-8">

@@ -39,7 +39,12 @@ export default function AIAnalysisResult({ analysis, onClose }: AIAnalysisResult
       <div className="bg-white rounded-xl max-w-4xl w-full max-h-[90vh] overflow-y-auto">
         <div className="p-8">
           <div className="flex justify-between items-center mb-8">
-            <h2 className="text-3xl font-bold text-neutral-warm">AI Case Analysis</h2>
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 text-center leading-tight tracking-tight transition-colors duration-300 text-blue-600 dark:text-blue-400"
+                style={{ 
+                  fontFamily: 'var(--theme-font-accent, Playfair Display, serif)',
+                  letterSpacing: 'var(--ios26-letter-spacing)',
+                  lineHeight: 'var(--ios26-line-height)'
+                }}>AI Case Analysis</h2>
             <Button onClick={onClose} variant="outline">Close</Button>
           </div>
 
