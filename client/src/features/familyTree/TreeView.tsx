@@ -65,38 +65,34 @@ const TreeNode: React.FC<TreeNodeProps> = ({ title, person, spouse, children, st
         <div className="space-y-2">
           <div className="font-medium text-[var(--pc-text-primary)]">
             {person.full_name || person.applicant_full_name || person.polish_parent_full_name || 
-             person.polish_grandparent_full_name || person.great_grandfather_full_name || 
+             person.polish_grandparent_full_name || 
              <span className="text-[var(--pc-text-dim)] italic">Click "Edit Details" to add information</span>}
           </div>
           
           {/* Birth info */}
           {(person.date_of_birth || person.applicant_date_of_birth || person.polish_parent_date_of_birth || 
-            person.polish_grandparent_date_of_birth || person.great_grandfather_date_of_birth) && (
+            person.polish_grandparent_date_of_birth) && (
             <div className="text-sm text-[var(--pc-text-dim)]">
               Born: {formatDate(person.date_of_birth || person.applicant_date_of_birth || 
-                               person.polish_parent_date_of_birth || person.polish_grandparent_date_of_birth ||
-                               person.great_grandfather_date_of_birth)}
+                               person.polish_parent_date_of_birth || person.polish_grandparent_date_of_birth)}
               {(person.place_of_birth || person.applicant_place_of_birth || person.polish_parent_place_of_birth ||
-                person.polish_grandparent_place_of_birth || person.great_grandfather_place_of_birth) && (
+                person.polish_grandparent_place_of_birth) && (
                 <span> in {person.place_of_birth || person.applicant_place_of_birth || 
-                          person.polish_parent_place_of_birth || person.polish_grandparent_place_of_birth ||
-                          person.great_grandfather_place_of_birth}</span>
+                          person.polish_parent_place_of_birth || person.polish_grandparent_place_of_birth}</span>
               )}
             </div>
           )}
 
           {/* Marriage info */}
           {(person.date_of_marriage || person.applicant_date_of_marriage || person.polish_parent_date_of_marriage || 
-            person.polish_grandparent_date_of_mariage || person.great_grandfather_date_of_marriage) && (
+            person.polish_grandparent_date_of_mariage) && (
             <div className="text-sm text-[var(--pc-text-dim)]">
               Married: {formatDate(person.date_of_marriage || person.applicant_date_of_marriage || 
-                                  person.polish_parent_date_of_marriage || person.polish_grandparent_date_of_mariage ||
-                                  person.great_grandfather_date_of_marriage)}
+                                  person.polish_parent_date_of_marriage || person.polish_grandparent_date_of_mariage)}
               {(person.place_of_marriage || person.applicant_place_of_marriage || person.polish_parent_place_of_marriage ||
-                person.polish_grandparent_place_of_mariage || person.great_grandfather_place_of_marriage) && (
+                person.polish_grandparent_place_of_mariage) && (
                 <span> in {person.place_of_marriage || person.applicant_place_of_marriage || 
-                          person.polish_parent_place_of_marriage || person.polish_grandparent_place_of_mariage ||
-                          person.great_grandfather_place_of_marriage}</span>
+                          person.polish_parent_place_of_marriage || person.polish_grandparent_place_of_mariage}</span>
               )}
             </div>
           )}
@@ -108,12 +104,10 @@ const TreeNode: React.FC<TreeNodeProps> = ({ title, person, spouse, children, st
             </div>
           )}
           
-          {(person.polish_parent_date_of_naturalization || person.polish_grandparent_date_of_naturalization || 
-            person.great_grandfather_date_of_naturalization) && (
+          {(person.polish_parent_date_of_naturalization || person.polish_grandparent_date_of_naturalization) && (
             <div className="text-sm text-[var(--pc-text-dim)]">
               Naturalized: {formatDate(person.polish_parent_date_of_naturalization || 
-                                      person.polish_grandparent_date_of_naturalization ||
-                                      person.great_grandfather_date_of_naturalization)}
+                                      person.polish_grandparent_date_of_naturalization)}
             </div>
           )}
         </div>
@@ -144,7 +138,7 @@ export const TreeView: React.FC<TreeViewProps> = ({ data, className }) => {
   const greatGrandparentsStatus = getNodeStatus(data.greatGrandparents, getRequiredFields('greatGrandparents'));
 
   const hasAnyData = data.applicant.applicant_full_name || data.polishParent.polish_parent_full_name || 
-                    data.polishGrandparent.polish_grandparent_full_name || data.greatGrandparents.great_grandfather_full_name;
+                    data.polishGrandparent.polish_grandparent_full_name;
 
   return (
     <div className={cn("pc-card p-6 bg-[var(--pc-panel)] min-h-[500px]", className)}>
@@ -207,59 +201,8 @@ export const TreeView: React.FC<TreeViewProps> = ({ data, className }) => {
           status={polishGrandparentStatus}
         />
 
-        {/* GREAT GRANDPARENTS Level */}
-        <div className="relative">
-          <div className="absolute top-0 left-1/2 w-px h-6 bg-[var(--pc-border)] -translate-x-1/2"></div>
-          
-          <div className="pc-card p-4 mx-auto max-w-sm bg-[var(--pc-card)]">
-            <div className="flex items-center justify-between mb-3">
-              <h4 className="font-semibold text-[var(--pc-text-primary)] text-sm">GREAT GRANDPARENTS</h4>
-              <StatusChip status={greatGrandparentsStatus} />
-            </div>
-
-            {/* Great Grandfather (REQUIRED) */}
-            <div className="space-y-2">
-              <div className="font-medium text-[var(--pc-text-primary)]">
-                {data.greatGrandparents.great_grandfather_full_name || 
-                 <span className="text-[var(--pc-danger)]">Great Grandfather (REQUIRED) - Click "Edit Details" to add</span>}
-              </div>
-              
-              {data.greatGrandparents.great_grandfather_date_of_birth && (
-                <div className="text-sm text-[var(--pc-text-dim)]">
-                  Born: {formatPL(new Date(data.greatGrandparents.great_grandfather_date_of_birth))}
-                  {data.greatGrandparents.great_grandfather_place_of_birth && 
-                   ` in ${data.greatGrandparents.great_grandfather_place_of_birth}`}
-                </div>
-              )}
-            </div>
-
-            {/* Great Grandmother (Optional) */}
-            {data.greatGrandparents.great_grandmother_full_name && (
-              <div className="mt-3 pt-3 border-t border-[var(--pc-border)]">
-                <div className="text-sm text-[var(--pc-text-dim)]">Spouse:</div>
-                <div className="text-sm font-medium text-[var(--pc-text-primary)]">
-                  {data.greatGrandparents.great_grandmother_full_name}
-                </div>
-              </div>
-            )}
-          </div>
-        </div>
       </div>
 
-      {/* Eligibility Path Info */}
-      <div className="mt-8 p-4 bg-[var(--pc-panel-elev)] rounded-lg">
-        <div className="text-sm font-medium text-[var(--pc-text-primary)] mb-2">
-          Eligibility Path:
-        </div>
-        <div className="text-sm text-[var(--pc-text-dim)]">
-          Applicant → Polish Parent (any gender) → Polish Grandparent (any gender) → Great Grandfather (male REQUIRED)
-        </div>
-        {!data.greatGrandparents.great_grandfather_full_name && (
-          <div className="mt-2 text-sm text-[var(--pc-danger)]">
-            ⚠️ Male ancestor at great-grandparent level is required for eligibility
-          </div>
-        )}
-      </div>
     </div>
   );
 };
