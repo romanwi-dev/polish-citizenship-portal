@@ -23,7 +23,7 @@ export default function PricingSection() {
         </div>
 
         {/* Pricing Cards */}
-        <div className="grid md:grid-cols-3 gap-8 max-w-7xl mx-auto mb-16">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-7xl mx-auto mb-16">
           {/* Standard */}
           <Card className="bg-gray-100 dark:bg-gray-800 border border-gray-300 dark:border-gray-600 hover:shadow-lg transition-all duration-200 h-full flex flex-col">
             <CardHeader className="p-8 pb-4 flex-shrink-0">
@@ -33,9 +33,9 @@ export default function PricingSection() {
               </div>
               <p className="text-gray-700 dark:text-gray-300 italic mb-6">Like traveling by train with lots of stops</p>
               <div className="mb-6">
-                <div className="text-4xl font-bold text-gray-900 dark:text-white mb-2">€1,500 - €3,500</div>
-                <div className="text-gray-700 dark:text-gray-300">375-583 EUR per installment</div>
-                <div className="text-sm text-gray-600 dark:text-gray-400 mt-1">4-6 installments</div>
+                <div className="text-4xl font-bold text-gray-900 dark:text-white mb-2">€3,500 - €5,000</div>
+                <div className="text-gray-700 dark:text-gray-300">583-833 EUR per installment</div>
+                <div className="text-sm text-gray-600 dark:text-gray-400 mt-1">6-8 installments</div>
               </div>
               <div className="bg-gray-100 border border-gray-300 rounded-lg p-3 text-center">
                 <div className="text-gray-800 font-semibold">36-48 months average</div>
@@ -84,9 +84,9 @@ export default function PricingSection() {
               </div>
               <p className="text-blue-100 italic mb-6">Like a business class flight</p>
               <div className="mb-6">
-                <div className="text-4xl font-bold mb-2">€3,500 - €8,000</div>
-                <div className="text-blue-100">500-889 EUR per installment</div>
-                <div className="text-sm text-blue-200 mt-1">7-9 installments</div>
+                <div className="text-4xl font-bold mb-2">€5,000 - €8,500</div>
+                <div className="text-blue-100">625-944 EUR per installment</div>
+                <div className="text-sm text-blue-200 mt-1">8-10 installments</div>
               </div>
               <div className="bg-blue-500 rounded-lg p-3 text-center">
                 <div className="text-white font-semibold">18-36 months</div>
@@ -96,7 +96,7 @@ export default function PricingSection() {
               <ul className="space-y-3 mb-8 flex-grow">
                 <li className="flex items-start">
                   <CheckCircle2 className="w-5 h-5 text-blue-300 mr-3 mt-0.5 flex-shrink-0" />
-                  <span className="text-blue-100">50% higher installment value</span>
+                  <span className="text-blue-100">Higher installment value</span>
                 </li>
                 <li className="flex items-start">
                   <Zap className="w-5 h-5 text-blue-300 mr-3 mt-0.5 flex-shrink-0" />
@@ -126,13 +126,8 @@ export default function PricingSection() {
           </Card>
 
           {/* VIP */}
-          <Card className="bg-gray-50 border border-gray-200 hover:shadow-lg transition-all duration-200 relative h-full flex flex-col">
-            <div className="absolute -top-6 left-1/2 transform -translate-x-1/2">
-              <Badge className="bg-gray-600 text-white px-4 py-2 rounded-full font-semibold">
-                WAITLIST - OCTOBER 2025
-              </Badge>
-            </div>
-            <CardHeader className="p-8 pb-4 pt-12 flex-shrink-0">
+          <Card className="bg-gray-50 border border-gray-200 hover:shadow-lg transition-all duration-200 h-full flex flex-col">
+            <CardHeader className="p-8 pb-4 flex-shrink-0">
               <div className="flex items-center justify-between mb-4">
                 <h3 className="text-2xl font-bold text-gray-900">VIP</h3>
                 <Crown className="w-6 h-6 text-gray-600" />
@@ -173,8 +168,63 @@ export default function PricingSection() {
                   <span className="text-gray-700">Personal legal team</span>
                 </li>
               </ul>
-              <Button className="w-full bg-gray-600 hover:bg-gray-700 text-white font-semibold mt-auto" disabled>
-                Join Waitlist
+              <Button className="w-full bg-gray-600 hover:bg-gray-700 text-white font-semibold mt-auto">
+                Get Started
+              </Button>
+            </CardContent>
+          </Card>
+
+          {/* VIP+ */}
+          <Card className="bg-black text-white border-2 border-black relative hover:shadow-2xl transition-all duration-200 h-full flex flex-col">
+            <div className="absolute -top-6 left-1/2 transform -translate-x-1/2">
+              <Badge className="bg-white text-black px-4 py-2 rounded-full font-semibold">
+                EXCLUSIVE
+              </Badge>
+            </div>
+            <CardHeader className="p-8 pb-4 pt-12 flex-shrink-0">
+              <div className="flex items-center justify-between mb-4">
+                <h3 className="text-2xl font-bold">VIP+</h3>
+                <Crown className="w-6 h-6 text-white" />
+              </div>
+              <p className="text-gray-300 italic mb-6">Reserved for chosen clients and exceptional cases</p>
+              <div className="mb-6">
+                <div className="text-4xl font-bold mb-2">Individually Quoted</div>
+                <div className="text-gray-300">Custom pricing structure</div>
+                <div className="text-sm text-gray-400 mt-1">Tailored to case complexity</div>
+              </div>
+              <div className="bg-gray-800 rounded-lg p-3 text-center">
+                <div className="text-white font-semibold">12-15 months</div>
+              </div>
+            </CardHeader>
+            <CardContent className="p-8 pt-4 flex-grow flex flex-col">
+              <ul className="space-y-3 mb-8 flex-grow">
+                <li className="flex items-start">
+                  <Crown className="w-5 h-5 text-white mr-3 mt-0.5 flex-shrink-0" />
+                  <span className="text-gray-300">Ultra-priority processing</span>
+                </li>
+                <li className="flex items-start">
+                  <Shield className="w-5 h-5 text-white mr-3 mt-0.5 flex-shrink-0" />
+                  <span className="text-gray-300">Direct ministry contacts</span>
+                </li>
+                <li className="flex items-start">
+                  <Zap className="w-5 h-5 text-white mr-3 mt-0.5 flex-shrink-0" />
+                  <span className="text-gray-300">Accelerated government liaison</span>
+                </li>
+                <li className="flex items-start">
+                  <Users2 className="w-5 h-5 text-white mr-3 mt-0.5 flex-shrink-0" />
+                  <span className="text-gray-300">Executive legal counsel</span>
+                </li>
+                <li className="flex items-start">
+                  <Phone className="w-5 h-5 text-white mr-3 mt-0.5 flex-shrink-0" />
+                  <span className="text-gray-300">Personal hotline access</span>
+                </li>
+                <li className="flex items-start">
+                  <CheckCircle2 className="w-5 h-5 text-white mr-3 mt-0.5 flex-shrink-0" />
+                  <span className="text-gray-300">Success guarantee</span>
+                </li>
+              </ul>
+              <Button className="w-full bg-white text-black hover:bg-gray-100 font-semibold mt-auto">
+                Apply for Selection
               </Button>
             </CardContent>
           </Card>
