@@ -93,20 +93,20 @@ export const TimelinePanel: React.FC<{ case: CaseData }> = ({ case: caseData }) 
 
 // Using DocumentsPanel component imported from casePanels - has 12 document placeholders
 
-// Service Payment placeholders (12 hardcoded)
+// Service Payment placeholders (12 hardcoded) - "Payment" removed as requested
 const SERVICE_PAYMENT_LABELS = [
-  "Advance Payment",
-  "POAs Signed Payment", 
-  "Application Filed Payment",
-  "PUSH Scheme Payment",
-  "NUDGE Scheme Payment",
-  "SIT-DOWN Scheme Payment",
-  "Translation Payment",
-  "Archive Research Payment",
-  "USC Acts Payment",
-  "OBY Filing Payment",
-  "VIP Upgrade Payment",
-  "Finalization Payment"
+  "Advance",
+  "POAs Signed", 
+  "Application Filed",
+  "PUSH Scheme",
+  "NUDGE Scheme",
+  "SIT-DOWN Scheme",
+  "Translation",
+  "Archive Research",
+  "USC Acts",
+  "OBY Filing",
+  "VIP Upgrade",
+  "Finalization"
 ] as const;
 
 export const PaymentsPanel: React.FC<{ case: CaseData }> = ({ case: caseData }) => {
@@ -190,7 +190,7 @@ export const PaymentsPanel: React.FC<{ case: CaseData }> = ({ case: caseData }) 
 
   return (
     <div 
-      className="grid grid-cols-1 xl:grid-cols-2 gap-4 max-h-[600px] overflow-y-auto scrollbar-thin scrollbar-track-transparent scrollbar-thumb-[var(--pc-border)]"
+      className="grid grid-cols-1 gap-4 max-h-[600px] max-w-2xl overflow-y-auto scrollbar-thin scrollbar-track-transparent scrollbar-thumb-[var(--pc-border)]"
       data-testid="payments-panel"
     >
       {servicePayments.map((payment, index) => (

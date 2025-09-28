@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import { Upload } from 'lucide-react';
 import { IOS26Card, IOS26CardBody } from '@/components/ui/card';
-import { DocumentsDropboxSidebar } from '../../features/ingest/DocumentsDropboxSidebar';
-import { ReviewDrawer } from '../../features/ingest/ReviewDrawer';
 import { cn } from '@/lib/utils';
 
 interface CaseData {
@@ -49,7 +47,6 @@ const ActionButton = React.forwardRef<HTMLButtonElement, React.ButtonHTMLAttribu
 ActionButton.displayName = 'ActionButton';
 
 export default function DocumentsPanel({ caseId, caseData }: DocumentsPanelProps) {
-  const [selectedSuggestion, setSelectedSuggestion] = useState<string | null>(null);
   
   const documents = [
     { id: 'family-tree', name: 'Family Tree Template', status: caseData.documents?.['family-tree']?.status || 'pending' },
@@ -67,9 +64,7 @@ export default function DocumentsPanel({ caseId, caseData }: DocumentsPanelProps
   ];
 
   return (
-    <div className="flex gap-6">
-      {/* Main Documents Grid */}
-      <div className="flex-1">
+    <div className="w-full">
         {/* Desktop Grid Layout */}
         <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
           {documents.map((doc) => (
@@ -135,21 +130,6 @@ export default function DocumentsPanel({ caseId, caseData }: DocumentsPanelProps
             </IOS26Card>
           ))}
         </div>
-      </div>
-      
-      {/* Dropbox Ingest Sidebar */}
-      <DocumentsDropboxSidebar 
-        caseId={caseId}
-        onReviewSuggestion={setSelectedSuggestion}
-      />
-      
-      {/* Review Drawer */}
-      {selectedSuggestion && (
-        <ReviewDrawer
-          suggestionId={selectedSuggestion}
-          onClose={() => setSelectedSuggestion(null)}
-        />
-      )}
     </div>
   );
 }
