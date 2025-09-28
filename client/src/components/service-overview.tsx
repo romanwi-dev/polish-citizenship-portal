@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import SectionTitle from '../components/SectionTitle';
 
 function CountingNumber({ target, suffix = '' }: { target: number; suffix?: string }) {
   const [count, setCount] = useState(0);
@@ -36,10 +37,7 @@ export default function ServiceOverview() {
           <div className="glass-card-primary text-white px-6 py-3 rounded-full font-semibold mb-6 inline-block">
             Legal Expertise Since 2003
           </div>
-          <h2 className="font-bold mb-6 leading-tight tracking-tight" style={{ fontSize: 'clamp(3rem, 6vw, 8rem)', lineHeight: '1.1', letterSpacing: '-0.02em' }}>
-            <span className="block text-blue-600 dark:text-blue-400">Professional Legal</span>
-            <span className="block text-blue-600 dark:text-blue-400">Expert Assistance</span>
-          </h2>
+          <SectionTitle first="PROFESSIONAL LEGAL" second="EXPERT ASSISTANCE" />
           <p style={{ 
             fontSize: '1.125rem', 
             color: '#374151', 
