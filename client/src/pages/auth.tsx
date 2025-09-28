@@ -172,9 +172,9 @@ export default function AuthPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-white">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-white dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
       <div className="max-w-lg mx-auto px-4 py-16">
-        <Card className="shadow-2xl border-0 bg-white/95 backdrop-blur-sm">
+        <Card className="shadow-2xl border-0 bg-white/95 dark:bg-gray-800/95 backdrop-blur-sm">
           <CardHeader className="space-y-4 text-center pb-8">
             <div className="w-20 h-20 bg-gradient-to-br from-blue-600 to-purple-600 rounded-full flex items-center justify-center mx-auto shadow-lg">
               <Shield className="h-10 w-10 text-white" />
@@ -182,24 +182,24 @@ export default function AuthPage() {
             <CardTitle className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
               Polish Citizenship Portal
             </CardTitle>
-            <CardDescription className="text-base text-gray-600">
+            <CardDescription className="text-base text-gray-600 dark:text-gray-300">
               Access your personalized citizenship journey
             </CardDescription>
           </CardHeader>
           
           <CardContent className="px-8 pb-8">
             <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-              <TabsList className="grid w-full grid-cols-2 mb-8 bg-gray-100 p-1 rounded-xl">
+              <TabsList className="grid w-full grid-cols-2 mb-8 bg-gray-100 dark:bg-gray-700 p-1 rounded-xl">
                 <TabsTrigger 
                   value="login" 
-                  className="rounded-lg py-3 font-semibold data-[state=active]:bg-white data-[state=active]:shadow-sm"
+                  className="rounded-lg py-3 font-semibold data-[state=active]:bg-white dark:data-[state=active]:bg-gray-600 data-[state=active]:shadow-sm dark:text-gray-300"
                 >
                   <LogIn className="w-4 h-4 mr-2" />
                   Sign In
                 </TabsTrigger>
                 <TabsTrigger 
                   value="register" 
-                  className="rounded-lg py-3 font-semibold data-[state=active]:bg-white data-[state=active]:shadow-sm"
+                  className="rounded-lg py-3 font-semibold data-[state=active]:bg-white dark:data-[state=active]:bg-gray-600 data-[state=active]:shadow-sm dark:text-gray-300"
                 >
                   <UserPlus className="w-4 h-4 mr-2" />
                   Create Account
@@ -209,9 +209,9 @@ export default function AuthPage() {
               {/* Login Tab */}
               <TabsContent value="login" className="space-y-6">
                 {needsVerification && (
-                  <Alert className="bg-yellow-50 border-yellow-200">
-                    <AlertCircle className="h-4 w-4 text-yellow-600" />
-                    <AlertDescription className="text-yellow-800">
+                  <Alert className="bg-yellow-50 dark:bg-yellow-900/20 border-yellow-200 dark:border-yellow-800">
+                    <AlertCircle className="h-4 w-4 text-yellow-600 dark:text-yellow-400" />
+                    <AlertDescription className="text-yellow-800 dark:text-yellow-200">
                       Please verify your email before logging in. Check your inbox for the verification link.
                     </AlertDescription>
                   </Alert>
@@ -232,7 +232,7 @@ export default function AuthPage() {
                                 {...field} 
                                 type="email"
                                 placeholder="your.email@example.com"
-                                className="h-12 pl-12 pr-4 border-2 border-gray-200 focus:border-blue-500 rounded-xl bg-gray-50 focus:bg-white transition-all"
+                                className="h-12 pl-12 pr-4 border-2 border-gray-200 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-400 rounded-xl bg-gray-50 dark:bg-gray-700 focus:bg-white dark:focus:bg-gray-600 transition-all text-gray-900 dark:text-gray-100"
                                 disabled={isLoading}
                               />
                             </div>
@@ -255,7 +255,7 @@ export default function AuthPage() {
                                 {...field} 
                                 type={showPassword ? "text" : "password"}
                                 placeholder="Enter your password"
-                                className="h-12 pl-12 pr-12 border-2 border-gray-200 focus:border-blue-500 rounded-xl bg-gray-50 focus:bg-white transition-all"
+                                className="h-12 pl-12 pr-12 border-2 border-gray-200 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-400 rounded-xl bg-gray-50 dark:bg-gray-700 focus:bg-white dark:focus:bg-gray-600 transition-all text-gray-900 dark:text-gray-100"
                                 disabled={isLoading}
                               />
                               <button
@@ -273,7 +273,7 @@ export default function AuthPage() {
                     />
 
                     <div className="flex justify-end">
-                      <Link href="/forgot-password" className="text-sm text-blue-600 hover:text-blue-700 font-medium">
+                      <Link href="/forgot-password" className="text-sm text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 font-medium">
                         Forgot password?
                       </Link>
                     </div>
