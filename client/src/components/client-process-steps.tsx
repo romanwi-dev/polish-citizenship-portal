@@ -1,6 +1,7 @@
 import { Check, MessageCircle, FileSearch, ChartBar, UserPlus, FileText, Send, Globe } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { Link } from "wouter";
+import SectionTitle from "@/components/SectionTitle";
 
 const steps = [
   {
@@ -99,11 +100,10 @@ export default function ClientProcessSteps({ compact = false }: ClientProcessSte
       <section id="client-process" className="py-16 bg-gradient-to-br from-slate-50 to-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-black mb-6 text-center leading-tight"
-                style={{ fontFamily: 'Arial Black, Arial, sans-serif' }}>
-              <span className="block text-black dark:text-white">How to Become Our</span>
-              <span className="block text-blue-800 dark:text-blue-400">Client</span>
-            </h2>
+            <SectionTitle 
+              first="How to Become Our"
+              second="Client"
+            />
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
               8 Clear Steps to Polish Citizenship
             </p>
@@ -153,11 +153,10 @@ export default function ClientProcessSteps({ compact = false }: ClientProcessSte
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="text-center mb-16">
-          <h1 className="text-3xl md:text-4xl lg:text-5xl font-black mb-6 text-center leading-tight"
-              style={{ fontFamily: 'Arial Black, Arial, sans-serif' }}>
-            <span className="block text-black dark:text-white">How to Become Our</span>
-            <span className="block text-blue-800 dark:text-blue-400">Client</span>
-          </h1>
+          <SectionTitle 
+            first="How to Become Our"
+            second="Client"
+          />
           <p className="text-2xl text-gray-600 max-w-4xl mx-auto">
             Follow these 8 clear steps to become our registered client and start your citizenship case
           </p>

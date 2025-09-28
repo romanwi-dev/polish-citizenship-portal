@@ -13,6 +13,7 @@ import { insertEligibilityAssessmentSchema, type InsertEligibilityAssessment } f
 import { apiRequest } from "@/lib/queryClient";
 import { useToast } from "@/hooks/use-toast";
 import { CheckCircle, User, Users, UserPlus, UsersRound } from "lucide-react";
+import SectionTitle from "@/components/SectionTitle";
 
 export default function EligibilityCheck() {
   const { toast } = useToast();
@@ -73,11 +74,10 @@ export default function EligibilityCheck() {
           <Badge className="bg-primary-blue text-white px-6 py-3 rounded-full font-semibold mb-6">
             Professional Assessment
           </Badge>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-black mb-6 text-center leading-tight"
-              style={{ fontFamily: 'Arial Black, Arial, sans-serif' }}>
-            <span className="block text-black dark:text-white">Comprehensive Eligibility</span>
-            <span className="block text-blue-800 dark:text-blue-400">Assessment</span>
-          </h2>
+          <SectionTitle 
+            first="Comprehensive Eligibility"
+            second="Assessment"
+          />
           <p className="text-lg text-neutral-cool max-w-3xl mx-auto leading-relaxed">
             Get a detailed professional evaluation of your case. Our experts analyze eligibility, assess complexity, 
             and provide realistic timelines. <strong>This is thorough legal assessment</strong> - not a simple checker.

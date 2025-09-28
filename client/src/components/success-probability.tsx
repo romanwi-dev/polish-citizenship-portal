@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
 import { TrendingUp, AlertTriangle, CheckCircle2, Info, Calculator } from "lucide-react";
+import SectionTitle from "@/components/SectionTitle";
 
 export default function SuccessProbability() {
   const [factors, setFactors] = useState({
@@ -161,11 +162,10 @@ export default function SuccessProbability() {
           <Badge className="bg-secondary-blue text-white px-6 py-3 rounded-full text-lg font-medium mb-6">
             AI Success Probability Calculator
           </Badge>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-black mb-6 text-center leading-tight"
-              style={{ fontFamily: 'Arial Black, Arial, sans-serif' }}>
-            <span className="block text-black dark:text-white">Calculate Your Success</span>
-            <span className="block text-blue-800 dark:text-blue-400">Probability</span>
-          </h2>
+          <SectionTitle 
+            first="Calculate Your Success"
+            second="Probability"
+          />
           <p className="text-xl text-neutral-cool max-w-3xl mx-auto leading-relaxed">
             Get an instant assessment of your case strength based on 20+ years of historical data and 5,000+ successful cases.
           </p>

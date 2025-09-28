@@ -1,6 +1,7 @@
 import { memo } from "react";
 import { WorkingThemeSwitcher } from "@/components/working-theme-switcher";
 import { EditableText } from "@/components/EditableText";
+import SectionTitle from "@/components/SectionTitle";
 
 // Only critical imports for initial load
 import HeroSection from "@/components/hero-section";
@@ -94,11 +95,10 @@ const Home = memo(function Home() {
       <section>
         <div className="container">
           <div className="responsive-card">
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-black mb-6 text-center leading-tight"
-                style={{ fontFamily: 'Arial Black, Arial, sans-serif' }}>
-              <span className="block text-black dark:text-white">The Most Comprehensive Online Legal Service</span>
-              <span className="block text-blue-800 dark:text-blue-400">for Polish Citizenship and Polish European Passport</span>
-            </h2>
+            <SectionTitle 
+              first="The Most Comprehensive Online Legal Service"
+              second="for Polish Citizenship and Polish European Passport"
+            />
             <div 
               className="prose prose-lg max-w-none leading-relaxed transition-colors duration-300"
               style={{ 
@@ -126,11 +126,10 @@ const Home = memo(function Home() {
               />
               
               <div className="border-t border-white/20 pt-8">
-                <h3 className="text-3xl md:text-4xl lg:text-5xl font-black mb-6 text-center leading-tight"
-                    style={{ fontFamily: 'Arial Black, Arial, sans-serif' }}>
-                  <span className="block text-black dark:text-white">AI Deep Case</span>
-                  <span className="block text-blue-800 dark:text-blue-400">Analyzes</span>
-                </h3>
+                <SectionTitle 
+                  first="AI Deep Case"
+                  second="Analyzes"
+                />
                 <EditableText
                   contentKey="homepage-ai-description-1"
                   fallback="We are now able to 'predict' the probability of success and the time of the procedure in advance in each case of Polish citizenship by descent with HIGH ACCURACY based on the cases we processed over the last twenty years, with AI analyzes and human-expert knowledge. This has revolutionized our approach, allowing us to offer personalized guidance and support to our clients right from the initial consultation. By leveraging this combination of AI and expert insights, we can identify potential challenges and opportunities unique to each case, ensuring a more streamlined and efficient application process."
@@ -158,11 +157,10 @@ const Home = memo(function Home() {
               </div>
               
               <div className="border-t border-blue-200 pt-8 mt-8">
-                <h3 className="text-3xl md:text-4xl lg:text-5xl font-black mb-6 text-center leading-tight"
-                    style={{ fontFamily: 'Arial Black, Arial, sans-serif' }}>
-                  <span className="block text-black dark:text-white">Over 20 Million People</span>
-                  <span className="block text-blue-800 dark:text-blue-400">of Polish Descent</span>
-                </h3>
+                <SectionTitle 
+                  first="Over 20 Million People"
+                  second="of Polish Descent"
+                />
                 <EditableText
                   contentKey="homepage-polish-people-description"
                   fallback="There are more than 20 million people of Polish descent that live outside of Poland today , which itself has a population of about 38,5 million. This means that more than 1/3 of Poles and people of Polish descent actually live outside of the country. For many generations of European unrest, people have been emigrating outside of Poland, especially in the 20th century."
@@ -182,11 +180,10 @@ const Home = memo(function Home() {
               </div>
               
               <div className="border-t border-blue-200 pt-8 mt-8">
-                <h3 className="text-3xl md:text-4xl lg:text-5xl font-black mb-6 text-center leading-tight"
-                    style={{ fontFamily: 'Arial Black, Arial, sans-serif' }}>
-                  <span className="block text-black dark:text-white">The Benefits of Polish</span>
-                  <span className="block text-blue-800 dark:text-blue-400">European Citizenship</span>
-                </h3>
+                <SectionTitle 
+                  first="The Benefits of Polish"
+                  second="European Citizenship"
+                />
                 <p className="mb-4">
                   The education system in Europe is outstanding and offers the best elementary schools, top high schools, and some of the world's best universities. The latest medical technology and the best pharmaceutical developments ensure that your health is in good hands in Europe. With a Polish European passport you can freely move, travel, live, and work in any of the 28 member states of the EU.
                 </p>

@@ -2,6 +2,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { CheckCircle2, Star, Crown, Phone, Mail, Clock3, Shield, Users2, Zap } from "lucide-react";
+import SectionTitle from "@/components/SectionTitle";
 
 export default function PricingSection() {
   return (
@@ -13,11 +14,10 @@ export default function PricingSection() {
             <div className="w-3 h-3 bg-blue-500 rounded-full mr-3"></div>
             <span className="text-blue-800 font-semibold text-lg tracking-wide">TRANSPARENT REAL PRICING</span>
           </div>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-black mb-6 text-center leading-tight"
-              style={{ fontFamily: 'Arial Black, Arial, sans-serif' }}>
-            <span className="block text-black dark:text-white">Polish Citizenship Services</span>
-            <span className="block text-blue-800 dark:text-blue-400">Choose Your Path</span>
-          </h2>
+          <SectionTitle 
+            first="Polish Citizenship Services"
+            second="Choose Your Path"
+          />
           <p className="text-lg text-gray-700 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed">
             Professional Polish citizenship by descent application services. The process involves complex legal requirements and requires expert guidance.
           </p>
