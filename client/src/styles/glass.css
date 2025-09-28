@@ -81,7 +81,7 @@ button[class*="touch-target"]:disabled,
   50% { opacity: 0.8; }
 }
 
-/* iOS26 Ripple Effect Animation */
+/* iOS26 Ripple Effect Animation - Exclude Part Progression Badges */
 .btn-ios26::before,
 .btn::before,
 button[class*="snap-start"]::before,
@@ -98,6 +98,11 @@ button[class*="touch-target"]::before {
   transition: width .4s ease, height .4s ease;
   z-index: 1;
   pointer-events: none;
+}
+
+/* Remove ripple effect from Part Progression badges */
+button[data-testid^="part-indicator-"]::before {
+  display: none !important;
 }
 
 .btn:active::before,
