@@ -203,7 +203,7 @@ const PolishCrownTimeline = memo(function PolishCrownTimeline() {
       <div className="max-w-full mx-auto px-4 sm:px-6 lg:px-20">
         {/* Header */}
         <div className="text-center mb-24">
-          <h2 className="text-9xl lg:text-[12rem] xl:text-[14rem] font-bold mb-6 tracking-tight leading-[0.8] antialiased" style={{textRendering: 'optimizeLegibility', WebkitFontSmoothing: 'antialiased'}}>
+          <h2 className="text-6xl lg:text-7xl xl:text-8xl font-bold mb-6 tracking-tight leading-tight">
             <span className="block text-black dark:text-white">Complete Legal Process</span>
             <span className="block text-blue-600 dark:text-blue-400">Timeline</span>
           </h2>
