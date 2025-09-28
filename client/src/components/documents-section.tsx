@@ -16,28 +16,28 @@ export default function DocumentsSection() {
       description:
         "Polish birth certificates for all ancestors in the lineage, issued by Polish Civil Registry Offices after 1920.",
       icon: Tag,
-      color: "bg-primary-blue",
+      color: "bg-blue-600",
     },
     {
       title: "Marriage Certificates",
       description:
         "Polish marriage certificates for ancestors establishing family lineage and name changes.",
       icon: Heart,
-      color: "bg-primary-blue",
+      color: "bg-blue-600",
     },
     {
       title: "Residents and Voters Lists",
       description:
         "Historical residents lists and voters lists from Polish archives proving your ancestors' residence and citizenship status.",
       icon: CheckCircle2,
-      color: "bg-primary-blue",
+      color: "bg-blue-600",
     },
     {
       title: "Identity Documents",
       description:
         "Polish identity cards, military records, or other official Polish documents proving citizenship.",
       icon: CreditCard,
-      color: "bg-primary-blue",
+      color: "bg-blue-600",
     },
   ];
 
@@ -50,14 +50,14 @@ export default function DocumentsSection() {
   ];
 
   return (
-    <section id="documents" className="py-32 bg-very-light-blue">
+    <section id="documents" className="py-32 bg-gray-50 dark:bg-gray-900">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-24">
-          <h2 className="text-4xl md:text-5xl font-bold mb-4 tracking-tight">
-            <span className="block text-neutral-warm">Required</span>
-            <span className="block text-primary-blue">Documents</span>
+          <h2 className="text-6xl lg:text-8xl font-bold mb-6 tracking-tight leading-tight">
+            <span className="block text-black dark:text-white">Required</span>
+            <span className="block text-blue-600 dark:text-blue-400">Documents</span>
           </h2>
-          <p className="text-2xl font-semibold text-neutral-cool max-w-3xl mx-auto">
+          <p className="text-2xl font-semibold text-gray-700 dark:text-gray-300 max-w-4xl mx-auto leading-relaxed">
             Essential documentation needed for Polish citizenship confirmation.
             All documents must be Polish originals issued by Polish authorities.
           </p>
@@ -65,39 +65,50 @@ export default function DocumentsSection() {
 
         <div className="grid lg:grid-cols-2 gap-16 items-start">
           <div>
-            <h3 className="text-2xl font-bold text-neutral-warm mb-6">
+            <h3 className="text-4xl font-bold text-black dark:text-white mb-8">
               Polish Documents Required
             </h3>
-            <div className="space-y-6">
+            <div className="space-y-8">
               {polishDocuments.map((doc, index) => {
                 const Icon = doc.icon;
                 return (
-                  <div key={index} className="flex items-start">
-                    <div
-                      className={`w-8 h-8 ${doc.color} rounded-full flex items-center justify-center mr-4 mt-1`}
-                    >
-                      <Icon className="text-white w-4 h-4" />
-                    </div>
-                    <div>
-                      <h4 className="font-semibold text-neutral-warm mb-2">
-                        {doc.title}
-                      </h4>
-                      <p className="text-neutral-cool text-sm">{doc.description}</p>
+                  <div key={index} className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-md border border-gray-200 dark:border-gray-700">
+                    <div className="flex items-start">
+                      <div className="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center mr-6 flex-shrink-0">
+                        <Icon className="text-white w-8 h-8" />
+                      </div>
+                      <div className="flex-grow">
+                        <h4 className="text-xl font-bold text-black dark:text-white mb-3">
+                          {doc.title}
+                        </h4>
+                        <p className="text-gray-700 dark:text-gray-300 text-lg leading-relaxed">{doc.description}</p>
+                        
+                        {/* Visual Description */}
+                        <div className="mt-4 p-4 bg-gray-100 dark:bg-gray-800 rounded-lg border border-gray-300 dark:border-gray-600">
+                          <div className="text-sm font-medium text-blue-600 dark:text-blue-400 mb-2">Visual Example:</div>
+                          <div className="text-sm text-gray-700 dark:text-gray-300">
+                            {index === 0 && "Official Polish civil registry stamp, born after 1920, with clear family lineage information"}
+                            {index === 1 && "Marriage certificate showing Polish union, with official seals and witness signatures"}
+                            {index === 2 && "Historical archive documents with Polish residence records and voting eligibility proof"}
+                            {index === 3 && "Polish government-issued identification with citizenship status clearly indicated"}
+                          </div>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 );
               })}
             </div>
 
-            <Card className="mt-8 border-l-4 border-medium-gray bg-surface-elevated">
+            <Card className="mt-8 border-l-4 border-gray-400 bg-gray-50 dark:bg-gray-800">
               <CardContent className="p-6">
                 <div className="flex items-start">
-                  <AlertTriangle className="text-medium-gray mr-3 mt-1 h-5 w-5" />
+                  <AlertTriangle className="text-gray-600 mr-3 mt-1 h-5 w-5" />
                   <div>
-                    <h4 className="font-semibold text-neutral-warm mb-2">
+                    <h4 className="font-semibold text-gray-900 dark:text-white mb-2">
                       Important Notice
                     </h4>
-                    <p className="text-sm text-neutral-cool">
+                    <p className="text-sm text-gray-700 dark:text-gray-300">
                       Under the 2011 Polish Citizenship Act, applications without
                       original Polish documents will not be processed. We
                       specialize in obtaining these documents from Polish
@@ -110,10 +121,10 @@ export default function DocumentsSection() {
           </div>
 
           <div>
-            <h3 className="text-2xl font-bold text-neutral-warm mb-6">
+            <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">
               Supporting Documentation
             </h3>
-            <Card className="bg-surface-elevated border border-gray-100">
+            <Card className="bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700">
               <CardContent className="p-8">
                 <div className="space-y-4">
                   {supportingDocs.map((doc, index) => (
@@ -121,8 +132,8 @@ export default function DocumentsSection() {
                       key={index}
                       className="flex items-center justify-between py-3 border-b border-gray-200 last:border-b-0"
                     >
-                      <span className="text-neutral-cool">{doc}</span>
-                      <CheckCircle2 className="text-primary-blue h-5 w-5" />
+                      <span className="text-gray-700 dark:text-gray-300">{doc}</span>
+                      <CheckCircle2 className="text-blue-600 h-5 w-5" />
                     </div>
                   ))}
                 </div>
@@ -130,7 +141,7 @@ export default function DocumentsSection() {
                 <div className="mt-8 text-center">
                   <Button
                     onClick={() => scrollToSection("contact")}
-                    className="bg-primary-blue hover:bg-primary-blue-light text-white px-6 py-3 font-semibold rounded-xl"
+                    className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 font-semibold rounded-xl"
                   >
                     <Download className="mr-2 h-4 w-4" />
                     Download Document Checklist

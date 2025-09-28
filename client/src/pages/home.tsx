@@ -86,8 +86,8 @@ const Home = memo(function Home() {
       {/* IMAGE 1: Warsaw */}
       <WarsawImage />
       
-      {/* SECTION 1: Hero Section */}
-      <div id="hero">
+      {/* SECTION 1: Hero Section - No spacing */}
+      <div id="hero" className="-mt-1">
         <HeroSection />
       </div>
 

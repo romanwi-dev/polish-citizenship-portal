@@ -91,7 +91,7 @@ export function MobileNavigationV3({ isMenuOpen: externalIsMenuOpen, setIsMenuOp
   const [internalIsMenuOpen, setInternalIsMenuOpen] = useState(false);
   const [location, setLocation] = useLocation();
   const [searchQuery, setSearchQuery] = useState('');
-  const [activeSection, setActiveSection] = useState<string>('homepage');
+  const [activeSection, setActiveSection] = useState<string>('');
   const [isSearchFocused, setIsSearchFocused] = useState(false);
   const [recentItems, setRecentItems] = useState<string[]>([]);
   const [automationStatus, setAutomationStatus] = useState<'online' | 'degraded' | 'offline'>('online');

@@ -7,25 +7,25 @@ export default function BenefitsSection() {
       title: "Freedom of Movement",
       description: "Travel visa-free to 27 EU countries plus many others worldwide",
       icon: Globe,
-      color: "bg-primary-blue",
+      color: "bg-blue-600",
     },
     {
       title: "Work Rights",
       description: "Employment rights in any EU country without work permits",
       icon: Briefcase,
-      color: "bg-secondary-blue",
+      color: "bg-blue-500",
     },
     {
       title: "Education Benefits",
       description: "EU tuition rates and access to European educational programs",
       icon: GraduationCap,
-      color: "bg-medium-gray",
+      color: "bg-gray-600",
     },
     {
       title: "Healthcare Access",
       description: "Quality healthcare coverage throughout the European Union",
       icon: Heart,
-      color: "bg-light-blue",
+      color: "bg-blue-400",
     },
   ];
 
@@ -56,14 +56,14 @@ export default function BenefitsSection() {
   return (
     <section
       id="benefits"
-      className="py-24 bg-surface-very-light"
+      className="py-24 bg-gray-50 dark:bg-gray-900"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-20">
-          <h2 className="text-4xl md:text-5xl font-bold text-neutral-warm mb-8">
+          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-8">
             Benefits of Polish European Citizenship
           </h2>
-          <p className="text-2xl font-semibold text-neutral-cool max-w-4xl mx-auto leading-relaxed">
+          <p className="text-2xl font-semibold text-gray-700 dark:text-gray-300 max-w-4xl mx-auto leading-relaxed">
             With over 20 million people of Polish descent worldwide, obtaining
             Polish citizenship opens doors to extraordinary opportunities across
             Europe.
@@ -80,17 +80,17 @@ export default function BenefitsSection() {
                   className="rounded-xl shadow-lg w-full h-64 object-cover"
                 />
               </div>
-              <h3 className="text-xl font-bold text-neutral-warm mb-6">
+              <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-6">
                 {image.title}
               </h3>
-              <p className="text-neutral-cool text-lg leading-relaxed">{image.description}</p>
+              <p className="text-gray-700 dark:text-gray-300 text-lg leading-relaxed">{image.description}</p>
             </div>
           ))}
         </div>
 
-        <Card className="shadow-xl bg-surface-elevated border border-gray-100">
+        <Card className="shadow-xl bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700">
           <CardContent className="p-12">
-            <h3 className="text-2xl md:text-3xl font-bold text-center text-neutral-warm mb-12">
+            <h3 className="text-2xl md:text-3xl font-bold text-center text-gray-900 dark:text-white mb-12">
               Key Advantages of EU Citizenship
             </h3>
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -103,10 +103,10 @@ export default function BenefitsSection() {
                     >
                       <Icon className="text-white w-8 h-8" />
                     </div>
-                    <h4 className="font-semibold text-neutral-warm mb-2">
+                    <h4 className="font-semibold text-gray-900 dark:text-white mb-2">
                       {benefit.title}
                     </h4>
-                    <p className="text-sm text-neutral-cool">{benefit.description}</p>
+                    <p className="text-sm text-gray-700 dark:text-gray-300">{benefit.description}</p>
                   </div>
                 );
               })}

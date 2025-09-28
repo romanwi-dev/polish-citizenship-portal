@@ -200,7 +200,7 @@ const PolishCrownTimeline = memo(function PolishCrownTimeline() {
       className="py-16 relative"
       data-testid="polish-timeline-section"
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-full mx-auto px-4 sm:px-6 lg:px-20">
         {/* Header */}
         <div className="text-center mb-24">
           <h2 className="text-4xl lg:text-5xl font-bold mb-6 tracking-tight">
@@ -244,7 +244,7 @@ const PolishCrownTimeline = memo(function PolishCrownTimeline() {
                     <div className="relative py-4">
                       {/* Step Number - Above title */}
                       <div className="text-center mb-8">
-                        <span className={`text-6xl font-bold ${step.color.replace('bg-', 'text-')} opacity-30`}>
+                        <span className={`text-7xl lg:text-8xl font-bold text-blue-900 dark:text-blue-400 animate-pulse transform transition-all duration-1000 hover:scale-110 z-10 relative`} style={{ textShadow: '2px 2px 4px rgba(0,0,0,0.3)' }}>
                           {step.number}
                         </span>
                       </div>

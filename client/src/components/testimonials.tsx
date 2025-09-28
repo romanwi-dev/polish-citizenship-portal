@@ -64,19 +64,19 @@ export default function Testimonials() {
     <section id="testimonials">
       <div className="container">
         <div className="text-center mb-24">
-          <h2 className="text-4xl md:text-5xl font-bold mb-4 tracking-tight">
-            <span className="block text-neutral-warm">Real Client Video</span>
-            <span className="block text-primary-blue">Testimonials</span>
+          <h2 className="text-6xl lg:text-8xl font-bold mb-6 tracking-tight leading-tight">
+            <span className="block text-black dark:text-white">Client Success</span>
+            <span className="block text-blue-600 dark:text-blue-400">Stories</span>
           </h2>
-          <p className="text-xl text-gray-600 mb-8">
-            Watch authentic stories from families who successfully obtained Polish citizenship
+          <p className="text-2xl text-gray-700 dark:text-gray-300 mb-8 max-w-4xl mx-auto leading-relaxed">
+            Real families sharing their successful Polish citizenship journey experiences
           </p>
-          <Card className="inline-block bg-gradient-to-r from-green-50 to-blue-50 border-2 border-green-300 p-8 shadow-xl">
+          <Card className="inline-block bg-gray-100 dark:bg-gray-800 border-2 border-gray-300 dark:border-gray-600 p-8 shadow-xl">
             <div className="flex flex-col items-center gap-4">
               <div className="flex items-center gap-3">
-                <Shield className="h-8 w-8 text-green-600" />
+                <Shield className="h-8 w-8 text-blue-600" />
                 <h3 className="text-xl font-bold text-gray-900">Client Verification Available</h3>
-                <CheckCircle2 className="h-8 w-8 text-green-600" />
+                <CheckCircle2 className="h-8 w-8 text-blue-600" />
               </div>
               <p className="text-lg font-semibold text-gray-800 max-w-2xl">
                 We provide full contact details to our best clients after consultation. 
@@ -117,7 +117,7 @@ export default function Testimonials() {
                 {/* Verification Badges */}
                 <div className="flex gap-2 mb-3">
                   {testimonial.verificationStatus === 'approved' && (
-                    <Badge className="bg-green-100 text-green-800 text-xs">
+                    <Badge className="bg-blue-100 text-blue-800 text-xs">
                       <CheckCircle2 className="h-3 w-3 mr-1" />
                       AI Verified
                     </Badge>
@@ -159,7 +159,7 @@ export default function Testimonials() {
                       </div>
                     </div>
                     {testimonial.contactAvailable && (
-                      <Badge className="bg-green-100 text-green-800">
+                      <Badge className="bg-blue-100 text-blue-800">
                         Reference Available
                       </Badge>
                     )}
