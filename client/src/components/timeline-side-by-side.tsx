@@ -209,8 +209,7 @@ const PolishCrownTimeline = memo(function PolishCrownTimeline() {
                 letterSpacing: 'var(--ios26-letter-spacing)',
                 lineHeight: 'var(--ios26-line-height)'
               }}>
-            <span className="block text-black dark:text-white">Complete Legal Process</span>
-            <span className="block text-blue-600 dark:text-blue-400">Timeline</span>
+            Complete Legal Process Timeline
           </h2>
           <p style={{ 
             fontSize: '1.125rem', 
