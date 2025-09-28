@@ -603,26 +603,68 @@ export const StagePanel: React.FC<StagePanelProps> = ({ case: caseData }) => {
       <div className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-lg p-6">
         <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">Progress Overview</h3>
         
-        <div className="w-full space-y-4 mb-6">
-          <div className="w-full text-center p-4 bg-gray-50 dark:bg-gray-800 rounded-lg">
+        {/* Horizontal Interactive Badges */}
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+          <div 
+            className="text-center p-4 bg-gray-50 dark:bg-gray-800 rounded-lg cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+            onClick={() => {
+              toast({
+                title: "Total Stages",
+                description: `Case has ${COMPREHENSIVE_PIPELINE.length} stages total`,
+              });
+            }}
+            data-testid="badge-total-stages"
+          >
             <div className="text-2xl font-bold text-gray-900 dark:text-white" data-testid="text-total-stages">
               {COMPREHENSIVE_PIPELINE.length}
             </div>
             <div className="text-sm text-gray-500 dark:text-gray-400">Total Stages</div>
           </div>
-          <div className="w-full text-center p-4 bg-green-50 dark:bg-green-900/20 rounded-lg">
+          
+          <div 
+            className="text-center p-4 bg-green-50 dark:bg-green-900/20 rounded-lg cursor-pointer hover:bg-green-100 dark:hover:bg-green-900/30 transition-colors"
+            onClick={() => {
+              toast({
+                title: "Completed Stages",
+                description: `${activeIdx} stages completed out of ${COMPREHENSIVE_PIPELINE.length}`,
+              });
+            }}
+            data-testid="badge-completed-stages"
+          >
             <div className="text-2xl font-bold text-green-600 dark:text-green-400" data-testid="text-completed-stages">
               {activeIdx}
             </div>
             <div className="text-sm text-green-600 dark:text-green-400">Completed</div>
           </div>
-          <div className="w-full text-center p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg">
+          
+          <div 
+            className="text-center p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg cursor-pointer hover:bg-blue-100 dark:hover:bg-blue-900/30 transition-colors"
+            onClick={() => {
+              const clientVisibleCount = COMPREHENSIVE_PIPELINE.filter(s => s.clientVisible).length;
+              toast({
+                title: "Client Visible Stages",
+                description: `${clientVisibleCount} stages are visible to the client`,
+              });
+            }}
+            data-testid="badge-client-visible-stages"
+          >
             <div className="text-2xl font-bold text-blue-600 dark:text-blue-400" data-testid="text-client-visible-stages">
               {COMPREHENSIVE_PIPELINE.filter(s => s.clientVisible).length}
             </div>
             <div className="text-sm text-blue-600 dark:text-blue-400">Client Visible</div>
           </div>
-          <div className="w-full text-center p-4 bg-yellow-50 dark:bg-yellow-900/20 rounded-lg">
+          
+          <div 
+            className="text-center p-4 bg-yellow-50 dark:bg-yellow-900/20 rounded-lg cursor-pointer hover:bg-yellow-100 dark:hover:bg-yellow-900/30 transition-colors"
+            onClick={() => {
+              const milestonesCount = COMPREHENSIVE_PIPELINE.filter(s => s.isMilestone).length;
+              toast({
+                title: "Milestone Stages",
+                description: `${milestonesCount} key milestone stages in this case`,
+              });
+            }}
+            data-testid="badge-milestone-stages"
+          >
             <div className="text-2xl font-bold text-yellow-600 dark:text-yellow-400" data-testid="text-milestone-stages">
               {COMPREHENSIVE_PIPELINE.filter(s => s.isMilestone).length}
             </div>
