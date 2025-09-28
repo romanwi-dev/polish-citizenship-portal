@@ -70,7 +70,35 @@ export default function DocumentsPanel({ caseId, caseData }: DocumentsPanelProps
     <div className="flex gap-6">
       {/* Main Documents Grid */}
       <div className="flex-1">
-        <div className="relative" style={{ paddingBottom: `${documents.length * 8}px` }}>
+        {/* Desktop Grid Layout */}
+        <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+          {documents.map((doc) => (
+            <IOS26Card key={doc.id} strong={true}>
+              <IOS26CardBody>
+                <div className="w-full flex items-center justify-between p-4">
+                  <div className="flex-1">
+                    <h4 className="font-medium text-base">{doc.name}</h4>
+                    <div className="flex items-center gap-2 mt-2">
+                      <div className={cn(
+                        "w-3 h-3 rounded-full",
+                        doc.status === 'completed' ? 'bg-green-500' :
+                        doc.status === 'uploaded' ? 'bg-amber-500' :
+                        'bg-red-500'
+                      )} />
+                      <span className="text-sm text-muted-foreground capitalize">{doc.status}</span>
+                    </div>
+                  </div>
+                  <ActionButton variant="ghost" size="sm" data-testid={`button-upload-${doc.id}`}>
+                    <Upload className="h-4 w-4" />
+                  </ActionButton>
+                </div>
+              </IOS26CardBody>
+            </IOS26Card>
+          ))}
+        </div>
+
+        {/* Mobile Stacked Layout */}
+        <div className="md:hidden relative" style={{ paddingBottom: `${documents.length * 8}px` }}>
           {documents.map((doc, index) => (
             <IOS26Card 
               key={doc.id} 
