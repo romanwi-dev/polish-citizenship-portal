@@ -171,7 +171,7 @@ export const TasksTab: React.FC<TasksTabProps> = ({ caseData }) => {
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 flex flex-col h-full md:min-h-[calc(100vh-200px)]">
       {/* Header with Filters */}
       <div className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-lg shadow-lg dark:shadow-2xl p-6">
         <div className="flex items-center justify-between mb-4">
@@ -218,7 +218,7 @@ export const TasksTab: React.FC<TasksTabProps> = ({ caseData }) => {
       </div>
 
       {/* Task Groups */}
-      <div className="space-y-6">
+      <div className="space-y-6 flex-1 overflow-y-auto">
         {(['open', 'blocked', 'done'] as TaskStatus[]).map(status => {
           const statusTasks = groupedTasks[status];
           if (statusTasks.length === 0 && filterStatus !== 'all' && filterStatus !== status) return null;
@@ -301,7 +301,7 @@ export const TasksTab: React.FC<TasksTabProps> = ({ caseData }) => {
 
       {/* Empty State */}
       {tasks.length === 0 && (
-        <div className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-lg shadow-lg dark:shadow-2xl p-12 text-center">
+        <div className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-lg shadow-lg dark:shadow-2xl p-12 text-center flex-1 flex flex-col items-center justify-center">
           <CheckSquare className="h-12 w-12 text-gray-400 mx-auto mb-4" />
           <h3 className="text-lg font-medium text-gray-900 dark:text-white mb-2">No Tasks Yet</h3>
           <p className="text-gray-500 dark:text-gray-400 mb-6">Create your first task to start organizing case work.</p>
