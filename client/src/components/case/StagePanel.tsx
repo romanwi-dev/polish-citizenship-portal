@@ -770,6 +770,7 @@ export const StagePanel: React.FC<StagePanelProps> = ({ case: caseData }) => {
             );
           })}
           </div>
+          </div>
         </div>
       </div>
 
