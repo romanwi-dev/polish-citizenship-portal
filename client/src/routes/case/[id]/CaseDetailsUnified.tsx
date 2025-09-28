@@ -25,47 +25,163 @@ interface CaseDetailsUnifiedProps {
   caseId: string;
 }
 
-export const OverviewPanel: React.FC<{ case: CaseData }> = ({ case: caseData }) => (
-  <div className="space-y-6">
-    <div className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-lg shadow-lg dark:shadow-2xl p-6">
-      <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">Case Information</h3>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <div>
-          <label className="text-sm text-gray-500 dark:text-gray-400">Client Name</label>
-          <p className="text-gray-900 dark:text-white font-medium">{caseData.name}</p>
+export const OverviewPanel: React.FC<{ case: CaseData }> = ({ case: caseData }) => {
+  // Calculate document stats
+  const documents = [
+    'family-tree', 'poa-married', 'poa-single', 'usc-birth-cert',
+    'usc-passport', 'pol-birth-cert', 'pol-marriage-cert', 'pol-death-cert',
+    'archive-docs', 'translations', 'civil-acts', 'supporting-docs'
+  ];
+  
+  const documentStats = {
+    total: documents.length,
+    pending: documents.filter(doc => !caseData.documents?.[doc] || caseData.documents[doc].status === 'pending').length,
+    uploaded: documents.filter(doc => caseData.documents?.[doc]?.status === 'uploaded').length,
+    completed: documents.filter(doc => caseData.documents?.[doc]?.status === 'completed').length
+  };
+
+  // Calculate payment stats
+  const servicePayments = caseData.servicePayments || [];
+  const paymentStats = {
+    total: servicePayments.length,
+    received: servicePayments.filter(p => p.status === 'Received').length,
+    pending: servicePayments.filter(p => p.status === 'Pending').length,
+    na: servicePayments.filter(p => p.status === 'N/A').length,
+    totalAmount: servicePayments
+      .filter(p => p.amount && p.status === 'Received')
+      .reduce((sum, p) => sum + (p.amount || 0), 0)
+  };
+
+  return (
+    <div className="space-y-6">
+      {/* Basic Case Information */}
+      <div className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-lg shadow-lg dark:shadow-2xl p-6">
+        <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">Case Information</h3>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div>
+            <label className="text-sm text-gray-500 dark:text-gray-400">Client Name</label>
+            <p className="text-gray-900 dark:text-white font-medium">{caseData.name}</p>
+          </div>
+          <div>
+            <label className="text-sm text-gray-500 dark:text-gray-400">Email</label>
+            <p className="text-gray-900 dark:text-white">{caseData.email}</p>
+          </div>
+          <div>
+            <label className="text-sm text-gray-500 dark:text-gray-400">Current Stage</label>
+            <p className="text-gray-900 dark:text-white capitalize">{caseData.stage.replace('_', ' ')}</p>
+          </div>
+          <div>
+            <label className="text-sm text-gray-500 dark:text-gray-400">Processing Tier</label>
+            <p className="text-gray-900 dark:text-white">{caseData.tier}</p>
+          </div>
+          <div>
+            <label className="text-sm text-gray-500 dark:text-gray-400">Score</label>
+            <p className="text-gray-900 dark:text-white">{caseData.score}%</p>
+          </div>
+          <div>
+            <label className="text-sm text-gray-500 dark:text-gray-400">Age</label>
+            <p className="text-gray-900 dark:text-white">{caseData.ageMonths} months</p>
+          </div>
+          <div>
+            <label className="text-sm text-gray-500 dark:text-gray-400">Created</label>
+            <p className="text-gray-900 dark:text-white">{formatPolish(caseData.createdAt)}</p>
+          </div>
+          <div>
+            <label className="text-sm text-gray-500 dark:text-gray-400">Last Updated</label>
+            <p className="text-gray-900 dark:text-white">{formatPolish(caseData.updatedAt)}</p>
+          </div>
         </div>
-        <div>
-          <label className="text-sm text-gray-500 dark:text-gray-400">Email</label>
-          <p className="text-gray-900 dark:text-white">{caseData.email}</p>
+      </div>
+
+      {/* Current Stage Progress */}
+      <div className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-lg shadow-lg dark:shadow-2xl p-6">
+        <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">Stage Progress</h3>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div className="text-center">
+            <div className="text-2xl font-bold text-blue-600 dark:text-blue-400">
+              {caseData.stages?.filter(s => s.status === 'ACTIVE')?.length || 0}
+            </div>
+            <div className="text-sm text-gray-500 dark:text-gray-400">Active</div>
+          </div>
+          <div className="text-center">
+            <div className="text-2xl font-bold text-green-600 dark:text-green-400">
+              {caseData.stages?.filter(s => s.status === 'COMPLETED')?.length || 0}
+            </div>
+            <div className="text-sm text-gray-500 dark:text-gray-400">Completed</div>
+          </div>
+          <div className="text-center">
+            <div className="text-2xl font-bold text-gray-500 dark:text-gray-400">
+              {caseData.stages?.filter(s => s.status === 'PENDING')?.length || 0}
+            </div>
+            <div className="text-sm text-gray-500 dark:text-gray-400">Remaining</div>
+          </div>
+          <div className="text-center">
+            <div className="text-2xl font-bold text-gray-900 dark:text-white">
+              {caseData.stages?.length || 0}
+            </div>
+            <div className="text-sm text-gray-500 dark:text-gray-400">Total</div>
+          </div>
         </div>
-        <div>
-          <label className="text-sm text-gray-500 dark:text-gray-400">Stage</label>
-          <p className="text-gray-900 dark:text-white capitalize">{caseData.stage.replace('_', ' ')}</p>
+      </div>
+
+      {/* Documents Summary */}
+      <div className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-lg shadow-lg dark:shadow-2xl p-6">
+        <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">Documents Status</h3>
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+          <div className="text-center">
+            <div className="text-2xl font-bold text-gray-900 dark:text-white">{documentStats.total}</div>
+            <div className="text-sm text-gray-500 dark:text-gray-400">Total</div>
+          </div>
+          <div className="text-center">
+            <div className="text-2xl font-bold text-red-600 dark:text-red-400">{documentStats.pending}</div>
+            <div className="text-sm text-gray-500 dark:text-gray-400">Pending</div>
+          </div>
+          <div className="text-center">
+            <div className="text-2xl font-bold text-amber-600 dark:text-amber-400">{documentStats.uploaded}</div>
+            <div className="text-sm text-gray-500 dark:text-gray-400">Uploaded</div>
+          </div>
+          <div className="text-center">
+            <div className="text-2xl font-bold text-green-600 dark:text-green-400">{documentStats.completed}</div>
+            <div className="text-sm text-gray-500 dark:text-gray-400">Completed</div>
+          </div>
         </div>
-        <div>
-          <label className="text-sm text-gray-500 dark:text-gray-400">Processing Tier</label>
-          <p className="text-gray-900 dark:text-white">{caseData.tier}</p>
-        </div>
-        <div>
-          <label className="text-sm text-gray-500 dark:text-gray-400">Score</label>
-          <p className="text-gray-900 dark:text-white">{caseData.score}%</p>
-        </div>
-        <div>
-          <label className="text-sm text-gray-500 dark:text-gray-400">Age</label>
-          <p className="text-gray-900 dark:text-white">{caseData.ageMonths} months</p>
-        </div>
-        <div>
-          <label className="text-sm text-gray-500 dark:text-gray-400">Created</label>
-          <p className="text-gray-900 dark:text-white">{formatPolish(caseData.createdAt)}</p>
-        </div>
-        <div>
-          <label className="text-sm text-gray-500 dark:text-gray-400">Last Updated</label>
-          <p className="text-gray-900 dark:text-white">{formatPolish(caseData.updatedAt)}</p>
+      </div>
+
+      {/* Payments Summary */}
+      <div className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-lg shadow-lg dark:shadow-2xl p-6">
+        <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">Payment Status</h3>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="space-y-3">
+            <div className="flex items-center justify-between">
+              <span className="text-gray-600 dark:text-gray-300">Total Payments:</span>
+              <span className="font-medium text-gray-900 dark:text-white">{paymentStats.total}</span>
+            </div>
+            <div className="flex items-center justify-between">
+              <span className="text-gray-600 dark:text-gray-300">Received:</span>
+              <span className="text-green-600 dark:text-green-400 font-medium">{paymentStats.received}</span>
+            </div>
+            <div className="flex items-center justify-between">
+              <span className="text-gray-600 dark:text-gray-300">Pending:</span>
+              <span className="text-amber-600 dark:text-amber-400 font-medium">{paymentStats.pending}</span>
+            </div>
+            <div className="flex items-center justify-between">
+              <span className="text-gray-600 dark:text-gray-300">Not Applicable:</span>
+              <span className="text-gray-500 dark:text-gray-400 font-medium">{paymentStats.na}</span>
+            </div>
+          </div>
+          <div className="flex items-center justify-center">
+            <div className="text-center">
+              <div className="text-sm text-gray-500 dark:text-gray-400 mb-1">Total Revenue</div>
+              <div className="text-3xl font-bold text-green-600 dark:text-green-400">
+                €{paymentStats.totalAmount.toLocaleString()}
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-);
+  );
+};
 
 export const TimelinePanel: React.FC<{ case: CaseData }> = ({ case: caseData }) => (
   <div className="space-y-4">
