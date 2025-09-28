@@ -16,7 +16,6 @@ import ServiceOverview from "@/components/service-overview";
 import { TrustBadges } from "@/components/trust-badges";
 import QuickAccessBar from "@/components/quick-access-bar";
 import DocumentsSection from "@/components/documents-section";
-import ProcedureGuide from "@/components/procedure-guide";
 import Testimonials from "@/components/testimonials";
 import PolishCrownTimeline from "@/components/timeline-side-by-side";
 
@@ -393,10 +392,6 @@ const Home = memo(function Home() {
       {/* IMAGE 9: Stockholm */}
       <StockholmImage />
       
-      {/* SECTION 9: Procedure Guide */}
-      <div id="procedure-guide">
-        <ProcedureGuide />
-      </div>
       
       {/* WISDOM 9: Important Tips */}
       <div className="max-w-6xl mx-auto px-6">
