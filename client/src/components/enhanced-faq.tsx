@@ -82,7 +82,7 @@ export default function EnhancedFAQ() {
 
       <div className="max-w-5xl mx-auto px-5 py-10">
         <header className="mb-7">
-          <h1 className="text-8xl lg:text-9xl xl:text-[10rem] font-bold mb-6 tracking-tight leading-[0.8] text-center">
+          <h1 className="text-6xl lg:text-7xl xl:text-8xl font-bold mb-6 tracking-tight leading-tight text-center">
             <span className="block text-black dark:text-white">Find Answers</span>
             <span className="block text-blue-600 dark:text-blue-400">Instantly</span>
           </h1>

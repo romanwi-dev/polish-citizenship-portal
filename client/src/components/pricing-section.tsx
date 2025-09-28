@@ -13,7 +13,7 @@ export default function PricingSection() {
             <div className="w-3 h-3 bg-blue-500 rounded-full mr-3"></div>
             <span className="text-blue-800 font-semibold text-lg tracking-wide">TRANSPARENT REAL PRICING</span>
           </div>
-          <h2 className="text-8xl lg:text-9xl xl:text-[10rem] font-bold text-black dark:text-white mb-6 tracking-tight leading-[0.8]">
+          <h2 className="text-6xl lg:text-7xl xl:text-8xl font-bold text-black dark:text-white mb-6 tracking-tight leading-tight">
             Polish Citizenship Services
             <span className="block text-blue-600 dark:text-blue-400">Choose Your Path</span>
           </h2>
