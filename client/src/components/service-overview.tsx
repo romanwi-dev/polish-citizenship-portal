@@ -37,7 +37,7 @@ export default function ServiceOverview() {
             Legal Expertise Since 2003
           </div>
           <h2 className="text-6xl lg:text-7xl xl:text-8xl font-bold mb-6 leading-tight tracking-tight">
-            <span className="block text-black dark:text-white">Professional Legal</span>
+            <span className="block text-blue-600 dark:text-blue-400">Professional Legal</span>
             <span className="block text-blue-600 dark:text-blue-400">Expert Assistance</span>
           </h2>
           <p style={{ 

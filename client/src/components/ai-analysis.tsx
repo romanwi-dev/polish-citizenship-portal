@@ -28,7 +28,7 @@ export default function AiAnalysis() {
             AI-Powered Analysis
           </Badge>
           <h2 className="text-6xl lg:text-7xl xl:text-8xl font-bold mb-6 leading-tight tracking-tight">
-            <span className="block text-black dark:text-white">How Our AI Analysis</span>
+            <span className="block text-blue-600 dark:text-blue-400">How Our AI Analysis</span>
             <span className="block text-blue-600 dark:text-blue-400">System Works</span>
           </h2>
           <p className="text-lg text-neutral-cool mb-12 max-w-3xl mx-auto leading-relaxed">

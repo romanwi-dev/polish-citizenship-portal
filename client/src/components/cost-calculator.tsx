@@ -72,7 +72,7 @@ export default function CostCalculator() {
             Interactive Cost Calculator
           </Badge>
           <h2 className="text-6xl lg:text-7xl xl:text-8xl font-bold mb-6 leading-tight tracking-tight">
-            <span className="block text-black dark:text-white">Calculate Your</span>
+            <span className="block text-blue-600 dark:text-blue-400">Calculate Your</span>
             <span className="block text-blue-600 dark:text-blue-400">Investment</span>
           </h2>
           <p className="text-lg text-neutral-cool max-w-3xl mx-auto leading-relaxed">

@@ -162,8 +162,8 @@ export default function SuccessProbability() {
             AI Success Probability Calculator
           </Badge>
           <h2 className="text-4xl md:text-5xl font-bold mb-8 leading-tight tracking-tight">
-            <span className="text-neutral-warm">Calculate Your Success</span>
-            <span className="block text-primary-blue">Probability</span>
+            <span className="block text-blue-600 dark:text-blue-400">Calculate Your Success</span>
+            <span className="block text-blue-600 dark:text-blue-400">Probability</span>
           </h2>
           <p className="text-xl text-neutral-cool max-w-3xl mx-auto leading-relaxed">
             Get an instant assessment of your case strength based on 20+ years of historical data and 5,000+ successful cases.

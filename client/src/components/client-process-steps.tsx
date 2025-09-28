@@ -100,8 +100,8 @@ export default function ClientProcessSteps({ compact = false }: ClientProcessSte
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-6xl lg:text-7xl xl:text-8xl font-bold mb-6 leading-tight tracking-tight max-w-4xl mx-auto">
-              <span className="block text-black dark:text-white">How to Become Our</span>
-              <span className="block text-blue-600">Client</span>
+              <span className="block text-blue-600 dark:text-blue-400">How to Become Our</span>
+              <span className="block text-blue-600 dark:text-blue-400">Client</span>
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
               8 Clear Steps to Polish Citizenship
@@ -153,8 +153,8 @@ export default function ClientProcessSteps({ compact = false }: ClientProcessSte
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="text-center mb-16">
           <h1 className="text-6xl lg:text-7xl xl:text-8xl font-bold mb-6 leading-tight tracking-tight max-w-4xl mx-auto">
-            <span className="block text-black dark:text-white">How to Become Our</span>
-            <span className="block text-blue-600">Client</span>
+            <span className="block text-blue-600 dark:text-blue-400">How to Become Our</span>
+            <span className="block text-blue-600 dark:text-blue-400">Client</span>
           </h1>
           <p className="text-2xl text-gray-600 max-w-4xl mx-auto">
             Follow these 8 clear steps to become our registered client and start your citizenship case
@@ -229,8 +229,8 @@ export default function ClientProcessSteps({ compact = false }: ClientProcessSte
         <div className="mt-16 text-center">
           <Card className="p-8 bg-gradient-to-r from-blue-600 to-purple-600 text-white">
             <h3 className="text-6xl lg:text-7xl xl:text-8xl font-bold mb-6 leading-tight tracking-tight">
-              <span className="block text-black dark:text-white">Ready to Start Your</span>
-              <span className="block text-blue-600">Journey?</span>
+              <span className="block text-white">Ready to Start Your</span>
+              <span className="block text-white">Journey?</span>
             </h3>
             <p className="text-xl mb-6">Take the first step towards your Polish citizenship today</p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">

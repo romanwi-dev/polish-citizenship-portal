@@ -74,7 +74,7 @@ export default function CaseStartSteps({ compact = false }: CaseStartStepsProps)
       <section id="case-start" className="py-16 bg-gradient-to-br from-slate-50 to-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">
+            <h2 className="text-4xl font-bold text-blue-600 dark:text-blue-400 mb-4">
               How to Start Your Case
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
@@ -142,7 +142,7 @@ export default function CaseStartSteps({ compact = false }: CaseStartStepsProps)
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="text-center mb-16">
-          <h1 className="text-5xl font-bold text-gray-900 mb-6">
+          <h1 className="text-5xl font-bold text-blue-600 dark:text-blue-400 mb-6">
             How to Start Your Case
           </h1>
           <p className="text-2xl text-gray-600 max-w-4xl mx-auto">
