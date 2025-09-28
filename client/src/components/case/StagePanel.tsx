@@ -599,12 +599,13 @@ export const StagePanel: React.FC<StagePanelProps> = ({ case: caseData }) => {
         </div>
       </div>
 
-      {/* Progress Overview Dashboard */}
-      <div className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-lg p-6">
-        <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">Progress Overview</h3>
-        
-        {/* Horizontal Interactive Badges */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+      {/* Progress Overview Badges - Separate Container */}
+      <div className="relative z-10 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-xl shadow-sm">
+        <div className="p-6">
+          <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">Progress Overview</h3>
+          
+          {/* Horizontal Interactive Badges */}
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
           <div 
             className="text-center p-4 bg-gray-50 dark:bg-gray-800 rounded-lg cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
             onClick={() => {
@@ -670,26 +671,31 @@ export const StagePanel: React.FC<StagePanelProps> = ({ case: caseData }) => {
             </div>
             <div className="text-sm text-yellow-600 dark:text-yellow-400">Milestones</div>
           </div>
-        </div>
-
-        <div className="mb-4">
-          <div className="flex items-center justify-between mb-2">
-            <span className="text-sm font-medium text-gray-700 dark:text-gray-300">Overall Progress</span>
-            <span className="text-sm text-gray-500 dark:text-gray-400">
-              {Math.round((activeIdx / COMPREHENSIVE_PIPELINE.length) * 100)}%
-            </span>
-          </div>
-          <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-3">
-            <div 
-              className="bg-gradient-to-r from-blue-500 to-green-500 h-3 rounded-full transition-all duration-500"
-              style={{ width: `${(activeIdx / COMPREHENSIVE_PIPELINE.length) * 100}%` }}
-              data-testid="progress-bar-overall"
-            ></div>
           </div>
         </div>
+      </div>
 
-        {/* Part Progression Tabs - Separate Section */}
-        <div className="mt-6 pt-4 border-t border-gray-200 dark:border-gray-700">
+      {/* Progress Bar and Part Tabs - Separate Container */}
+      <div className="relative z-10 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-xl shadow-sm">
+        <div className="p-6">
+          <div className="mb-6">
+            <div className="flex items-center justify-between mb-2">
+              <span className="text-sm font-medium text-gray-700 dark:text-gray-300">Overall Progress</span>
+              <span className="text-sm text-gray-500 dark:text-gray-400">
+                {Math.round((activeIdx / COMPREHENSIVE_PIPELINE.length) * 100)}%
+              </span>
+            </div>
+            <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-3">
+              <div 
+                className="bg-gradient-to-r from-blue-500 to-green-500 h-3 rounded-full transition-all duration-500"
+                style={{ width: `${(activeIdx / COMPREHENSIVE_PIPELINE.length) * 100}%` }}
+                data-testid="progress-bar-overall"
+              ></div>
+            </div>
+          </div>
+
+          {/* Part Progression Tabs */}
+          <div className="border-t border-gray-200 dark:border-gray-700 pt-6">
           <div className="flex items-center justify-between mb-3">
             <h4 className="text-sm font-medium text-gray-700 dark:text-gray-300">Part Progression</h4>
             <div className="text-xs text-gray-500 dark:text-gray-400">Click to jump • Double-click to complete</div>
