@@ -47,7 +47,7 @@ const HeroSection = memo(function HeroSection() {
 
         {/* Main Headline */}
         <div className="text-center max-w-5xl mx-auto mb-16">
-          <h1 className="text-6xl lg:text-7xl xl:text-8xl font-bold mb-8 leading-tight tracking-tight">
+          <h1 className="font-bold mb-8 leading-tight tracking-tight" style={{ fontSize: 'clamp(3rem, 6vw, 8rem)', lineHeight: '1.1', letterSpacing: '-0.02em' }}>
             <span className="block text-red-600 dark:text-red-500">
               Polish Citizenship
             </span>

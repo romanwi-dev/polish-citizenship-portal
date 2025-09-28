@@ -36,7 +36,7 @@ export default function ServiceOverview() {
           <div className="glass-card-primary text-white px-6 py-3 rounded-full font-semibold mb-6 inline-block">
             Legal Expertise Since 2003
           </div>
-          <h2 className="text-6xl lg:text-7xl xl:text-8xl font-bold mb-6 leading-tight tracking-tight">
+          <h2 className="font-bold mb-6 leading-tight tracking-tight" style={{ fontSize: 'clamp(3rem, 6vw, 8rem)', lineHeight: '1.1', letterSpacing: '-0.02em' }}>
             <span className="block text-blue-600 dark:text-blue-400">Professional Legal</span>
             <span className="block text-blue-600 dark:text-blue-400">Expert Assistance</span>
           </h2>
@@ -56,7 +56,7 @@ export default function ServiceOverview() {
         <div className="flex flex-col gap-8 max-w-xs mx-auto">
           <div className="glass-card p-6 flex flex-col justify-center items-center">
             <div className="text-center">
-              <div className="text-4xl font-bold text-primary-blue mb-2">
+              <div className="font-black text-primary-blue mb-2 tracking-tight" style={{ fontSize: 'clamp(2.5rem, 4vw, 3.5rem)' }}>
                 <CountingNumber target={22} suffix="+" key="years" />
               </div>
               <div className="text-gray-700 font-medium text-base leading-tight">Years Experience</div>
@@ -65,7 +65,7 @@ export default function ServiceOverview() {
           
           <div className="glass-card p-6 flex flex-col justify-center items-center">
             <div className="text-center">
-              <div className="text-4xl font-bold text-primary-blue mb-2">
+              <div className="font-black text-primary-blue mb-2 tracking-tight" style={{ fontSize: 'clamp(2.5rem, 4vw, 3.5rem)' }}>
                 <CountingNumber target={5000} suffix="+" key="cases" />
               </div>
               <div className="text-gray-700 font-medium text-base leading-tight">Cases Processed</div>
@@ -74,7 +74,7 @@ export default function ServiceOverview() {
           
           <div className="glass-card p-6 flex flex-col justify-center items-center">
             <div className="text-center">
-              <div className="text-4xl font-bold text-primary-blue mb-2">
+              <div className="font-black text-primary-blue mb-2 tracking-tight" style={{ fontSize: 'clamp(2.5rem, 4vw, 3.5rem)' }}>
                 <CountingNumber target={100} suffix="%" key="success" />
               </div>
               <div className="text-gray-700 font-medium text-base leading-tight">True Success Rate</div>
@@ -83,7 +83,7 @@ export default function ServiceOverview() {
           
           <div className="glass-card p-6 flex flex-col justify-center items-center">
             <div className="text-center">
-              <div className="text-4xl font-bold text-primary-blue mb-2">24/7</div>
+              <div className="font-black text-primary-blue mb-2 tracking-tight" style={{ fontSize: 'clamp(2.5rem, 4vw, 3.5rem)' }}>24/7</div>
               <div className="text-gray-700 font-medium text-base leading-tight">Case Monitoring</div>
             </div>
           </div>

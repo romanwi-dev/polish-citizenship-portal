@@ -60,7 +60,7 @@ export default function BenefitsSection() {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-20">
-          <h2 className="text-6xl lg:text-7xl xl:text-8xl font-bold mb-8 tracking-tight leading-tight">
+          <h2 className="font-bold mb-8 tracking-tight leading-tight" style={{ fontSize: 'clamp(3rem, 6vw, 8rem)', lineHeight: '1.1', letterSpacing: '-0.02em' }}>
             <span className="block text-black dark:text-white">Benefits of Polish</span>
             <span className="block text-blue-600 dark:text-blue-400">European Citizenship</span>
           </h2>
