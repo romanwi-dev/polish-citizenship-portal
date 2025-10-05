@@ -1,6 +1,10 @@
 import { spawn } from "child_process";
 import http from "http";
+import fs from "fs";
+import path from "path";
+import { fileURLToPath } from "url";
 
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const PORT = process.env.PORT || 3000;
 const START_CMD = "node dist/index.js";
 
@@ -25,6 +29,18 @@ async function run() {
   await new Promise((resolve, reject) => {
     build.on("exit", (code) => (code === 0 ? resolve() : reject(new Error("Build failed"))));
   });
+
+  // 1.5) Copy HAC rules.json to dist
+  console.log("Copying HAC rules.json to dist...");
+  const srcPath = path.join(__dirname, '../server/hac/rules.json');
+  const destPath = path.join(__dirname, '../dist/rules.json');
+  
+  if (fs.existsSync(srcPath)) {
+    fs.copyFileSync(srcPath, destPath);
+    console.log("✅ rules.json copied to dist/");
+  } else {
+    console.warn("⚠️ Warning: rules.json not found at server/hac/rules.json");
+  }
 
   // 2) Start the server
   console.log(`Starting app on port ${PORT}...`);

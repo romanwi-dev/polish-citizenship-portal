@@ -12,9 +12,23 @@ const __dirname = path.dirname(__filename);
 
 function loadRules() {
   try {
-    const rulesPath = path.join(__dirname, 'rules.json');
-    const rulesData = fs.readFileSync(rulesPath, 'utf8');
-    return JSON.parse(rulesData);
+    // Try multiple paths for development and production environments
+    const possiblePaths = [
+      path.join(__dirname, 'rules.json'),                    // Production (bundled)
+      path.join(__dirname, '../hac/rules.json'),             // When running from dist/
+      path.join(process.cwd(), 'server/hac/rules.json'),     // Development
+      path.join(process.cwd(), 'dist/rules.json')            // Production fallback
+    ];
+
+    for (const rulesPath of possiblePaths) {
+      if (fs.existsSync(rulesPath)) {
+        const rulesData = fs.readFileSync(rulesPath, 'utf8');
+        console.log(`✅ HAC rules loaded from: ${rulesPath}`);
+        return JSON.parse(rulesData);
+      }
+    }
+
+    throw new Error('rules.json not found in any expected location');
   } catch (error) {
     console.error('Error loading HAC rules:', error);
     throw new Error('Failed to load HAC rules');
