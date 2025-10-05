@@ -21,6 +21,9 @@ export const pool = new Pool({
   keepAliveInitialDelayMillis: 10000, // Keep-alive delay
 });
 
+// Export 'db' as an alias for backward compatibility
+export const db = pool;
+
 // Test the connection on startup
 pool.on('error', (err) => {
   console.error('Unexpected database pool error:', err);
