@@ -320,6 +320,7 @@ export function MobileNavigationV3({ isMenuOpen: externalIsMenuOpen, setIsMenuOp
       title: 'Resources',
       icon: BookOpen,
       items: [
+        { id: 'help-center', label: 'HELP CENTER', href: '/help-center', icon: HelpCircle, description: 'Comprehensive guide to all services and features' },
         { id: 'faq', label: 'FAQ', href: '/faq', icon: HelpCircle },
         { id: 'testimonials', label: 'TESTIMONIALS', href: '/testimonials', icon: Star },
         { id: 'law', label: 'POLISH CITIZENSHIP LAW', href: '/law', icon: ShieldCheck },
