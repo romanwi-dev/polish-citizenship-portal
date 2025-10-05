@@ -48,6 +48,7 @@ const TestimonialsPage = lazy(() => import("@/pages/testimonials"));
 // WorkflowDashboard removed
 const CitizenshipTestPage = lazy(() => import("@/pages/citizenship-test"));
 const FAQPage = lazy(() => import("@/pages/faq"));
+const HelpCenter = lazy(() => import("@/pages/help-center"));
 const AdminDashboard = lazy(() => import("@/pages/admin"));
 const DocumentProcessing = lazy(() => import("@/pages/document-processing"));
 const ThemeCustomizer = lazy(() => import("@/pages/theme-customizer"));
@@ -185,6 +186,12 @@ function Router() {
         </Route>
         <Route path="/faq">
           <LazyPage><FAQPage /></LazyPage>
+        </Route>
+        <Route path="/help">
+          <LazyPage><Layout><HelpCenter /></Layout></LazyPage>
+        </Route>
+        <Route path="/help-center">
+          <LazyPage><Layout><HelpCenter /></Layout></LazyPage>
         </Route>
         <Route path="/admin">
           <LazyPage><Layout><AdminDashboard /></Layout></LazyPage>
