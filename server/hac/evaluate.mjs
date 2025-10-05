@@ -37,9 +37,23 @@ function loadRules() {
 
 function loadMockCase() {
   try {
-    const casePath = path.join(__dirname, 'mockCase.json');
-    const caseData = fs.readFileSync(casePath, 'utf8');
-    return JSON.parse(caseData);
+    // Try multiple paths for development and production environments
+    const possiblePaths = [
+      path.join(__dirname, 'mockCase.json'),                    // Production (bundled)
+      path.join(__dirname, '../hac/mockCase.json'),             // When running from dist/
+      path.join(process.cwd(), 'server/hac/mockCase.json'),     // Development
+      path.join(process.cwd(), 'dist/mockCase.json')            // Production fallback
+    ];
+
+    for (const casePath of possiblePaths) {
+      if (fs.existsSync(casePath)) {
+        const caseData = fs.readFileSync(casePath, 'utf8');
+        console.log(`✅ Mock case loaded from: ${casePath}`);
+        return JSON.parse(caseData);
+      }
+    }
+
+    throw new Error('mockCase.json not found in any expected location');
   } catch (error) {
     console.error('Error loading mock case:', error);
     throw new Error('Failed to load mock case data');
