@@ -10,6 +10,12 @@ const __dirname = path.dirname(__filename);
  * Evaluates case data against defined rules and returns authorization status
  */
 
+// Embedded fallback rules data
+const EMBEDDED_RULES = {"rules":[{"id":"USC.STATUS.REG","name":"USC Registration Status","description":"Check if USC birth act is registered","type":"WARNING","condition":"usc.birth.registered !== true","message":"USC birth act not yet registered (umiejscowienie pending)","remedy":"Complete USC registration process at Polish consulate or USC office"},{"id":"DOC.TRANSLATION.REQUIRED","name":"Document Translation Requirements","description":"Check if foreign vital documents have sworn Polish translations","type":"WARNING","condition":"foreign_docs.some(doc => !doc.has_sworn_translation)","message":"Some foreign vital documents lack sworn Polish translation","remedy":"Obtain sworn Polish translations for all foreign documents"},{"id":"IDENTITY.NAMES.CONSISTENCY","name":"Name Consistency Check","description":"Check surname consistency between birth and current documents","type":"WARNING","condition":"current_surname !== birth_surname && !has_sprostowanie_note","message":"Surname mismatch between birth and current documents without sprostowanie note","remedy":"Provide sprostowanie (correction) note or legal name change documentation"},{"id":"ATTACHMENTS.COMPLETE","name":"OBY Attachments Completeness","description":"Check if all 10 required OBY attachments are linked","type":"WARNING","condition":"oby_attachments.filter(att => att.linked).length < 10","message":"Not all required OBY attachments (1-10) are linked","remedy":"Link all 10 required attachments to OBY application before submission"},{"id":"DOC.PASSPORT.REQUIRED","name":"Valid Passport Required","description":"Check if a valid passport document is provided","type":"BLOCKER","condition":"!documents.some(doc => doc.type === 'passport' && doc.status === 'RECEIVED')","message":"No valid passport document found in case files","remedy":"Upload a clear copy of valid passport document"},{"id":"LINEAGE.POLISH.PROOF","name":"Polish Lineage Proof","description":"Check if Polish ancestry is documented","type":"BLOCKER","condition":"!documents.some(doc => doc.type === 'birth_cert_PL')","message":"Polish birth certificate or lineage proof missing","remedy":"Provide Polish birth certificate of Polish ancestor or equivalent proof"},{"id":"CASE.STATE.VALID","name":"Case State Validation","description":"Check if case is in a valid state for submission","type":"BLOCKER","condition":"status.pipeline_state !== 'OBY_SUBMITTABLE' && status.pipeline_state !== 'USC_READY'","message":"Case is not in a submittable state","remedy":"Complete all prerequisite steps before attempting submission"},{"id":"CLIENT.DATA.COMPLETE","name":"Client Data Completeness","description":"Check if all required client information is provided","type":"WARNING","condition":"!client.name || !client.email || client.name.trim().length < 3","message":"Client information is incomplete or invalid","remedy":"Ensure client name and email are properly filled out"},{"id":"DOCS.FOREIGN.STATUS","name":"Foreign Document Processing","description":"Check if foreign documents are properly processed","type":"WARNING","condition":"documents.some(doc => doc.is_foreign && doc.status !== 'RECEIVED')","message":"Some foreign documents are not yet processed","remedy":"Complete processing of all foreign vital documents"},{"id":"PROCESSING.TIMELINE","name":"Processing Timeline Check","description":"Check if case processing is within reasonable timeline","type":"WARNING","condition":"daysSinceCreated > 180","message":"Case has been in process for more than 6 months","remedy":"Review case status and consider escalating if needed"}],"metadata":{"version":"2.0.0","description":"Enhanced HAC rules for Polish citizenship application validation","last_updated":"2025-09-21","rule_types":["WARNING","BLOCKER"],"note":"Rules include both WARNING and BLOCKER severity levels for comprehensive validation"}};
+
+// Embedded fallback mock case data
+const EMBEDDED_MOCK_CASE = {"case_id":"C-2025-0013","client":{"name":"Jan Marek Kowalski","email":"jan@example.com","current_surname":"KOWALSKI","birth_surname":"NOWAK"},"status":{"pipeline_state":"USC_IN_FLIGHT","created_date":"2025-09-15","last_updated":"2025-09-17"},"usc":{"birth":{"registered":false,"registration_pending":true,"office":"USC Warszawa"}},"documents":[{"type":"passport","status":"RECEIVED","filename":"passport_kowalski.pdf","has_sworn_translation":false,"is_foreign":false},{"type":"birth_cert_foreign","status":"RECEIVED","filename":"birth_cert_brazil.pdf","has_sworn_translation":false,"is_foreign":true,"origin_country":"Brazil"},{"type":"birth_cert_PL","status":"PENDING","filename":null,"has_sworn_translation":false,"is_foreign":false,"note":"Umiejscowienie not completed yet"}],"name_changes":{"has_sprostowanie_note":false,"legal_name_change_docs":[]},"oby_attachments":[{"id":1,"name":"Birth certificate","linked":true},{"id":2,"name":"Passport copy","linked":true},{"id":3,"name":"Parent birth certificate","linked":false},{"id":4,"name":"Grandparent birth certificate","linked":false},{"id":5,"name":"Marriage certificate","linked":false},{"id":6,"name":"Death certificate","linked":false},{"id":7,"name":"Residence proof","linked":false},{"id":8,"name":"Employment proof","linked":false},{"id":9,"name":"Criminal record check","linked":false},{"id":10,"name":"Additional documents","linked":false}],"foreign_docs":[{"type":"birth_cert_foreign","has_sworn_translation":false,"translation_status":"pending"}],"mapped_fields":{"OBY-I-GIVEN":"JAN MAREK","OBY-I-SURNAME":"KOWALSKI","OBY-I-BIRTHSUR":"NOWAK","OBY-I-SEX":"mężczyzna","OBY-I-DOB":"12-03-1989","OBY-I-POB":"RIO DE JANEIRO, BRAZYLIA","POA-A-GN":"JAN MAREK","POA-A-SN":"KOWALSKI","POA-A-ID":"AB1234567","POA-A-DATE":"16-09-2025"}};
+
 function loadRules() {
   try {
     // Try multiple paths for development and production environments
@@ -28,10 +34,12 @@ function loadRules() {
       }
     }
 
-    throw new Error('rules.json not found in any expected location');
+    console.warn('⚠️ External rules.json not found, using embedded fallback');
+    return EMBEDDED_RULES;
   } catch (error) {
     console.error('Error loading HAC rules:', error);
-    throw new Error('Failed to load HAC rules');
+    console.warn('⚠️ Using embedded fallback rules');
+    return EMBEDDED_RULES;
   }
 }
 
@@ -53,10 +61,12 @@ function loadMockCase() {
       }
     }
 
-    throw new Error('mockCase.json not found in any expected location');
+    console.warn('⚠️ External mockCase.json not found, using embedded fallback');
+    return EMBEDDED_MOCK_CASE;
   } catch (error) {
     console.error('Error loading mock case:', error);
-    throw new Error('Failed to load mock case data');
+    console.warn('⚠️ Using embedded fallback mock case');
+    return EMBEDDED_MOCK_CASE;
   }
 }
 

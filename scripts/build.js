@@ -21,16 +21,25 @@ try {
     stdio: 'inherit' 
   });
 
-  // Step 3: Copy rules.json to dist
-  console.log('📋 Copying HAC rules.json...');
-  const srcPath = path.join(rootDir, 'server/hac/rules.json');
-  const destPath = path.join(rootDir, 'dist/rules.json');
+  // Step 3: Copy HAC JSON files to dist
+  console.log('📋 Copying HAC data files...');
   
-  if (fs.existsSync(srcPath)) {
-    fs.copyFileSync(srcPath, destPath);
-    console.log('✅ rules.json copied to dist/');
-  } else {
-    console.warn('⚠️ Warning: rules.json not found at server/hac/rules.json');
+  const filesToCopy = [
+    { src: 'server/hac/rules.json', dest: 'dist/rules.json', name: 'rules.json' },
+    { src: 'server/hac/mockCase.json', dest: 'dist/mockCase.json', name: 'mockCase.json' }
+  ];
+
+  for (const file of filesToCopy) {
+    const srcPath = path.join(rootDir, file.src);
+    const destPath = path.join(rootDir, file.dest);
+    
+    if (fs.existsSync(srcPath)) {
+      fs.copyFileSync(srcPath, destPath);
+      console.log(`✅ ${file.name} copied to dist/`);
+    } else {
+      console.error(`❌ Error: ${file.name} not found at ${file.src}`);
+      process.exit(1);
+    }
   }
 
   console.log('✅ Build completed successfully!');
